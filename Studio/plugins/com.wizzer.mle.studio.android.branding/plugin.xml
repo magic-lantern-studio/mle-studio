@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="ide"
+         point="org.eclipse.core.runtime.products">
+      <product name="Magic Lantern Android Studio" application="org.eclipse.ui.ide.workbench" description="%productBlurb"> 
+          <property name="windowImage" value="images/genieLamp_16x16_32bit.png"/> 
+          <property name="aboutImage" value="images/MagicLanternAbout.png"/> 
+          <property
+                name="aboutText"
+                value="Magic Lantern Development Environment&#x0A;&#x0A;Part Number: {0}&#x0A;Version: {2}&#x0A;Build id: {1}&#x0A;&#x0A;Copyright (c) 2000-2012 Wizzer Works, All rights reserved.&#x0A;Visit http://www.wizzerworks.com&#x0A;&#x0A;This product includes software developed by the&#x0A;Eclipse Foundation http://www.eclipse.org/. It also&#x0A;includes open source from Google&apos;s Android&#x0A;Development Tools (ADT) plug-ins for Eclipse."/> 
+          <property name="appName" value="Magic Lantern Android Studio"/> 
+          <property name="welcomePage" value="welcome.xml"/>
+          <property name="preferenceCustomization" value="plugin_customization.ini"/>
+          <property
+                name="windowImages"
+                value="images/genieLamp_16x16_32bit.png,images/genieLamp_32x32_32bit.png,images/genieLamp_48x48_32bit.png,images/genieLamp_64x64_32bit.png,images/genieLamp_128x128_32bit.png">
+          </property> 
+      </product> 
+   </extension>
+
+</plugin>

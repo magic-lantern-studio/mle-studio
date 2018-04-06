@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.help.toc">
+      <toc file="toc.xml"/>
+      <toc file="overviewToc.xml" primary="true"/>
+      <toc file="com.wizzer.mle.math.toc.xml"/>
+      <toc file="runtime.toc.xml"/>
+      <toc file="com.wizzer.mle.runtime.toc.xml"/>
+      <toc file="com.wizzer.mle.runtime.core.toc.xml"/>
+      <toc file="com.wizzer.mle.runtime.dpp.toc.xml"/>
+      <toc file="com.wizzer.mle.runtime.event.toc.xml"/>
+      <toc file="com.wizzer.mle.runtime.scheduler.toc.xml"/>
+      <toc file="com.wizzer.mle.runtime.util.toc.xml"/>
+      <toc file="parts.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.j2d.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.j2d.actors.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.j2d.mrefs.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.j2d.props.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.j2d.roles.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.j2d.sets.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.j2d.stages.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.actors.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.mrefs.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.props.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.roles.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.sets.toc.xml"/>
+      <toc file="com.wizzer.mle.parts.stages.toc.xml"/>
+   </extension>
+
+</plugin>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Magic Lantern"
+            id="com.wizzer.mle.studio.category">
+      </category>
+      <wizard
+            name="%MleBRenderProjectCreationWizard.title"
+            icon="icons/full/ctool16/newprj_wiz.gif"
+            category="com.wizzer.mle.studio.category"
+            class="com.wizzer.mle.studio.brender.project.MleBRenderProjectCreationWizard"
+            project="true"
+            finalPerspective="org.eclipse.cdt.ui.CPerspective"
+            id="com.wizzer.mle.studio.brender.project.MleBRenderProjectCreationWizard">
+         <description>
+            %MleBRenderProjectCreationWizard.description
+         </description>
+         <import
+            type="SimpleBRenderTemplate"
+            dest="src"
+            src="archive/templates/SimpleBRenderTemplate.zip">
+         </import>
+      </wizard>
+   </extension>
+
+   <extension
+         id="BRenderDigitalPlayprintLaunchConfigurationTypes"
+         name="Magic Lantern BRender Digital Playprint Launch Configuration Types"
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            name="Magic Lantern BRender Runtime Player"
+            id="com.wizzer.mle.studio.brender.launch.RuntimePlayerLaunchConfigurationType"
+            modes="run"
+            delegate="com.wizzer.mle.studio.brender.launch.RuntimePlayerLaunchConfigurationDelegate">
+         <fileExtension extension="dpp" default="true"/>
+      </launchConfigurationType>
+   </extension>
+
+   <extension
+         id="BRenderDigitalPlayprintLaunchConfigurationTabGroups"
+         name="Magic Lantern BRender Digital Playprint Launch Configuration Tab Groups"
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            type="com.wizzer.mle.studio.brender.launch.RuntimePlayerLaunchConfigurationType"
+            description="Create a configuration for running a BRender application."
+            class="com.wizzer.mle.studio.brender.launch.ui.RuntimePlayerTabGroup"
+            id="com.wizzer.mle.studio.brender.launch.ui.RuntimePlayerTabGroup">
+      </launchConfigurationTabGroup>
+   </extension>
+
+   <extension point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension 
+	      targetID="com.wizzer.mle.studio.StudioPerspective">
+	      <newWizardShortcut id="com.wizzer.mle.studio.brender.project.MleBRenderProjectCreationWizard"/>
+      </perspectiveExtension>
+   </extension>
+
+</plugin>

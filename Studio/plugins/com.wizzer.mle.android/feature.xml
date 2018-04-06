@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.wizzer.mle.android"
+      label="Magic Lantern Studio Android Feature"
+      version="1.0.0.v20080220"
+      provider-name="Wizzer Works"
+      os="win32"
+      ws="win32"
+      nl="en_US"
+      arch="x86">
+
+   <description url="http://www.wizzerworks.com/support/Android">
+      The Magic Lantern Studio Android Developer Toolkit is an interactive
+development environment, IDE, for creating applications for the
+Google, Inc. Android platform. The toolkit consists of the Magic
+Lantern Runtime Engine ported to the Android platform in addition
+to the tools for creating and generating the content consumed
+by this engine. For more information concerning this toolkit, please refer to
+the support web site at http://www.wizzerworks.com/support/Android.
+   </description>
+
+   <copyright url="http://www.wizzerworks.com/support/Android/copyright.htm">
+      (c) Copyright Wizzer Works, 2008
+   </copyright>
+
+   <license url="http://www.wizzerworks.com/support/Android/license.htm">
+      Wizzer Works makes available all content in this feature set
+(&quot;Content&quot;). Unless otherwise indicated below, the Content is
+provided to you under the terms and conditions of the Common Public License
+Version 1.0 (&quot;CPL&quot;). A copy of the CPL is available at http://opensource.org/licenses/cpl1.0.php.
+For purposes of the CPL, &quot;Program&quot; will mean the Content. For
+information concerning this software, contact Mark S. Millard,
+of Wizzer Works at msm@wizzerworks.com. More information concerning
+Wizzer Works may be found at http://www.wizzerworks.com.
+   </license>
+
+   <url>
+      <update label="Magic Lantern Studio Android Developer Toolkit" url="http://www.wizzerworks.com/support/update/Android"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.apache.ant"/>
+      <import plugin="org.junit"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.jdt.ui"/>
+      <import plugin="org.eclipse.jdt.launching"/>
+      <import plugin="org.eclipse.core.filesystem"/>
+      <import plugin="com.android.ide.eclipse.adt"/>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.eclipse.jdt.debug.ui"/>
+      <import plugin="org.eclipse.ui.views"/>
+      <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor"/>
+      <import plugin="org.eclipse.core.runtime.compatibility"/>
+   </requires>
+
+   <plugin
+         id="com.wizzer.mle.codegen"
+         os="win32"
+         ws="win32"
+         nl="en_US"
+         arch="x86"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="com.wizzer.mle.studio"
+         os="win32"
+         ws="win32"
+         nl="en_US"
+         arch="x86"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="com.wizzer.mle.studio.android"
+         os="win32"
+         ws="win32"
+         nl="en_US"
+         arch="x86"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="com.wizzer.mle.studio.dpp"
+         os="win32"
+         ws="win32"
+         nl="en_US"
+         arch="x86"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="com.wizzer.mle.studio.dwp"
+         os="win32"
+         ws="win32"
+         nl="en_US"
+         arch="x86"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="com.wizzer.mle.studio.framework"
+         os="win32"
+         ws="win32"
+         nl="en_US"
+         arch="x86"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+</feature>

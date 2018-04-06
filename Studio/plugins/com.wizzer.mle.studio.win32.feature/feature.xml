@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.wizzer.mle.studio.win32"
+      label="Magic Lantern Studio Win32 Feature"
+      version="1.0.0.qualifier"
+      provider-name="Wizzer Works"
+      plugin="com.wizzer.mle.studio.branding"
+      os="win32"
+      arch="x86,x86_64">
+
+   <description url="http://www.wizzerworks.com/index.php/magic-lantern">
+      This feature is the collection of Eclipse plugins required
+to build Magic Lantern titles on a Windows platform.
+   </description>
+
+   <copyright url="copyright.html">
+      Copyright (c) 2000-2018, Wizzer Works
+   </copyright>
+
+   <license url="license.html">
+      Wizzer Works makes available all content in this feature (&quot;Content&quot;). \
+Unless otherwise indicated below, the Content is provided to you \
+under the terms and conditions of the MIT License \
+(&quot;MIT&quot;). A copy of the MIT is available at \
+\
+http://opensource.org/licenses/MIT \
+\
+For purposes of the MIT, &quot;Software&quot; will mean the Content. \
+\
+For information concerning this feature, contact Mark S. Millard, \
+of Wizzer Works at msm@wizzerworks.com. \
+\
+More information concerning Wizzer Works may be found at \
+\
+http://www.wizzerworks.com
+   </license>
+
+   <url>
+      <update label="Magic Lantern Studio Update Site" url="http://www.wizzerworks.com/MagicLantern/updates/eclipse.4.7/stable/latest/"/>
+   </url>
+
+   <requires>
+      <import plugin="com.wizzer.mle.studio.dwp" version="1.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="com.wizzer.mle.studio.dwp.reader.win32"
+         os="win32"
+         arch="x86,x86_64"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--============createExtensionToc(List pkgs)============-->
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Magic Lantern Stages Library">
+   <topic label="Magic Lantern Stages Library" href="html/SDK/stagesdoc/overview-summary.html">
+      <topic label="com.wizzer.mle.parts.stages Package" href="html/SDK/stagesdoc/com/wizzer/mle/parts/stages/package-summary.html">
+         <topic label="MleApplicationView" href="html/SDK/stagesdoc/com/wizzer/mle/parts/stages/MleApplicationView.html"/>
+         <topic label="Mle2dStage" href="html/SDK/stagesdoc/com/wizzer/mle/parts/stages/Mle2dStage.html"/>
+         <topic label="Mle2dStage.Mle2dStageResizeCallback" href="html/SDK/stagesdoc/com/wizzer/mle/parts/stages/Mle2dStage.Mle2dStageResizeCallback.html"/>
+         <topic label="Mle2dStage.Mle2dStageBlitterTask" href="html/SDK/stagesdoc/com/wizzer/mle/parts/stages/Mle2dStage.Mle2dStageBlitterTask.html"/>
+      </topic>
+   </topic>
+</toc>

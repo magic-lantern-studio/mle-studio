@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<!-- ==============createEclipseToc(List pkgs)================= -->
+
+<toc label="Magic Lantern Parts Library">
+   <topic label="Magic Lantern Parts Library" href="html/SDK/partsdoc/overview-summary.html">
+        <link toc="com.wizzer.mle.parts.toc.xml"/>
+</topic></toc>

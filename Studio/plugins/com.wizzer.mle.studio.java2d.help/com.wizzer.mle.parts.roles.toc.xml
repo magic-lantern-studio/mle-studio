@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--============createExtensionToc(List pkgs)============-->
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Magic Lantern Roles Library">
+   <topic label="Magic Lantern Roles Library" href="html/SDK/rolesdoc/overview-summary.html">
+      <topic label="com.wizzer.mle.parts.roles Package" href="html/SDK/rolesdoc/com/wizzer/mle/parts/roles/package-summary.html">
+         <topic label="MleImageRole" href="html/SDK/rolesdoc/com/wizzer/mle/parts/roles/MleImageRole.html"/>
+         <topic label="MleImageCarrier" href="html/SDK/rolesdoc/com/wizzer/mle/parts/roles/MleImageCarrier.html"/>
+         <topic label="Mle2dRole" href="html/SDK/rolesdoc/com/wizzer/mle/parts/roles/Mle2dRole.html"/>
+      </topic>
+   </topic>
+</toc>

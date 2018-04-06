@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--============createExtensionToc(List pkgs)============-->
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Magic Lantern Sets Library">
+   <topic label="Magic Lantern Sets Library" href="html/SDK/setsdoc/overview-summary.html">
+      <topic label="com.wizzer.mle.parts.sets Package" href="html/SDK/setsdoc/com/wizzer/mle/parts/sets/package-summary.html">
+         <topic label="Mle2dSetRenderer" href="html/SDK/setsdoc/com/wizzer/mle/parts/sets/Mle2dSetRenderer.html"/>
+         <topic label="Mle2dSet" href="html/SDK/setsdoc/com/wizzer/mle/parts/sets/Mle2dSet.html"/>
+         <topic label="Mle2dSet.Mle2dSetResizeCallback" href="html/SDK/setsdoc/com/wizzer/mle/parts/sets/Mle2dSet.Mle2dSetResizeCallback.html"/>
+      </topic>
+   </topic>
+</toc>

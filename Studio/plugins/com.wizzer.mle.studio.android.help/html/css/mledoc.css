@@ -1,0 +1,33 @@
+/* CSS Document */
+
+<!--
+#banner {
+	margin-top: 0;
+	margin-bottom: 0;
+	background-color: #316AC5 ;
+	border-bottom: solid 1px #000000;
+	padding: 5px 5px 5px 10px;
+	line-height: 75%;
+	color: #fff;
+}
+#cppexample {
+	background-color: #FFF19A;
+	border: 1px solid black;
+	padding: 10 px;
+}
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.noteImage {
+	float: left;
+	padding: 1px;
+}
+.noteText {
+	font-style: italic;
+	float: right;
+}
+-->

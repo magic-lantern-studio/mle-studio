@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?> 
+<welcomePage 
+	title="Magic Lantern Java2D Studio">
+
+<intro>
+Magic Lantern is a interactive, title development platform for authoring highly interactive titles,
+such as interactive TV applications, games, educational programs, and point-of-information/sales 
+kiosks. It is designed specifically for the real-world needs of professional title development
+teams as they break new ground in the development of real-time interactive titles.
+</intro>
+
+<item><b>Magic Lantern Java2D Studio Documentation</b>
+The best way to get started developing Magic Lantern Java2D titles is to read the online documentation
+distributed with this release of Magic Lantern Studio.
+</item>
+
+<item><b>Learn More</b>
+The official site of Magic Lantern can be found here: <topic href="http://wz-mle.sourceforge.net/">http://wz-mle.sourceforge.net/</topic>
+</item>
+
+<item><b>Reporting bugs, comments</b>
+If you experience any issues or wish to request feature enhancements, please let us know.
+Please feel free to send us your comments : <b>msm@wizzerworks.com</b>
+</item>
+
+</welcomePage>

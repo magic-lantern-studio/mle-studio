@@ -1,0 +1,385 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Writing a Magic Lantern Title in C++</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="css/mledoc.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body>
+<h1 id="banner"><a href="http://www.wizzerworks.com"><img src="images/WwLogo.gif" width="100" height="100" border="0"></a></h1>
+<h1>3.0 Writing a Magic Lantern Title in C++</h1>
+<p>You can create a title and add other actors to that title without using the 
+  Magic Lantern Studio authoring tools. To do this, you will need to follow some 
+  basic steps. You have to</p>
+<ol>
+  <li> create a DWP file, this sets up the title workprint</li>
+  <li>define actor definition files, <em><strong>.wpa</strong></em> and <em><strong>.wpd</strong></em> 
+    files</li>
+  <li>set up a title build environment (i.e. makefile)</li>
+  <li> write the necessary C++ code and include files </li>
+</ol>
+<h2>3.1 Understanding the Directory Structure<a name="section_3.1"></a></h2>
+<p> It is important to understand the Magic Lantern directory structure because 
+  you will need to locate the different runtime libraries and modules used by 
+  your title, in addition to your own source code and media content files.The 
+  Magic Lantern directory structure is as follows: </p>
+<p>&lt;to be supplied&gt; </p>
+<h2>3.2 Creating a Digital Workprint<a name="section_3.2"></a></h2>
+<p>&lt;to be supplied&gt;</p>
+<h2>3.3 Defining Actor Definition Files<a name="section_3.3"></a></h2>
+<p>&lt;to be supplied&gt;</p>
+<h2>3.4 Setting Up the Build Environment<a name="section_3.4"></a></h2>
+<p>In order build a title outside the Magic Lantern Studio IDE, certain conventions 
+  should be followed. This section discusses how to set up the build environment 
+  targeting the C++ language.</p>
+<h3>3.4.1 Setting Up the Title Makefile<a name="section_3.4.1"></a></h3>
+<p>&lt;to be supplied&gt;</p>
+<h3>3.4.2 Integrating with a Debugger<a name="section_3.4.2"></a></h3>
+<p>You can integrate the Rehearsal Player with the dbx debugger by using the environmental 
+  variable MLEDBX in your title makefile. This variable allows you to attach the 
+  debugger to the Rehearsal Player window and then run the program in the debugger.</p>
+<h2>3.5 Writing the Title in C++<a name="section_3.5"></a></h2>
+<h3>3.5.1 Understanding the Main Program<a name="section_3.5.1"></a></h3>
+<p> All titles begin with a main routine. Understanding this routine helps you 
+  to understand the structure of a Magic Lantern title. In addition, you need 
+  to understand the default main routine to write a custom main. </p>
+<h4>3.5.1.1 Finding the Default Main<a name="section_3.5.1.1"></a></h4>
+<p> Magic Lantern provides a default main routine, which resides in the player 
+  library. Note that there are multiple player libraries: for example, there is 
+  one for the Rehearsal Player and one for the Windows BRender Player. Each player 
+  has its own default main routine. </p>
+<p>For example, in the Rehearsal Player, the main routine is called <em><strong>mlplay</strong></em>. 
+  <em>mlplay</em> consists of two pieces of source code: main.cxx and title.cxx. 
+  In the Inventor Player, the title name itself is the main, and it is found in 
+  the library <em>libplayer.a</em>. On the Windows BRender platform, the main 
+  is found in the title's directory, in the main.cxx source code file. The associated 
+  title.cxx source file is in the Magic Lantern library directory for the Windows 
+  Player. </p>
+<p>Note: On the Windows platform, there is a win32 set of directories and a game 
+  developers kit set of directories. </p>
+<p>You can find the main program in the main.cxx source file. The title.cxx source 
+  file contains the implementations of the functions that are called by the main 
+  program. </p>
+<h4>3.5.1.2 The Default Main Program<a name="section_3.5.1.2"></a></h4>
+<p>This section discusses the main entry points, or application lifecycle, of 
+  a Magic Lantern title.</p>
+<h5>3.5.1.2.1 Main Entry Points for C++<a name="section_3.5.1.2.1"></a></h5>
+<p>The standard main program for a title is fairly simple. It allocates memory 
+  for the required global variables and calls three functions, <em>InitEnv()</em>, 
+  <em>MainLoop()</em>, and <em>CleanupEnv()</em>. </p>
+<p><em>main()</em> calls <em>mlMalloc()</em> to allocate memory for the title 
+  data structure. <em>mlMalloc()</em> by default is merely a Magic Lantern function 
+  that calls system <em>malloc()</em>. This allows programmers to replace the 
+  standard memory allocation routine with a custom implementation. </p>
+<p>The file main.c++ looks like this: </p>
+<p>Example 1-1: main program in C++</p>
+<pre id="cppexample">
+    // Include Magic Lantern header files.
+    #include &quot;mle/types.h&quot;
+    #include &quot;mle/malloc.h&quot;
+    #include &quot;mle/titleenv.h&quot;
+    #include &quot;mle/assert.h&quot;
+
+    // Declare external references.
+    extern MlBoolean InitEnv(int, char **);
+    extern int MainLoop(void);
+    extern MlBoolean CleanupEnv(void);
+
+    //
+    // main()
+    //
+    int main(int argc, char *argv[])
+    {
+        // Create a new title environment.
+        theTitle = (MleTitleEnv*)mlMalloc(sizeof *theTitle);
+        MLE_ASSERT(theTitle);
+        // Initialize the title environment structure.
+        InitEnv(argc, argv);
+        // Start the main title loop.
+        MainLoop();
+        // Clean up the title environment.
+        CleanupEnv();
+
+        return(0);
+    }
+</pre>
+<h5>3.5.1.2.2 Understanding the Principal Functions<a name="section_3.5.1.2.2"></a></h5>
+<p> main calls three principal functions: </p>
+<ul>
+  <li> InitEnv</li>
+  <li>MainLoop</li>
+  <li>CleanupEnv </li>
+</ul>
+<p>These functions initialize the title, execute the main title loop, and clean 
+  up when the title completes. You can find this code in title.cxx. They are explained 
+  in this section. </p>
+<h5>3.5.1.2.3 Title Data Structures<a name="section_3.5.1.2.3"></a></h5>
+<p> Before examining the main functions, you should understand the titleenv.h 
+  header file because it defines some important title data structures. </p>
+<p>The struct <em><strong>MleTitleEnv</strong></em> contains global data for the 
+  title, including pointers to the scheduler and the event dispatch manager. It 
+  also defines the quit flag, the Digital Playprint reader, a pointer to data 
+  specific to a target platform, and a pointer to global data specific to the 
+  title. See Example 1-2. </p>
+<p>Example 1-2: MleTitleEnv Structure </p>
+<pre id="cppexample">
+    typedef struct MleTitleEnv
+    {
+        MleScheduler *scheduler;
+        MleEventMgr *eventMgr;
+        MlBoolean quit;     // quit flag
+        MlePpInput *pp;     // playprint reader
+        void* platformData; // target platform data
+        void* titleData;    // title global data
+    } MleTitleEnv;
+</pre>
+<p>titleenv.h also defines the enum <em><strong>MleTitlePhases</strong></em> for 
+  the scheduler phases. This contains the names of the built-in, or default, phases. 
+  If you create your own custom phase, you must add its name to <em>MleTitlePhases</em>. 
+</p>
+<p>Example 1-3: Scheduler Phase enum </p>
+<pre id="cppexample">
+    typedef enum {
+        PHASE_ACTOR,
+        PHASE_ROLE,
+        PHASE_SET,
+        PHASE_STAGE,
+        TOTAL_NUM_PHASES
+    } MleTitlePhases;</pre>
+<h4>3.5.1.2.4 Initializing the Title<a name="section_3.5.1.2.4"></a></h4>
+<p> The <em>InitEnv()</em> function performs a number of important tasks. In the 
+  Rehearsal Player, it locates, opens, and loads the DWP file into memory. On 
+  the mastering side (the player platforms), it locates, open, and loads the Digital 
+  Playprint file into memory. It allocates memory and then creates a new Playprint 
+  object, as follows: </p>
+<pre id="cppexample">
+    MlBoolean InitEnv(int argc, char **argv)
+    {
+        char *ppName;
+        ...
+        ppName = (char *) mlMalloc(strlen(argv[0]) + 4);
+        ...
+        theTitle-&gt;pp = new FwPpInput (ppName, MLE_PPFINDPPBE);
+</pre>
+<p>Note: The <strong>MLE_PPFINDPPBE</strong> constant is specific for Big Endian 
+  boxes, where the order of significant bits is big endian. On the Windows platform, 
+  this would be <strong>MLE_PPFINDPPLE</strong>, because the Intel hardware uses 
+  little endian bit order. </p>
+<p>Next, this function reads in the title components into the Playprint object: 
+</p>
+<pre id="cppexample">
+        ... 
+        theTitle-&gt;pp-&gt;readHeader(NULL, NULL);
+        theTitle-&gt;pp-&gt;readTOC(MlePpInput::storeTOC,theTitle-&gt;pp);
+        theTitle-&gt;pp-&gt;beginGroupList();
+</pre>
+<p><em>InitEnv()</em> then creates the scheduler and the stage. It initializes 
+  the scheduler with the number of phases, or different classes of objects, it 
+  needs to schedule each cycle. (&quot;Using the Magic Lantern Scheduler&quot; 
+  for more information on the scheduler.) </p>
+<p>There are different types of stages. On the Windows platform, you can create 
+  an Inventor or BRender stage, both written in C++. You can optionally create 
+  other managers, such as mouse and keyboard input managers. (See &quot;Handling 
+  Input and Output&quot; for more information on input managers.) <em>InitEnv()</em> 
+  also initializes the quit variable that is within the Title global structure 
+  to false so that the user can exit the title main loop. Finally, it loads the 
+  boot scene from the Playprint. This is the first scene of the title, and it 
+  appears when Magic Lantern launches the title. </p>
+<p>The <em>InitEnv()</em> code segment that follows creates a BRender stage. It 
+  also creates a poll-driven keyboard input manager. </p>
+<pre id="cppexample">
+        // Initialize the scheduler.
+        theTitle-&gt;scheduler = new MleScheduler(NUM_PHASES, NUM_FUNCS);
+        // Create the stage.
+        MleBRenderStage *stage = new MleBRenderStage;
+        // Initialize the keyboard input device.
+        new MleKeyboardPolled;
+        // Initialize the quit variable to false.
+        theTitle-&gt;quit = FALSE;
+        // Load the boot groups.
+        (void) mlLoadBootScene();
+        return TRUE;
+    }
+</pre>
+<h4>3.5.1.2.5 Executing the Main Loop<a name="section_3.5.1.2.5"></a></h4>
+<p> The <em>MainLoop()</em> function, which takes no arguments, is the title-specific 
+  main loop function. Its role is to cycle through the scheduler phases until 
+  the quit flag is set to true. </p>
+<p><em>MainLoop</em>() looks for event occurrences and calls the scheduler function 
+  go for each of the scheduler phases. The four phases shown in Example 1-4 are 
+  the required default phases. </p>
+<p>Example 1-4: MainLoop </p>
+<pre id="cppexample">
+    int MainLoop(void);
+    {
+        // Loop forever.
+        while (1) {
+		    // Execute Actor phase.
+            theTitle-&gt;scheduler-&gt;go(PHASE_ACTOR);
+			// Execute Role phase.
+            theTitle-&gt;scheduler-&gt;go(PHASE_ROLE);
+			// Execute Set phase.
+            theTitle-&gt;scheduler-&gt;go(PHASE_SET);
+			// Execute Stage phase.
+            theTitle-&gt;scheduler-&gt;go(PHASE_STAGE);
+			
+			// Check for the exit key.
+            if (MleKeyboardPolled::keyboardManager-&gt;keyDown(MLE_KEY_Q))
+                theTitle-&gt;quit = TRUE;
+
+            // Check for request to quit title.
+            if (theTitle-&gt;quit)
+                 break;
+        }
+        return 0;
+    }
+ </pre>
+<p>If you create a custom phase, such as a global clock update phase or a collision 
+  detection phase, then you must add your phase to the MainLoop. For example, 
+  if you add a collision detection phase, and you want collision detection to 
+  take place immediately after the actor phase, you might add a line such as the 
+  following between the actor and role phases: </p>
+<pre id="cppexample">
+    ...
+    theTitle-&gt;scheduler-&gt;go(PHASE_ACTOR);
+    theTitle-&gt;scheduler-&gt;go(PHASE_COLLISION_DETECTION);
+    theTitle-&gt;scheduler-&gt;go(PHASE_ROLE);
+    ...
+</pre>
+<h4>3.5.1.2.6 Exiting the Title<a name="section_3.5.1.2.6"></a></h4>
+<p> Use the <em>CleanupEnv()</em> function to reverse what <em>InitEnv()</em> 
+  set up. <em>CleanupEnv()</em> deletes the scheduler, any managers that were 
+  created, and deallocates memory. </p>
+<pre id="cppexample">
+    MlBoolean CleanupEnv(void);
+    {
+        return TRUE;
+    }
+</pre>
+<h4>3.5.1.3 Using the Magic Lantern Scheduler<a name="section_3.5.1.3"></a></h4>
+<p> The Magic Lantern scheduler organizes the rendering sequence of the title 
+  within a single frame of real time. It is strictly a sequential process. To 
+  use the scheduler, you need to understand the scheduler phases and its functions. 
+</p>
+<h5>3.5.1.3.1 Scheduler Phases<a name="section_3.5.1.3.1"></a></h5>
+<p> There are four distinct steps or phases that occur on each frame when a title 
+  plays. The scheduler starts each of these steps, in the following order: </p>
+<ul>
+  <li> <strong>Actor Phase</strong> - The first step is to perform the simulation 
+    calculations for the game/title logic. The actor code performs these calculations 
+    and maintains the resulting values.</li>
+  <li><strong>Role Phase</strong> - The second step involves changing the state 
+    of the models that represent the actors. The role code maintains the state 
+    of the models. This step initializes or sets the data values to represent 
+    the calculated simulation. This is done for both the rendering and sound libraries. 
+    In other words, this translates calculations to actual pixels, coordinate 
+    values, and so on.</li>
+  <li><strong>Set Phase</strong> - The third step, the set phase, renders the 
+    title to the screen. It is the set that plays sounds, draws characters, and 
+    so on. Every actor and role must be part of a set. The set organizes roles 
+    for presentation, and is thus a view of a set of actors.</li>
+  <li><strong>Stage Phase</strong> - The fourth step entails scheduling when each 
+    set does its rendering. The stage coordinates access to the shared resources, 
+    such as the rendering buffer. All sets render to the same shared buffer. The 
+    stage pushes the buffer to the screen display and initializes it to blank 
+    for the next frame rendering. </li>
+</ul>
+<p>The scheduler uses these Magic Lanetern constants to refer to the phases, as 
+  follows: </p>
+<ul>
+  <li>PHASE_ACTOR - the actor phase </li>
+  <li>PHASE_ROLE - the role phase </li>
+  <li>PHASE_SET - the set phase </li>
+  <li>PHASE_STAGE - the stage phase </li>
+</ul>
+<p>To use the Magic Lantern scheduler, a title sets up the set to schedule itself. 
+  Most actor and role programmers do not have to include code to schedule a set, 
+  because this is done for you by the stage. When you create a set, it is added 
+  to the stage and the stage then schedules the set for execution. </p>
+<p>The order that sets appear in the DWP determines the order of rendering. You 
+  can intermix 2D and 3D sets within the DWP. For example, you can have a 2D set 
+  first to display background, then a 3D set for animation, and lastly another 
+  2D set for a control panel. In this way, you draw the background first, then 
+  the animation on top of the background, and then the control panel on top of 
+  the animation. </p>
+<p>The stage phase renders the sets. The stage phase draws first the set that 
+  appears first in the DWP. When the stage draws the set, the set begins drawing 
+  its images based on its linked list. The stage draws last the last set listed 
+  in the DWP. The last set is displayed on top of the other sets. </p>
+<h5>3.5.1.3.2 Scheduler Functions<a name="section_3.5.1.3.2"></a></h5>
+<p> The class <em><strong>MleScheduler</strong></em> defines the API for the Magic 
+  Lantern scheduler. Example 1-5 lists these functions. </p>
+<p>Example 1-5: MleScheduler Functions</p>
+<pre id="cppexample">
+    MleScheduler(unsigned int phases, unsigned int items);
+    ~MleScheduler();
+    void go(unsigned int phase);
+    MleSchedulerItem* insertFunc(unsigned int phase,
+        void (*func)(void*),
+        void* data,
+        void* tag,
+        unsigned int interval =1,
+        unsigned int firstInterval = 1);
+    void remove(MleSchedulerItem* item);
+    void remove(void* tag);
+</pre>
+<p> When you use the constructor function <em><strong>MleScheduler()</strong></em> 
+  to create a new scheduler for your title, you specify two things: </p>
+<ol>
+  <li> <em>phases</em> indicates the number of phases that this instance of the 
+    scheduler will have </li>
+  <li><em>items</em> indicates the number of routines or functions that this scheduler 
+    might use </li>
+</ol>
+<p>Each actor, role, set, or stage (that is, each object) in a MagicLantern title 
+  must have a call to the scheduler's <em>insertFunc()</em> routine. <em>insertFunc()</em> 
+  creates a hook for every actor, role, set, or stage that calls it. The scheduler 
+  uses this hook to call the Magic Lantern object during the appropriate phase. 
+  The Magic Lantern object uses <em>insertFunc()</em> to tell the scheduler what 
+  function the scheduler should call on this object and the phase it should be 
+  called in. The scheduler adds the object's function to its list of functions 
+  that it calls for the specified phase. </p>
+<p>Note: The maximum number of functions that you can insert into the scheduler's 
+  list is determined by the items parameter in the scheduler constructor. </p>
+<p>The order in which you insert functions for a phase determines the order that 
+  the scheduler calls these functions for that phase. You can control this insertion 
+  order by the ordering of functions in the DWP. However, you cannot change the 
+  scheduler's order of functions to call during a phase once they have been inserted. 
+</p>
+<p><em>insertFunc()</em> requires, as parameters, the scheduler phase in which 
+  to call your object's function and a pointer to the function. You also designate 
+  a reference to data to pass to your function. The <em>tag</em> parameter lets 
+  you specify that, when Magic Lantern deletes the object, it should delete all 
+  functions associated to the object. Use the <em>interval</em> parameter to specify 
+  how often this function should be called, every frame, every other frame, and 
+  so on. <em>interval</em> specifies the number of frames between calls to this 
+  function. When you set <em>interval</em> to one, the function is called every 
+  frame; when you set it to two, it is called every other frame. <em>firstInterval</em> 
+  specifies the first frame to call the function. </p>
+<p>The <em>go</em> function executes each designated phase. <em>go</em> takes 
+  as a parameter the name of the phase that it is to execute. The name of the 
+  phase is a defined constant. (See &quot;<a href="#section_3.5.1.3.1">Scheduler 
+  Phases</a>&quot;) You call the scheduler's <em>go</em> function for each phase 
+  to be executed in a frame. This is illustrated in Example 1-4. </p>
+<p>The API provides two ways to remove functions from the scheduler. You can use 
+  the <em>remove()</em> function and specify the <em><strong>MleSchedulerItem</strong></em> 
+  you created with the constructor. This removes just the specified function. 
+  Or, you can use <em>remove()</em> with a <em>tag</em> argument and remove all 
+  functions associated with <em>tag</em>. </p>
+<h5>2.2.3.8.3 Adding and Removing Scheduler Phases<a name="section_2.2.3.8.3"></a></h5>
+<p> You can also add your own custom phase to the scheduler. Adding your own phase 
+  gives you the ability to do certain functions at particular points, such as 
+  collision detection. Add your phase to the scheduler at the point within the 
+  scheduler's phase loop so that it will execute at the moment you want it to 
+  execute. See &quot;<a href="#section_3.5.1.2.5">Executing the Main Loop</a>&quot;. 
+</p>
+<p>Be sure and correctly specify the number of phases when you call <em>MleScheduler</em> 
+  to create an instance of the scheduler. In addition, you must update the enum 
+  in <em>titleenv.h</em> that lists the scheduler phases to include your custom 
+  phase. You must also change the scheduler code itself (that is, MainLoop in 
+  <em>title.cxx</em>) to add your phase to the scheduler's phase loop. </p>
+<p>Note: While you can remove phases from the scheduler, do this with extreme 
+  care. </p>
+</body>
+</html>

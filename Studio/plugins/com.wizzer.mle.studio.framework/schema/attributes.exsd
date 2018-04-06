@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.wizzer.mle.studio.framework">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="com.wizzer.mle.studio.framework" id="attributes" name="Magic Lantern Attribute Extensions"/>
+      </appInfo>
+      <documentation>
+         The &lt;i&gt;com.wizzer.mle.studio.framework.attributes&lt;/i&gt; extension point is used to specify new Attributes and their associated Cell Editors.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="attrCellEditorFactory">
+      <annotation>
+         <documentation>
+            The attrCellEditorFactory is used to specifiy a factory for a new type of Attribute Cell Editor that can be used by Tables and their associated tools.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The identifier for the Attribute CellEditor factory.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of the Attribute CellEditor factory.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The IAttributeCellEditorFactory class used to create new AttributeCellEditors.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The Attribute type for the CellEditor that will be created by the new IAttributeCellEditorFactory.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="attrContextMenuHandler">
+      <annotation>
+         <documentation>
+            The attrContextMenuHandler is used to specifiy a context menu for an Attribute that is editable via the AttributeTreeViewer.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The identifier for the Attribute context menu handler.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of the Attribute context menu handler.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The IAttributeContextMenuHandler class used to create a new context menu.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The Attribute type for the handler that will be created by the IAttributeContextMenuHandler.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         Version 1.0.0 of &lt;i&gt;com.wizzer.auteur.framework&lt;/i&gt; plug-in.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright 2007, Wizzer Works
+      </documentation>
+   </annotation>
+
+</schema>

@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Magic Lantern Studio DWP Plug-in
+Bundle-SymbolicName: com.wizzer.mle.studio.dwp;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.wizzer.mle.studio.dwp.DwpPlugin
+Bundle-Vendor: Wizzer Works
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.views,
+ org.eclipse.ui.editors,
+ org.eclipse.jface.text,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.ide,
+ org.eclipse.debug.core,
+ org.eclipse.debug.ui,
+ org.eclipse.jdt.core,
+ com.wizzer.mle.studio.framework;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: com.wizzer.mle.studio.dwp,
+ com.wizzer.mle.studio.dwp.action,
+ com.wizzer.mle.studio.dwp.attribute,
+ com.wizzer.mle.studio.dwp.domain,
+ com.wizzer.mle.studio.dwp.editor,
+ com.wizzer.mle.studio.dwp.ui,
+ com.wizzer.mle.studio.dwp.view,
+ com.wizzer.mle.studio.dwp.wizard
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: mlstudiodwp.jar
+Import-Package: com.wizzer.mle.studio.framework,
+ com.wizzer.mle.studio.framework.attribute,
+ com.wizzer.mle.studio.framework.command,
+ com.wizzer.mle.studio.framework.domain,
+ com.wizzer.mle.studio.framework.io,
+ com.wizzer.mle.studio.framework.ui,
+ com.wizzer.mle.studio.framework.ui.calendar
+

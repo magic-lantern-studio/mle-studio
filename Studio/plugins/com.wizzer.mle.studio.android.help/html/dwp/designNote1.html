@@ -1,0 +1,513 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Digital Workprint API Primer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="../css/mledoc.css" rel="stylesheet" type="text/css" media="screen" />
+<!--[if IE]>
+<style type="text/css">
+  .clearfix {
+    zoom: 1;     /* triggers hasLayout */
+    }  /* Only IE can see inside the conditional comment
+    and read this CSS rule. Don't ever use a normal HTML
+    comment inside the CC or it will close prematurely. */
+</style>
+<![endif]-->
+</head>
+
+<body>
+<h1 id="banner"><a href="http://www.wizzerworks.com"><img src="../images/WwLogo.gif" width="100" height="100" border="0"></a></h1>
+<h1>Design Note 1: Digital WorkPrint API Primer </h1>
+<p>Magic Lantern Studio 1.0</p>
+<p>Author: Mark S. Millard<br>
+  Date: March 23, 2004</p>
+<hr>
+<h2>Contents<a name="contents"></a></h2>
+<ul>
+  <li> <a href="#designNote_anchor1">Introduction</a> </li>
+  <li><a href="#designNote_anchor2">Workprint Organization and Structure</a></li>
+  <li><a href="#designNote_anchor3">Base Class</a></li>
+  <li><a href="#designNote_anchor4">Finding Items in a Workprint</a></li>
+  <li><a href="#designNote_anchor5">Creating Workprint Item Types</a></li>
+</ul>
+<hr>
+<h2>Introduction<a name="designNote_anchor1"></a></h2>
+<p>This document describes an API for accessing digital workprints and the method 
+  for extending what types they can store. The API is written an C++.</p>
+<h2>Workprint Organization and Structure<a name="designNote_anchor2"></a></h2>
+<p>A workprint is organized as a containership of workprint items. A workprint 
+  item is a fundamental unit of a workprint, a building block of the workprint 
+  structure. Any workprint item can be a container for zero or more other workprint 
+  items.</p>
+<p>Workprint containership is generic, which simply means that there is no type 
+  discrimination on contained items. An item may contain subitems of all the same 
+  type or of all different types. While the workprint mechanism implements generic 
+  containership, however, applications can impose policy on what item types can 
+  be contained within other item types. For example, the Magic Lantern design 
+  specifies that Property items occur within Actor items. Putting a Property inside 
+  a Scene is a semantic error in Magic Lantern.</p>
+<p>The term &quot;workprint&quot; is often used to refer to both the file system 
+  representation and the in-memory representation of the structure. These representations 
+  store the same information, but it is often confusing when the context of the 
+  term requires a distinction.</p>
+<p>Containership is quite apparent in the workprint file, which uses a LISP-like 
+  syntax:</p>
+<pre>
+    (Group group0
+        (ActorSet hudForum
+            (Actor speedometer Dial
+                (Property value 0.6)
+            )
+            (Actor target CrossHair)
+        )
+    )
+</pre>
+<p>The first word after a left parenthesis is always a workprint item type. After 
+  that comes data specific to that type (for example the Actor name and type), 
+  and then a list of contained items.</p>
+<p>In a file, there may be several items at the top level:</p>
+<pre>
+    (Set ... )
+    (Group group0 ... )
+    (Group group1 ... )
+</pre>
+<p>which makes this workprint look like a set of containers instead of a single 
+  container. However, it really is most appropriate to think of this as a single 
+  containership with the outermost container being the file.</p>
+<p>In the in-memory workprint, the workprint items have the same relationship 
+  as they do in a workprint file. In the in-memory workprint it is common to picture 
+  the containership as a tree. These metaphors are equivalent, as there is an 
+  identical mapping of &quot;is contained by&quot; and &quot;is a child of&quot; 
+  relations. The tree paradigm is convenient for the in-memory workprint because 
+  it more closely reflects the implementation.</p>
+<h2>Base Class<a name="designNote_anchor3"></a></h2>
+<p>The base class for all workprint items is MleDwpItem. The basic capabilities 
+  defined in the base class are identity, navigation, structure editing, and I/O. 
+  Identity functions are how an item describes itself. Because containership is 
+  generic, an application traversing a workprint has no idea what an item is when 
+  it encounters one. Member functions on the item allow querying the item for 
+  information to identify its type.</p>
+<pre>
+    virtual const char *getTypeName(void) const;
+    virtual MleDwpType getTypeId(void) const;
+    virtual int isa(const char *type) const;
+    virtual int isa(MleDwpType) const;
+</pre>
+<p>The getTypeName() function returns the specific item type as a string. This 
+  is the full class name, not the truncated name used in the workprint file (e.g. 
+  MleDwpActor instead of Actor). The isa() function returns nonzero if the item 
+  is an instance of the class whose name is passed in, or an instance of a class 
+  descendant of that class. Typically, however, new item classes will subclass 
+  directly from MleDwpItem. Here is an example of the use of these functions:</p>
+<pre>
+    // assume item is a pointer to some MleDwpItem
+    // see if this is an actor
+    if ( item-&gt;isa(&quot;MleDwpActor&quot;) )
+        printf(&quot;item is an actor.\n&quot;);
+    else
+        printf(&quot;item is a %s.\n&quot;,item-&gt;getTypeName());
+</pre>
+<p>The alternate versions of these functions use a MleDwpType which is a unique 
+  type identifier (as opposed to a string). This makes type comparison more efficient 
+  as it can be equality testing instead of string matching. It also allows the 
+  compiler to catch type misspellings. A minor disadvantage is that the type ids 
+  are not easily interpreted in a debugger.</p>
+<p>In addition, each item can optionally be given a string name.</p>
+<pre>
+     const char *getName(void) const;
+     void setName(const char *name);
+</pre>
+<p>The value that getName() returns if setName() has not been called is currently 
+  undefined. Do not assume that getName() will return NULL (or anything else) 
+  if setName() has not been called. The spaces of names beginning with &quot;0x&quot;, 
+  &quot;ml&quot;, &quot;ML&quot;, and &quot;Mle&quot; are reserved.</p>
+<p>Beyond the reservation of some namespaces, the library has no policy on naming. 
+  Item subclasses and applications can define their own policy for names, such 
+  as how they are scoped and whether they must be defined.</p>
+<p>Navigation refers to moving around the workprint structure from a given item. 
+  MleDwpItem uses a typical tree model of pointers to parent, previous sibling, 
+  next sibling, first child, and last child:</p>
+<pre>
+    MleDwpItem *getParent(void) const;
+    MleDwpItem *getPrev(void) const;
+    MleDwpItem *getNext(void) const;
+    MleDwpItem *getFirstChild(void) const;
+    MleDwpItem *getLastChild(void) const;
+</pre>
+<p>A tree of items may be traversed using recursion:</p>
+<pre>
+    void traverse(MleDwpItem *item)
+    {
+        // do stuff on item here for preorder traversal
+        // get the list of children
+        MleDwpItem *child = item-&gt;getFirstChild();
+
+        // loop through the children
+        while ( child )
+        {
+            // recurse on child
+            traverse(child);
+            // step to the next child
+            child = child-&gt;getNext();
+        }
+
+        // do stuff on item here for postorder traversal
+    }
+</pre>
+<p>Or the root of a tree can be found by iteration:</p>
+<pre>
+    // start with the local item
+    MleDwpItem *root = item;
+	
+    // loop while there is a parent
+    while ( root-&gt;getParent() )
+        root = root-&gt;getParent(); // become the parent
+		
+    // root is now the top of the tree
+</pre>
+<p>Convenience functions could be defined to perform common operations like this. 
+  At this time, however, such functions are not included in the item base class.</p>
+<p>Structure editing allows insertion and removal of children on an item.</p>
+<pre>
+    void insertChild(MleDwpItem *child, MleDwpItem *beforeChild = NULL);
+    void removeChild(MleDwpItem *whichChild);
+</pre>
+<p>The routine insertChild() makes a linkage for a new subitem. The new item will 
+  be placed before the optionally indicated existing subitem in the subitem list, 
+  or at the end if omitted. The routine removeChild() removes the linkage for 
+  a subitem. Note that removeChild() does not delete the subitem.</p>
+<p>I/O routines convert between the in-memory workprint and the workprint file. 
+  Reading is done from a MleDwpInput object, which abstracts away whether the 
+  source of the workprint is a file, a pipe, a memory buffer, etc. For the purposes 
+  of this document, input is assumed to come from a file. The code to set up a 
+  MleDwpInput object to use a file looks like:</p>
+<pre>
+    #include &quot;mle/DwpInput.h&quot;
+    ...
+    MleDwpInput *in = new MleDwpInput; // create the input object
+    in-&gt;openFile(filename); // open a file, filename is a char *
+</pre>
+<p>openFile() returns zero if the file was opened successfully, nonzero in the 
+  case of an error.</p>
+<p>The routine to read an item from an input object is a static member function 
+  on MleDwpItem:</p>
+<pre>
+    static MleDwpItem *read(MleDwpInput *in,MleDwpItem *parent = NULL);
+</pre>
+<p>The read() routine returns a pointer to the item it reads, NULL if an item 
+  could not be read (which is typically the end of file condition). An optional 
+  side effect is to make the item that was read the child of an item whose pointer 
+  is passed in. A succinct way to read in a workprint after setting up the input 
+  object is:</p>
+<pre>
+    // assumes MleDwpInput object has been created and initialized
+    MleDwpItem *root = new MleDwpItem; // create a root item
+
+    // loop while we can read items
+    while ( MleDwpItem::read(in,root) )
+        ;
+</pre>
+<p>Writing is done through a MleDwpOutput object, the dual of MleDwpInput. The 
+  output object abstracts away whether the output is to a file, a pipe, a memory 
+  buffer, etc. For the purposes of this document, output is assumed to go to a 
+  file. The<br>
+  code to set up a MleDwpOutput object to use a file looks like:</p>
+<pre>
+    #include &quot;mle/DwpOutput.h&quot;
+    ...
+    MleDwpOutput *out = new MleDwpOutput; // create the output object
+    out-&gt;openFile(filename); // open a file, filename is a char *
+</pre>
+<p>openFile() returns zero if the file was opened successfully, nonzero in the 
+  case of an error.</p>
+<p>The routine to write an item to an output object is a regular member function 
+  on the MleDwpItem (not a static member function like read()):</p>
+<pre>
+    virtual int write(MleDwpOutput *out);
+</pre>
+<p>The write() routine writes the item to the output and returns nonzero on an 
+  error. The workprint just read in the example above could be written out by:</p>
+<pre>
+    // assumes MleDwpOutput object has been created and initialized
+    root-&gt;write(out);
+</pre>
+<p>This would add one level of hierarchy to the workprint by putting the root 
+  item in the file. To preserve identical structure, the code would be:</p>
+<pre>
+    // assumes MleDwpOutput object has been created and initialized
+
+    // loop over all the children
+    MleDwpItem *item = root-&gt;getFirstChild(); // get the first child
+    while ( item )
+    {
+        item-&gt;write(out);
+        item = item-&gt;getNext();
+    }
+</pre>
+<p>It is likely that convenience API will be written to take care of the details 
+  of reading and writing workprint files. For the present, however, this is how 
+  that should be accomplished.</p>
+<h2>Finding Items in a Workprint<a name="designNote_anchor4"></a></h2>
+<p>Items of a particular type or name can be found by traversing the workprint 
+  and using the appropriate identity member functions to match data. However, 
+  because this is a common operation, a helper class called MleDwpFinder has been 
+  created to do this.</p>
+<p>A finder is created, configured, executed, and queried. Creation is typically 
+  done by allocation on the stack. Configuration is accomplished either during 
+  construction or by member functions:</p>
+<pre>
+    void setType(MleDwpType type);
+    void setName(const char *name);
+    void setCallback(int (*cb)(MleDwpItem *,void *),void *data);
+    void setFindAll(int findAllFlag);
+</pre>
+<p>A search for item(s) of a particular item type is done by calling setType() 
+  with the class type. The class type for any item is the static member variable 
+  typeId on the item class, e.g. MleDwpProperty::typeId. Omitting the call or 
+  passing NULL means that type will be disregarded in the find execution.</p>
+<p>A search for item(s) of a particular name is done by calling setName() with 
+  the name. Omitting the call or passing NULL means that the name will be disregarded 
+  in the find execution.</p>
+<p>The application can set up its own discrimination function and pass that in 
+  by calling setCallback(). The function should take an item pointer and client 
+  data, and return nonzero if the item matches the find criteria. Omitting the 
+  call or passing NULL for the function pointer means that no application-specific 
+  discrimination will be done.</p>
+<p>These configurations may be done in combination, in which case an item must 
+  pass all activated criteria in order to be found. For example, if both type 
+  and name are specified, only items that match both type and name will be returned. 
+  The criteria are applied in the order - type, name, application callback - and 
+  testing is terminated when any one fails. So if type and application callback 
+  are active, only items of the right type will be passed to the callback.</p>
+<p>An orthogonal configuration option is to specify whether the find execution 
+  terminates after finding an item that meets the criteria or finds all the items 
+  that match. The routine setFindAll() selects finding all items if nonzero is 
+  passed, termination after the first matching item in depth first preorder traversal 
+  otherwise (the default).</p>
+<p>As a convenience, the constructor for MleDwpFindItem can be used to do some 
+  common configurations:</p>
+<pre>
+    MleDwpFinder(MleDwpType type = NULL,const char *name = NULL,
+    int findAll = 0);
+</pre>
+<p>The effect of passing type, name, or findAll flag is the same as calling the 
+  respective configuration function. User discrimination functions cannot be specified 
+  in the constructor.</p>
+<p>Finding is executed by a member function on the finder:</p>
+<pre>
+    MleDwpItem *find(const MleDwpItem *item);
+</pre>
+<p>A pointer to the place in the workprint to begin the search for matching items 
+  is passed to the find() function. The first item found, NULL if none, is returned 
+  by this function as a convenience. After the find has been executed, the finder 
+  may be queried to extract the items found.</p>
+<pre>
+    int getNumItems(void) const;
+    const MleDwpItem **getItems(void) const;
+</pre>
+<p>The number of items found is returned by getNumItems(). An array of the item 
+  pointers found can be obtained by calling getItems(). The array returned is 
+  in memory allocated by the finder object and will be deallocated when the finder 
+  is destroyed.</p>
+<p>Here is an example that finds the Group item named group0 in a workprint:</p>
+<pre>
+    // assume root is the workprint root item
+
+    // create and configure the finder
+    MleDwpFinder finder(MleDwpGroup::typeId,&quot;group0&quot;);
+
+    // execute and retrieve the found item
+    MleDwpItem *group = finder.find(root);
+</pre>
+<p>and here is an example that prints the names of all the Actor items in a workprint:</p>
+<pre>
+    // assume root is the workprint root item
+
+    // create and configure the finder
+    MleDwpFinder finder(MleDwpActor::typeId,NULL,1);
+
+    // execute the finder
+    finder.find(root);
+
+    // loop over the items found
+    int numItems = finder.getNumItems();
+    MleDwpItem **items = finder.getItems();
+    for ( int i = 0; i &lt; numItems; i++ )
+        printf(&quot;Actor %s found.\n&quot;,items[i]-&gt;getName());
+</pre>
+<h2>Creating Workprint Item Types<a name="designNote_anchor5"></a></h2>
+<p>Creating new workprint item types is done by subclassing. The minimal workprint 
+  item class has no data of its own, acting only as a container for other items. 
+  This minimal class still needs to implement the basic identity functions, however, 
+  to be able to describe itself properly. There are macros in WpItem.h that make 
+  this easy:</p>
+<pre>
+    MLE_DWP_HEADER(&lt;class name&gt;);
+    MLE_DWP_SOURCE(&lt;class name&gt;,&lt;superclass name&gt;);</pre>
+<p>The new class should be a descendant of MleDwpItem, and the MLE_DWP_HEADER() 
+  macro should be placed in the class definition. The unquoted name of the new 
+  class is the argument to the macro. The MLE_DWP_SOURCE() macro should be placed 
+  in the class implementation, normally the .c++ file. The arguments to this macro 
+  are the unquoted names of the new class and the immediate superclass of the 
+  new class.</p>
+<pre>
+    <strong>MinimalItem.h:</strong>
+
+    #include &quot;mle/DwpItem.h&quot;
+    class MinimalItem : public MleDwpItem
+    {
+   	    MLE_DWP_HEADER(MinimalItem);
+    };
+
+    <strong>MinimalItem.c++:</strong>
+
+    #include &quot;MinimalItem.h&quot;
+    MLE_DWP_SOURCE(MinimalItem,MleDwpItem);
+</pre>
+<p>This defines a new workprint item called MinimalItem. There are several ways 
+  to activate this item. If this is a new basic system item type, then you can 
+  add it to the workprint library initialization function. Edit Wp.c++ and add 
+  the header file and a call to MinimalItem::initClass() in mlDwpInit(). Alternatively, 
+  you can simply call the initClass function in every application that uses this 
+  type. The last method is to create a dynamic shared object (DSO), and let the 
+  code be loaded automatically when an item of that type is encountered. To do 
+  this, add MyItem.so to your Makefile targets and add the rule:</p>
+<pre>
+    .o.so:
+        $(LD) $(LDDSOOPTS) -o $@ $?
+</pre>
+<p>The workprint library is capable of reading in things it doesn't know about, 
+  so DSO loading probably shouldn't be needed very often.</p>
+<p>Putting data for an item into the workprint requires adding two more member 
+  functions:</p>
+<pre>
+    virtual int readContents(MleDwpInput *in);
+    virtual int writeContents(MleDwpOutput *out);
+</pre>
+<p>The readContents() and writeContents() functions read and write any data specific 
+  to this type of item. Nonzero should be returned if there was an error. This 
+  is everything in a workprint file except the item type and any contained items. 
+  For example:</p>
+<pre>
+    ( Actor foo MyActor
+        ( Property fuel 10.0)
+    )
+</pre>
+<p>The Actor readContents() and writeContents() is responsible for transcribing 
+  the actor name (foo) and the actor type (MyActor). These routines do not need 
+  to worry about anything else - the system will take care of reading or writing 
+  the item type and invoking the transcription of the Property subitem.</p>
+<p>MleDwpInput and MleDwpOutput are abstract i/o objects that provide services 
+  to help with transcription of data. A string, int, float, or char can be read 
+  or written. Here are the i/o routines for MleDwpActor:</p>
+<pre>
+    int MleDwpActor::readContents(MleDwpInput *in)
+    {
+        char buffer[MLE_DWP_INPUT_BUFSIZE];
+
+        // read the actor name
+        if ( in-&gt;readString(buffer) )
+        {
+            in-&gt;reportError(&quot;Actor couldn't read name&quot;);
+            in-&gt;skip(); // try to skip to the end of this item
+            return 1;
+        }
+        setName(buffer);
+
+        // read the actor class
+        if ( in-&gt;readString(buffer) )
+        {
+            in-&gt;reportError(&quot;Actor couldn't read class&quot;);
+            in-&gt;skip(); // try to skip to the end of this item
+            return 1;
+        }
+        setActorClass(buffer);
+
+        return 0;
+    }
+
+    int MleDwpActor::writeContents(MleDwpOutput *out)
+    {
+        // write the actor name
+        out-&gt;writeString(getName());
+        // write the actor class
+        out-&gt;writeString(getActorClass());
+
+        return 0;
+    }
+</pre>
+<p> Note that you must supply your own buffer for string reading. Also, strings 
+  that may have embedded spaces or special characters should be written with writeFancyString() 
+  instead of writeString(). The special characters in the workprint are '(' (open 
+  paren), ')' (close paren), '#' (hash), newline, and double quotes.</p>
+<p>Large input lists can be handled with an input table mechanism. This is simply 
+  a table-driven sequence of reads. One additional type provided with the table 
+  is a WpToken which will return an error if the input does not match the supplied 
+  string.</p>
+<pre>
+    // this is a member function for MleDwpInput
+    int readTable(const MleDwpInputTable *table,int n);
+</pre>
+<p>The table definition is:</p>
+<pre>
+    // This is the enumeration for table driven input.
+    typedef enum {
+        MleDwpInputEnd,
+        MleDwpInputToken,
+        MleDwpInputInt,
+        MleDwpInputFloat,
+        MleDwpInputString
+    } MleDwpInputType;
+</pre>
+<pre>
+    // This is the element type for table driven input. An array of this
+    // structure may be passed to the input lexer.
+    struct MleDwpInputTable {
+        MleDwpInputType type;
+        void *ptr;
+    };
+</pre>
+<p>Typical usage is to create a static array of MleDwpInputTable with initialized 
+  data, with the last element having a MleDwpEnd. This example shows how a new 
+  item might implement its readContents() function using readTable(), where its 
+  input syntax has the string &quot;test&quot;, an int, a float, and a string.</p>
+<pre>
+    int MyItem::readContents(MleDwpInput *in)
+    {
+        int d;
+        float f;
+        char s[MLE_DWP_INPUT_BUFSIZE];
+        static MleDwpInputTable table[] = {
+            MleDwpInputToken, &quot;test&quot;,
+            MleDwpInputInt, &amp;d,
+            MleDwpInputFloat, &amp;f,
+            MleDwpInputString, s,
+            MleDwpInputEnd
+        };
+
+        if ( in-&gt;readTable(table) )
+        {
+            // the table handler will have already called reportError()
+            in-&gt;skip();
+            return 1;
+        }
+
+        // store away the input parameters here
+        ...
+
+        return 0;
+    }
+</pre>
+<p> If an unrecoverable error is discovered on read, the reading routine should 
+  report the error using the reportError() member function on the input object 
+  and try to skip over the object using skip().</p>
+<p>Writing the contents of an item is quite a bit easier than reading. Some attention 
+  should be paid to formatting, however. The member functions adjustIndent() and 
+  writeTerminal() on the output object should be used to provide neat transcription. 
+  adjustIndent() changes the indentation level by its integer argument (usually 
+  either +1 or -1), which takes place after every writeTerminal(). Items are automatically 
+  preindented to their level of containership, so short items might not require 
+  any additional formatting.<br>
+</p>
+</body>
+</html>

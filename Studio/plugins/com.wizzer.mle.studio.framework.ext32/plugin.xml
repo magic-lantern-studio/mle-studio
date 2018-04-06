@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="com.wizzer.mle.studio.framework.ext.controlSite">
+      <controlSite
+            id="OleControlSiteEx"
+            class="com.wizzer.mle.studio.framework.ext.OleControlSiteAdapter">
+      </controlSite>
+   </extension>
+
+</plugin>

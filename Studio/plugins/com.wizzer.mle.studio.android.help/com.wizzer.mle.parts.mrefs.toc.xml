@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--============createExtensionToc(List pkgs)============-->
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Magic Lantern Media References Library">
+   <topic label="Magic Lantern Media Reference Library" href="html/SDK/mrefsdoc/overview-summary.html">
+      <topic label="com.wizzer.mle.parts.mrefs Package" href="html/SDK/mrefsdoc/com/wizzer/mle/parts/mrefs/package-summary.html">
+         <topic label="MleImageMediaRef" href="html/SDK/mrefsdoc/com/wizzer/mle/parts/mrefs/MleImageMediaRef.html"/>
+      </topic>
+   </topic>
+</toc>

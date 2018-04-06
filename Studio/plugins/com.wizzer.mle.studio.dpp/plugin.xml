@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension point="org.eclipse.core.resources.builders"
+      id="GengroupBuilder"
+      name="Magic Lantern gengroup Builder">
+      <builder hasNature="true">
+         <run class="com.wizzer.mle.studio.dpp.builder.GengroupBuilder">
+         </run>
+      </builder>
+   </extension>
+
+   <extension point="org.eclipse.core.resources.builders"
+      id="GensceneBuilder"
+      name="Magic Lantern genscene Builder">
+      <builder hasNature="true">
+         <run class="com.wizzer.mle.studio.dpp.builder.GensceneBuilder">
+         </run>
+      </builder>
+   </extension>
+
+   <extension point="org.eclipse.core.resources.builders"
+      id="GenmediaBuilder"
+      name="Magic Lantern genmedia Builder">
+      <builder hasNature="true">
+         <run class="com.wizzer.mle.studio.dpp.builder.GenmediaBuilder">
+         </run>
+      </builder>
+   </extension>
+
+   <extension point="org.eclipse.core.resources.builders"
+      id="GentablesBuilder"
+      name="Magic Lantern gentables Builder">
+      <builder hasNature="true">
+         <run class="com.wizzer.mle.studio.dpp.builder.GentablesBuilder">
+         </run>
+      </builder>
+   </extension>
+
+   <extension point="org.eclipse.core.resources.builders"
+      id="GenppscriptBuilder"
+      name="Magic Lantern genppscript Builder">
+      <builder hasNature="true">
+         <run class="com.wizzer.mle.studio.dpp.builder.GenppscriptBuilder">
+         </run>
+      </builder>
+   </extension>
+
+   <extension point="org.eclipse.core.resources.builders"
+      id="GendppBuilder"
+      name="Magic Lantern gendpp Builder">
+      <builder hasNature="true">
+         <run class="com.wizzer.mle.studio.dpp.builder.GendppBuilder">
+         </run>
+      </builder>
+   </extension>
+   
+   <extension point="org.eclipse.core.resources.natures"
+      id="MasteringNature"
+      name="Magic Lantern Mastering Nature">
+      <runtime>
+         <run class="com.wizzer.mle.studio.dpp.nature.MasteringNature">
+         </run>
+      </runtime>
+      <builder id="com.wizzer.mle.studio.dpp.GengroupBuilder"/>
+      <builder id="com.wizzer.mle.studio.dpp.GensceneBuilder"/>
+      <builder id="com.wizzer.mle.studio.dpp.GenmediaBuilder"/>
+      <builder id="com.wizzer.mle.studio.dpp.GentablesBuilder"/>
+      <builder id="com.wizzer.mle.studio.dpp.GenppscriptBuilder"/>
+      <builder id="com.wizzer.mle.studio.dpp.GendppBuilder"/>
+   </extension>
+
+</plugin>

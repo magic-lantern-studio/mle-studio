@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Title Mastering Process</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Getting Started with Magic Lantern</title>
+<link href="css/mledoc.css" rel="stylesheet" type="text/css" media="screen" />
+<!--[if IE]>
+<style type="text/css">
+  .clearfix {
+    zoom: 1;     /* triggers hasLayout */
+    }  /* Only IE can see inside the conditional comment
+    and read this CSS rule. Don't ever use a normal HTML
+    comment inside the CC or it will close prematurely. */
+</style>
+<![endif]-->
+</head>
+
+<body>
+<h1 id="banner"><a href="http://www.wizzerworks.com"><img src="images/WwLogo.gif" width="100" height="100" border="0"></a></h1>
+<h1>Title Mastering Process</h1>
+<p>The Magic Lantern targeting process is part of the development of an interactive 
+  title. This process uses the title components and makes them playable on a specific 
+  target, such as a PC running Windows DirectX, a game console or a set-top box.</p>
+<p>The targeting process can be used during all phases of title development. At 
+  the start of title development, it is used to prototype the title on the target, 
+  to explore the development limits, and to view the media on the delivery platform. 
+  As development progresses, the targeting process is necessary to help refine 
+  the title, keeping it efficient. When the development is complete, targeting 
+  is the final step in producing a platform specific title that is ready to be 
+  transferred to the distribution media.</p>
+<h2>Overview of the Targeting Process</h2>
+<p>The targeting process uses several programs that help prepare an interactive 
+  title for its execution on its target device. The targeting process takes the 
+  Digital Workprint (DWP) and its associated media assets as input and creates 
+  three output products. These three principal products of the targeting process 
+  are:</p>
+<ul>
+  <li> the Playprint<br>
+    <br>
+    The Digital Playprint contains compiled casts (groups of actors) and references 
+    to translated media. It is<br>
+    the platform representation of the DWP and the assets associated with an interactive 
+    title.<br><br>
+  </li>
+  <li> the translated media<br>
+    <br>
+    The translated media is the associated title media assets translated to a 
+    form appropriate for the target<br>
+    platform.<br><br>
+  </li>
+  <li>the title executable<br>
+    <br>
+    The title executable is the executable program containing all of the title 
+    logic.</li>
+</ul>
+<h2>Understanding the Targeting Process Steps</h2>
+<p>There are several key steps in the targeting process. Title developers can 
+  also bypass the default solution and implement their own custom scheme for each 
+  step.</p>
+<p> These are the key targeting process steps:</p>
+<ul>
+  <li> The title developer converts media to produce properly formatted media 
+    files.</li>
+  <li>The title developer generates a target Makefile or Ant script for building 
+    a specific target Digital Playprint (a binary<br>
+    file format that is accessed by the Magic Lantern Runtime Engine).</li>
+  <li> Magic Lantern tools generate chunk files, which are restructured DWP information, 
+    to create the Digital<br>
+    Playprint. There are four types of chunk files: cast (group) chunk files, 
+    media reference chunk files, scene chunk<br>
+    files and set chunk files.</li>
+  <li> Magic Lantern tools generate runtime look-up tables that contain pointers 
+    to constructors for title elements.</li>
+  <li> Magic Lantern tools produce the Digital Playprint file. As an intermediary 
+    step, a Digital Playprint layout<br>
+    script may be generated to drive the build process. Using the layout script, 
+    the Playprint generation tool<br>
+    copies the chunk files into a single binary file, the Digital Playprint.</li>
+  <li>The title developer creates the executable title by compiling the authoring 
+    code and the generated<br>
+    targeting code and then linking it against the Magic Lantern Runtime libraries.</li>
+  <li> The title developer generates the distribution media (such as a CD or archive) 
+    with all title components placed in a<br>
+    format native to the target. This is the final step of the targeting process. 
+    This step is currently performed outside<br>
+    of Magic Lantern.</li>
+</ul>
+<p> Figure 2.2.1 illustrates the major components of the targeting process. It 
+  shows the steps outlined above and the flow of different key pieces of data.</p>
+<p align="center"><img src="images/MLArchitectureFigure12.png" width="706" height="781"><br>
+  <br>
+  Figure 2.2.1: Target Mastering Process</p>
+<p> The Magic Lantern Studio IDE automates many of the targeting process steps outlined above.
+  These tasks are automated through calls to the Digital Playprint generation commands,
+  acting on configuration parameters that have been specified by a Magic Lantern Title project.
+<h2>Digital Playprint Generation</h2>
+<p>The Digital Playprint is created by processing the Digital Workprint. Magic Lantern
+  provides multiple tools to help the mastering process.
+  Table 2.2.1 identifies the Magic Lantern tools used during the targeting process.</p>
+<div align="center"><br>
+  <table width="75%" border="1">
+    <tr> 
+      <td width="15%"><div align="center"><strong>Magic Lantern Tool</strong></div></td>
+      <td width="31%"><div align="center"><strong>Description</strong></div></td>
+      <td width="31%"><div align="center"><strong>Generated Artifacts</strong></div></td>
+      <td width="23%"><div align="center"><strong>Documentation</strong></div></td>
+    </tr>
+    <tr> 
+      <td><div align="center">gengroup</div></td>
+      <td><div align="center">Generate Actor Group chunks</div></td>
+      <td><div align="center"> 
+          <p><em>ActorID.java</em>, <em>GroupID.java</em>, group chunk files (1 
+            <strong>.chk</strong> file per Group in the DWP)</p>
+        </div></td>
+      <td><div align="center">gengroup manual page</div></td>
+    </tr>
+    <tr> 
+      <td><div align="center">genscene</div></td>
+      <td><div align="center">Generate Scene chunks</div></td>
+      <td><div align="center"><em>SceneID.java</em>, scene chunk files (1 <strong>.chk</strong> 
+          file per Scene in the DWP)</div></td>
+      <td><div align="center">genscene manual page</div></td>
+    </tr>
+    <tr> 
+      <td><div align="center">genmedia</div></td>
+      <td><div align="center">Generate Media Reference chunks</div></td>
+      <td><div align="center"><em>MediaBom.txt,</em> media reference chunk files 
+          (1 <strong>.chk</strong> file per Media Reference in the DWP)</div></td>
+      <td><div align="center">genmedia manual page</div></td>
+    </tr>
+    <tr> 
+      <td><div align="center">gentables</div></td>
+      <td><div align="center">Generate Digital Playprint Tables</div></td>
+      <td><div align="center"><em>MleRuntimeTables.java</em></div></td>
+      <td><div align="center">gentables manual page</div></td>
+    </tr>
+    <tr> 
+      <td><div align="center">genppscript</div></td>
+      <td><div align="center">Generate DPP TCL Script</div></td>
+      <td><div align="center"><em>playprint.tcl</em></div></td>
+      <td><div align="center">genppscript manual page</div></td>
+    </tr>
+    <tr> 
+      <td><div align="center">gendpp</div></td>
+      <td><div align="center">Generate Digital Playprint</div></td>
+      <td><div align="center"><em>DppTOC.java</em>, Digital Playprint file (1 
+          <strong>.dpp</strong> file<strong>)</strong></div></td>
+      <td><div align="center">gendpp manual page</div></td>
+    </tr>
+  </table>
+  Table 2.2.1: Magic Lantern Mastering Tools
+</div>
+<p>The Digital Playprint Script Interpreter (<em><strong>genppscript</strong></em>) 
+  assembles the Digital Playprint from chunks stored in individual files. These 
+  chunks are the compiled actor group chunk files (a cast), media reference chunk 
+  files, scene chunk files and set chunk files. A Digital Playprint Generation 
+  Script drives the Digital Playprint Script Interpreter. The language for the 
+  script is TCL-based. It uses commands to lay out the actual Playprint. The Digital 
+  Playprint Script Interpreter also generates primitives for converting symbolic 
+  Rehearsal Player names into numeric runtime player names. It places these runtime 
+  player names in files that must be compiled and linked against the Runtime Engine 
+  SDK libraries.</p>
+<p> The Digital Playprint Generation Script is created with the Digital Playprint 
+  Script Generator tool that reads the Digital Workprint. The script may be customized 
+  or replaceable by the title programmer.</p>
+</body>
+</html>

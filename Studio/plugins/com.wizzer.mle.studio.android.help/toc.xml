@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Magic Lantern Android Studio">
+    <topic label="Overview"  href="html/overview.html"> 
+    	<topic label="Magic Lantern Authoring System Components"  href="html/overview.html#Section_11"/>
+    	<topic label="Title Development Process"  href="html/titleDevProcess.html"/>
+    	<topic label="Magic Lantern Concepts"  href="html/concepts.html"/>
+    	<topic label="Magic Lantern SDK Architecture"  href="html/sdkArchitecture.html"/>
+    </topic>
+	<topic label="Getting Started"  href="html/gettingStarted.html"> 
+		<topic label="Launching the Magic Lantern Studio" href="html/launchStudio.html"/> 
+		<topic label="Creating a Magic Lantern Project" href="html/createProject.html">
+			<topic label="Title Structure" href="html/titleStructure.html"/> 
+			<topic label="Title Mastering Process" href="html/masteringProcess.html"/>
+		</topic>
+		<topic label="Executing the Title" href="html/executeTitle.html"> 
+			<topic label="Executing a Title from the Magic Lantern Studio" href="html/executeTitle.html#Section_31">
+				<topic label="Creating a Launch Configuration" href="html/executeTitle.html#Section_311"/> 
+				<topic label="Stopping Title Execution" href="html/executeTitle.html#Section_312"/> 
+			</topic> 
+		</topic>
+		<topic label="Debugging the Title" href="html/debugTitle.html"/> 
+	</topic>
+	<topic label="Reference" href="html/reference.html">
+		<topic label="SDK API Reference" href="html/sdkApiReference.html">
+			<link toc="com.wizzer.mle.math.toc.xml"/>
+			<link toc="runtime.toc.xml"/>
+			<link toc="parts.toc.xml"/>
+			<link toc="com.wizzer.mle.parts.actors.toc.xml"/>
+			<link toc="com.wizzer.mle.parts.mrefs.toc.xml"/>
+			<link toc="com.wizzer.mle.parts.props.toc.xml"/>
+			<link toc="com.wizzer.mle.parts.roles.toc.xml"/>
+			<link toc="com.wizzer.mle.parts.sets.toc.xml"/>
+			<link toc="com.wizzer.mle.parts.stages.toc.xml"/>
+		</topic>
+	</topic>
+	<topic label="Glossary" href="html/glossary.html"/>
+</toc>

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Magic Lantern Java2D Studio Branding Plug-in
+Bundle-SymbolicName: com.wizzer.mle.studio.java2d.branding;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.wizzer.mle.studio.java2d.branding.BrandingPlugin
+Bundle-Vendor: Wizzer Works
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: com.wizzer.mle.studio.java2d.branding

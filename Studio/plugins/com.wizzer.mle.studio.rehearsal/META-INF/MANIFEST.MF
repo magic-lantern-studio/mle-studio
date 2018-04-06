@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Rehearsal Player Plug-in
+Bundle-SymbolicName: com.wizzer.mle.studio.rehearsal;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.wizzer.mle.studio.rehearsal.RehearsalPlugin
+Bundle-Vendor: Wizzer Works
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources;bundle-version="3.5.2",
+ org.eclipse.debug.core;bundle-version="3.5.1",
+ org.eclipse.debug.ui;bundle-version="3.5.2",
+ org.eclipse.jdt.core;bundle-version="3.5.2",
+ com.wizzer.mle.studio.dwp;bundle-version="1.0.0",
+ com.wizzer.mle.studio.framework;bundle-version="1.0.0",
+ com.wizzer.mle.studio.framework.ext;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: com.wizzer.mle.studio.rehearsal,
+ com.wizzer.mle.studio.rehearsal.launch,
+ com.wizzer.mle.studio.rehearsal.launch.ui,
+ com.wizzer.mle.studio.rehearsal.preferences,
+ com.wizzer.mle.studio.rehearsal.view
+Bundle-ClassPath: mlrehearsal.jar

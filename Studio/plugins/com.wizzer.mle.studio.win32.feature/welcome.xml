@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?> 
+<welcomePage 
+	title="Magic Lantern">
+
+<intro>Magic Lantern is a interactive, title development platform for authoring highly interactive titles, such as interactive TV applications, games, educational programs, and point-of-information/sales kiosks. It is being created specifically for the real-world needs of professional title development teams as they break new ground in the development of real-time interactive titles.
+</intro>
+
+<item><b>Learn More</b>
+The official site of Magic Lantern can be found here: <topic href="http://www.wizzerworks.com">http://www.wizzerworks.com</topic>
+</item>
+
+<item><b>Reporting bugs, comments</b>
+If you experience any issues or wish to request feature enhancements, please let us know.
+Please feel free to send us your comments : <b>msm@wizzerworks.com</b>
+</item>
+
+</welcomePage>

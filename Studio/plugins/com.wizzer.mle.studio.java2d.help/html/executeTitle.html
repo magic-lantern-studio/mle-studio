@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Executing a Magic Lantern Title</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="css/mledoc.css" rel="stylesheet" type="text/css" media="screen" />
+<!--[if IE]>
+<style type="text/css">
+  .clearfix {
+    zoom: 1;     /* triggers hasLayout */
+    }  /* Only IE can see inside the conditional comment
+    and read this CSS rule. Don't ever use a normal HTML
+    comment inside the CC or it will close prematurely. */
+</style>
+<![endif]-->
+</head>
+
+<body>
+<h1 id="banner"><a href="http://www.wizzerworks.com"><img src="images/WwLogo.gif" width="100" height="100" border="0"></a></h1>
+<h1>Executing the Title</h1>
+<p>This document discusses how to execute a Magic Lantern Title. The first section 
+  identifies how to run the title from within the Magic Lantern Studio IDE. The 
+  second section discusses how to run the title from the redistributable application 
+  bundle.</p>
+<h2>Executing a Title from the Magic Lantern Studio<a name="Section_31"></a></h2>
+<p>After creating a Magic Lantern Project using <em>The Studio</em>, the application 
+  developer will wish to execute and test his/her title. This may be done without 
+  leaving the IDE. <em>The Studio</em> uses the Eclipse launch configuration mechanism 
+  for running a title within the framework of the IDE. A launch configuration 
+  is a description of how to launch and execute a program. Launching in Eclipse 
+  is closely tied to the infrastructure for debugging, enabling the developer 
+  to make the logical progression from running the title to interactively debugging 
+  the title.</p>
+<h3>Creating a Launch Configuration<a name="Section_311"></a></h3>
+<p>A launch configuration is created using an Eclipse wizard. To create a new 
+  configuration, use <em><strong>&quot;Run-&gt;Run Configurations...</strong></em>&quot; 
+  from the main Eclipse menu bar. This will start the launch configuration wizard 
+  dialog (see Figure 3.1)</p>
+<p><img src="images/launchConfg1.png" width="800" height="640"> <br>
+  Figure 3.1: Magic Studio Launch Configuration Wizard</p>
+<p>Select the &quot;<em><strong>Magic Lantern Java2D Runtime</strong></em>&quot; 
+  entry on the left-hand side of the dialog. The entry is highlighted in Figure 
+  xxx.</p>
+<p>Next press the 'New' button to create a configuration of the selected type. 
+  Doing so will create a new launch configuration for executing your title. Figure 
+  3.2 shows an example the new configuration.</p>
+<p><img src="images/launchConfg2.png" width="800" height="640"><br>
+  Figure 3.2: Launch Configuration for HelloWorld Title</p>
+<p>If you are following along in the &quot;<em><a href="gettingStarted.html">Magic 
+  Lantern Quick Start Guide</a></em>&quot;, creating your first title using the 
+  HelloWorld template, then fill in the information for launching your title. 
+  Type in the &quot;<em>Name</em>&quot; of your launch configuration (i.e. <em><strong>HelloWorld</strong></em>), 
+  the <em>Project</em> (i.e <em><strong>HelloWorld</strong></em>), and the main 
+  class of execution (i.e. <em><strong>helloworld.title.HelloWorld</strong></em>).</p>
+<p>If you choose to <em><strong>Run</strong></em> the application at this time, 
+  then you will see the following message printed to your Eclipse Console: &quot;<em>usage: 
+  HelloWorld &lt;file&gt;</em>&quot;. The title is telling you that you need to 
+  provide a Digital Playprint file. The DPP file was generated for you when you 
+  created the project. It can be found in then &quot;<em>src/gen</em>&quot; directory 
+  and is called &quot;<em>HelloWorld.dpp</em>&quot;.</p>
+<p>To specify the Digital Playprint, select the &quot;<em><strong>Arguments</strong></em>&quot; 
+  tab.</p>
+<p><img src="images/launchConfg3.png" width="800" height="640"><br>
+  Figure 3.3: Launch Configuration Arguments for HelloWorld</p>
+<p>Type in &quot;<em><strong>src/gen/HelloWorld.dpp</strong></em>&quot; into the 
+  <em>Program arguments</em> text box. Select &quot;Apply&quot; to finalize your 
+  configuration.</p>
+<p>Selecting &quot;<em><strong>Run</strong></em>&quot; will now launch your application 
+  title. It should look like this:</p>
+<p><img src="images/helloWorld.png" width="640" height="480"><br>
+  Figure 3.4: HelloWorld Title Execution</p>
+<h3>Stopping Title Execution<a name="Section_312"></a></h3>
+<p>There are several ways to stop the title. Since the title is a Java application, 
+  you can simply select the Close button (<strong>'X'</strong>) in the application 
+  window. Another way to stop title execution is to use the Debg perspective.</p>
+<p>To stop title execution using the Magic Lantern Studio Debug perspective, do 
+  the following:</p>
+<ol>
+  <li>Open the Debug perspecitve. Select &quot;<strong><em>Window-&gt;Open Perspective-&gt;Debug</em></strong>&quot; 
+    from the main Eclipse menu bar.<br>
+    <br>
+    <img src="images/stopTitile1.png" width="353" height="312"><br>
+    Figure 3.5: Opening Debug Perspective<br>
+    <br>
+  </li>
+  <li>If the title is currently running then you should see something like Figure 
+    3.6 in the upper left-hand corner of the Debug perspective. Figure 3.6 shows 
+    the <em>HelloWorld</em> title process running. The red square may be used 
+    to terminate the process.<br>
+    <br>
+    <img src="images/stopTitile2.png" width="553" height="268"> <br>
+    Figure 3.6: Debug Perspective Process and Thread View</li>
+</ol>
+<h2>Executing a Title from the Title Application Bundle<a name="Section_32"></a></h2>
+<p>The Title Application Bundle is a redistributable Java archive, or jar file. 
+  To run the HelloWorld title from the application bundle, the following steps 
+  should be taken:</p>
+</body>
+</html>

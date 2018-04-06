@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--============createExtensionToc(List pkgs)============-->
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="com.wizzer.mle.parts Package">
+   <topic label="com.wizzer.mle.parts Package" href="html/SDK/partsdoc/overview-summary.html">
+      <topic label="com.wizzer.mle.parts Package" href="html/SDK/partsdoc/com/wizzer/mle/parts/package-summary.html">
+         <topic label="MleShutdownCallback" href="html/SDK/partsdoc/com/wizzer/mle/parts/MleShutdownCallback.html"/>
+         <topic label="MleEventManager" href="html/SDK/partsdoc/com/wizzer/mle/parts/MleEventManager.html"/>
+         <topic label="MleBounds" href="html/SDK/partsdoc/com/wizzer/mle/parts/MleBounds.html"/>
+      </topic>
+   </topic>
+</toc>

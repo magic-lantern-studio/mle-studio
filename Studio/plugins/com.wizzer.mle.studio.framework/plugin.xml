@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+     <extension-point id="attributes"
+      name="Magic Lantern Attribute Extensions"
+      schema="schema/attributes.exsd"/>
+   
+   <extension
+         point="com.wizzer.mle.studio.framework.attributes"
+         id="com.wizzer.mle.studio.framework.ui.attrcelleditors"
+         name="Magic Lantern Attribute Cell Editors">
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.framework.ui.StringCellEditorFactory"
+         name="String Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.framework.ui.StringCellEditorFactory"
+         type="com.wizzer.mle.studio.framework.attribute.STRING"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.framework.ui.NumberCellEditorFactory"
+         name="Number Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.framework.ui.NumberCellEditorFactory"
+         type="com.wizzer.mle.studio.framework.attribute.NUMBER"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.framework.ui.ChoiceCellEditorFactory"
+         name="Choice Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.framework.ui.ChoiceCellEditorFactory"
+         type="com.wizzer.mle.studio.framework.attribute.CHOICE"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.framework.ui.FileCellEditorFactory"
+         name="File Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.framework.ui.FileCellEditorFactory"
+         type="com.wizzer.mle.studio.framework.attribute.FILE"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.framework.ui.StringContextMenuHandler"
+         name="String Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.framework.ui.StringContextMenuHandler"
+         type="com.wizzer.mle.studio.framework.attribute.STRING"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.framework.ui.VariableListContextMenuHandler"
+         name="VariableList Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.framework.ui.VariableListContextMenuHandler"
+         type="com.wizzer.mle.studio.framework.attribute.VARIABLELIST"/>
+   </extension>
+
+</plugin>

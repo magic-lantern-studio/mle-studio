@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Managing the Android SDK</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="css/mledoc.css" rel="stylesheet" type="text/css" media="screen" />
+<!--[if IE]>
+<style type="text/css">
+  .clearfix {
+    zoom: 1;     /* triggers hasLayout */
+    }  /* Only IE can see inside the conditional comment
+    and read this CSS rule. Don't ever use a normal HTML
+    comment inside the CC or it will close prematurely. */
+</style>
+<![endif]-->
+</head>
+
+<body>
+<h1 id="banner"><a href="http://www.wizzerworks.com"><img src="images/WwLogo.gif" width="100" height="100" border="0"></a></h1>
+<h1>Managing the Android SDK</h1>
+<p>This document instructs how to manage the Android SDK. It describes how to download and install the Androied SDK as well as register the SDK with Magic Lantern Studio. This documentation also shows how to create an Android virtual device for testing your Magic Lantern Android title.
+<h2>Download and Install the Android SDK<a name="installAndroidSDK"></a></h2>
+<p>The Google Andorid SDK is not distributed with the Magic Lantern Android Studio. You must download
+  and install the SDK Components from <a href="http://developer.android.com/sdk/index.html">Google</a>.
+  The Magic Lantern Android Studio has been developed and tested with revision <strong>r16</strong>
+  of the Android SDK. This does not mean that the Magic Lantern Studio and Magic Lantern SDK will
+  only work with this revision. It just indicates that <em>r16</em> is the only distribution that
+  has been tested so far.</p>
+<p> Please download and install one of the two <em>r16</em> Windows platforms specified on the
+  Android Developers <a href="http://developer.android.com/sdk/index.html">web site</a>. The
+  following table lists the Android SDK packages that are officially supported by Magic Lantern. </p>
+<table width="746" border="1">
+  <caption>
+    Android SDK Packages
+  </caption>
+  <tr>
+    <th width="299" scope="col">Package</th>
+    <th width="431" scope="col">Comments</th>
+  </tr>
+  <tr>
+    <td>installer_r16-windows.exe</td>
+    <td>Recommended</td>
+  </tr>
+  <tr>
+    <td>android-sdk_r16-windows.zip</td>
+    <td>If the Windows installer doesn't work for you. </td>
+  </tr>
+</table>
+<p>The instructions for installing the Android SDK can be found on the Android Developers
+  <a href="http://developer.android.com/sdk/installing.html">installation web page</a>.</p>
+<div class="clearfix"> <img src="images/genieLamp_48x48_32bit.png" width="48" height="48" class="noteImage"/> 
+  <p class="noteText"><strong>Note</strong>: You do not need to install Eclipse or the ADT Plugin for
+    Eclipse. Eclipse and the Google ADT Plugin are already part of the Magic Lantern Android Studio product.
+	The Magic Lantern Android Studio uses the ADT 16.0.0 Plugin released in December 2011.
+  </p>
+</div>
+<p>The Magic Lantern SDK is currently built for the Android 2.3.3 platform. Make sure to download and
+  install the <em>SDK Platform Android 2.3.3, API 10</em> using the <strong>Andorid SDK and AVD Manager
+  </strong> tool in <strong>Step 4</strong>.
+</p>
+<h2>Register the Android SDK<a name="registerAndroidSDK"></a></h2>
+<p>The Android SDK may need to be registered with Magic Lantern. This is done by modifying the ADT preferences in Eclipse to point to the Android SDK directory:</p>
+<ol>
+<li>Select <strong>Window > Preferences...</strong> to open the Preferences panel.</li>
+<li> Select <strong>Android</strong> from the left panel.
+  <br><br>
+  You may see a dialog asking whether you want to send usage statistics to Google. If so, make your choice and click <strong>Proceed</strong>. You cannot continue with this procedure until you click <strong>Proceed</strong>.<br><br></li>
+<li>For the <em>SDK Location</em> in the main panel, click <strong>Browse...</strong> and locate your downloaded SDK directory.</li>
+<li>Click <strong>Apply</strong>, then <strong>OK</strong>. </li>
+</ol>
+<h2>Create an Android Virtual Device<a name="createAVD"></a></h2>
+<p>You use the <strong>Android AVD Manager</strong> to create a virtual device. The Google Android Developers documentation,
+  <a href="http://developer.android.com/guide/developing/devices/managing-avds.html">Managing AVDs with AVD Manager</a>, explains how to create and manage an AVD using the Manager.</p>
+<p>Figure xxx shows a virtual device created for testing the Magic Lantern Sample projects.</p>
+<p align="center"><img src="images/avdManager1.png" width="700" height="500"><br>
+  Figure 1.1: Magic Lantern Android Target</p>
+<p>The <em>mleTarget</em> device was configured with the parameters displayed in Figure xxx.</p>
+<p align="center"><img src="images/avdManager2.png" width="592" height="776"><br>
+Figure 1.1: Magic Lantern Android Target Configuration</p>
+<p>&nbsp;</p>
+</body>
+</html>

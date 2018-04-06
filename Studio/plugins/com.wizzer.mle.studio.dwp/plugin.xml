@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            adaptable="true"
+            nameFilter="*.dwp"
+            id="com.wizzer.mle.studio.dwp.IFile">
+         <action
+               label="DWP Table Editor"
+               icon="icons/digitalworkprint_16x16.png"
+               class="com.wizzer.mle.studio.dwp.action.DwpLaunchEditorAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="com.wizzer.mle.studio.dwp.action.DwpLaunchEditorAction">
+         </action>
+      </objectContribution>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.views"
+         id="com.wizzer.mle.studio.dwp.views"
+         name="Magic Lantern Studio DWP Views">
+      <category
+            name="Magic Lantern Studio"
+            id="com.wizzer.mle.studio.viewCategory">
+      </category>
+      <view
+            name="DWP Table Console"
+            icon="icons/console_16x16.png"
+            category="com.wizzer.mle.studio.viewCategory"
+            class="com.wizzer.mle.studio.dwp.view.DwpConsoleView"
+            id="com.wizzer.mle.studio.dwp.view.DwpConsoleView">
+      </view>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors"
+         id="com.wizzer.mle.studio.dwp.editors"
+         name="Magic Lantern Studio DWP Editors">
+      <editor
+            name="Digital Workprint Table Tool"
+            icon="icons/digitalworkprint_16x16.png"
+            class="com.wizzer.mle.studio.dwp.editor.DwpTableEditor"
+            id="com.wizzer.mle.studio.dwp.editor.DwpTableEditor">
+      </editor>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            targetID="com.wizzer.mle.studio.dwp.editor.DwpTableEditor"
+            id="com.wizzer.mle.studio.dwp.DwpTableEditorContribution">
+         <menu
+               label="&amp;DWP"
+               id="com.wizzer.mle.studio.dwp.editor.DwpTableMenu">
+         </menu>
+      </editorContribution>
+   </extension>
+   
+   <extension
+         point="com.wizzer.mle.studio.framework.attributes"
+         id="com.wizzer.mle.studio.dwp.ui.attrcelleditors"
+         name="Magic Lantern DWP Attribute Cell Editors">
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpIncludeCellEditorFactory"
+         name="DWP Include Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpIncludeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.INCLUDE"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpHeaderFileCellEditorFactory"
+         name="DWP HeaderFile Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpHeaderFileCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.HEADERFILE"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpSourceFileCellEditorFactory"
+         name="DWP SourceFile Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpSourceFileCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.SOURCEFILE"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpDSOFileCellEditorFactory"
+         name="DWP DSOFile Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpDSOFileCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.DSOFILE"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpActorDefCellEditorFactory"
+         name="DWP ActorDef Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.ACTORDEF"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpRoleDefCellEditorFactory"
+         name="DWP RoleDef Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.ROLEDEF"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpGroupRefFileCellEditorFactory"
+         name="DWP GroupRef Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.GROUPREF"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpStageDefCellEditorFactory"
+         name="DWP StageDef Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.STAGEDEF"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpBootCellEditorFactory"
+         name="DWP Boot Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.BOOT"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpMediaRefSourceCellEditorFactory"
+         name="DWP MediaRefSource Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.MEDIAREFSOURCE"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpMEdiaRefTargetCellEditorFactory"
+         name="DWP MediaRefTarget Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.MEDIAREFTARGET"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpActorCellEditorFactory"
+         name="DWP Actor Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.ACTOR"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpRoleBindingCellEditorFactory"
+         name="DWP RoleBinding Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.ROLEBINDING"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpRoleAttachmentCellEditorFactory"
+         name="DWP roleAttachment Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.ROLEATTACHMENT"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpRoleSetMappingCellEditorFactory"
+         name="DWP RoleSetMapping Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.ROLESETMAPPING"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpGroupCellEditorFactory"
+         name="DWP Group Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.GROUP"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpPropertyDefCellEditorFactory"
+         name="DWP PropertyDef Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.PROPERTYDEF"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpStageCellEditorFactory"
+         name="DWP Stage Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.STAGE"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpSetCellEditorFactory"
+         name="DWP Set Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.SET"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpSetDefCellEditorFactory"
+         name="DWP SetDef Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.SETDEF"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpSceneCellEditorFactory"
+         name="DWP Scene Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.SCENE"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpMediaRefCellEditorFactory"
+         name="DWP MediaRef Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.MEDIAREF"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpMediaRefClassCellEditorFactory"
+         name="DWP MediaRefClass Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.MEDIAREFCLASS"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpPropertyCellEditorFactory"
+         name="DWP Property Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpNameTypeValueCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.PROPERTY"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpVector2PropertyCellEditorFactory"
+         name="DWP Vector2 Property Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpVector2PropertyCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.VECTOR2PROPERTY"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpVector3PropertyCellEditorFactory"
+         name="DWP Vector3 Property Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpVector3PropertyCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.VECTOR3PROPERTY"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpVector4PropertyCellEditorFactory"
+         name="DWP Vector4 Property Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpVector4PropertyCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.VECTOR4PROPERTY"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpRotationPropertyCellEditorFactory"
+         name="DWP Rotation Property Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpRotationPropertyCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.ROTATIONPROPERTY"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpTransformPropertyCellEditorFactory"
+         name="DWP Transform Property Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpTransformPropertyCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.TRANSFORMPROPERTY"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpIntArrayPropertyCellEditorFactory"
+         name="DWP Integer Array Property Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpIntArrayPropertyCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.INTARRAYPROPERTY"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpFloatArrayPropertyCellEditorFactory"
+         name="DWP Float Array Property Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpFloatArrayPropertyCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.FLOATARRAYPROPERTY"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpMediaCellEditorFactory"
+         name="DWP Media Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpMediaCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.MEDIA"/>
+      <attrCellEditorFactory
+         id="com.wizzer.mle.studio.dwp.ui.DwpPackageCellEditorFactory"
+         name="DWP Package Attribute Cell Editor Factory"
+         class="com.wizzer.mle.studio.dwp.ui.DwpPackageCellEditorFactory"
+         type="com.wizzer.mle.studio.dwp.attribute.PACKAGE"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpDocumentContextMenuHandler"
+         name="DWP Document Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpDocumentContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.DOCUMENT"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpHeaderFileContextMenuHandler"
+         name="DWP HeaderFile Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.HEADERFILE"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpSourceFileContextMenuHandler"
+         name="DWP SourceFile Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.SOURCEFILE"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpDSOFileContextMenuHandler"
+         name="DWP DSOFile Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.DSOFILE"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpGroupRefContextMenuHandler"
+         name="DWP GroupRef Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.GROUPREF"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpActorContextMenuHandler"
+         name="DWP Actor Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpActorContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.ACTOR"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpGroupContextMenuHandler"
+         name="DWP Group Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpGroupContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.GROUP"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpSceneContextMenuHandler"
+         name="DWP Scene Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpSceneContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.SCENE"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpStageContextMenuHandler"
+         name="DWP Stage Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpStageContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.STAGE"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpSetContextMenuHandler"
+         name="DWP Set Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpSetContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.SET"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpMediaRefContextMenuHandler"
+         name="DWP MediaRef Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpMediaRefContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.MEDIAREF"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpMediaRefSourceContextMenuHandler"
+         name="DWP MediaRefSource Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpMediaRefSourceContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.MEDIAREFSOURCE"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpMediaRefTargetContextMenuHandler"
+         name="DWP MediaRefTarget Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpMediaRefTargetContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.MEDIAREFTARGET"/>         
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpMediaContextMenuHandler"
+         name="DWP Media Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.MEDIA"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpSetDefContextMenuHandler"
+         name="DWP SetDef Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpSetDefContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.SETDEF"/>         
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpActorDefContextMenuHandler"
+         name="DWP ActorDef Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpActorDefContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.ACTORDEF"/>         
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpRoleDefContextMenuHandler"
+         name="DWP RoleDef Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpRoleDefContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.ROLEDEF"/>         
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpPropertyDefContextMenuHandler"
+         name="DWP PropertyDef Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpPropertyDefContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.PROPERTYDEF"/>         
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpBootContextMenuHandler"
+         name="DWP Boot Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.BOOT"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpRoleBindingContextMenuHandler"
+         name="DWP RoleBinding Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.ROLEBINDING"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpRoleAttachmentContextMenuHandler"
+         name="DWP RoleAttachment Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.ROLEATTACHMENT"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpRoleSetMappingContextMenuHandler"
+         name="DWP RoleSetMapping Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.ROLESETMAPPING"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpPropertyContextMenuHandler"
+         name="DWP Property Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.PROPERTY"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpVector2PropertyContextMenuHandler"
+         name="DWP Vector2 Property Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.VECTOR2PROPERTY"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpVector3PropertyContextMenuHandler"
+         name="DWP Vector3 Property Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.VECTOR3PROPERTY"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpVector4PropertyContextMenuHandler"
+         name="DWP Vector4 Property Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.VECTOR4PROPERTY"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpTransformPropertyContextMenuHandler"
+         name="DWP Transform Property Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.TRANSFORMPROPERTY"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpRotationPropertyContextMenuHandler"
+         name="DWP Rotation Property Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.ROTATIONPROPERTY"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpIntArrayPropertyContextMenuHandler"
+         name="DWP Integer Array Property Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.INTARRAYPROPERTY"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpFloatArrayPropertyContextMenuHandler"
+         name="DWP Float Array Property Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.FLOATARRAYPROPERTY"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpPackageContextMenuHandler"
+         name="DWP Package Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.PACKAGE"/>
+      <attrContextMenuHandler
+         id="com.wizzer.mle.studio.dwp.ui.DwpMediaRefClassContextMenuHandler"
+         name="DWP MediaRefClass Attribute Context Menu Handler"
+         class="com.wizzer.mle.studio.dwp.ui.DwpItemContextMenuHandler"
+         type="com.wizzer.mle.studio.dwp.attribute.MEDIAREFCLASS"/>
+   </extension>
+   
+   <extension
+         point = "org.eclipse.ui.newWizards">
+      <category
+            name="Magic Lantern"
+            id="com.wizzer.mle.studio.category">
+      </category>
+ 	  <wizard
+	     id = "com.wizzer.mle.studio.dwp.wizard.NewDigitalWorkprintWizard"
+      	 name = "New Digital Workprint"
+      	 category="com.wizzer.mle.studio.category"
+	     class="com.wizzer.mle.studio.dwp.wizard.NewDigitalWorkprintWizard"
+	     icon="icons/digitalworkprint_16x16.png">
+    	 <description>
+    	    Create a new Digital Workprint file.
+         </description>
+	     <selection class="org.eclipse.core.resources.IResource"/>
+	  </wizard>
+   </extension>
+   
+   <extension point="org.eclipse.ui.exportWizards">
+      <wizard
+         id="com.wizzer.mle.studio.dwp.wizard.DwpExportWizard"
+         name="Digital Workprint"
+         class="com.wizzer.mle.studio.dwp.wizard.DwpExportWizard">
+         <description>
+             Export the selected Digital Workprints to an alternative format.
+         </description>
+         <selection class="org.eclipse.core.resources.IFile"/> 
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension 
+	      targetID="com.wizzer.mle.studio.StudioPerspective">
+	      <newWizardShortcut id="com.wizzer.mle.studio.dwp.wizard.NewDigitalWorkprintWizard"/>
+      </perspectiveExtension>
+   </extension>
+
+</plugin>

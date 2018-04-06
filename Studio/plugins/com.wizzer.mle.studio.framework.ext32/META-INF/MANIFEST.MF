@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Magic Lantern Studio Framework Extension 32-bit Plugin
+Bundle-SymbolicName: com.wizzer.mle.studio.framework.ext32;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.wizzer.mle.studio.framework.ext.Activator
+Bundle-Vendor: Wizzer Works
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.wizzer.mle.studio.framework;bundle-version="1.0.0",
+ com.wizzer.mle.studio.framework.ext;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

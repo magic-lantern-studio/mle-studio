@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Glossary</title>
+<link href="css/mledoc.css" rel="stylesheet" type="text/css" media="screen" />
+<!--[if IE]>
+<style type="text/css">
+  .clearfix {
+    zoom: 1;     /* triggers hasLayout */
+    }  /* Only IE can see inside the conditional comment
+    and read this CSS rule. Don't ever use a normal HTML
+    comment inside the CC or it will close prematurely. */
+</style>
+<![endif]-->
+</head>
+
+<body>
+<h1 id="banner"><a href="http://www.wizzerworks.com"><img src="images/WwLogo.gif" width="100" height="100" border="0"></a></h1>
+<h1>Glossary</h1>
+<p><strong>actor</strong><br>
+  The basic unit of action and presentation within a title.</p>
+<p><strong>actor group</strong><br>
+  See <em><strong>cast</strong></em>.</p>
+<p> <strong>actor property</strong><br>
+  A C++ or Java member variable that is exposed to the title development team 
+  via the authoring tools.</p>
+<p> <strong>assets</strong><br>
+  The code and data used to build and run a Magic Lantern title. Assets include 
+  the title executable and<br>
+  dynamic software modules as well as the media (that is, 3D models and textures, 
+  audio, images, and video).</p>
+<p> <strong>behavior</strong><br>
+  Any procedural element that makes an actor move or otherwise change state. Although 
+  behaviors can be<br>
+  cyclic and predictable, such as pre-scripted animations, in Magic Lantern the 
+  term is typically used to<br>
+  describe more lifelike and complex actions by actors.</p>
+<p> <strong>behavior package</strong><br>
+  A modular component for adding <em><strong>behavior</strong></em>s to an <em><strong>actor</strong></em>.</p>
+<p> <strong>camera</strong><br>
+  A view into a 3D <em><strong>set</strong></em>.</p>
+<p> <strong>camera actor</strong><br>
+  An <em><strong>actor</strong></em> used to vary the camera view of the 3D <em><strong>set</strong></em>.</p>
+<p> <strong>cast</strong><br>
+  A collection of <em><strong>actor</strong></em>s that are loaded into memory 
+  at the same time.</p>
+<p> <strong>Digital Playprint (DPP)</strong><br>
+  A runtime translation of a <em>Digital Workprint</em>. The Digital Playprint 
+  is consumed by a <strong>Runtime Player</strong>.</p>
+<p> <strong>Digital Workprint (DWP)</strong><br>
+  A repository for saved information about the development of a <em><strong>title</strong></em> 
+  and which specifies all the resources that<br>
+  accompany a <em><strong>title</strong></em>.</p>
+<p> <strong>DLL</strong><br>
+  Acronym for Dynamic Linkable Library</p>
+<p> <strong>DPP</strong><br>
+  See <em><strong>Digial Playprint</strong></em>.</p>
+<p> <strong>DSO</strong><br>
+  Acronym for Dynamic Shared Object.</p>
+<p> <strong>DWP</strong><br>
+  See <em><strong>Digial Workprint</strong></em>.</p>
+<p> <strong>media reference</strong><br>
+  An object used to reference the representation of media across multiple platforms. 
+  It is a pointer to an<br>
+  outside media file, such as a graphics image or an audio file.</p>
+<p> <strong>package</strong><br>
+  A Magic Lantern component used to add functionality to an <em><strong>actor</strong></em> 
+  class.</p>
+<p><strong>player</strong><br>
+  A <em><strong>Rehearsal Player</strong></em> or a targeted <em><strong>Runtime 
+  Player</strong></em>.</p>
+<p> <strong>pull method</strong><br>
+  A method of communicating between an <em><strong>actor</strong></em> and its 
+  <em> <strong>role</strong></em> where the <em><strong>role</strong></em> explicitly 
+  asks the <em><strong>actor</strong></em> for any<br>
+  changes.</p>
+<p> <strong>push method</strong><br>
+  A method of communicating between an <em><strong>actor</strong></em> and its 
+  <em> <strong>role</strong></em> where the <em><strong>actor</strong></em> pushes 
+  its results to the <em><strong>role</strong></em>.</p>
+<p> <strong>Rehearsal Player</strong><br>
+  A Magic Lantern program that plays a title on a PC or UNIX workstation. The 
+  Rehearsal Player plays the<br>
+  <em><strong>title</strong></em> using dynamic data structures and allows for 
+  midstream property changes from the outside, such as<br>
+  from an actor editor. From an interface perspective, the Rehearsal Player has 
+  a protocol that other programs<br>
+  can use to start, stop, pause, and change properties. The Rehearsal Player can 
+  be activated from the Scene<br>
+  Editor.</p>
+<p> <strong>Runtime Player</strong><br>
+  A Magic Lantern program that plays the title using static, mastered data structures. 
+  The Runtime Player has<br>
+  no extensions for allowing an outside agent to modify or control anything happening 
+  within the title. The<br>
+  Runtime Player loads media groups and actor definitions from a Digital Playprint. 
+  A Runtime Player refers<br>
+  to a player that runs on a specific target, such as a PC, game console, or interactive 
+  TV set-top box.</p>
+<p> <strong>role</strong><br>
+  The software module that handles the <em><strong>actor</strong></em>s' platform-dependent 
+  presentation on a <em><strong>stage</strong></em>.</p>
+<p> <strong>scene</strong><br>
+  The groups (or <em><strong>cast</strong></em>) of actors that are loaded into 
+  the title at any given time.</p>
+<p><strong>set</strong><br>
+  An abstract view of a collection of <em><strong>actor</strong></em>s that are 
+  presented on a <em><strong>stage</strong></em>. A set is used to manage a<br>
+  presentation, such as a 3D scene-graph or 2D windowing environment.</p>
+<p> <strong>stage</strong><br>
+  The set of services on the target platform, such as rendering, input, sound, 
+  physical modeling, proximity and<br>
+  collision detection, and event handling.</p>
+<p> <strong>targeting process</strong><br>
+  The Magic Lantern process that generates an interactive title for its distribution 
+  media. The targeting process<br>
+  takes the <em><strong>Digital Workprint</strong></em> and its associated media 
+  assets as input and creates three output products: the<br>
+  <em><strong>Digital Playprint</strong></em>, the translated media, and the executable.</p>
+<p> <strong>title</strong><br>
+  The application created with the Magic Lantern authoring tools.</p>
+</body>
+</html>

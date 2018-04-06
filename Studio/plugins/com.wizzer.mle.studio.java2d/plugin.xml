@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            name="Magic Lantern Java2D Project"
+            icon="icons/full/ctool16/newprj_wiz.gif"
+            category="com.wizzer.mle.studio.category"
+            class="com.wizzer.mle.studio.java2d.project.MleJava2DProjectCreationWizard"
+            project="true"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            id="com.wizzer.mle.studio.java2d.project.MleJava2DProjectCreationWizard">
+         <description>
+            Create a new MLE Java2D project
+         </description>
+      </wizard>
+   </extension>
+
+   <extension 
+       point="org.eclipse.ui.importWizards">
+      <category
+         id="com.wizzer.mle.studio.import.category"
+         name="Magic Lantern">
+      </category>
+      <wizard 
+         id="com.wizzer.mle.studio.java2d.project.MleJava2DImportProjectWizard" 
+         name="Java2D Import Project" 
+         class="com.wizzer.mle.studio.java2d.project.MleJava2DImportProjectWizard"
+         category="com.wizzer.mle.studio.import.category" 
+         icon="./icons/full/ctool16/newprj_wiz.gif"> 
+         <description> 
+            Import an existing MLE Java2D project
+         </description> 
+         <selection class="org.eclipse.core.resources.IResource"/> 
+      </wizard> 
+   </extension>
+   
+   <extension
+         id="Java2dDigitalPlayprintLaunchConfigurationTypes"
+         name="Magic Lantern Java2D Digital Playprint Launch Configuration Types"
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            name="Magic Lantern Java2D Runtime Player"
+            id="com.wizzer.mle.studio.java2d.launch.Java2DRuntimeLaunchConfigurationType"
+            modes="run,debug"
+            delegate="com.wizzer.mle.studio.java2d.launch.Java2DRuntimeLaunchDelegate"
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
+         <fileExtension extension="dpp" default="true"/>
+      </launchConfigurationType>
+   </extension>
+   
+   <extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            icon="icons/launchprj.png"
+            configTypeID="com.wizzer.mle.studio.java2d.launch.Java2DRuntimeLaunchConfigurationType"
+            id="com.wizzer.mle.studio.java2d.launchConfigurationTypeImage">
+      </launchConfigurationTypeImage>
+   </extension>
+   
+   <extension
+         id="Java2dDigitalPlayprintLaunchConfigurationTabGroups"
+         name="Magic Lantern Java2D Digital Playprint Launch Configuration Tab Groups"
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            type="com.wizzer.mle.studio.java2d.launch.Java2DRuntimeLaunchConfigurationType"
+            description="Create a configuration for running a Java2D application."
+            class="com.wizzer.mle.studio.java2d.launch.ui.Java2DRuntimeTabGroup"
+            id="com.wizzer.mle.studio.java2d.launch.ui.Java2DRuntimeTabGroup">
+      </launchConfigurationTabGroup>
+   </extension>
+  
+   <extension point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension 
+	      targetID="com.wizzer.mle.studio.StudioPerspective">
+	      <newWizardShortcut id="com.wizzer.mle.studio.java2d.project.MleJava2DProjectCreationWizard"/>
+      </perspectiveExtension>
+   </extension>
+
+   <extension
+         point="com.wizzer.mle.studio.applicationTemplates">
+      <template
+            id="com.wizzer.mle.studio.java2d.SimpleTitle"
+            name="SimpleTitle"
+            version="1.0.0"
+            category="General"
+            class="com.wizzer.mle.studio.java2d.titles.SimpleTemplate">
+         <templateEntry
+               type="zip"
+               source="archive/templates/SimpleJavaTemplate.zip"
+               destination="src">
+         </templateEntry>
+      </template>
+   </extension>
+   
+   <extension
+         point="com.wizzer.mle.studio.applicationTemplates">
+      <template
+            id="com.wizzer.mle.studio.java2d.HelloWorldTitle"
+            name="HelloWorldTitle"
+            version="1.0.0"
+            category="General"
+            class="com.wizzer.mle.studio.java2d.titles.HelloWorldTemplate">
+         <templateEntry
+               type="zip"
+               source="archive/templates/HelloWorldJavaTemplate.zip"
+               destination="src">
+         </templateEntry>
+      </template>
+   </extension>
+   
+   <extension
+         point="com.wizzer.mle.studio.applicationTemplates">
+      <template
+            id="com.wizzer.mle.studio.java2d.ImageViewerTitle"
+            name="ImageViewerTitle"
+            version="1.0.0"
+            category="General"
+            class="com.wizzer.mle.studio.java2d.titles.ImageViewerTemplate">
+         <templateEntry
+               type="zip"
+               source="archive/templates/ImageViewerJavaTemplate.zip"
+               destination="src">
+         </templateEntry>
+      </template>
+   </extension>
+   
+</plugin>

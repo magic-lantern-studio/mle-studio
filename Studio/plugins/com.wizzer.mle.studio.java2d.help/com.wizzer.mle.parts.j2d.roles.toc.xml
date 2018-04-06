@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<!-- ========================================================== -->
+<!-- Licensed Materials - Property of IBM                       -->
+<!-- (c) Copyright IBM Corp. 2004, 2005, 2006. All Rights Reserved.   -->
+<!-- ========================================================== -->
+
+<toc label="com.wizzer.mle.parts.j2d.roles Package" link_to="com.wizzer.mle.parts.j2d.toc.xml#com.wizzer.mle.parts.j2d.packages">
+  <topic label="com.wizzer.mle.parts.j2d.roles Package" href="html/SDK/partsdoc/com/wizzer/mle/parts/j2d/roles/package-summary.html">
+           <anchor id="com.wizzer.mle.parts.j2d.roles.packages"/>
+         <topic label="I2dRole" href="html/SDK/partsdoc/com/wizzer/mle/parts/j2d/roles/I2dRole.html"/>
+  </topic>
+</toc>

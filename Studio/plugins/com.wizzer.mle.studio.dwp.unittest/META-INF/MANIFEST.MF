@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Magic Lantern Digital Workprint Unittest Plug-in
+Bundle-SymbolicName: com.wizzer.mle.studio.dwp.unittest;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: unittest.jar,
+ dwp.jar
+Bundle-Activator: org.eclipse.core.internal.compatibility.PluginActivator
+Bundle-Vendor: Wizzer Works
+Bundle-Localization: plugin
+Export-Package: com.wizzer.mle.studio.dwp.unittest
+Require-Bundle: org.eclipse.core.resources,
+ org.eclipse.ui,
+ org.eclipse.ui.ide;resolution:=optional,
+ org.eclipse.ui.views;resolution:=optional,
+ org.eclipse.ui.editors;resolution:=optional,
+ org.eclipse.jface.text;resolution:=optional,
+ org.eclipse.ui.workbench.texteditor;resolution:=optional,
+ org.junit,
+ com.wizzer.mle.studio.dwp,
+ com.wizzer.mle.studio.framework,
+ org.eclipse.core.runtime;bundle-version="2.1"
+Eclipse-LazyStart: true
+Plugin-Class: com.wizzer.mle.studio.dwp.unittest.UnittestPlugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

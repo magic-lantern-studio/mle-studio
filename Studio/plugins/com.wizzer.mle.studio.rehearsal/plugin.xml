@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views"
+         id="com.wizzer.mle.studio.rehearsal.views"
+         name="Magic Lantern Studio Rehearsal Views">
+      <category
+            name="Magic Lantern Studio"
+            id="com.wizzer.mle.studio.viewCategory">
+      </category>
+      <view
+            name="Rehearsal Player"
+            icon="icons/full/ctool16/mleStudio.gif"
+            category="com.wizzer.mle.studio.viewCategory"
+            class="com.wizzer.mle.studio.rehearsal.view.RehearsalPlayerView"
+            id="com.wizzer.mle.studio.rehearsal.view.RehearsalPlayerView">
+      </view>
+   </extension>
+   
+   <extension
+         id="DigitalWorkprintLaunchConfigurationTypes"
+         name="Magic Lantern Digital Workprint Launch Configuration Types"
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            name="Magic Lantern Rehearsal Player"
+            id="com.wizzer.mle.studio.rehearsal.launch.RehearsalPlayerLaunchConfigurationType"
+            modes="run"
+            delegate="com.wizzer.mle.studio.rehearsal.launch.RehearsalPlayerLaunchConfigurationDelegate">
+         <fileExtension extension="dwp" default="true"/>
+      </launchConfigurationType>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            type="com.wizzer.mle.studio.rehearsal.launch.RehearsalPlayerLaunchConfigurationType"
+            description="Create a configuation for launching the Rehearsal Player."
+            class="com.wizzer.mle.studio.rehearsal.launch.ui.RehearsalPlayerTabGroup"
+            id="com.wizzer.mle.studio.rehearsal.launch.ui.RehearsalPlayerTabGroup">
+      </launchConfigurationTabGroup>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+         name="Magic Lantern Rehearsal Player"
+         class="com.wizzer.mle.studio.rehearsal.preferences.RehearsalPreferencePage"
+         id="com.wizzer.mle.studio.rehearsal.preferences">
+      </page>
+   </extension>
+
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="com.wizzer.mle.studio.rehearsal.preferences.ValueDefaults"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension 
+	      targetID="com.wizzer.mle.studio.StudioPerspective">
+	      <viewShortcut id="com.wizzer.mle.studio.rehearsal.view.RehearsalPlayerView"/>
+      </perspectiveExtension>
+   </extension>
+
+</plugin>

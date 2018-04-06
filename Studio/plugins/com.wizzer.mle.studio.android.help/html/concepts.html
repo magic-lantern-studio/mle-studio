@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Magic Lantern Concepts</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="css/mledoc.css" rel="stylesheet" type="text/css" media="screen" />
+<!--[if IE]>
+<style type="text/css">
+  .clearfix {
+    zoom: 1;     /* triggers hasLayout */
+    }  /* Only IE can see inside the conditional comment
+    and read this CSS rule. Don't ever use a normal HTML
+    comment inside the CC or it will close prematurely. */
+</style>
+<![endif]-->
+</head>
+
+<body>
+<h1 id="banner"><a href="http://www.wizzerworks.com"><img src="images/WwLogo.gif" width="100" height="100" border="0"></a></h1>
+<h1>Magic Lantern Concepts</h1>
+<p> This document presents an introduction to Magic Lantern. Magic Lantern is 
+  an authoring system for interactive multimedia titles that can be used by an 
+  entire development team, including programmers, artists, and designers. </p>
+<p>Before starting, you should already know how to use the Eclipse desktop environment. 
+  You also need to install the Magic Lantern environment on your workstation. 
+</p>
+<h2> Introduction to Magic Lantern Concepts<a name="section_2.1"></a></h2>
+<p> Before using Magic Lantern, it is important to understand some basic concepts. 
+  You need to understand how Magic Lantern is structured and how its terminology 
+  maps to your application. You also need to understand the various Magic Lantern 
+  editors and the functions within these editors. </p>
+<h3>Actors<a name="section_2.1.1"></a></h3>
+<p> An actor is the basic unit of autonomous action within a title. Actors implement 
+  the simulation and behavioral aspects of a title independent of presentation. 
+</p>
+<p>All of the game elements within your title are actors. This includes 2D characters, 
+  3D characters, inanimate objects, animate objects, and so on. For example, in 
+  a driving game, the car, the road, and a tree alongside the road might each 
+  be a separate actor. In addition, sounds can be actors. Thus, the sound of the 
+  car accelerating and the background music could be different actors. </p>
+<p>Actor code is intended to be independent of the target platform and is thus 
+  the most portable part of a Magic Lantern title. Actors are usually paired with 
+  roles (see &quot;<a href="#section_2.1.3">Roles</a>&quot;) to handle presentation. 
+</p>
+<h3>Actor Properties<a name="section_2.1.2"></a></h3>
+<p> Any actor may have a set of properties associated with it. Actor authors use 
+  properties to expose internal actor state to editing tools. That is, properties 
+  enable users to examine and change the values of actor member variables while 
+  inside the Magic Lantern Scene Editor. By exposing internal actor state, you 
+  can then edit that state in the Magic Lantern tools without having to modify 
+  actor code. </p>
+<p>An actor can have, as properties, one or more media references. A media reference 
+  is a pointer to media data, which can reside in a graphics image or a sound 
+  file. The media reference for an actor has the effect of making the media available 
+  to the actor containing the media reference property, whatever its source on 
+  disk. </p>
+<p>The Magic Lantern Studio will supply a collection of actors to facilitate different 
+  genre of titles. Magic Lantern-supplied actor types will eventually include 
+</p>
+<ul>
+  <li> 3D models and animations</li>
+  <li>2D images and sprites</li>
+  <li>sampled sounds</li>
+  <li>MIDI music </li>
+</ul>
+<h3>Roles<a name="section_2.1.3"></a></h3>
+<p> Roles are paired with actors to handle the actors' target-dependent presentation. 
+  The role is responsible for displaying the actor. Displaying can mean rendering 
+  the actor image to the screen or playing the actor audio. An actor may have 
+  zero or one role. </p>
+<h3>Sets<a name="section_2.1.4"></a></h3>
+<p> A set organizes a related collection of roles for presentation. Each title 
+  consists of one or more sets (one or more of which are active at any given time). 
+  For example, you might have one set for three-dimensional graphics, another 
+  set for two dimensional graphics, and yet a third set for presenting sound actors. 
+</p>
+<p>The diagram in <a href="#figure_1.1">Figure 1-1</a> illustrates the components 
+  of a title as it might appear on a game machine. </p>
+<p align="center"><img src="images/TitleComponents.png" width="481" height="577"></p>
+<p align="center"><strong>Figure 1-1<a name="figure_1.1"></a></strong>: Title Components</p>
+<p>Sets provide services for their attached actor/role pairs. For instance, sets 
+  used for graphics include a default camera. This camera establishes many of 
+  the display attributes of the set and can be manipulated by the actors and roles 
+  within the set. </p>
+<p>You typically edit actors within the context of a set. That is, you add, change, 
+  and move your actors within a set. </p>
+<p>Sets can also have properties. Use properties with sets in the same way that 
+  you use properties with actors. See &quot;<a href="#section_2.1.8.2">Defining 
+  Properties for Actors</a>&quot; for more information on properties. </p>
+<h3>Stages<a name="section_2.1.5"></a></h3>
+<p> A stage is an object that provides certain title-wide, platform-specific services 
+  to a title. The stage owns all major shared resources, such as the frame buffer. 
+  Stage management includes the display of rendered images to the screen and the 
+  production of sound. A stage organizes all of the sets associated with a title 
+  and can determine, for example, the order in which they are drawn to the screen. 
+  Stages also provide an application program interface (API) for platform-dependent 
+  input handling. </p>
+<h3>Scenes<a name="section_2.1.6"></a></h3>
+<p> A title is made up of scenes. Only one scene can appear on the monitor at 
+  a time. Think of a scene as a level within a title. Often, you structure a title 
+  into levels for performance reasons, your player exercises the title at a particular 
+  level for a period of time, then advances to the next level. Each level partitions 
+  everything used within that level into groups (or cast). When your player advances 
+  to another level (to another scene) then a whole new collection of components 
+  may be loaded into memory. Scenes give you the means to structure your title 
+  into performance levels. </p>
+<h3>Groups<a name="section_2.1.7"></a></h3>
+<p> A group is a set of actors that are loaded into memory at the same time. As 
+  the title progresses and the need for new actors arises, new groups can be loaded 
+  into memory. A group may contain a single actor or it may contain a set of related 
+  actors. </p>
+<h3>Digital Workprint (DWP)<a name="section_2.1.8"></a></h3>
+<p> The Digital Workprint, abbreviated as DWP, specifies all the resources that 
+  accompany a title and is a repository for saved information about the development 
+  of a title. A title can be organized into one or more workprint files. </p>
+<p>You can create a DWP by either using the Magic Lantern Authoring Tools or writing 
+  a program using the DWP API. Refer to &quot;Using the Magic Lantern Digital 
+  Workprint&quot; for more information on the DWP API. </p>
+<p>The DWP file consists of a series of statements that define all the components 
+  of your title. Each statement states the type of the DWP item and includes any 
+  options appropriate to that item. </p>
+<p>For example, you might have a DWP statement that creates an actor item of type 
+  <em>StaticCamera</em>, and names the instance of this actor item <em>a1</em>. 
+  In addition, it might also specify positional properties for this actor instance. 
+</p>
+<p>At a minimum, you must have a scene, a set, a group, and an actor, with properties 
+  and role bindings, defined in the DWP for the DWP to load correctly. </p>
+<p>Code defining an actor type appears in the DWP and is also contained in the 
+  corresponding <em><strong>.wpa</strong></em> file for the actor type. The <em>.wpa</em> 
+  file contains only actor type definitions. </p>
+<h4>Defining Actors in the Digital Workprint<a name="section_2.1.8.1"></a></h4>
+<p> There are two files that define actors in the DWP. One file has a <em><strong>.wpd</strong></em> 
+  extension. This file defines the actor type information. It contains a reference 
+  to the header file that defines your actor class. </p>
+<p>The other file has a <em><strong>.wpa</strong></em> extension. This file contains 
+  specific initialization data for an instance of an actor type. It includes a 
+  statement that creates the run-time actor. Give each instance of the actor class 
+  a unique name. Use this name to retrieve a pointer to the actor via the DWP 
+  API functions. Refer to &quot;Using the Magic Lantern Digital Workprint&quot; 
+  for more information on the DWP API. </p>
+<h4>Defining Properties for Actors<a name="section_2.1.8.2"></a></h4>
+<p> You can also define properties for actors. A property is another type of DWP 
+  item. Properties can be such variables as position, color, and so on. Use properties 
+  to create variables in the actor. These variables can then be loaded and saved 
+  in the DWP. Properties are also accessible in the tools. </p>
+<p>An actor references external media through its properties of type <strong><em>MediaRef</em></strong>. 
+  In general, a <em>MediaRef</em> serves as a pointer to a disk representation 
+  of media, such as a graphics image or a sound file. Refer to &quot;Understanding 
+  Media References&quot; for a complete discussion of <em>MediaRef</em> properties. 
+</p>
+<h4>Associating Actors With Roles<a name="section_2.1.8.3"></a></h4>
+<p> You must associate actors with their roles. You use RoleBinding in the DWP 
+  to do this. Binding the actor to its role makes the role pointer available via 
+  the getrole function in the actor and the actor pointer available via the getActor 
+  function in the role. </p>
+<h4>Associating Roles With Other Roles<a name="section_2.1.8.4"></a></h4>
+<p> Use the <em><strong>RoleAttachment</strong></em> DWP item to attach roles 
+  to other roles. If a role does not have a <em>RoleAttachment</em> statement, 
+  then it is directly attached to its set.</p>
+<p>A title consists of a hierarchy of components. You do your work on these various 
+  components when you develop your title. <a href="#figure_1.2">Figure 1-2</a> 
+  shows you a sample hierarchy of title components. </p>
+<p>Figure 1-2: Hierarchy of Title Components<a name="figure_1.2"></a></p>
+<h3>Rehearsal and Runtime Players<a name="section_2.1.9"></a></h3>
+<p> Magic Lantern provides a <strong>Rehearsal Player</strong> and multiple <strong>Runtime 
+  Player</strong>s. You use the Rehearsal Player to run and debug your title on 
+  the Windows development workstation. You can activate the Rehearsal Player from 
+  the Scene Editor, by clicking the Play button. Or, you can activate the Rehearsal 
+  Player from outside the Scene Editor by using the command <em><strong>mlplay</strong></em>. 
+  A Runtime Player, by contrast, includes a target engine, which is the title 
+  execution engine that runs on the target platform. Because these players serve 
+  different purposes, they require some coding differences. </p>
+<p>The Rehearsal Player executes a Magic Lantern title using dynamic data structures 
+  and allows for midstream property changes from the outside, such as from an 
+  actor editor. It consists of a rehearsal engine, which is the execution engine 
+  of the Magic Lantern authoring system, and a user interface, which are the authoring 
+  tools. </p>
+<p>The Rehearsal Player has a protocol that the authoring tools can use to start, 
+  stop, pause, and change properties. Internally, the Rehearsal Player maintains 
+  title state structured as a memory-resident DWP. </p>
+<p>The Runtime Player plays the title using static data structures and has no 
+  extensions for allowing an outside agent to modify or control anything going 
+  on inside it. A runtime debug player is a platform-specific player that supports 
+  debugging and performance tuning. You can expect to write portions of your title 
+  code to specifically use the capabilities of particular target platforms. </p>
+<p>There are certain constructs that must appear in the title code so that it 
+  can run in the Rehearsal Player environment. These code elements allow the authoring 
+  tools to interact with the title and let you use the debugging environment. 
+  In addition, this code must only be written for the Rehearsal Player. Blocks 
+  of code appropriate only for the Rehearsal Player are delineated by </p>
+<pre id="cppexample">
+    #ifdef MLE_REHEARSAL
+    #endif
+</pre>
+<div class="clearfix">
+    <img src="images/genieLamp_48x48_32bit.png" width="48" height="48" class="noteImage"/>  
+  <p class="noteText"><strong>Note</strong>: The Rehearsal Player constructs are only available for titles written in C++.
+  Titles written in Java should use the actual target Runtime Players in conjuction with any emulators or simulators
+  provided by a native authoring environment (i.e. Android, etc.).
+  </p>
+</div>
+</body>
+</html>

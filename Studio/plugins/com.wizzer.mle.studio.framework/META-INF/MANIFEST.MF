@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Magic Lantern Tool Framework Plug-in
+Bundle-SymbolicName: com.wizzer.mle.studio.framework; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: framework.jar
+Bundle-Activator: com.wizzer.mle.studio.framework.FrameworkPlugin
+Bundle-Vendor: Wizzer Works
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+Export-Package: com.wizzer.mle.studio.framework,
+ com.wizzer.mle.studio.framework.attribute,
+ com.wizzer.mle.studio.framework.command,
+ com.wizzer.mle.studio.framework.domain,
+ com.wizzer.mle.studio.framework.io,
+ com.wizzer.mle.studio.framework.ui,
+ com.wizzer.mle.studio.framework.ui.calendar
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.13.0",
+ org.eclipse.core.resources,
+ org.eclipse.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

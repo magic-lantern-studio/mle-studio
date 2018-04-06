@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--============createExtensionToc(List pkgs)============-->
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Magic Lantern Math Library">
+   <topic label="Magic Lantern Math Library" href="html/SDK/mlmathdoc/overview-summary.html">
+      <topic label="com.wizzer.mle.math Package" href="html/SDK/mlmathdoc/com/wizzer/mle/math/package-summary.html">
+         <topic label="MlVector4" href="html/SDK/mlmathdoc/com/wizzer/mle/math/MlVector4.html"/>
+         <topic label="MlVector3" href="html/SDK/mlmathdoc/com/wizzer/mle/math/MlVector3.html"/>
+         <topic label="MlVector2" href="html/SDK/mlmathdoc/com/wizzer/mle/math/MlVector2.html"/>
+         <topic label="MlTransform" href="html/SDK/mlmathdoc/com/wizzer/mle/math/MlTransform.html"/>
+         <topic label="MlScalar" href="html/SDK/mlmathdoc/com/wizzer/mle/math/MlScalar.html"/>
+         <topic label="MlRotation" href="html/SDK/mlmathdoc/com/wizzer/mle/math/MlRotation.html"/>
+         <topic label="MlAngle" href="html/SDK/mlmathdoc/com/wizzer/mle/math/MlAngle.html"/>
+      </topic>
+   </topic>
+</toc>

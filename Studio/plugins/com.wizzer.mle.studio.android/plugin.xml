@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+	<extension point="org.eclipse.core.resources.builders"
+      id="ResourceBuilder"
+      name="Magic Lantern Resource Builder">
+      <builder hasNature="true">
+         <run class="com.wizzer.mle.studio.android.dpp.ResourceBuilder">
+         </run>
+      </builder>
+   </extension>
+   
+   <extension point="org.eclipse.core.resources.natures"
+      id="ResourceNature"
+      name="Magic Lantern Resource Nature">
+      <runtime>
+         <run class="com.wizzer.mle.studio.android.dpp.ResourceNature">
+         </run>
+      </runtime>
+      <builder id="com.wizzer.mle.studio.android.ResourceBuilder"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Magic Lantern"
+            id="com.wizzer.mle.studio.category">
+      </category>
+      <wizard
+            name="%MleAndroidNewProjectWizard.title"
+            icon="icons/new_adt_project.png"
+            category="com.wizzer.mle.studio.category"
+            class="com.wizzer.mle.studio.android.project.MleAndroidNewProjectWizard"
+            project="true"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            id="com.wizzer.mle.studio.android.project.MleAndroidNewProjectWizard">
+         <description>
+            %MleAndroidNewProjectWizard.description
+         </description>
+         <import
+            type="SimpleAndroidTemplate"
+            dest="src"
+            src="archive/templates/SimpleAndroidTemplate.zip">
+         </import>
+      </wizard>
+         <wizard
+            name="%MleAndroidNewSampleProjectWizard.title"
+            icon="icons/new_adt_project.png"
+            category="com.wizzer.mle.studio.category"
+            class="com.wizzer.mle.studio.android.project.MleAndroidNewSampleProjectWizard"
+            project="true"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            id="com.wizzer.mle.studio.android.project.MleAndroidNewSampleProjectWizard">
+         <description>
+            %MleAndroidNewSampleProjectWizard.description
+         </description>
+         </wizard>
+         <wizard
+            name="%MleAndroidNewTestProjectWizard.title"
+            icon="icons/androidjunit.png"
+            category="com.wizzer.mle.studio.category"
+            class="com.wizzer.mle.studio.android.project.MleAndroidNewTestProjectWizard"
+            project="true"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            id="com.wizzer.mle.studio.android.project.MleAndroidNewTestProjectWizard">
+         <description>
+            %MleAndroidNewTestProjectWizard.description
+         </description>
+      </wizard>
+   </extension>
+
+   <extension 
+       point="org.eclipse.ui.importWizards">
+      <category
+         id="com.wizzer.mle.studio.import.category"
+         name="Magic Lantern">
+      </category>
+      <wizard 
+         id="com.wizzer.mle.studio.android.project.MleAndroidImportProjectWizard" 
+         name="Android Import Project" 
+         class="com.wizzer.mle.studio.android.project.MleAndroidImportProjectWizard"
+         category="com.wizzer.mle.studio.import.category" 
+         icon="./icons/new_adt_project.png"> 
+         <description> 
+            Import an existing MLE Android project
+         </description> 
+         <selection class="org.eclipse.core.resources.IResource"/> 
+      </wizard> 
+   </extension>
+
+   <extension point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension 
+	      targetID="com.wizzer.mle.studio.StudioPerspective">
+	      <newWizardShortcut id="com.wizzer.mle.studio.android.project.MleAndroidNewProjectWizard"/>
+      </perspectiveExtension>
+   </extension>
+
+</plugin>

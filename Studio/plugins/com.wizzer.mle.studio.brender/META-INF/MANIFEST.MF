@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Magic Lantern Studio Brender Plug-in
+Bundle-SymbolicName: com.wizzer.mle.studio.brender;singleton:=true
+Bundle-Version: 1.0.0.v20080220
+Bundle-Activator: com.wizzer.mle.studio.brender.Activator
+Bundle-Vendor: Wizzer Works
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.debug.core,
+ org.eclipse.debug.ui,
+ com.wizzer.mle.codegen,
+ org.eclipse.cdt.core,
+ org.eclipse.cdt.make.core,
+ org.eclipse.cdt.make.ui,
+ org.eclipse.cdt.ui,
+ org.eclipse.ui.ide,
+ com.wizzer.mle.studio,
+ com.wizzer.mle.studio.dpp,
+ com.wizzer.mle.studio.dwp,
+ com.wizzer.mle.studio.framework
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ClassPath: mlbrender.jar
+Export-Package: com.wizzer.mle.studio.brender,
+ com.wizzer.mle.studio.brender.dwp,
+ com.wizzer.mle.studio.brender.launch,
+ com.wizzer.mle.studio.brender.launch.ui,
+ com.wizzer.mle.studio.brender.make,
+ com.wizzer.mle.studio.brender.perspective,
+ com.wizzer.mle.studio.brender.project

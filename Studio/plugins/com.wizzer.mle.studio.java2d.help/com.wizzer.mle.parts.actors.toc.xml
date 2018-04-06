@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--============createExtensionToc(List pkgs)============-->
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Magic Lantern Actors Library">
+   <topic label="Magic Lantern Actors Library" href="html/SDK/actorsdoc/overview-summary.html">
+      <topic label="com.wizzer.mle.parts.actors Package" href="html/SDK/actorsdoc/com/wizzer/mle/parts/actors/package-summary.html">
+         <topic label="MleImageActor" href="html/SDK/actorsdoc/com/wizzer/mle/parts/actors/MleImageActor.html"/>
+      </topic>
+   </topic>
+</toc>

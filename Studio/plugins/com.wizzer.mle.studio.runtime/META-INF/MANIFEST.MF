@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-Name: Magic Lantern Studio Runtime Plug-in
+Bundle-SymbolicName: com.wizzer.mle.studio.runtime;singleton=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: mlert.jar,
+ mlstudiort.jar
+Bundle-Activator: com.wizzer.mle.studio.runtime.RuntimePlugin
+Bundle-Vendor: Wizzer Works
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Provide-Package: com.wizzer.mle.runtime,
+ com.wizzer.mle.runtime.core,
+ com.wizzer.mle.runtime.dpp,
+ com.wizzer.mle.runtime.event,
+ com.wizzer.mle.runtime.scheduler,
+ com.wizzer.mle.runtime.util,
+ com.wizzer.mle.studio.runtime
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -1,0 +1,37 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Java2d Target Plug-in
+Bundle-SymbolicName: com.wizzer.mle.studio.java2d;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.wizzer.mle.studio.java2d.Java2DPlugin
+Bundle-Vendor: Wizzer Works
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources;bundle-version="3.5.2",
+ org.eclipse.core.filesystem;bundle-version="1.2.1",
+ org.eclipse.ui.ide;bundle-version="3.5.2",
+ org.eclipse.debug.core;bundle-version="3.5.1",
+ org.eclipse.debug.ui;bundle-version="3.5.2",
+ org.eclipse.jdt.core;bundle-version="3.5.2",
+ org.eclipse.jdt.ui;bundle-version="3.5.2",
+ org.eclipse.jdt.launching;bundle-version="3.5.1",
+ org.eclipse.jdt.debug.ui;bundle-version="3.4.1",
+ com.wizzer.mle.codegen;bundle-version="1.0.0",
+ com.wizzer.mle.studio;bundle-version="1.0.0",
+ com.wizzer.mle.studio.dwp;bundle-version="1.0.0",
+ com.wizzer.mle.studio.dpp;bundle-version="1.0.0",
+ com.wizzer.mle.studio.framework;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: mljava2d.jar
+Export-Package: com.wizzer.mle.studio.java2d,
+ com.wizzer.mle.studio.java2d.launch,
+ com.wizzer.mle.studio.java2d.launch.ui,
+ com.wizzer.mle.studio.java2d.project
+Import-Package: com.wizzer.mle.studio.framework,
+ com.wizzer.mle.studio.framework.attribute,
+ com.wizzer.mle.studio.framework.command,
+ com.wizzer.mle.studio.framework.domain,
+ com.wizzer.mle.studio.framework.io,
+ com.wizzer.mle.studio.framework.ui,
+ com.wizzer.mle.studio.framework.ui.calendar

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?> 
+<welcomePage 
+	title="Magic Lantern Android Studio">
+
+<intro>
+Magic Lantern is a interactive, title development platform for authoring highly interactive titles,
+such as interactive TV applications, games, educational programs, and point-of-information/sales 
+kiosks. It is designed specifically for the real-world needs of professional title development
+teams as they break new ground in the development of real-time interactive titles.
+<p>
+The Magic Lantern Android Studio is used to develop titles, or applications, for devices running
+Google's Android operating system. The Magic Lantern SDK for Android provides the runtime components
+and tool chain for developing applications using the Magic Lantern programming paradigm.
+</p>
+</intro>
+
+<item><b>Magic Lantern Android Studio Documentation</b>
+The best way to get started developing Magic Lantern Android titles is to read the online documentation
+distributed with this release of Magic Lantern Studio.
+</item>
+
+<item><b>Learn More</b>
+The official site of Magic Lantern can be found here: <topic href="http://www.wizzerworks.com">http://www.wizzerworks.com</topic>
+</item>
+
+<item><b>Reporting bugs, comments</b>
+If you experience any issues or wish to request feature enhancements, please let us know.
+Please feel free to send us your comments : <b>msm@wizzerworks.com</b>
+</item>
+
+</welcomePage>

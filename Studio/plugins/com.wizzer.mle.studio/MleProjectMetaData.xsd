@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Tobin Wahlers (Vidiom Systems) -->
+<xs:schema xmlns:mle="http://www.wizzerworks.com/MLE/MetaDataSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.wizzerworks.com/MLE/MetaDataSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="project">
+		<xs:annotation>
+			<xs:documentation>Contains meta data for Magic Lantern project.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="project_type">
+					<xs:annotation>
+						<xs:documentation>Project specific type identifier (i.e. Java2D Studio)</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="version" type="xs:string"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="home_directory_uri" type="xs:anyURI" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>URI for location of global home.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="home_directory_path" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Project path relative to home directory URI.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="asset_directory_uri" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>URI for location of global asset data.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="asset_directory_path" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Project path for assets relative to asset URI.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="title_data" type="mle:title" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Title specific meta data.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="project_user_data" type="mle:user_data" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Project specific meta data.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="major_version" use="required">
+				<xs:annotation>
+					<xs:documentation>The major version number.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="minor_version" use="required">
+				<xs:annotation>
+					<xs:documentation>The minor version number.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="date" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>An optional creation date.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="title">
+		<xs:annotation>
+			<xs:documentation>Meta data for a Magic Lantern title.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="master_target" type="mle:target" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Title mastering target (i.e. java2D/brender/android/xna)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="user_data" type="mle:user_data" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>User data specific to an Magic Lantern title.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" use="required">
+			<xs:annotation>
+				<xs:documentation>The title identifier (i.e. teapot).</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="app\d+"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="digital_workprint" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The Digital Workprint file this title is associated with (i.e. teapot.dwp).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="version" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The version of this title data (i.e. MLE 1.0)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="target">
+		<xs:annotation>
+			<xs:documentation>Target meta data.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="verbose" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Use verbose mode during mastering.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Mastering target type (i.e. brender or java2D).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="id" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The mastering target identifier (i.e. teapot).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="digital_playprint" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The Digital Playprint file this target is associated with (i.e. teapot.dpp).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tools" type="mle:target_tools"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="target_tools">
+		<xs:annotation>
+			<xs:documentation>Collection of Magic Lantern tools.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="mle:tool_data"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="user_data">
+		<xs:annotation>
+			<xs:documentation>User specified meta data.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:group ref="mle:extension"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="tool_data">
+		<xs:annotation>
+			<xs:documentation>Collection of mastering tool parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="destination_directory" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The destination directory specifying the output for the mastering tools.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="code_generation">
+				<xs:annotation>
+					<xs:documentation>The type of code to generate; should be cpp, java, csharp, or objcc.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="cpp"/>
+						<xs:pattern value="java"/>
+						<xs:pattern value="csharp"/>
+						<xs:pattern value="objcc"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="header_package" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The c header file or java package name.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="big_endian" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Generate data in big endian or little endian format. By default, the data will be generated using little endian.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fixed_point" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Generate data using fixed-point arithmetic for real values. By default, data will use a floating-point arithmetic construct.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tags" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Tags used while processing the Magic Lantern Digital Workprint.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gengroup" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Collection of gengroup parameters.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="actor_id_file" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>The file that will be generated containing actor identifiers.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="group_id_file" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>The file that will be generated containing group identifiers.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="genmedia" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Collection of genmedia parameters.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="bom_file" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>The file that will be generated containing the media assets bill-of-materials.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="genscene" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Collection of genscene parameters.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="scene_id_file" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>the file that will be generated containing scenen identifiers.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="gentables" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Collection  of gentables parameters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="genppscript" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="script_file" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>The script file specifying the layout for the Digital Playprint (i.e. playprint.tcl).</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="toc_name" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>The name of the Digital Playprint table-of-contents (i.e. DppTOC).</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="gendpp" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="source_directory" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>The directory path containing the components used to create the Digital Playprint.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="script_path" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>The path of the layout script. </xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="extension">
+		<xs:annotation>
+			<xs:documentation>Information identifying the extension.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The name of the extension.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="id" type="xs:ID">
+				<xs:annotation>
+					<xs:documentation>The unique identifier for the extension.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="author" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The author of the extension (i.e. Wizzer Works, Inc.).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contact" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contact information concerning this extension (i.e. support@wizzerworks.com).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="data" type="xs:anyType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
+</xs:schema>

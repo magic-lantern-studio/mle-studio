@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DwpReader Linux
+Bundle-SymbolicName: com.wizzer.mle.studio.dwp.reader.linux
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Wizzer Works
+Fragment-Host: com.wizzer.mle.studio.dwp;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: com.wizzer.mle.studio.framework,
+ com.wizzer.mle.studio.framework.attribute,
+ com.wizzer.mle.studio.framework.command,
+ com.wizzer.mle.studio.framework.domain,
+ com.wizzer.mle.studio.framework.io,
+ com.wizzer.mle.studio.framework.ui,
+ com.wizzer.mle.studio.framework.ui.calendar
+Bundle-NativeCode: os/linux/x86_64/libDwpReader.so; processor=x86_64; osname=linux
