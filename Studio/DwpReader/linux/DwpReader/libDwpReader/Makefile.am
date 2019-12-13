@@ -24,8 +24,8 @@ libDwpReader_la_CPPFLAGS = \
 	-DMLE_NOT_DLL \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/../../common/include \
-    -I/opt/java/jdk1.8.0_111/include \
-    -I/opt/java/jdk1.8.0_111/include/linux \
+    -I$(JAVA_HOME)/include \
+    -I$(JAVA_HOME)/include/linux \
     -I/opt/MagicLantern/include
 
 install_plugin:
