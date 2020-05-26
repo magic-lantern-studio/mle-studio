@@ -46,9 +46,9 @@ public class UnittestPlugin extends AbstractUIPlugin
 	/**
 	 * The constructor.
 	 */
-	public UnittestPlugin(IPluginDescriptor descriptor)
+	public UnittestPlugin()
 	{
-		super(descriptor);
+		super();
 		m_plugin = this;
 		try {
 			m_resourceBundle= ResourceBundle.getBundle("com.wizzer.mle.studio.framework.unittest.UnittestPluginResources");
@@ -102,6 +102,7 @@ public class UnittestPlugin extends AbstractUIPlugin
 	 */
 	public static String getID()
 	{
-		return getDefault().getDescriptor().getUniqueIdentifier();
+		//return getDefault().getDescriptor().getUniqueIdentifier();
+		return getDefault().getBundle().getSymbolicName();
 	}
 }
