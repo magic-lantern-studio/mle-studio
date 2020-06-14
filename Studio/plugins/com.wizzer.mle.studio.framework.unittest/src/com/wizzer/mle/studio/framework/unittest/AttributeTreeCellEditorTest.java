@@ -66,7 +66,7 @@ public class AttributeTreeCellEditorTest extends TestCase
 	/**
 	 * Executes the test runner.
 	 * 
-	 * @param args Command line arguements.
+	 * @param args Command line arguments.
 	 */
 	public static void main(String[] args)
 	{
@@ -142,6 +142,9 @@ public class AttributeTreeCellEditorTest extends TestCase
 			protected Control createContents(Composite parent)
 			{
 				getShell().setText("AttributeTreeCellEditor Unit Test");
+				int minWidth = 480;
+				int minHeight = 175;
+				getShell().setMinimumSize(minWidth, minHeight);
 		
 				// Create some Attributes.
 				int numAttributes = 4;

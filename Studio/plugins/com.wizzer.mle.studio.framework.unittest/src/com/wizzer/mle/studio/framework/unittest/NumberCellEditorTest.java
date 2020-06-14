@@ -109,7 +109,10 @@ public class NumberCellEditorTest extends TestCase
 			protected Control createContents(Composite parent)
 			{
 				getShell().setText("NumberCellEditor Unit Test");
-		
+				int minWidth = 480;
+				int minHeight = 110;
+				getShell().setMinimumSize(minWidth, minHeight);
+
 				// Create some Attributes.
 				int numAttributes = 5;
 				VariableListAttribute root = new VariableListAttribute("Test",

@@ -25,6 +25,7 @@ package com.wizzer.mle.studio.framework.unittest;
 
 // Import standard Java packages.
 import java.util.Observer;
+import java.awt.GridLayout;
 import java.util.Observable;
 
 // Import JUnit packages.
@@ -110,6 +111,9 @@ public class ChoiceCellEditorTest extends TestCase
 			protected Control createContents(Composite parent)
 			{
 				getShell().setText("ChoiceCellEditor Unit Test");
+				int minWidth = 480;
+				int minHeight = 110;
+				getShell().setMinimumSize(minWidth, minHeight);
 		
 				// Create some Attributes.
 				int numAttributes = 5;

@@ -99,7 +99,7 @@ public class ChoiceCellEditor extends AttributeCellEditor
 		layout.marginHeight = GuiConstants.BORDER_SIZE_EDIT;
 
 		// Initialize the components in a Composite container.
-		Composite composite = new Composite(parent,SWT.NONE);
+		Composite composite = new Composite(parent,SWT.RESIZE);
 		//composite.setBounds(0, 0, GuiConstants.PANEL_WIDTH_EDIT, GuiConstants.PANEL_HEIGHT_EDIT);
 		composite.setBounds(0, 0, parent.getSize().x, parent.getSize().y);
 		this.initGUI(composite);
@@ -110,7 +110,7 @@ public class ChoiceCellEditor extends AttributeCellEditor
 		return composite;
 	}
 
-	// Iniitialize the editor's GUI.
+	// Initialize the editor's GUI.
 	private void initGUI(Composite parent)
 	{
 		m_label = new Label(parent,SWT.NONE);
@@ -144,9 +144,9 @@ public class ChoiceCellEditor extends AttributeCellEditor
 		m_label.setFont(new Font(parent.getDisplay(),labelFontData));
          
 		//m_combo.setBackground(new Color(parent.getDisplay(), 153, 255, 255));
-		//m_combo.setForeground(new Color(parent.getDisplay(), 0, 0, 255));
+		m_combo.setForeground(new Color(parent.getDisplay(), 0, 0, 0));
 		//m_combo.setFont(new Font(parent.getDisplay(),"Comic Sans MS", GUIConstants.FONT_SIZE_EDIT, SWT.NORMAL));
-		m_combo.setBackground(new Color(parent.getDisplay(), 255, 255, 255));
+		//m_combo.setBackground(new Color(parent.getDisplay(), 255, 255, 255));
 		
 		//m_label.setBounds(GUIConstants.BORDER_SIZE_EDIT, GUIConstants.BORDER_SIZE_EDIT,
 		//    GUIConstants.LABEL_WIDTH_EDIT, GUIConstants.FIELD_HEIGHT_EDIT);

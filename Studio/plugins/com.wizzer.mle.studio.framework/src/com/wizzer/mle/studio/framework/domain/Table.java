@@ -144,7 +144,7 @@ public abstract class Table extends Observable implements Observer
     }
 
     /**
-     * Bumb the version of the <code>Table</code>.
+     * Bump the version of the <code>Table</code>.
      * <p>
      * This allows any subclass to update its version attribute
      * which should then wrap as necessary so as not to contain more bits than allowed.

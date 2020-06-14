@@ -109,6 +109,9 @@ public class FileCellEditorTest extends TestCase
 			protected Control createContents(Composite parent)
 			{
 				getShell().setText("FileCellEditor Unit Test");
+				int minWidth = 480;
+				int minHeight = 110;
+				getShell().setMinimumSize(minWidth, minHeight);
 		
 				// Create some Attributes.
 				int numAttributes = 5;

@@ -98,7 +98,7 @@ public class NumberCellEditor extends AttributeCellEditor
 		layout.marginHeight = GuiConstants.BORDER_SIZE_EDIT;
 
 		// Initialize the components in a Composite container.
-		Composite composite = new Composite(parent,SWT.NONE);
+		Composite composite = new Composite(parent,SWT.RESIZE);
 		//composite.setBounds(0, 0, GuiConstants.PANEL_WIDTH_EDIT, GuiConstants.PANEL_HEIGHT_EDIT); 
 		composite.setBounds(0, 0, parent.getSize().x, parent.getSize().y);  	
 		this.initGUI(composite);
@@ -153,7 +153,7 @@ public class NumberCellEditor extends AttributeCellEditor
 
 		GridData labelLayoutData = new GridData();
 		//labelLayoutData.widthHint = GuiConstants.LABEL_WIDTH_EDIT;
-		labelLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT;
+		labelLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT + 6;
 		labelLayoutData.horizontalAlignment = GridData.FILL;
 		labelLayoutData.verticalAlignment = GridData.FILL;
 		labelLayoutData.grabExcessHorizontalSpace = true;
@@ -162,7 +162,7 @@ public class NumberCellEditor extends AttributeCellEditor
 
 		GridData textLayoutData = new GridData();
 		//textLayoutData.widthHint = GuiConstants.EDIT_WIDTH_EDIT;
-		textLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT;
+		textLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT + 6;
 		textLayoutData.horizontalAlignment = GridData.FILL;
 		textLayoutData.verticalAlignment = GridData.FILL;
 		textLayoutData.grabExcessHorizontalSpace = true;

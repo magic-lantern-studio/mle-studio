@@ -153,7 +153,7 @@ public class StringCellEditor extends AttributeCellEditor
 
         GridData labelLayoutData = new GridData();
 		//labelLayoutData.widthHint = GuiConstants.LABEL_WIDTH_EDIT;
-		labelLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT;
+		labelLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT + 6;
 		labelLayoutData.horizontalAlignment = GridData.FILL;
 		labelLayoutData.verticalAlignment = GridData.FILL | GridData.CENTER;
 		labelLayoutData.grabExcessHorizontalSpace = true;
@@ -162,7 +162,7 @@ public class StringCellEditor extends AttributeCellEditor
 
         GridData textLayoutData = new GridData();
 		//textLayoutData.widthHint = GuiConstants.EDIT_WIDTH_EDIT;
-		textLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT;
+		textLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT + 6;
 		textLayoutData.horizontalAlignment = GridData.FILL;
 		textLayoutData.verticalAlignment = GridData.FILL | GridData.CENTER;
 		textLayoutData.grabExcessHorizontalSpace = true;

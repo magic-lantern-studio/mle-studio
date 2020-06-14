@@ -107,7 +107,7 @@ public class FileCellEditor extends AttributeCellEditor
 		layout.marginHeight = GuiConstants.BORDER_SIZE_EDIT;
 
 		// Initialize the components in a Composite container.
-		Composite composite = new Composite(parent,SWT.NONE);
+		Composite composite = new Composite(parent,SWT.RESIZE);
 		//composite.setBounds(0, 0, GuiConstants.PANEL_WIDTH_EDIT, GuiConstants.PANEL_HEIGHT_EDIT);
 		composite.setBounds(0, 0, parent.getSize().x, parent.getSize().y);
 		this.initGUI(composite);
@@ -118,7 +118,7 @@ public class FileCellEditor extends AttributeCellEditor
 		return composite;
 	}
 
-	// Iniitialize the editor's GUI.
+	// Initialize the editor's GUI.
 	private void initGUI(Composite parent)
 	{
 		m_label = new Label(parent,SWT.NONE);
@@ -171,12 +171,12 @@ public class FileCellEditor extends AttributeCellEditor
 		//	GUIConstants.BORDER_SIZE_EDIT, GUIConstants.EDIT_WIDTH_EDIT, GUIConstants.FIELD_HEIGHT_EDIT);
 
 		GridData buttonLayoutData = new GridData();
-		buttonLayoutData.heightHint = GuiConstants.PANEL_HEIGHT_EDIT;
+		//buttonLayoutData.heightHint = GuiConstants.PANEL_HEIGHT_EDIT;
 		m_button.setLayoutData(buttonLayoutData);
 
 		GridData labelLayoutData = new GridData();
 		//labelLayoutData.widthHint = GuiConstants.LABEL_WIDTH_EDIT;
-		labelLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT;
+		labelLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT + 6;
 		labelLayoutData.horizontalAlignment = GridData.FILL;
 		labelLayoutData.verticalAlignment = GridData.FILL;
 		labelLayoutData.grabExcessHorizontalSpace = true;
@@ -185,7 +185,7 @@ public class FileCellEditor extends AttributeCellEditor
 
 		GridData textLayoutData = new GridData();
 		//textLayoutData.widthHint = GuiConstants.EDIT_WIDTH_EDIT;
-		textLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT;
+		textLayoutData.heightHint = GuiConstants.FIELD_HEIGHT_EDIT + 6;
 		textLayoutData.horizontalAlignment = GridData.FILL;
 		textLayoutData.verticalAlignment = GridData.FILL;
 		textLayoutData.grabExcessHorizontalSpace = true;

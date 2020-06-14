@@ -90,7 +90,7 @@ public class AttributeTreeViewer extends Composite implements IAttributeViewer
 			plugin.getAttributeContextMenuHandlers();
         }
         
-        // Initiialize the tree GUI components.
+        // Initialize the tree GUI components.
         initGUI(this);
         
         // Update the attribute tree.
@@ -123,7 +123,7 @@ public class AttributeTreeViewer extends Composite implements IAttributeViewer
 		if (item == null)
 			item = new TreeItem(m_tree,SWT.NONE);
 		Image nullImage = new Image(m_tree.getDisplay(),26,
-			GuiConstants.PANEL_HEIGHT_EDIT + (GuiConstants.BORDER_SIZE_EDIT * 2) + 2);
+			GuiConstants.PANEL_HEIGHT_EDIT + (GuiConstants.BORDER_SIZE_EDIT * 2) + 14);
 		item.setImage(1,nullImage);
 		nullImage.dispose();
 		nullImage = null;

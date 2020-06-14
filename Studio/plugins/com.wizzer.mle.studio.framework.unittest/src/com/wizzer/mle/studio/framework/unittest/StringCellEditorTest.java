@@ -109,6 +109,9 @@ public class StringCellEditorTest extends TestCase
 			protected Control createContents(Composite parent)
 			{
 				getShell().setText("StringCellEditor Unit Test");
+				int minWidth = 480;
+				int minHeight = 110;
+				getShell().setMinimumSize(minWidth, minHeight);
 		
 				// Create some Attributes.
 				int numAttributes = 5;
