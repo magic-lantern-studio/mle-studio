@@ -71,4 +71,21 @@
       <builder id="com.wizzer.mle.studio.dpp.GendppBuilder"/>
    </extension>
 
+   <extension
+         point="org.eclipse.ui.views"
+         id="com.wizzer.mle.studio.dpp.views"
+         name="Magic Lantern Studio DPP Views">
+      <category
+            name="Magic Lantern Studio"
+            id="com.wizzer.mle.studio.viewCategory">
+      </category>
+      <view
+            name="DPP Mastering Console"
+            icon="icons/full/cview16/console_view.png"
+            category="com.wizzer.mle.studio.viewCategory"
+            class="com.wizzer.mle.studio.dpp.view.DppConsoleView"
+            id="com.wizzer.mle.studio.dpp.view.DppConsoleView">
+      </view>
+   </extension>
+
 </plugin>
