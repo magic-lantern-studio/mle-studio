@@ -29,7 +29,7 @@
       </category>
       <view
             name="DWP Table Console"
-            icon="icons/console_16x16.png"
+            icon="icons/full/cview16/console_view.png"
             category="com.wizzer.mle.studio.viewCategory"
             class="com.wizzer.mle.studio.dwp.view.DwpConsoleView"
             id="com.wizzer.mle.studio.dwp.view.DwpConsoleView">

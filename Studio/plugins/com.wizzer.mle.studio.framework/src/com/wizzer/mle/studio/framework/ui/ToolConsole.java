@@ -59,7 +59,7 @@ public class ToolConsole extends PrintStream implements IToolConsole
 	private boolean m_showTimestamp = false;
 	
 	/**
-	 * A constructor that assocates a <code>WorkbenchPart</code> with the Console.
+	 * A constructor that associates a <code>WorkbenchPart</code> with the Console.
 	 * 
 	 * @param part The <code>WorkbenchPart</code> to associate with the console.
 	 * @param id The Console ID that will be used identify the workbench part

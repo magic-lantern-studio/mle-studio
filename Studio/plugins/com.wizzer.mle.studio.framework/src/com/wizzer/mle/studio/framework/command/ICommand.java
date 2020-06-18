@@ -28,7 +28,7 @@
 package com.wizzer.mle.studio.framework.command;
 
 /**
- * This class descibes the Command pattern for execute, undo and redo
+ * This class describes the Command pattern for execute, undo and redo
  * functionality.
  * 
  * @author Mark S. Millard

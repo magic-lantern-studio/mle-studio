@@ -41,7 +41,7 @@ import org.eclipse.ui.part.ViewPart;
  */
 public class ConsoleView extends ViewPart
 {
-	// The unique identifer for the Console View.
+	// The unique identifier for the Console View.
 	static final private String CONSOLE_VIEW = "com.wizzer.mle.studio.framework.ui.ConsoleView";
 
 	/**
