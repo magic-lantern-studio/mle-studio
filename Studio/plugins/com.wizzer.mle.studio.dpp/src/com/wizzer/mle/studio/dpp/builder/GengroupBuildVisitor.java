@@ -186,13 +186,13 @@ public class GengroupBuildVisitor implements IResourceVisitor
 	        String member = new String(outputDir + "/" + actoridFile);
 	        IResource resource = project.findMember(member);
 	        if (resource != null)
-	            resource.setDerived(true);
+	            resource.setDerived(true,null);
 
 	        String groupidFile = GengroupPropertyManager.getInstance().getGroupIdValue(dwp);
 	        member = new String(outputDir + "/" + groupidFile);
 	        resource = project.findMember(member);
 	        if (resource != null)
-	            resource.setDerived(true);
+	            resource.setDerived(true,null);
 	        
 	        // Process chunk files.
 	        File projectPath = project.getLocation().toFile();
@@ -203,7 +203,7 @@ public class GengroupBuildVisitor implements IResourceVisitor
 	            member = new String(outputDir + "/" + chunkFiles[i]);
 	            resource = project.findMember(member);
 		        if (resource != null)
-		            resource.setDerived(true);
+		            resource.setDerived(true,null);
 	        }
 
         } catch (CoreException ex)

@@ -62,7 +62,7 @@ public class DppGenscene extends DppCommand
     /** The Scene ID file. */
     protected String m_sceneId = "SceneID.java";
     /** The tags. */
-    Vector m_tags = new Vector();
+    Vector<String> m_tags = new Vector<String>();
     
     // Hide the default constructor.
     private DppGenscene()
@@ -201,7 +201,7 @@ public class DppGenscene extends DppCommand
      */
     public int exec() throws DppException
     {
-        ArrayList argList = new ArrayList();
+        ArrayList<String> argList = new ArrayList<String>();
         
         argList.add(new String("genscene"));
         

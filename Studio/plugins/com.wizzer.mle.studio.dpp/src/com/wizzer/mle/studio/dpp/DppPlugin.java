@@ -43,6 +43,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.*;
 import org.osgi.framework.BundleContext;
 
@@ -155,7 +156,8 @@ public class DppPlugin extends AbstractUIPlugin
 		if (m_plugin == null)
 			return null;
 
-		IWorkbench workBench = m_plugin.getWorkbench();
+		//IWorkbench workBench = m_plugin.getWorkbench();
+		IWorkbench workBench = PlatformUI.getWorkbench();
 		if (workBench == null)
 			return null;
 

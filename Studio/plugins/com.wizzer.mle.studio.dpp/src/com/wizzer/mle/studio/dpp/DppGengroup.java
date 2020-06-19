@@ -64,7 +64,7 @@ public class DppGengroup extends DppCommand
     /** The Group ID file. */
     protected String m_groupId = "GroupID.java";
     /** The tags. */
-    Vector m_tags = new Vector();
+    Vector<String> m_tags = new Vector<String>();
     
     // Hide the default constructor.
     private DppGengroup()
@@ -218,7 +218,7 @@ public class DppGengroup extends DppCommand
      */
     public int exec() throws DppException
     {
-        ArrayList argList = new ArrayList();
+        ArrayList<String> argList = new ArrayList<String>();
         
         argList.add(new String("gengroup"));
         
@@ -282,7 +282,7 @@ public class DppGengroup extends DppCommand
         	if (DppPlugin.isWindows())
         		// Windows needs command shell.
                 output = runCommand(args, true, true);
-        	else
+        	else	
         		// Linux does not need command shell.
         		output = runCommand(args, true, false);
         } catch (IOException ex)

@@ -62,7 +62,7 @@ public class DppGendpp extends DppCommand
     /** The TCL script file. */
     protected File m_script = new File("src/gen/playprint.tcl");
     /** The tags. */
-    Vector m_tags = new Vector();
+    Vector<String> m_tags = new Vector<String>();
     
     // Hide the default constructor.
     private DppGendpp()
@@ -204,7 +204,7 @@ public class DppGendpp extends DppCommand
      */
     public int exec() throws DppException
     {
-        ArrayList argList = new ArrayList();
+        ArrayList<String> argList = new ArrayList<String>();
         
         argList.add(new String("gendpp"));
         

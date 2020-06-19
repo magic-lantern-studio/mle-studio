@@ -186,7 +186,7 @@ public class GensceneBuildVisitor implements IResourceVisitor
 	        String member = new String(outputDir + "/" + sceneidFile);
 	        IResource resource = project.findMember(member);
 	        if (resource != null)
-	            resource.setDerived(true);
+	            resource.setDerived(true,null);
 	        
 	        // Process chunk files.
 	        File projectPath = project.getLocation().toFile();
@@ -197,7 +197,7 @@ public class GensceneBuildVisitor implements IResourceVisitor
 	            member = new String(outputDir + "/" + chunkFiles[i]);
 	            resource = project.findMember(member);
 		        if (resource != null)
-		            resource.setDerived(true);
+		            resource.setDerived(true,null);
 	        }
 
         } catch (CoreException ex)

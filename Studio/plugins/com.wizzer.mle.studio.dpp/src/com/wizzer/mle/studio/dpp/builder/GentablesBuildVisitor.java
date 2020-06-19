@@ -172,7 +172,7 @@ public class GentablesBuildVisitor implements IResourceVisitor
 	        String member = new String(outputDir + "/" + tablesFile);
 	        IResource resource = project.findMember(member);
 	        if (resource != null)
-	            resource.setDerived(true);
+	            resource.setDerived(true,null);
 
         } catch (CoreException ex)
         {

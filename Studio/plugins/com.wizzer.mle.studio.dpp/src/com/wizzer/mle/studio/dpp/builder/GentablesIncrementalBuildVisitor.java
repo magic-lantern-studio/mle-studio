@@ -183,7 +183,7 @@ public class GentablesIncrementalBuildVisitor implements IResourceDeltaVisitor
 	        String member = new String(outputDir + "/" + tablesFile);
 	        IResource resource = project.findMember(member);
 	        if (resource != null)
-	            resource.setDerived(true);
+	            resource.setDerived(true,null);
 
         } catch (CoreException ex)
         {

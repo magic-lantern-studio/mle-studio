@@ -31,11 +31,17 @@
 // Declare package.
 package com.wizzer.mle.studio.dpp;
 
+// Import Java packages.
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 // Import Eclipse packages.
 import org.eclipse.core.runtime.Status;
+import org.eclipse.ui.IViewPart;
 
 // Import Magic Lantern Studio Framework packages.
 import com.wizzer.mle.studio.framework.ILog;
+import com.wizzer.mle.studio.framework.ui.ConsoleView;
 
 /**
  * This class implements generic, application message logging for the Wizzer Works
@@ -210,4 +216,16 @@ public class DppLog implements ILog
 		log.info(message);
 	}
 
+	static public void logConsole(String message)
+	{	
+		Date date = new Date( );
+	    SimpleDateFormat formatOfDate =
+	        new SimpleDateFormat ("hh:mm:ss yyyy.MM.dd");
+		
+		IViewPart view = DppPlugin.getActivePage().findView("com.wizzer.mle.studio.dpp.view.DppConsoleView");
+		if (view != null) {
+			ConsoleView console = (ConsoleView)view;
+			console.append(formatOfDate.format(date) + ": " + message);
+		}
+	}
 }

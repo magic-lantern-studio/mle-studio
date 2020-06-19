@@ -58,7 +58,7 @@ public class DppGenppscript extends DppCommand
     /** The chunk table-of-contents. */
     protected String m_toc = "DppTOC";
     /** The tags. */
-    Vector m_tags = new Vector();
+    Vector<String> m_tags = new Vector<String>();
     
     // Hide the default constructor.
     private DppGenppscript()
@@ -174,7 +174,7 @@ public class DppGenppscript extends DppCommand
      */
     public int exec() throws DppException
     {
-        ArrayList argList = new ArrayList();
+        ArrayList<String> argList = new ArrayList<String>();
         
         argList.add(new String("genppscript"));
         

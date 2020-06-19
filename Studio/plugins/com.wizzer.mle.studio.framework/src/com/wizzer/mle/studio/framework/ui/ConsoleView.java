@@ -83,7 +83,7 @@ public class ConsoleView extends ViewPart
 		// Set the text area attributes.      
 		m_textArea.setSize(parent.getSize().x,parent.getSize().y);
 		m_textArea.setEditable(false);
-		m_textArea.setText("Informative messages will be sent here.\n\n");
+		//m_textArea.setText("Informative messages will be sent here.\n\n");
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class ConsoleView extends ViewPart
 	 */
 	public void setTitle(String name)
 	{
-		super.setTitle(name);
+		super.setPartName(name);
 	}
 	
 	/**

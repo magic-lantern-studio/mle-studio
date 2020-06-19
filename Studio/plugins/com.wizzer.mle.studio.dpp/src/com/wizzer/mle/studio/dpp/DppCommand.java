@@ -72,7 +72,7 @@ public class DppCommand
         /** The input stream. */
         InputStream m_is;
         /** The stream results. */
-        ArrayList m_list = new ArrayList();
+        ArrayList<String> m_list = new ArrayList<String>();
         /** The type of handler. */
         String m_type;
         
@@ -121,7 +121,7 @@ public class DppCommand
      * @return The output from the command is returned as an array
      * of <code>String</code>.
      * 
-     * @throws IOException This execption is thrown if an IO error occurs
+     * @throws IOException This exception is thrown if an IO error occurs
      * while attempting to run the command.
      */
     protected String[] runCommand(String[] cmd, boolean wait, boolean useShell)
@@ -180,7 +180,9 @@ public class DppCommand
             msg.append(" ");
         }
         DppLog.getInstance().info("Running DPP command in " + m_dir);
+        //DppLog.logConsole("Running DPP command in " + m_dir + "\n");
         DppLog.getInstance().info(msg.toString().trim());
+        DppLog.logConsole(msg.toString().trim() + "\n");
         
         // Execute a command and get its process handle.
         m_proc = Runtime.getRuntime().exec(shellCmd, m_envp, m_dir);

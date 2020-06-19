@@ -165,11 +165,11 @@ public class Timestamp
 	 * The offset is an 8-bit value that serves dual roles. When the return value is zero,
 	 * the offset indicates that the system time carries UTC time directly.
 	 * When the offset is not equal to zero, it should be interpreted as an 8-bit unsigned
-	 * vinteger that defins the current offset in whold seconds between GPS and UTC time
+	 * integer that defines the current offset in whole seconds between GPS and UTC time
 	 * standards.
 	 * <p>
-	 * To conver GPS time to UTC, the offset is subtracted from GPS time. Whenever the
-	 * International Bureau of Weights and Measuers decides that the current offset is
+	 * To convert GPS time to UTC, the offset is subtracted from GPS time. Whenever the
+	 * International Bureau of Weights and Measures decides that the current offset is
 	 * too far in error, an additional leap second may be added (or subtracted), and
 	 * the GPS offset will reflect the change.
 	 * </p>

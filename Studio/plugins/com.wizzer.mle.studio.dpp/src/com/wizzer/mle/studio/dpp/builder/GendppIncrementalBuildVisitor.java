@@ -184,7 +184,7 @@ public class GendppIncrementalBuildVisitor implements IResourceDeltaVisitor
 	        String member = new String(outputDir + "/" + dppFile);
 	        IResource resource = project.findMember(member);
 	        if (resource != null)
-	            resource.setDerived(true);
+	            resource.setDerived(true,null);
 	        
 	        String tocFile = GenppscriptPropertyManager.getInstance().getTocValue(dwp);
 	        if (DwpProjectManager.getInstance().isJavaProject(project))
@@ -192,17 +192,17 @@ public class GendppIncrementalBuildVisitor implements IResourceDeltaVisitor
 	            member = new String(outputDir + "/" + tocFile.concat(".java"));
 		        resource = project.findMember(member);
 		        if (resource != null)
-		            resource.setDerived(true);
+		            resource.setDerived(true,null);
 	        } else if (DwpProjectManager.getInstance().isCppProject(project))
 	        {
 	            member = new String(outputDir + "/" + tocFile.concat(".cxx"));
 		        resource = project.findMember(member);
 		        if (resource != null)
-		            resource.setDerived(true);
+		            resource.setDerived(true,null);
 	            member = new String(outputDir + "/" + tocFile.concat(".h"));
 		        resource = project.findMember(member);
 		        if (resource != null)
-		            resource.setDerived(true);
+		            resource.setDerived(true,null);
 	        }
 
         } catch (CoreException ex)

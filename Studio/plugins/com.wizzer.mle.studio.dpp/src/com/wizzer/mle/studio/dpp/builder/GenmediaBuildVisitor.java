@@ -172,7 +172,7 @@ public class GenmediaBuildVisitor implements IResourceVisitor
 	        String member = new String(outputDir + "/" + bomFile);
 	        IResource resource = project.findMember(member);
 	        if (resource != null)
-	            resource.setDerived(true);
+	            resource.setDerived(true,null);
 
         } catch (CoreException ex)
         {
