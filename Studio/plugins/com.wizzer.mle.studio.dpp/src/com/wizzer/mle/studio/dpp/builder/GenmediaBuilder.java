@@ -162,6 +162,10 @@ public class GenmediaBuilder extends IncrementalProjectBuilder
     {
     	IProject project = getProject();
     	
+    	String message = "Cleaning genmedia artifacts.\n";
+    	DppLog.logConsole(message);
+    	DppLog.logInfo(message);
+    	
     	try
     	{
     	    String destDir = MasteringProjectManager.getInstance().getDestinationDirValue(project);

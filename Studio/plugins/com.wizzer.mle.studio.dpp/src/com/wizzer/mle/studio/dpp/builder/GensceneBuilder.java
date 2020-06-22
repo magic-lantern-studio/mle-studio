@@ -162,6 +162,10 @@ public class GensceneBuilder extends IncrementalProjectBuilder
     {
     	IProject project = getProject();
     	
+    	String message = "Cleaning genscene artifacts.\n";
+    	DppLog.logConsole(message);
+    	DppLog.logInfo(message);
+    	
     	try
     	{
     	    String destDir = MasteringProjectManager.getInstance().getDestinationDirValue(project);

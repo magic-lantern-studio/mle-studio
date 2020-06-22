@@ -145,6 +145,10 @@ public class GentablesBuilder extends IncrementalProjectBuilder
     {
     	IProject project = getProject();
     	
+    	String message = "Cleaning gentables artifacts.\n";
+    	DppLog.logConsole(message);
+    	DppLog.logInfo(message);
+    	
     	try
     	{
     	    String destDir = MasteringProjectManager.getInstance().getDestinationDirValue(project);

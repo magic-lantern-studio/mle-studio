@@ -146,6 +146,10 @@ public class GenppscriptBuilder extends IncrementalProjectBuilder
     {
     	IProject project = getProject();
     	
+    	String message = "Cleaning genppscript artifacts.\n";
+    	DppLog.logConsole(message);
+    	DppLog.logInfo(message);
+    	
     	try
     	{
     	    String destDir = MasteringProjectManager.getInstance().getDestinationDirValue(project);

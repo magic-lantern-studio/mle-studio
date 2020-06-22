@@ -45,6 +45,9 @@ public class DppConsoleView extends ConsoleView
 	// The unique identifier for the Console View.
 	static final private String DPP_CONSOLE_VIEW = "com.wizzer.mle.studio.dpp.view.DppConsoleView";
 
+	/** A singleton instance of the DPP console. */
+	static public DppConsoleView g_dppConsole = null;
+
 	/**
 	 * Get the unique identifier for the DPP Console View.
 	 * 
@@ -61,5 +64,12 @@ public class DppConsoleView extends ConsoleView
 	public DppConsoleView()
 	{
 		super();
+		
+		g_dppConsole = this;
+	}
+	
+	public void dispose()
+	{
+	    g_dppConsole = null;
 	}
 }

@@ -37,8 +37,11 @@ import java.util.Date;
 
 // Import Eclipse packages.
 import org.eclipse.core.runtime.Status;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPage;
 
+import com.wizzer.mle.studio.dpp.view.DppConsoleView;
 // Import Magic Lantern Studio Framework packages.
 import com.wizzer.mle.studio.framework.ILog;
 import com.wizzer.mle.studio.framework.ui.ConsoleView;
@@ -120,7 +123,7 @@ public class DppLog implements ILog
 	 */
 	public void error(Exception ex, String message)
 	{
-		System.err.println(message);
+		//System.err.println(message);
 		ex.printStackTrace();
 		logEclipseError(ex, message);
 	}
@@ -137,7 +140,7 @@ public class DppLog implements ILog
 	 */
 	public void warning(String message)
 	{
-		System.out.println(message);
+		//System.out.println(message);
 		logEclipseWarning(message);
 	}
 
@@ -153,7 +156,7 @@ public class DppLog implements ILog
 	 */
 	public void info(String message)
 	{
-		System.out.println(message);
+		//System.out.println(message);
 		logEclipseInfo(message);
 	}
 
@@ -216,16 +219,27 @@ public class DppLog implements ILog
 		log.info(message);
 	}
 
+	/**
+	 * Log a message to the DPP Console.
+	 * 
+	 * @param message The message string to display.
+	 */
 	static public void logConsole(String message)
-	{	
-		Date date = new Date( );
-	    SimpleDateFormat formatOfDate =
-	        new SimpleDateFormat ("hh:mm:ss yyyy.MM.dd");
-		
-		IViewPart view = DppPlugin.getActivePage().findView("com.wizzer.mle.studio.dpp.view.DppConsoleView");
-		if (view != null) {
-			ConsoleView console = (ConsoleView)view;
-			console.append(formatOfDate.format(date) + ": " + message);
-		}
+	{
+		new Thread(new Runnable() {
+		    public void run() {
+		    	// Make sure that the update to the console is done in a SWT safe thread.
+			    Display.getDefault().syncExec(new Runnable() {
+			        public void run() {
+			     	    Date date = new Date( );
+			            SimpleDateFormat formatOfDate =
+			                new SimpleDateFormat ("hh:mm:ss yyyy.MM.dd");
+			       	        
+			         if (DppConsoleView.g_dppConsole != null)
+			       	     DppConsoleView.g_dppConsole.append(formatOfDate.format(date) + ": " + message);
+			        }
+			    });
+		    }
+        }).start();
 	}
 }
