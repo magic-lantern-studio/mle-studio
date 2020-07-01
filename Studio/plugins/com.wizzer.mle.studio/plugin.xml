@@ -64,11 +64,15 @@
 
    <extension point="org.eclipse.ui.propertyPages">
       <page
-         objectClass="org.eclipse.core.resources.IFile"
          name="Magic Lantern Mastering"
          nameFilter="*.dwp"
          class="com.wizzer.mle.studio.properties.MasteringPropertyPage"
          id="com.wizzer.mle.studio.properties.MasteringPropertyPage">
+         <enabledWhen>
+            <instanceof
+               value="org.eclipse.core.resources.IFile">
+            </instanceof>
+         </enabledWhen>
       </page>
    </extension>
 
