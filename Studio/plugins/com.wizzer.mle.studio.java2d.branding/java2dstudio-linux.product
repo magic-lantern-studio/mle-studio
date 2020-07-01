@@ -21,7 +21,6 @@ Eclipse Foundation http://www.eclipse.org/
    </aboutInfo>
 
    <configIni use="default">
-      <win32>/com.wizzer.mle.studio.java2d.branding/config.ini</win32>
    </configIni>
 
    <launcherArgs>
@@ -46,6 +45,7 @@ Eclipse Foundation http://www.eclipse.org/
             winLargeLow="/com.wizzer.mle.studio.branding/images/genielamp_48x48_8bit.bmp"/>
       </win>
    </launcher>
+
 
    <vm>
       <linux include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
@@ -86,27 +86,28 @@ SOFTWARE.
       <feature id="com.wizzer.mle.studio.linux" version="1.0.0.qualifier"/>
       <feature id="com.wizzer.mle.studio.java2d" version="1.0.0.qualifier"/>
       <feature id="org.eclipse.platform" installMode="root"/>
-      <feature id="org.eclipse.egit" installMode="root"/>
-      <feature id="org.eclipse.egit.gitflow.feature" installMode="root"/>
-      <feature id="org.eclipse.jgit" installMode="root"/>
-      <feature id="org.eclipse.jgit.http.apache" installMode="root"/>
-      <feature id="org.eclipse.jgit.ssh.apache" installMode="root"/>
+      <feature id="org.eclipse.equinox.p2.user.ui" installMode="root"/>
+      <feature id="org.eclipse.equinox.p2.core.feature" installMode="root"/>
       <feature id="org.eclipse.help" installMode="root"/>
       <feature id="org.eclipse.jdt" installMode="root"/>
       <feature id="org.eclipse.pde" installMode="root"/>
-      <feature id="org.eclipse.emf.common" installMode="root"/>
-      <feature id="org.eclipse.emf.ecore" installMode="root"/>
-      <feature id="org.eclipse.equinox.p2.core.feature" installMode="root"/>
-      <feature id="org.eclipse.ecf.core.ssl.feature" installMode="root"/>
-      <feature id="org.eclipse.ecf.filetransfer.ssl.feature" installMode="root"/>
-      <feature id="org.eclipse.equinox.p2.user.ui" installMode="root"/>
-      <feature id="org.eclipse.equinox.p2.extras.feature" installMode="root"/>
       <feature id="org.eclipse.rcp" installMode="root"/>
+      <feature id="org.eclipse.emf.ecore" installMode="root"/>
+      <feature id="org.eclipse.emf.common" installMode="root"/>
+      <feature id="org.eclipse.equinox.p2.extras.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.core.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient45.feature" installMode="root"/>
       <feature id="org.eclipse.equinox.p2.rcp.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.filetransfer.feature" installMode="root"/>
+      <feature id="org.eclipse.ecf.core.ssl.feature" installMode="root"/>
+      <feature id="org.eclipse.ecf.filetransfer.ssl.feature" installMode="root"/>
       <feature id="org.eclipse.e4.rcp" installMode="root"/>
+      <feature id="org.eclipse.egit" installMode="root"/>
+      <feature id="org.eclipse.jgit" installMode="root"/>
+      <feature id="org.eclipse.jgit.ssh.jsch" installMode="root"/>
+      <feature id="org.eclipse.jgit.ssh.apache" installMode="root"/>
+      <feature id="org.eclipse.jgit.http.apache" installMode="root"/>
+      <feature id="org.eclipse.tips.feature" installMode="root"/>
    </features>
 
    <configurations>
@@ -116,10 +117,15 @@ SOFTWARE.
       <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.core.net" autoStart="false" startLevel="2" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.egit.doc" autoStart="false" startLevel="4" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+      <plugin id="org.eclipse.jdt.doc.user" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.doc.user" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.platform" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.platform.doc.user" autoStart="false" startLevel="4" />
       <plugin id="org.eclipse.ui.ide.application" autoStart="true" startLevel="2" />
       <property name="org.eclipse.update.reconcile" value="false" />
    </configurations>

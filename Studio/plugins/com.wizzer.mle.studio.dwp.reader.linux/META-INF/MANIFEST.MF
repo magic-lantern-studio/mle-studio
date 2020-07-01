@@ -14,3 +14,4 @@ Import-Package: com.wizzer.mle.studio.framework,
  com.wizzer.mle.studio.framework.ui,
  com.wizzer.mle.studio.framework.ui.calendar
 Bundle-NativeCode: os/linux/x86_64/libDwpReader.so; processor=x86_64; osname=linux
+Automatic-Module-Name: com.wizzer.mle.studio.dwp.reader.linux

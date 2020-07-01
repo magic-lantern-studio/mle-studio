@@ -59,6 +59,7 @@ http://www.wizzerworks.com
       <import plugin="com.wizzer.mle.studio.dwp" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="com.wizzer.mle.studio.dpp" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="com.wizzer.mle.studio.framework" version="1.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.help" version="2.3.200.v20200604-0540" match="greaterOrEqual"/>
    </requires>
 
    <plugin

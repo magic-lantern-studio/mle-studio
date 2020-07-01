@@ -40,3 +40,4 @@ Import-Package: com.wizzer.mle.studio.framework,
  com.wizzer.mle.studio.framework.io,
  com.wizzer.mle.studio.framework.ui,
  com.wizzer.mle.studio.framework.ui.calendar
+Automatic-Module-Name: com.wizzer.mle.studio
