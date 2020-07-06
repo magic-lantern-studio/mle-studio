@@ -90,6 +90,7 @@ public class MlePlugin extends AbstractUIPlugin
 	 */
 	public void stop(BundleContext context) throws Exception
 	{
+		System.out.println("Deactivating com.wizzer.mle.studio plug-in.");
 		super.stop(context);
 	}
 

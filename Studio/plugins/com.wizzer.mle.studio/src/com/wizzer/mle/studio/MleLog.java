@@ -50,14 +50,10 @@ import com.wizzer.mle.studio.framework.ILog;
  * </p>
  * 
  * @author Mark S. Millard
- * @created April 5, 2005
- */
-/**
- * @author Mark S.Millard
  */
 public class MleLog implements ILog
 {
-	// A singlton instance of the Magic Lantern Studio log.
+	// A singleton instance of the Magic Lantern Studio log.
 	private static MleLog m_log = null;
 	
 	// Helper utility to log a error message and throw an exception. Note that the plugin may not be available

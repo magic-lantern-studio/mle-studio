@@ -30,7 +30,6 @@ package com.wizzer.mle.studio.project.metadata;
 // Import standard Java classes.
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * This class is a container for Magic Lantern project meta-data.

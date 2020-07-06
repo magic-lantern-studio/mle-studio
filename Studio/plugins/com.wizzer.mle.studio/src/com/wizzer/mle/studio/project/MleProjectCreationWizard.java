@@ -82,7 +82,7 @@ public abstract class MleProjectCreationWizard extends Wizard implements IExecut
 
 	// The workbench.
 	protected IWorkbench m_workbench;
-	// The slected element.
+	// The selected element.
 	protected IStructuredSelection m_selection;
 	
 	// Cache of newly-created project

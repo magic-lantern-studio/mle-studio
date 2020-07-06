@@ -49,10 +49,7 @@ public class MasterTargetPropertyTester extends PropertyTester {
 
 	@Override
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
-        //final MPerspective perspective = (MPerspective) receiver;
-        //return perspective.getElementId().equals(expectedValue);
-        
-		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+        IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		
 		if (window.equals(PlatformUI.getWorkbench().getWorkbenchWindows()[0])) {
 			IPerspectiveDescriptor perspective = window.getActivePage().getPerspective();
@@ -61,10 +58,8 @@ public class MasterTargetPropertyTester extends PropertyTester {
 			if (receiver instanceof MPerspective) {
 				MPerspective mPerspective = (MPerspective) receiver;
 				checkId = mPerspective.getElementId();
-				//checkId = StudioPerspective.ID_STUDIO_PERSPECTIVE;
 			}
 			if (expectedValue != null) {
-				//if (checkId.equals((String)expectedValue)) {
 			    if (checkId.startsWith((String)expectedValue)) {
 				    return true;
 			    }

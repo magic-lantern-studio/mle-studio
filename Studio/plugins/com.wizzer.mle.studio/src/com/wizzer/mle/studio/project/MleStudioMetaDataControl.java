@@ -127,7 +127,7 @@ public class MleStudioMetaDataControl
     protected Table m_tagTable;
 
     /** Registry of event listeners. */
-    protected Vector m_eventListeners = new Vector();
+    protected Vector<IMleStudioMetaDataEventListener> m_eventListeners = new Vector<IMleStudioMetaDataEventListener>();
 
     /** Magic Lantern Project meta data. */
     protected MleTitleMetaData m_metaData = null;
@@ -650,7 +650,7 @@ public class MleStudioMetaDataControl
         gensceneGroupData.horizontalSpan = 2;
         gensceneGroup.setLayoutData(gensceneGroupData);
 
-		// Controls for spcefiying Scene ID information.		
+		// Controls for specifying Scene ID information.		
 		Label sceneIdLabel = new Label(gensceneGroup, SWT.NONE);
 		sceneIdLabel.setText(MasteringMessages.getString("MasteringPropertyPage.sceneIdFileLabel"));
 		

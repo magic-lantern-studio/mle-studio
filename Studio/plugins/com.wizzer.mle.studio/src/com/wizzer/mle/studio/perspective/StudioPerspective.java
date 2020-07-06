@@ -143,7 +143,7 @@ public class StudioPerspective implements IPerspectiveFactory
 	 * Gets a string from the resource bundle and formats it with arguments.
 	 * 
 	 * @param key The string used to get the bundle value, must not be <b>null</b>.
-	 * @param arg The formatting arguments.
+	 * @param args The formatting arguments.
 	 * 
 	 * @return The value for the specified key is returned as a formatted string.
 	 */	

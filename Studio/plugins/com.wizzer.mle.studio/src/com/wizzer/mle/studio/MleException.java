@@ -39,6 +39,9 @@ package com.wizzer.mle.studio;
  */
 public class MleException extends Exception
 {
+	// Serial version unique identifier.
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Constructs a new exception with <b>null</b> as its detail message.
 	 * <p>

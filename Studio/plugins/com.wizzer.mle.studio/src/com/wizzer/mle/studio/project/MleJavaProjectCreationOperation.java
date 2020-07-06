@@ -59,7 +59,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 
 import org.eclipse.jdt.ui.wizards.NewJavaProjectWizardPageOne;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -69,8 +69,6 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
 import org.eclipse.ui.wizards.datatransfer.ImportOperation;
 import org.eclipse.ui.wizards.datatransfer.ZipFileStructureProvider;
-
-// Import Digital Playprint header files.
 
 // Import Magic Lantern classes.
 import com.wizzer.mle.studio.MleLog;
@@ -106,7 +104,7 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
     public static final String MASTERING_NATURE_ID = "com.wizzer.mle.studio.dpp.MasteringNature";
 
 	// The resource to open.
-	private ArrayList m_elementsToOpen;
+	private ArrayList<IResource> m_elementsToOpen;
 	// The main project page;
 	private NewJavaProjectWizardPageOne m_projectPage;
 	// The MLE Target configuration page.
@@ -135,7 +133,7 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
 	  IOverwriteQuery overwriteQuery)
 	{
 		super();
-		m_elementsToOpen = new ArrayList();
+		m_elementsToOpen = new ArrayList<IResource>();
 		m_projectPage = projectPage;
 		m_configPage = configPage;
 		m_templatePage = templatePage;
@@ -153,7 +151,7 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
 	 * </p>
 	 * 
 	 * @param monitor The progress monitor to use to display progress and receive
-	 * requests for cancelation.
+	 * requests for cancellation.
 	 * 
 	 * @throws InvocationTargetException If the run method must propagate a checked exception,
 	 * it will wrap it inside an <code>InvocationTargetException</code>; runtime
@@ -178,7 +176,9 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
 			monitor.beginTask(MleProjectMessages.getString("MleProjectCreationOperation.op_desc"), 1);
 			IWorkspaceRoot root = MlePlugin.getWorkspace().getRoot();
 			
-			createProject(root, new SubProgressMonitor(monitor, 1));
+			//createProject(root, new SubProgressMonitor(monitor, 1));
+			SubMonitor submonitor = SubMonitor.convert(monitor, 1);
+			createProject(root, submonitor);
 		} finally
 		{
 			monitor.done();
@@ -285,7 +285,9 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
 		{
 			for (int i = 0; i < nImports; i++)
 			{
-				m_templatePage.doImports(project, imports[i], new SubProgressMonitor(monitor, 1), m_overwriteQuery);
+				//m_templatePage.doImports(project, imports[i], new SubProgressMonitor(monitor, 1), m_overwriteQuery);
+				SubMonitor submonitor = SubMonitor.convert(monitor, 1);
+				m_templatePage.doImports(project, imports[i], submonitor, m_overwriteQuery);
 				
 				try {
 					// Add Simple Java DWP.
@@ -325,7 +327,7 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
     	    IProjectDescription desc = project.getDescription();
     	    ICommand[] commands = desc.getBuildSpec();
 
-    	    Vector cmds = new Vector();
+    	    Vector<ICommand> cmds = new Vector<ICommand>();
     	    for (int i = 0; i < commands.length; i++)
     	    {
 	            if (commands[i].getBuilderName().equals(MasteringNature.GENGROUP_BUILDER_ID))
@@ -397,7 +399,7 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
 	            }
     	    }
     	    
-            // Create a new commnds array and set it on the project.
+            // Create a new commands array and set it on the project.
     	    if (! cmds.isEmpty())
     	    {
 	            ICommand[] newCommands = new ICommand[cmds.size()];
@@ -430,7 +432,7 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
 	    // Configure genppscript.
 	    if (m_configPage.isGendppscriptSelected())
 	        GenppscriptPropertyManager.getInstance().setDefaults(resource);
-	    // Congigure gendpp.
+	    // Configure gendpp.
 	    if (m_configPage.isGendppSelected())
 	        GendppPropertyManager.getInstance().setDefaults(resource);
 	}
@@ -522,8 +524,10 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
 				desc.setLocation(locationPath);
 			}
 			*/
-			project.create(desc, new SubProgressMonitor(monitor, 1));
-			project.open(new SubProgressMonitor(monitor, 1));
+			//project.create(desc, new SubProgressMonitor(monitor, 1));
+			//project.open(new SubProgressMonitor(monitor, 1));
+			project.create(desc, SubMonitor.convert(monitor, 1));
+			project.open(SubMonitor.convert(monitor, 1));
 			
 			// Build the default resources. The new Digital Workprint is returned.
 			dwp = buildDefaultProject(project);
@@ -534,7 +538,8 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
 			// Configure the Java project by adding the Java nature and
 			// configuring the build classpath.
 			//m_javaPage.updatePage();
-			m_javaPage.configureJavaProject(new SubProgressMonitor(monitor, 1));
+			//m_javaPage.configureJavaProject(new SubProgressMonitor(monitor, 1));
+			m_javaPage.configureJavaProject(SubMonitor.convert(monitor, 1));
 
 			return project;
 		} catch (CoreException ex)

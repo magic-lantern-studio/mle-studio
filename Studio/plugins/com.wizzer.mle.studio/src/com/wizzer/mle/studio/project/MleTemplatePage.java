@@ -27,21 +27,24 @@
 // Declare package.
 package com.wizzer.mle.studio.project;
 
+// Import Java packages.
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.zip.ZipFile;
 
+// Import Eclipse packages.
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
+//import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -58,6 +61,7 @@ import org.eclipse.ui.dialogs.IOverwriteQuery;
 import org.eclipse.ui.wizards.datatransfer.ImportOperation;
 import org.eclipse.ui.wizards.datatransfer.ZipFileStructureProvider;
 
+// Import Magic Lantern header files.
 import com.wizzer.mle.studio.MleLog;
 import com.wizzer.mle.studio.MlePlugin;
 
@@ -326,7 +330,8 @@ public class MleTemplatePage extends WizardPage
 			    
 			    // Retrieve the Zip file and import the resources.
 				ZipFile zipFile = getZipFileFromPluginDir(importPath);
-				importFilesFromZip(zipFile, destPath, new SubProgressMonitor(monitor, 1), overwriteQuery);
+				//importFilesFromZip(zipFile, destPath, new SubProgressMonitor(monitor, 1), overwriteQuery);
+				importFilesFromZip(zipFile, destPath, SubMonitor.convert(monitor, 1), overwriteQuery);
 			}
 		} catch (CoreException e)
 		{
@@ -340,7 +345,8 @@ public class MleTemplatePage extends WizardPage
 	{
 		try {
 			URL starterURL = new URL(MlePlugin.getDefault().getBundle().getEntry("/"), pluginRelativePath);
-			return new ZipFile(Platform.asLocalURL(starterURL).getFile());
+			//return new ZipFile(Platform.asLocalURL(starterURL).getFile());
+			return new ZipFile(FileLocator.toFileURL(starterURL).getFile());
 		} catch (IOException e) {
 			String message= pluginRelativePath + ": " + e.getMessage();
 			Status status= new Status(IStatus.ERROR, MlePlugin.getID(), IStatus.ERROR, message, e);

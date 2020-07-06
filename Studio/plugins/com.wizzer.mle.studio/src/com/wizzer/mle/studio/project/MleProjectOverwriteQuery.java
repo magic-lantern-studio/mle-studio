@@ -31,6 +31,7 @@
 // Declare package.
 package com.wizzer.mle.studio.project;
 
+// Import Eclipse packages.
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -66,7 +67,7 @@ public class MleProjectOverwriteQuery implements IOverwriteQuery
 		return returnVal < 0 ? CANCEL : returnCodes[returnVal];
 		*/
 		
-		// Should alwyas return ALL since we are creating a new MLE project.
+		// Should always return ALL since we are creating a new MLE project.
 		return IOverwriteQuery.ALL;
     }
 

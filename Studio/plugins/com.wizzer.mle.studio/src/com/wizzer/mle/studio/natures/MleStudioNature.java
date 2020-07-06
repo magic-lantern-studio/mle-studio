@@ -66,11 +66,21 @@ public class MleStudioNature implements IProjectNature
         // this is where it would be removed.
     }
 
+    /**
+     * Get the current, associated project.
+     * 
+     * @return A reference to an <code>IProject</code> is returned.
+     */
     public IProject getProject()
     {
         return m_project;
     }
 
+    /**
+     * Set the associated project.
+     * 
+     * @param project The project to associate.
+     */
     public void setProject(final IProject project)
     {
         m_project = project;

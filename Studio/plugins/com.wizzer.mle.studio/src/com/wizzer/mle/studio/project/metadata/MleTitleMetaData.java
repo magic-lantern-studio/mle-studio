@@ -51,7 +51,7 @@ public class MleTitleMetaData extends ProjectMetaData
 	private static final long serialVersionUID = 1711605290729204517L;
 
     // The collection of meta-data elements.
-    private Vector m_data = new Vector();
+    private Vector<Object> m_data = new Vector<Object>();
 
     /**
      * Utility class for <code>Title.MasterTarget</code> elements.
@@ -388,7 +388,7 @@ public class MleTitleMetaData extends ProjectMetaData
         private String m_version = VERSION;
         
         // The collection of mastering targets.
-        Vector m_targets = new Vector();
+        Vector<MasterTargetElement> m_targets = new Vector<MasterTargetElement>();
 
         /**
          * The default constructor.
