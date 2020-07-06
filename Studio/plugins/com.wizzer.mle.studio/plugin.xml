@@ -3,32 +3,6 @@
 <plugin>
    <extension-point id="applicationTemplates" name="Magic Lantern Studio Templates" schema="schema/applicationTemplates.exsd"/>
 
-   <extension point="org.eclipse.ui.actionSets">
-      <actionSet
-         id="com.wizzer.mle.studio.actions.contribution.set"
-         label="Magic Lantern"
-         visible="false">
-         <menu id="com.wizzer.mle.studio.actions"
-			   label="Magic Lantern"
-			   icon="icons/genielamp_16x16.png"
-			   path="project/additions"> 
-			   <separator name="slot1"/>
-			   <separator name="slot2"/>
-			   <separator name="slot3"/>
-		   </menu>
-         <action
-            id="com.wizzer.mle.studio.actions.mastertarget" 
-            label="Master Target" 
-            icon="icons/digitalplayprint_16x16.png"
-            tooltip="Generate code and create a Digital Playprint"
-            menubarPath="project/com.wizzer.mle.studio.actions/slot1"
-            toolbarPath="Normal/additions"
-            class="com.wizzer.mle.studio.actions.MasterTargetDelegate"
-            enablesFor="1">
-         </action> 
-      </actionSet>
-   </extension>
-   
    <extension
          id="com.wizzer.mle.studio.commands"
          name="Magic Lantern Studio Commands"
@@ -86,13 +60,6 @@
             class="com.wizzer.mle.studio.perspective.StudioPerspective"
             id="com.wizzer.mle.studio.StudioPerspective">
       </perspective>
-   </extension>
-  
-   <extension point="org.eclipse.ui.perspectiveExtensions">
-      <perspectiveExtension 
-	      targetID="com.wizzer.mle.studio.StudioPerspective">
-	      <actionSet id="com.wizzer.mle.studio.actions.contribution.set"/>
-      </perspectiveExtension>
    </extension>
   
    <extension
