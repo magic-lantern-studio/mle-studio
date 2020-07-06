@@ -45,6 +45,14 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import com.wizzer.mle.studio.MleLog;
 import com.wizzer.mle.studio.natures.MleStudioNature;
 
+/**
+ * MasterTargetDelegate is an action delegate used to master a Magic
+ * Lantern title by generating a Digital Playprint. It may be used with
+ * the old Eclipse ActionSet technology.
+ * 
+ * @author Mark Millard
+ * @deprecated
+ */
 public class MasterTargetDelegate implements IWorkbenchWindowActionDelegate
 {
 	private IProject m_project = null;

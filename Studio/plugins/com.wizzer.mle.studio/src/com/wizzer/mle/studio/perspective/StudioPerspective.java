@@ -51,6 +51,9 @@ import com.wizzer.mle.studio.MleLog;
  */
 public class StudioPerspective implements IPerspectiveFactory
 {
+	/** Identifier for Magic Lantern Studio Perspective. */
+	public static final String ID_STUDIO_PERSPECTIVE = "com.wizzer.mle.studio.StudioPerspective";
+	
 	// The resource bundle name.
 	private static final String RESOURCE_BUNDLE= StudioPerspective.class.getName();
 	// The resource bundle.

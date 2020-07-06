@@ -28,6 +28,53 @@
          </action> 
       </actionSet>
    </extension>
+   
+   <extension
+         id="com.wizzer.mle.studio.commands"
+         name="Magic Lantern Studio Commands"
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="com.wizzer.mle.studio.mastering.commands.category"
+            defaultHandler="com.wizzer.mle.studio.handlers.MasterTargetHandler"
+            description="Generates a Digital Playprint and the mastering code used to access playprint resources."
+            id="com.wizzer.mle.studio.commands.mastertarget"
+            name="Master Target">
+      </command>
+      <category
+            description="Commands related to mastering Magic Lantern titles."
+            id="com.wizzer.mle.studio.mastering.commands.category"
+            name="Mastering">
+      </category>
+   </extension>
+   
+   <extension
+         id="com.wizzer.mle.studio.menus"
+         name="Magic Lantern Studio Menus"
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="com.wizzer.mle.studio.toolbar.mastertarget"
+               label="Master Target Toolbar">
+            <command
+                  commandId="com.wizzer.mle.studio.commands.mastertarget"
+                  icon="icons/digitalplayprint_16x16.png"
+                  id="com.wizzer.mle.studio.command.masterjava2d"
+                  label="Master Target"
+                  mnemonic="M"
+                  style="push"
+                  tooltip="Generate code and create a Digital Playprint">
+               <visibleWhen
+                     checkEnabled="false">
+                  <reference
+                        definitionId="com.wizzer.mle.studio.expression.isStudioPerspective">
+                  </reference>
+               </visibleWhen>
+            </command>       
+         </toolbar>
+      </menuContribution>
+   </extension>
 
    <extension
          id="com.wizzer.mle.studio.perspectives"
@@ -74,6 +121,41 @@
             </instanceof>
          </enabledWhen>
       </page>
+   </extension>
+
+   <extension
+         id="com.wizzer.mle.studio.contexts"
+         name="Magic Lantern Studio Contexts"
+         point="org.eclipse.ui.contexts">
+      <context
+            description="Context related to mastering Magic Lantern titles."
+            id="com.wizzer.mle.studio.contexts.mastertarget"
+            name="Master Target Context">
+      </context>
+   </extension>
+
+   <extension
+         id="com.wizzer.mle.studio.expressions.properties"
+         name="Magic Lantern Studio Properties"
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="com.wizzer.mle.studio.properties.MasterTargetPropertyTester"
+            id="com.wizzer.mle.studio.properties.mastertargetproperty"
+            namespace="com.wizzer.mle.studio.properties.MasterTargetProperties"
+            properties="activePerspective"
+            type="org.eclipse.e4.ui.model.application.ui.advanced.MPerspective">
+      </propertyTester>
+   </extension>
+
+   <extension point="org.eclipse.core.expressions.definitions">
+      <definition id="com.wizzer.mle.studio.expression.isStudioPerspective">
+         <with variable="org.eclipse.e4.ui.model.application.ui.advanced.MPerspective">
+            <test forcePluginActivation="true"
+                  property="com.wizzer.mle.studio.properties.MasterTargetProperties.activePerspective"
+                  value="com.wizzer.mle.studio.StudioPerspective">
+            </test>
+         </with>
+      </definition>
    </extension>
 
 </plugin>
