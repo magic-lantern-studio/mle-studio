@@ -149,10 +149,22 @@
                   label="Magic Lantern Title"
                   mode="debug">
             </contextLabel>
+            
             <enablement>
-               <reference
-                     definitionId="com.wizzer.mle.studio.expression.isStudioPerspective">
-               </reference>
+               <and>
+                  <with variable="selection">
+                     <count value="1"/>
+                     <iterate>
+                        <adapt type="org.eclipse.core.resources.IResource">
+                           <test property="org.eclipse.core.resources.projectNature" 
+                                 value="com.wizzer.mle.studio.dpp.MasteringNature" />
+                        </adapt> 
+                     </iterate>
+                  </with>
+                  <reference
+                        definitionId="com.wizzer.mle.studio.expression.isStudioPerspective">
+                  </reference>
+               </and>
             </enablement>
          </contextualLaunch>
       </shortcut>
