@@ -29,10 +29,13 @@ package com.wizzer.mle.studio.properties;
 
 // Import Eclipse packages.
 import org.eclipse.core.expressions.PropertyTester;
+import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
+
+// Import Magic Lantern packages.
+import com.wizzer.mle.studio.MleLog;
 
 /**
  * MasterTargetPropertyTester is used to test properties related to Magic Lantern
@@ -50,6 +53,10 @@ public class MasterTargetPropertyTester extends PropertyTester {
 	@Override
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
         IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+        if (window == null) {
+        	MleLog.logWarning("MasterTargetPropertyTester: window is null.");
+        	return false;
+        }
 		
 		if (window.equals(PlatformUI.getWorkbench().getWorkbenchWindows()[0])) {
 			IPerspectiveDescriptor perspective = window.getActivePage().getPerspective();
@@ -65,6 +72,7 @@ public class MasterTargetPropertyTester extends PropertyTester {
 			    }
 			}
 		}
+			
 		return false;
 	}
 

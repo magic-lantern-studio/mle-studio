@@ -48,7 +48,6 @@
             delegate="com.wizzer.mle.studio.java2d.launch.Java2DRuntimeLaunchDelegate"
             sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
             sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
-         <fileExtension extension="dpp" default="true"/>
       </launchConfigurationType>
    </extension>
    
@@ -125,6 +124,38 @@
                destination="src">
          </templateEntry>
       </template>
+   </extension>
+
+   <extension
+         id="com.wizzer.mle.studio.java2d.launchshortcuts"
+         name="Magic Lantern Launch Configuration Shortcuts"
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="com.wizzer.mle.studio.java2d.launch.DPPLaunchShortcut"
+            description="Launch a Digital Playprint title."
+            icon="icons/launchprj.png"
+            id="com.wizzer.mle.studio.java2d.launchshortcuts.DPP"
+            label="Launch Digital Playprint"
+            modes="run,debug">
+         <configurationType
+               id="com.wizzer.mle.studio.java2d.launch.Java2DRuntimeLaunchConfigurationType">
+         </configurationType>
+         <contextualLaunch>
+            <contextLabel
+                  label="Magic Lantern Title"
+                  mode="run">
+            </contextLabel>
+            <contextLabel
+                  label="Magic Lantern Title"
+                  mode="debug">
+            </contextLabel>
+            <enablement>
+               <reference
+                     definitionId="com.wizzer.mle.studio.expression.isStudioPerspective">
+               </reference>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
    </extension>
    
 </plugin>

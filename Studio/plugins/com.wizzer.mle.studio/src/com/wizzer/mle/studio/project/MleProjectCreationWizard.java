@@ -53,6 +53,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.dialogs.IOverwriteQuery;
 
@@ -177,7 +178,8 @@ public abstract class MleProjectCreationWizard extends Wizard implements IExecut
 			return;
 		
 		// Retrieve the active Workbench window.
-		IWorkbenchWindow window = MlePlugin.getDefault().getWorkbench().getActiveWorkbenchWindow();
+		//IWorkbenchWindow window = MlePlugin.getDefault().getWorkbench().getActiveWorkbenchWindow();
+		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		if (window == null)
 			return;
 		

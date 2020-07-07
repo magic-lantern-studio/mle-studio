@@ -35,7 +35,7 @@ package com.wizzer.mle.studio.java2d.launch;
 import org.eclipse.jdt.launching.JavaLaunchDelegate;
 
 /**
- * This class is used to launch the Java2D Runtime Player.
+ * This class is used to launch the Magic Lantern Java2D Runtime Player.
  * 
  * @author Mark S. Millard
  */
