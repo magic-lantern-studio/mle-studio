@@ -62,7 +62,7 @@ public class MleLog implements ILog
 	{
 		if (MlePlugin.getDefault() != null)
 		    MlePlugin.getDefault().getLog().log(
-				new Status(Status.ERROR, MlePlugin.getID(), Status.OK, message, ex));
+				new Status(Status.ERROR, MlePlugin.getID(), Status.ERROR, message, ex));
 	}
 
 	// Helper utility to log a warning.  Note that the plugin may not be available

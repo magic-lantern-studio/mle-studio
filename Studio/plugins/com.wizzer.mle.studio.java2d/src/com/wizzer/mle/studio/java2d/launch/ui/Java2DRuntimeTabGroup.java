@@ -74,7 +74,7 @@ public class Java2DRuntimeTabGroup extends AbstractLaunchConfigurationTabGroup
 	    ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[]
 	    {
 	        new JavaMainTab(),
-	        new JavaArgumentsTab(),
+	        new Java2DArgumentsTab(),
 	        new JavaJRETab(),
 	        new JavaClasspathTab(),
 	        new SourceLookupTab(),
