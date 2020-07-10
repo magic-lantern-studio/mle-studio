@@ -77,11 +77,14 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.jdt.core.IClasspathAttribute;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.internal.core.ClasspathEntry;
 import org.eclipse.jdt.internal.corext.util.Messages;
 import org.eclipse.jdt.internal.ui.JavaPlugin;
 import org.eclipse.jdt.internal.ui.dialogs.StatusInfo;
@@ -89,6 +92,9 @@ import org.eclipse.jdt.internal.ui.util.CoreUtility;
 import org.eclipse.jdt.internal.ui.util.ExceptionHandler;
 import org.eclipse.jdt.internal.ui.wizards.ClassPathDetector;
 import org.eclipse.jdt.internal.ui.wizards.NewWizardMessages;
+import org.eclipse.jdt.launching.IVMInstall;
+import org.eclipse.jdt.launching.JavaRuntime;
+import org.eclipse.jdt.launching.VMStandin;
 import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jdt.ui.wizards.JavaCapabilityConfigurationPage;
 import org.eclipse.jdt.ui.wizards.NewJavaProjectWizardPageOne;
@@ -169,7 +175,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 	
 	private IConfigurationElement fConfigElement;
 	// The resource to open.
-	private ArrayList m_elementsToOpen;
+	private ArrayList<IResource> m_elementsToOpen;
 
 	/**
 	 * Constructor for the {@link NewJavaProjectWizardPageTwo}.
@@ -328,7 +334,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 			}
 
 			try {
-				createProject(fCurrProject, fCurrProjectLocation, new SubProgressMonitor(monitor, 2));
+				createProject(fCurrProject, fCurrProjectLocation, SubMonitor.convert(monitor, 2));
 			} catch (CoreException e) {
 				if (e.getStatus().getCode() == IResourceStatus.FAILED_READ_METADATA) {					
 					result= new StatusInfo(IStatus.INFO, Messages.format(NewWizardMessages.NewJavaProjectWizardPageTwo_DeleteCorruptProjectFile_message, e.getLocalizedMessage()));
@@ -347,8 +353,8 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 				throw new OperationCanceledException();
 			}
 
-			initializeBuildPath(JavaCore.create(fCurrProject), new SubProgressMonitor(monitor, 2));
-			configureJavaProject(new SubProgressMonitor(monitor, 3)); // create the Java project to allow the use of the new source folder page
+			initializeBuildPath(JavaCore.create(fCurrProject), SubMonitor.convert(monitor, 2));
+			configureJavaProject(SubMonitor.convert(monitor, 3)); // create the Java project to allow the use of the new source folder page
 		} finally {
 			monitor.done();
 		}
@@ -394,7 +400,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 					IPath path= sourceClasspathEntries[i].getPath();
 					if (path.segmentCount() > 1) {
 						IFolder folder= root.getFolder(path);
-						CoreUtility.createFolder(folder, true, true, new SubProgressMonitor(monitor, 1));
+						CoreUtility.createFolder(folder, true, true, SubMonitor.convert(monitor, 1));
 					}
 					cpEntries.add(sourceClasspathEntries[i]);
 				}
@@ -409,7 +415,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 				outputLocation= fFirstPage.getOutputLocation();
 				if (outputLocation.segmentCount() > 1) {
 					IFolder folder= root.getFolder(outputLocation);
-					CoreUtility.createDerivedFolder(folder, true, true, new SubProgressMonitor(monitor, 1));
+					CoreUtility.createDerivedFolder(folder, true, true, SubMonitor.convert(monitor, 1));
 				}
 			}
 			if (monitor.isCanceled()) {
@@ -492,9 +498,9 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 		monitor.beginTask("", ticks); //$NON-NLS-1$
 		try {
 			IFileStore projectFile= EFS.getStore(projectLocation).getChild(FILENAME_PROJECT);
-			projectFile.delete(EFS.NONE, new SubProgressMonitor(monitor, 1));
+			projectFile.delete(EFS.NONE, SubMonitor.convert(monitor, 1));
 			if (fDotProjectBackup != null) {
-				copyFile(fDotProjectBackup, projectFile, new SubProgressMonitor(monitor, 1));
+				copyFile(fDotProjectBackup, projectFile, SubMonitor.convert(monitor, 1));
 			}
 		} catch (IOException e) {
 			IStatus status= new Status(IStatus.ERROR, JavaUI.ID_PLUGIN, IStatus.ERROR, NewWizardMessages.NewJavaProjectWizardPageTwo_problem_restore_project, e); 
@@ -502,9 +508,9 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 		}
 		try {
 			IFileStore classpathFile= EFS.getStore(projectLocation).getChild(FILENAME_CLASSPATH);
-			classpathFile.delete(EFS.NONE, new SubProgressMonitor(monitor, 1));
+			classpathFile.delete(EFS.NONE, SubMonitor.convert(monitor, 1));
 			if (fDotClasspathBackup != null) {
-				copyFile(fDotClasspathBackup, classpathFile, new SubProgressMonitor(monitor, 1));
+				copyFile(fDotClasspathBackup, classpathFile, SubMonitor.convert(monitor, 1));
 			}
 		} catch (IOException e) {
 			IStatus status= new Status(IStatus.ERROR, JavaUI.ID_PLUGIN, IStatus.ERROR, NewWizardMessages.NewJavaProjectWizardPageTwo_problem_restore_classpath, e); 
@@ -609,9 +615,9 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 				if (!removeContent) {
 					restoreExistingFolders(projLoc);
 				}
-				fCurrProject.delete(removeContent, false, new SubProgressMonitor(monitor, 2));
+				fCurrProject.delete(removeContent, false, SubMonitor.convert(monitor, 2));
 
-				restoreExistingFiles(projLoc, new SubProgressMonitor(monitor, 1));
+				restoreExistingFiles(projLoc, SubMonitor.convert(monitor, 1));
 			} finally {
 				setAutoBuilding(fIsAutobuild.booleanValue()); // fIsAutobuild must be set
 				fIsAutobuild= null;
@@ -641,19 +647,18 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 	 * @throws CoreException thrown when the project creation or configuration failed
 	 * @throws InterruptedException thrown when the user canceled the project creation
 	 */
-	@SuppressWarnings("unchecked")
 	public void performFinish(IProgressMonitor monitor) throws CoreException, InterruptedException {
 		try {
 			monitor.beginTask(NewWizardMessages.NewJavaProjectWizardPageTwo_operation_create, 3); 
 			if (fCurrProject == null) {
-				updateProject(new SubProgressMonitor(monitor, 1));
+				updateProject(SubMonitor.convert(monitor, 1));
 			}
-			configureJavaProject(new SubProgressMonitor(monitor, 2));
+			configureJavaProject(SubMonitor.convert(monitor, 2));
 
 			if (!fKeepContent) {
 				String compliance= fFirstPage.getCompilerCompliance();
 				IJavaProject project= JavaCore.create(fCurrProject);
-				Map options = project.getOptions(false);
+				Map<String,String> options = project.getOptions(false);
 				
 				configureJavaProjectSettings(options, compliance);
 				
@@ -785,8 +790,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 	 * @param options  a Map of the Java compilation options
 	 * @param compliance  the Java compliance level
 	 */
-	@SuppressWarnings("unchecked")
-	protected void configureJavaProjectSettings(Map options, String compliance) {
+	protected void configureJavaProjectSettings(Map<String,String> options, String compliance) {
 		if (compliance != null) {
 			JavaCore.setComplianceOptions(compliance, options);
 
@@ -807,7 +811,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
     	    IProjectDescription desc = project.getDescription();
     	    ICommand[] commands = desc.getBuildSpec();
 
-    	    Vector cmds = new Vector();
+    	    Vector<ICommand> cmds = new Vector<ICommand>();
     	    for (int i = 0; i < commands.length; i++)
     	    {
 	            if (commands[i].getBuilderName().equals(MasteringNature.GENGROUP_BUILDER_ID))
@@ -1000,7 +1004,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 	// Configure the project source.
 	private void configureProjectSource(IProgressMonitor monitor)
 	{
-		final SubProgressMonitor subMonitor = new SubProgressMonitor(monitor, 1);
+		final SubMonitor subMonitor = SubMonitor.convert(monitor, 1);
 
         // Update the project's nature.
 		PlatformUI.getWorkbench().getDisplay().syncExec(
@@ -1010,7 +1014,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 						// Add the resources from the specified Zip import files.
 						if (fTemplatePage.useTemplate())
 						{
-							doApplicationTemplate(fCurrProject, new SubProgressMonitor(subMonitor, 1));
+							doApplicationTemplate(fCurrProject, SubMonitor.convert(subMonitor, 1));
 						}
 				    } catch (InterruptedException e) {
 						Java2DLog.logError(e, "Application template creation failed.");
@@ -1056,7 +1060,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 	 * @param fileName The name of the file to create.
 	 * @param source The data to create the contents of the file with.
 	 * 
-	 * @reutrn If successful, then a file resource will be returned.
+	 * @return If successful, then a file resource will be returned.
 	 */
 	private IFile createFileInFolder(IFolder folder,String fileName,InputStream source)
 	{
@@ -1175,7 +1179,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 	
 	                // Retrieve the Zip file and import the resources.
 	                ZipFile zipFile = getZipFileFromPluginDir(importPath);
-	                importFilesFromZip(zipFile, destPath, new SubProgressMonitor(monitor, 1));
+	                importFilesFromZip(zipFile, destPath, SubMonitor.convert(monitor, 1));
 	                
 					// Add Simple Java DWP.
 	                /*
@@ -1241,47 +1245,101 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 		String rtJarLocation = new String("MLE_ROOT");
 		rtJarLocation = rtJarLocation + "/lib/java/runtime/mlert.jar";
 		IPath runtimeJar = new Path(rtJarLocation);
-		IClasspathEntry rtJarEntry = JavaCore.newVariableEntry(runtimeJar,null,null);
+		//IClasspathEntry rtJarEntry = JavaCore.newVariableEntry(runtimeJar,runtimeJar,null);
+		String runtimeJavadocLocation = new String("jar:file:" + toolrootPath);
+		runtimeJavadocLocation = runtimeJavadocLocation + "/lib/java/runtime/mlertdoc.jar!/doc";
+		IClasspathAttribute[] runtimeExtraAttribute = new IClasspathAttribute[1];
+		IClasspathAttribute runtimeJavadocAttr = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME,runtimeJavadocLocation);
+		runtimeExtraAttribute[0] = runtimeJavadocAttr;
+		IClasspathEntry rtJarEntry = JavaCore.newVariableEntry(runtimeJar,runtimeJar,null,ClasspathEntry.NO_ACCESS_RULES,runtimeExtraAttribute,false);
 		
 		String partsJarLocation = new String("MLE_ROOT");
 		partsJarLocation = partsJarLocation + "/lib/java/runtime/parts.jar";
 		IPath partsJar = new Path(partsJarLocation);
-		IClasspathEntry partsJarEntry = JavaCore.newVariableEntry(partsJar,null,null);
+		//IClasspathEntry partsJarEntry = JavaCore.newVariableEntry(partsJar,partsJar,null);
+		String partsJavadocLocation = new String("jar:file:" + toolrootPath);
+		partsJavadocLocation = partsJavadocLocation + "/lib/java/runtime/partsdoc.jar!/doc";
+		IClasspathAttribute[] partsExtraAttribute = new IClasspathAttribute[1];
+		IClasspathAttribute partsJavadocAttr = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME,partsJavadocLocation);
+		partsExtraAttribute[0] = partsJavadocAttr;
+		IClasspathEntry partsJarEntry = JavaCore.newVariableEntry(partsJar,partsJar,null,ClasspathEntry.NO_ACCESS_RULES,partsExtraAttribute,false);
 		
 		String actorsJarLocation = new String("MLE_ROOT");
 		actorsJarLocation = actorsJarLocation + "/lib/java/runtime/actors.jar";
 		IPath actorsJar = new Path(actorsJarLocation);
-		IClasspathEntry actorsJarEntry = JavaCore.newVariableEntry(actorsJar,null,null);
+		//IClasspathEntry actorsJarEntry = JavaCore.newVariableEntry(actorsJar,actorsJar,null);
+		String actorsJavadocLocation = new String("jar:file:" + toolrootPath);
+		actorsJavadocLocation = actorsJavadocLocation + "/lib/java/runtime/actorsdoc.jar!/doc";
+		IClasspathAttribute[] actorsExtraAttribute = new IClasspathAttribute[1];
+		IClasspathAttribute actorsJavadocAttr = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME,actorsJavadocLocation);
+		actorsExtraAttribute[0] = actorsJavadocAttr;
+		IClasspathEntry actorsJarEntry = JavaCore.newVariableEntry(actorsJar,actorsJar,null,ClasspathEntry.NO_ACCESS_RULES,actorsExtraAttribute,false);
 
 		String rolesJarLocation = new String("MLE_ROOT");
 		rolesJarLocation = rolesJarLocation + "/lib/java/runtime/roles.jar";
 		IPath rolesJar = new Path(rolesJarLocation);
-		IClasspathEntry rolesJarEntry = JavaCore.newVariableEntry(rolesJar,null,null);
+		//IClasspathEntry rolesJarEntry = JavaCore.newVariableEntry(rolesJar,rolesJar,null);
+		String rolesJavadocLocation = new String("jar:file:" + toolrootPath);
+		rolesJavadocLocation = rolesJavadocLocation + "/lib/java/runtime/rolesdoc.jar!/doc";
+		IClasspathAttribute[] rolesExtraAttribute = new IClasspathAttribute[1];
+		IClasspathAttribute rolesJavadocAttr = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME,rolesJavadocLocation);
+		rolesExtraAttribute[0] = rolesJavadocAttr;
+		IClasspathEntry rolesJarEntry = JavaCore.newVariableEntry(rolesJar,rolesJar,null,ClasspathEntry.NO_ACCESS_RULES,rolesExtraAttribute,false);
 
 		String propsJarLocation = new String("MLE_ROOT");
 		propsJarLocation = propsJarLocation + "/lib/java/runtime/props.jar";
 		IPath propsJar = new Path(propsJarLocation);
-		IClasspathEntry propsJarEntry = JavaCore.newVariableEntry(propsJar,null,null);
+		//IClasspathEntry propsJarEntry = JavaCore.newVariableEntry(propsJar,propsJar,null);
+		String propsJavadocLocation = new String("jar:file:" + toolrootPath);
+		propsJavadocLocation = propsJavadocLocation + "/lib/java/runtime/propsdoc.jar!/doc";
+		IClasspathAttribute[] propsExtraAttribute = new IClasspathAttribute[1];
+		IClasspathAttribute propsJavadocAttr = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME,propsJavadocLocation);
+		propsExtraAttribute[0] = propsJavadocAttr;
+		IClasspathEntry propsJarEntry = JavaCore.newVariableEntry(propsJar,propsJar,null,ClasspathEntry.NO_ACCESS_RULES,propsExtraAttribute,false);
 
 		String mrefsJarLocation = new String("MLE_ROOT");
 		mrefsJarLocation = mrefsJarLocation + "/lib/java/runtime/mrefs.jar";
 		IPath mrefsJar = new Path(mrefsJarLocation);
-		IClasspathEntry mrefsJarEntry = JavaCore.newVariableEntry(mrefsJar,null,null);
+		//IClasspathEntry mrefsJarEntry = JavaCore.newVariableEntry(mrefsJar,mrefsJar,null);
+		String mrefsJavadocLocation = new String("jar:file:" + toolrootPath);
+		mrefsJavadocLocation = mrefsJavadocLocation + "/lib/java/runtime/mrefsdoc.jar!/doc";
+		IClasspathAttribute[] mrefsExtraAttribute = new IClasspathAttribute[1];
+		IClasspathAttribute mrefsJavadocAttr = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME,mrefsJavadocLocation);
+		mrefsExtraAttribute[0] = mrefsJavadocAttr;
+		IClasspathEntry mrefsJarEntry = JavaCore.newVariableEntry(mrefsJar,mrefsJar,null,ClasspathEntry.NO_ACCESS_RULES,mrefsExtraAttribute,false);
 
-		String msetsJarLocation = new String("MLE_ROOT");
-		msetsJarLocation = msetsJarLocation + "/lib/java/runtime/sets.jar";
-		IPath setsJar = new Path(msetsJarLocation);
-		IClasspathEntry setsJarEntry = JavaCore.newVariableEntry(setsJar,null,null);
+		String setsJarLocation = new String("MLE_ROOT");
+		setsJarLocation = setsJarLocation + "/lib/java/runtime/sets.jar";
+		IPath setsJar = new Path(setsJarLocation);
+		//IClasspathEntry setsJarEntry = JavaCore.newVariableEntry(setsJar,setsJar,null);
+		String setsJavadocLocation = new String("jar:file:" + toolrootPath);
+		setsJavadocLocation = setsJavadocLocation + "/lib/java/runtime/setsdoc.jar!/doc";
+		IClasspathAttribute[] setsExtraAttribute = new IClasspathAttribute[1];
+		IClasspathAttribute setsJavadocAttr = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME,setsJavadocLocation);
+		setsExtraAttribute[0] = setsJavadocAttr;
+		IClasspathEntry setsJarEntry = JavaCore.newVariableEntry(setsJar,setsJar,null,ClasspathEntry.NO_ACCESS_RULES,setsExtraAttribute,false);
 
 		String stagesJarLocation = new String("MLE_ROOT");
 		stagesJarLocation = stagesJarLocation + "/lib/java/runtime/stages.jar";
 		IPath stagesJar = new Path(stagesJarLocation);
-		IClasspathEntry stagesJarEntry = JavaCore.newVariableEntry(stagesJar,null,null);
+		//IClasspathEntry stagesJarEntry = JavaCore.newVariableEntry(stagesJar,stagesJar,null);
+		String stagesJavadocLocation = new String("jar:file:" + toolrootPath);
+		stagesJavadocLocation = stagesJavadocLocation + "/lib/java/runtime/stagesdoc.jar!/doc";
+		IClasspathAttribute[] stagesExtraAttribute = new IClasspathAttribute[1];
+		IClasspathAttribute stagesJavadocAttr = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME,stagesJavadocLocation);
+		stagesExtraAttribute[0] = stagesJavadocAttr;
+		IClasspathEntry stagesJarEntry = JavaCore.newVariableEntry(stagesJar,stagesJar,null,ClasspathEntry.NO_ACCESS_RULES,stagesExtraAttribute,false);
 
 		String mathJarLocation = new String("MLE_ROOT");
 		mathJarLocation = mathJarLocation + "/lib/java/runtime/mlmath.jar";
 		IPath mathJar = new Path(mathJarLocation);
-		IClasspathEntry mathJarEntry = JavaCore.newVariableEntry(mathJar,null,null);
+		//IClasspathEntry mathJarEntry = JavaCore.newVariableEntry(mathJar,mathJar,null);
+		String mathJavadocLocation = new String("jar:file:" + toolrootPath);
+		mathJavadocLocation = mathJavadocLocation + "/lib/java/runtime/mlmathdoc.jar!/doc";
+		IClasspathAttribute[] mathExtraAttribute = new IClasspathAttribute[1];
+		IClasspathAttribute mathJavadocAttr = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME,mathJavadocLocation);
+		mathExtraAttribute[0] = mathJavadocAttr;
+		IClasspathEntry mathJarEntry = JavaCore.newVariableEntry(mathJar,mathJar,null,ClasspathEntry.NO_ACCESS_RULES,mathExtraAttribute,false);
 		
 		entries.add(rtJarEntry);
 		entries.add(partsJarEntry);
@@ -1292,6 +1350,9 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 		entries.add(setsJarEntry);
 		entries.add(stagesJarEntry);
 		entries.add(mathJarEntry);
+	}
+	
+	private void addJavadoc() {
 	}
 	
 	/**
