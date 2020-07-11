@@ -36,10 +36,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 import java.util.Vector;
 import java.util.ArrayList;
-import java.util.zip.ZipFile;
 
 // Import Eclipse packages.
 import org.eclipse.core.resources.ICommand;
@@ -52,23 +50,15 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 
 import org.eclipse.jdt.ui.wizards.NewJavaProjectWizardPageOne;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 
 import org.eclipse.ui.dialogs.IOverwriteQuery;
-import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
-
-import org.eclipse.ui.wizards.datatransfer.ImportOperation;
-import org.eclipse.ui.wizards.datatransfer.ZipFileStructureProvider;
 
 // Import Magic Lantern classes.
 import com.wizzer.mle.studio.MleLog;
@@ -514,7 +504,7 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
 		try {
 			// Get the project and its location.
 			IProject project = m_javaPage.getJavaProject().getProject();
-			IPath locationPath = m_projectPage.getOutputLocation();
+			//IPath locationPath = m_projectPage.getOutputLocation();
 		
 			// Create the project and open it.
 			IProjectDescription desc = project.getWorkspace().newProjectDescription(project.getName());
@@ -524,8 +514,6 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
 				desc.setLocation(locationPath);
 			}
 			*/
-			//project.create(desc, new SubProgressMonitor(monitor, 1));
-			//project.open(new SubProgressMonitor(monitor, 1));
 			project.create(desc, SubMonitor.convert(monitor, 1));
 			project.open(SubMonitor.convert(monitor, 1));
 			
@@ -538,7 +526,6 @@ public class MleJavaProjectCreationOperation extends MleTargetCreationOperation
 			// Configure the Java project by adding the Java nature and
 			// configuring the build classpath.
 			//m_javaPage.updatePage();
-			//m_javaPage.configureJavaProject(new SubProgressMonitor(monitor, 1));
 			m_javaPage.configureJavaProject(SubMonitor.convert(monitor, 1));
 
 			return project;

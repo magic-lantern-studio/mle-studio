@@ -24,6 +24,8 @@ Eclipse Foundation http://www.eclipse.org/
    </configIni>
 
    <launcherArgs>
+      <programArgsLin>-os linux -ws gtk -arch x86_64 -nl en_US -consoleLog
+      </programArgsLin>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
@@ -92,12 +94,12 @@ SOFTWARE.
       <feature id="org.eclipse.jdt" installMode="root"/>
       <feature id="org.eclipse.pde" installMode="root"/>
       <feature id="org.eclipse.rcp" installMode="root"/>
+      <feature id="org.eclipse.equinox.p2.rcp.feature" installMode="root"/>
+      <feature id="org.eclipse.equinox.p2.extras.feature" installMode="root"/>
       <feature id="org.eclipse.emf.ecore" installMode="root"/>
       <feature id="org.eclipse.emf.common" installMode="root"/>
-      <feature id="org.eclipse.equinox.p2.extras.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.core.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient45.feature" installMode="root"/>
-      <feature id="org.eclipse.equinox.p2.rcp.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.filetransfer.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.core.ssl.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature" installMode="root"/>
@@ -108,6 +110,8 @@ SOFTWARE.
       <feature id="org.eclipse.jgit.ssh.apache" installMode="root"/>
       <feature id="org.eclipse.jgit.http.apache" installMode="root"/>
       <feature id="org.eclipse.tips.feature" installMode="root"/>
+      <feature id="org.eclipse.sdk" installMode="root"/>
+      <feature id="org.eclipse.jgit.gpg.bc" installMode="root"/>
    </features>
 
    <configurations>
@@ -115,19 +119,45 @@ SOFTWARE.
       <plugin id="com.wizzer.mle.studio.java2d" autoStart="true" startLevel="5" />
       <plugin id="com.wizzer.mle.studio.java2d.branding" autoStart="true" startLevel="5" />
       <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.ant.launching" autoStart="false" startLevel="4" />
       <plugin id="org.eclipse.core.net" autoStart="false" startLevel="2" />
-      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.egit" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.egit.core" autoStart="true" startLevel="4" />
       <plugin id="org.eclipse.egit.doc" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.egit.ui" autoStart="false" startLevel="4" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
-      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.launcher" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.equinox.p2.reconciler.dropins" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+      <plugin id="org.eclipse.jdt" autoStart="false" startLevel="4" />
       <plugin id="org.eclipse.jdt.doc.user" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.jdt.launching" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.pde.api.tools" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.api.tools.annotations" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.api.tools.ui" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.build" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.core" autoStart="false" startLevel="4" />
       <plugin id="org.eclipse.pde.doc.user" autoStart="false" startLevel="4" />
-      <plugin id="org.eclipse.platform" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.ds.annotations" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.ds.core" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.ds.lib" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.ds.ui" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.ds1_2.lib" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.genericeditor.extension" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.junit.runtime" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.launching" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.runtime" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.ua.core" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.ua.ui" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.ui" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.pde.ui.templates" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.platform" autoStart="false" startLevel="2" />
       <plugin id="org.eclipse.platform.doc.user" autoStart="false" startLevel="4" />
-      <plugin id="org.eclipse.ui.ide.application" autoStart="true" startLevel="2" />
-      <property name="org.eclipse.update.reconcile" value="false" />
+      <plugin id="org.eclipse.ui.cheatsheets" autoStart="false" startLevel="4" />
+      <plugin id="org.eclipse.ui.ide.application" autoStart="false" startLevel="2" />
    </configurations>
 
    <preferencesInfo>

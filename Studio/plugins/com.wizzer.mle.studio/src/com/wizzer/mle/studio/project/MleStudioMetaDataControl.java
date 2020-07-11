@@ -118,7 +118,7 @@ public class MleStudioMetaDataControl
     protected Button m_gendppScriptBrowseButton;
     /** The gendpp source directory text widget. */
     protected Text m_gendppSourceDirText;
-    /** The gendpp source directroy browse button. */
+    /** The gendpp source directory browse button. */
     protected Button m_gendppSourceBrowseButton;
 
     /** The Java package name button widget. */
@@ -173,7 +173,7 @@ public class MleStudioMetaDataControl
     	
     	public String m_javaPackage = "gen";
     	
-    	public Vector m_tags = new Vector();
+    	public Vector<String> m_tags = new Vector<String>();
     	
     	public boolean isDppProject()
     	{
@@ -541,7 +541,7 @@ public class MleStudioMetaDataControl
      */
     protected void createGengroupControls(Composite parent, MetaDataControlConfig configuration)
     {
-        Font font = parent.getFont();
+        //Font font = parent.getFont();
 
         Composite gengroupGroup = new Composite(parent, SWT.NONE);
         GridLayout layout = new GridLayout(3,false);
@@ -640,7 +640,7 @@ public class MleStudioMetaDataControl
      */
     protected void createGensceneControls(Composite parent, MetaDataControlConfig configuration)
     {
-        Font font = parent.getFont();
+        //Font font = parent.getFont();
 
         Composite gensceneGroup = new Composite(parent, SWT.NONE);
         GridLayout layout = new GridLayout(3,false);
@@ -711,7 +711,7 @@ public class MleStudioMetaDataControl
      */
     protected void createGenmediaControls(Composite parent, MetaDataControlConfig configuration)
     {
-        Font font = parent.getFont();
+        //Font font = parent.getFont();
 
         Composite genmediaGroup = new Composite(parent, SWT.NONE);
         GridLayout layout = new GridLayout(3,false);
@@ -752,7 +752,7 @@ public class MleStudioMetaDataControl
      */
     protected void createGenppscriptControls(Composite parent, MetaDataControlConfig configuration)
     {
-        Font font = parent.getFont();
+        //Font font = parent.getFont();
 
         Composite genppscriptGroup = new Composite(parent, SWT.NONE);
         GridLayout layout = new GridLayout(3,false);
@@ -847,7 +847,7 @@ public class MleStudioMetaDataControl
      */
     protected void createGendppControls(Composite parent, MetaDataControlConfig configuration)
     {
-        Font font = parent.getFont();
+        //Font font = parent.getFont();
 
         Composite gendppGroup = new Composite(parent, SWT.NONE);
         GridLayout layout = new GridLayout(3,false);
@@ -1588,15 +1588,20 @@ public class MleStudioMetaDataControl
     }
     
     /**
-     * Set the specified project.
+     * Set the location path.
      * 
-     * @param project The <code>IProject</code> associated with the page.
+     * @param locationPath The <code>IPath</code> associated with the page.
      */
     public void setLocationPath(IPath locationPath)
     {
         m_locationPath = locationPath;
     }
     
+    /**
+     * Set the project's identifier.
+     * 
+     * @param id The unique identifier to set.
+     */
     public void setProjectId(String id)
     {
     	Object[] projectData = m_metaData.getProjectData();
@@ -1604,6 +1609,11 @@ public class MleStudioMetaDataControl
         project.setId(id);
     }
     
+    /**
+     * Set the project's version.
+     * 
+     * @param version The version <code>String</code> to set.
+     */
     public void setProjectVersion(String version)
     {
     	Object[] projectData = m_metaData.getProjectData();
@@ -1611,6 +1621,11 @@ public class MleStudioMetaDataControl
         project.setVersion(version);
     }
     
+    /**
+     * Set the Digital Workprint.
+     * 
+     * @param dwp The name of the Digital Workprint to set.
+     */
     public void setDigitalWorkprint(String dwp)
     {
     	Object[] projectData = m_metaData.getProjectData();
@@ -1618,6 +1633,11 @@ public class MleStudioMetaDataControl
         project.setDwpFile(dwp);
     }
     
+    /**
+     * Set the mastering target type.
+     * 
+     * @param type The mastering target type to set.
+     */
     public void setTargetType(String type)
     {
     	Object[] projectData = m_metaData.getProjectData();
@@ -1629,6 +1649,11 @@ public class MleStudioMetaDataControl
 		target.setType(type);
     }
     
+    /**
+     * Set the mastering target identifier.
+     * 
+     * @param id The unique identifier to set.
+     */
     public void setTargetId(String id)
     {
     	Object[] projectData = m_metaData.getProjectData();
@@ -1640,6 +1665,11 @@ public class MleStudioMetaDataControl
 		target.setId(id);
     }
     
+    /**
+     * Set the mastering target's Digital Playprint.
+     * 
+     * @param dpp The Digital Playprint to set.
+     */
     public void setTargetDigitalPlayprint(String dpp)
     {
     	Object[] projectData = m_metaData.getProjectData();
@@ -1653,21 +1683,39 @@ public class MleStudioMetaDataControl
 		m_genppscriptDppText.setText(dpp);
     }
     
+    /**
+     * Set the verbosity flag.
+     * 
+     * @param verbose If <b>true</b>, then verbosity is turned on. If <b>false</b>
+     * then verbosity is turned off.
+     */
     public void setVerbose(boolean verbose)
     {
     	m_verboseButton.setSelection(verbose);
     }
     
+    /**
+     * Enable Java code generation.
+     */
     public void setJavaCodeGeneration()
     {
         handleJavaCodeGenerationButtonPressed();
     }
     
+    /**
+     * Enable C++ code generation.
+     */
     public void setCppCodeGeneration()
     {
     	handleCppCodeGenerationButtonPressed();
     }
     
+    /**
+     * Set Endian format.
+     * 
+     * @param endian If <b>true</b> then the format will be set to Big Endian. If <b>false</b>
+     * then the format will be set to Little Endian.
+     */
     public void setBigEndian(boolean endian)
     {
     	Object[] projectData = m_metaData.getProjectData();

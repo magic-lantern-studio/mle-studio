@@ -61,13 +61,8 @@ import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
 import org.eclipse.swt.widgets.Display;
 
-// Import Magic Lantern DWP classes.
-
-// Import Magic Lantern DPP classes.
-
 // Import Magic Lantern classes.
 import com.wizzer.mle.studio.MleLog;
-import com.wizzer.mle.studio.MlePlugin;
 
 
 /**
@@ -178,7 +173,6 @@ public abstract class MleProjectCreationWizard extends Wizard implements IExecut
 			return;
 		
 		// Retrieve the active Workbench window.
-		//IWorkbenchWindow window = MlePlugin.getDefault().getWorkbench().getActiveWorkbenchWindow();
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		if (window == null)
 			return;

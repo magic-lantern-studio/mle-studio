@@ -88,4 +88,41 @@
       </view>
    </extension>
 
+   <extension
+         id="com.wizzer.mle.studio.dpp.commands"
+         name="Magic Lantern Studio DPP Commands"
+         point="org.eclipse.ui.commands">
+      <category
+            description="Commands related to the processing of Digital Playprints."
+            id="com.wizzer.mle.studio.dpp.commands.category"
+            name="DPP Mastering Commands">
+      </category>
+      <command
+            categoryId="com.wizzer.mle.studio.dpp.commands.category"
+            defaultHandler="com.wizzer.mle.studio.dpp.commands.OpenDppConsoleViewHandler"
+            description="Command to open a DPP Console View"
+            id="com.wizzer.mle.studio.dpp.commands.openDppConsole"
+            name="Open DPP Console">
+      </command>
+   </extension>
+
+<!-- Remove this when no longer needed.
+   <extension
+         id="com.wizzer.mle.studio.dpp.menus"
+         name="Magic Lantern Studio DPP Menus"
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:window">
+         <command
+               commandId="com.wizzer.mle.studio.dpp.commands.openDppConsole"
+               icon="icons/full/cview16/console_view.png"
+               id="com.wizzer.mle.studio.dpp.command.opendppconsolecommand"
+               label="Open DPP Console"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+-->
+
 </plugin>

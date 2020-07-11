@@ -75,6 +75,8 @@
       <perspectiveExtension 
 	      targetID="com.wizzer.mle.studio.StudioPerspective">
 	      <newWizardShortcut id="com.wizzer.mle.studio.java2d.project.MleJava2DProjectCreationWizard"/>
+	      <viewShortcut id="com.wizzer.mle.studio.dpp.view.DppConsoleView"/>
+	      <viewShortcut id="com.wizzer.mle.studio.dwp.view.DwpConsoleView"/>
       </perspectiveExtension>
    </extension>
 
