@@ -37,7 +37,8 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import com.wizzer.mle.studio.dpp.DppLog;
 
 /**
- * @author Mark Millard
+ * OpenDppConsoleViewHandler is a handler used to open the Digital Playprint Console
+ * view.
  */
 public class OpenDppConsoleViewHandler extends AbstractHandler {
 	@Override

@@ -16,16 +16,18 @@
 </head>
 
 <body>
-<h1 id="banner"><a href="http://www.wizzerworks.com"><img src="images/WwLogo.gif" width="100" height="100" border="0"></a></h1>
+<h1 id="banner"></h1>
 <h1>Executing the Title</h1>
 <p>This document discusses how to execute a Magic Lantern Title. The first section 
   identifies how to run the title from within the Magic Lantern Studio IDE. The 
   second section discusses how to run the title from the redistributable application 
   bundle.</p>
 <h2>Executing a Title from the Magic Lantern Studio<a name="Section_31"></a></h2>
-<p>After creating a Magic Lantern Project using <em>The Studio</em>, the application 
+<p>After creating a Magic Lantern Project using the <em>Magic Lantern Java2D Project</em>
+  wizard, the application 
   developer will wish to execute and test his/her title. This may be done without 
-  leaving the IDE. <em>The Studio</em> uses the Eclipse launch configuration mechanism 
+  leaving the IDE. The <em>Magic Lantern Java2D Studio</em> uses the Eclipse
+  launch configuration mechanism 
   for running a title within the framework of the IDE. A launch configuration 
   is a description of how to launch and execute a program. Launching in Eclipse 
   is closely tied to the infrastructure for debugging, enabling the developer 
@@ -40,7 +42,7 @@
   Figure 3.1: Magic Studio Launch Configuration Wizard</p>
 <p>Select the &quot;<em><strong>Magic Lantern Java2D Runtime</strong></em>&quot; 
   entry on the left-hand side of the dialog. The entry is highlighted in Figure 
-  xxx.</p>
+  3.1.</p>
 <p>Next press the 'New' button to create a configuration of the selected type. 
   Doing so will create a new launch configuration for executing your title. Figure 
   3.2 shows an example the new configuration.</p>
@@ -56,7 +58,7 @@
   then you will see the following message printed to your Eclipse Console: &quot;<em>usage: 
   HelloWorld &lt;file&gt;</em>&quot;. The title is telling you that you need to 
   provide a Digital Playprint file. The DPP file was generated for you when you 
-  created the project. It can be found in then &quot;<em>src/gen</em>&quot; directory 
+  created the project. It can be found in the &quot;<em>src/gen</em>&quot; directory 
   and is called &quot;<em>HelloWorld.dpp</em>&quot;.</p>
 <p>To specify the Digital Playprint, select the &quot;<em><strong>Arguments</strong></em>&quot; 
   tab.</p>
@@ -72,7 +74,7 @@
 <h3>Stopping Title Execution<a name="Section_312"></a></h3>
 <p>There are several ways to stop the title. Since the title is a Java application, 
   you can simply select the Close button (<strong>'X'</strong>) in the application 
-  window. Another way to stop title execution is to use the Debg perspective.</p>
+  window. Another way to stop title execution is to use the Debug perspective.</p>
 <p>To stop title execution using the Magic Lantern Studio Debug perspective, do 
   the following:</p>
 <ol>
@@ -95,5 +97,6 @@
 <p>The Title Application Bundle is a redistributable Java archive, or jar file. 
   To run the HelloWorld title from the application bundle, the following steps 
   should be taken:</p>
+<p>TBD</p>
 </body>
 </html>
