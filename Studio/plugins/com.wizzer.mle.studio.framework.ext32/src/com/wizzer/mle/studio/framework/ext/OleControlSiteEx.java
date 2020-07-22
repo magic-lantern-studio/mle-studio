@@ -68,7 +68,7 @@ public class OleControlSiteEx extends OleClientSite implements IControlSite
 
 			// Create the object.
 			long[] ppvObject = new long[1];
-			int CLSCTX_ALL = COM.CLSCTX_INPROC_SERVER | COM.CLSCTX_LOCAL_SERVER | COM.CLSCTX_REMOTE_SERVER | COM.CLSCTX_INPROC_HANDLER;
+			int CLSCTX_ALL = COM.CLSCTX_INPROC_SERVER | COM.CLSCTX_LOCAL_SERVER | COM.CLSCTX_INPROC_HANDLER;
 			int hr = COM.CoCreateInstance(appClsid, 0, CLSCTX_ALL, COM.IIDIUnknown, ppvObject);
 			if (hr != COM.S_OK)
 			{
@@ -103,7 +103,7 @@ public class OleControlSiteEx extends OleClientSite implements IControlSite
 		{
 			if (objIViewObject2 != null && !COM.OleIsRunning(objIOleObject.getAddress()))
 			{
-				objIViewObject2.GetExtent(COM.DVASPECT_CONTENT, -1, null, sizel);
+				objIViewObject2.GetExtent(COM.DVASPECT_CONTENT, -1, 0, sizel);
 			} else
 			{
 				objIOleObject.GetExtent(COM.DVASPECT_CONTENT, sizel);

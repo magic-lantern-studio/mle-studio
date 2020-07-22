@@ -153,7 +153,7 @@ copy win32\Release\DwpReader.dll $(MLE_HOME)\Studio\plugins\com.wizzer.mle.studi
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>$(MLE_HOME)/Studio/DwpReader/common/include;$(JAVA_HOME)/include;$(JAVA_HOME)/include/win32;$(MLE_ROOT)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>ML_CDECL;MLE_NOT_DLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;DWPREADER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ML_CDECL;MLE_NOT_DLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_NONSTDC_NO_DEPRECATE;DWPREADER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -251,7 +251,7 @@ copy win32\Debug\DwpReader.dll $(MLE_HOME)\Studio\plugins\com.wizzer.mle.studio.
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(MLE_HOME)/Studio/DwpReader/common/include;$(JAVA_HOME)/include;$(JAVA_HOME)/include/win32;$(MLE_HOME)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>ML_CDECL;MLE_NOT_DLL;MLE_DEBUG;WIN32;_DEBUG;_WINDOWS;_USRDLL;DWPREADER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ML_CDECL;MLE_NOT_DLL;MLE_DEBUG;WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_NONSTDC_NO_DEPRECATE;DWPREADER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
