@@ -30,7 +30,7 @@
 # This file does not need to be translated.
 [about] #this line is needed for Windows
 
-0=@part@
-1=@id@
-2=@version@
+0=com.wizzer.mle.studio.java2d
+1=20200728-15:00:01
+2=1.0.0-alpha
 featureVersion=1.0.0

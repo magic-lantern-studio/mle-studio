@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Magic Lantern Studio Win32 Branding Plug-in
+Bundle-SymbolicName: com.wizzer.mle.studio.win32.branding;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.wizzer.mle.studio.win32.branding.Activator
+Bundle-Vendor: Wizzer Works
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: com.wizzer.mle.studio.win32.branding
+Bundle-ActivationPolicy: lazy
+Export-Package: com.wizzer.mle.studio.win32.branding

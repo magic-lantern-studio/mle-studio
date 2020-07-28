@@ -4,7 +4,7 @@
       label="Magic Lantern Studio Win32 Feature"
       version="1.0.0.qualifier"
       provider-name="Wizzer Works"
-      plugin="com.wizzer.mle.studio.branding"
+      plugin="com.wizzer.mle.studio.win32.branding"
       os="win32"
       arch="x86,x86_64">
 
@@ -41,6 +41,8 @@ http://www.wizzerworks.com
 
    <requires>
       <import plugin="com.wizzer.mle.studio.dwp" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
    </requires>
 
    <plugin
@@ -51,6 +53,13 @@ http://www.wizzerworks.com
          install-size="0"
          version="0.0.0"
          fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="com.wizzer.mle.studio.win32.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

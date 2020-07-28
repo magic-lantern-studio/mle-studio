@@ -10,7 +10,7 @@
           <property name="aboutImage" value="images/MagicLanternAbout.png"/> 
           <property
                 name="aboutText"
-                value="Magic Lantern Development Environment&#x0A;&#x0A;Part Number: {0}&#x0A;Version: {2}&#x0A;Build id: {1}&#x0A;&#x0A;Copyright (c) 2000-2010 Wizzer Works, All rights reserved.&#x0A;Visit http://www.wizzerworks.com&#x0A;&#x0A;This product includes software developed by the&#x0A;Eclipse Foundation http://www.eclipse.org/"/> 
+                value="%productBlurb"/> 
           <property name="appName" value="Magic Lantern Java2D Studio"/> 
           <property name="welcomePage" value="welcome.xml"/>
           <property name="preferenceCustomization" value="plugin_customization.ini"/>
