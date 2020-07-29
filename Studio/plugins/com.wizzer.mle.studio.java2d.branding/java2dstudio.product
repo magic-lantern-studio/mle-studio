@@ -106,7 +106,6 @@ SOFTWARE.
    </features>
 
    <configurations>
-      <plugin id="com.sun.jna.platform" autoStart="false" startLevel="0" />
       <plugin id="com.wizzer.mle.studio" autoStart="true" startLevel="5" />
       <plugin id="com.wizzer.mle.studio.java2d" autoStart="true" startLevel="5" />
       <plugin id="com.wizzer.mle.studio.java2d.branding" autoStart="true" startLevel="5" />
@@ -118,27 +117,7 @@ SOFTWARE.
       <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
       <plugin id="org.eclipse.jdt" autoStart="true" startLevel="4" />
       <plugin id="org.eclipse.pde" autoStart="true" startLevel="1" />
-      <plugin id="org.eclipse.pde.api.tools" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.api.tools.annotations" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.api.tools.ui" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.build" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.core" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.doc.user" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.ds.annotations" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.ds.core" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.ds.lib" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.ds.ui" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.ds1_2.lib" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.genericeditor.extension" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.junit.runtime" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.launching" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.runtime" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.ua.core" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.ua.ui" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.ui" autoStart="false" startLevel="0" />
-      <plugin id="org.eclipse.pde.ui.templates" autoStart="false" startLevel="0" />
       <plugin id="org.eclipse.platform" autoStart="true" startLevel="1" />
-      <plugin id="org.eclipse.platform.doc.user" autoStart="false" startLevel="4" />
       <plugin id="org.eclipse.ui.ide.application" autoStart="false" startLevel="2" />
    </configurations>
 
