@@ -7,6 +7,9 @@ Magic Lantern is a interactive, title development platform for authoring highly 
 such as interactive TV applications, games, educational programs, and point-of-information/sales 
 kiosks. It is designed specifically for the real-world needs of professional title development
 teams as they break new ground in the development of real-time interactive titles.
+<p></p>
+<p>Magic Lantern Java2D Studio is an Open Source project. The source for this project may be found
+on Github at <topic href="https://github.com/magic-lantern-studio">https://github.com/magic-lantern-studio</topic></p>
 </intro>
 
 <item><b>Magic Lantern Java2D Studio Documentation</b>
@@ -16,11 +19,16 @@ distributed with this release of Magic Lantern Studio.
 
 <item><b>Learn More</b>
 The official site of Magic Lantern can be found here: <topic href="https://magic-lantern-studio.github.io/">https://magic-lantern-studio.github.io/</topic>
+<p></p>
+Documentation is also available on the Github project wiki: <topic href="https://github.com/magic-lantern-studio/mle-documentation/wiki/Magic-Lantern-Documentation">https://github.com/magic-lantern-studio/mle-documentation/wiki/Magic-Lantern-Documentation</topic>
 </item>
 
 <item><b>Reporting bugs, comments</b>
 If you experience any issues or wish to request feature enhancements, please let us know.
-Please feel free to send us your comments : <b>msm@wizzerworks.com</b>
+<p></p>
+Bugs and feature requests may be documented at <topic href="https://github.com/magic-lantern-studio/mle-studio/issues">https://github.com/magic-lantern-studio/mle-studio/issues</topic>
+<p></p>
+Also, please feel free to send us your comments : <b>msm@wizzerworks.com</b>
 </item>
 
 </welcomePage>

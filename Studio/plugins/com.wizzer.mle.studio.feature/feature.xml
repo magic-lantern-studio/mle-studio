@@ -60,6 +60,8 @@ http://www.wizzerworks.com
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.ui.workbench.texteditor"/>
       <import plugin="org.eclipse.core.runtime" version="3.13.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.expressions"/>
+      <import plugin="org.eclipse.e4.ui.model.workbench" version="2.1.700" match="greaterOrEqual"/>
    </requires>
 
    <plugin
