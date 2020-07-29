@@ -121,6 +121,11 @@ SOFTWARE.
       <plugin id="org.eclipse.ui.ide.application" autoStart="false" startLevel="2" />
    </configurations>
 
+   <repositories>
+      <repository location="http://download.eclipse.org/releases/2020-06" enabled="true" />
+      <repository location="http://download.eclipse.org/eclipse/updates/4.16" enabled="true" />
+   </repositories>
+
    <preferencesInfo>
       <targetfile overwrite="false"/>
    </preferencesInfo>
