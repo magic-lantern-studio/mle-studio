@@ -4,7 +4,7 @@
       label="Magic Lantern Studio Linux Feature"
       version="1.0.0.qualifier"
       provider-name="Wizzer Works"
-      plugin="com.wizzer.mle.studio.branding"
+      plugin="com.wizzer.mle.studio.linux.branding"
       os="linux"
       arch="x86_64">
 
