@@ -71,7 +71,7 @@ public class DwpEditorInput extends FileEditorInput
 	 * reflect the contents of the file resource.
 	 * <p>
 	 * This method is normally called from the <code>DwpToolEditor</code> when
-	 * the editor is intialized.
+	 * the editor is initialized.
 	 * </p>
 	 * 
 	 * @param name The name of the file resource.

@@ -60,6 +60,7 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
+import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 // Import Wizzer Works Framework packages.
@@ -292,7 +293,7 @@ public class DwpTableEditor extends EditorPart implements Observer
 		throws PartInitException
 	{
 		// Test first to determine that editor input is valid.
-		if (input instanceof DwpEditorInput)
+		if ((input instanceof DwpEditorInput) || (input instanceof FileEditorInput))
 		{
 			setSite(site);
 			setInput(input);
@@ -377,7 +378,7 @@ public class DwpTableEditor extends EditorPart implements Observer
 		// Set the selection provider.
 		getSite().setSelectionProvider(m_tool.getAttributeTreeViewer().getTreeViewer());
 		
-		// Mark the tool as being intialized.
+		// Mark the tool as being initialized.
 		m_tool.setIsInitialized(true);
 	}
 

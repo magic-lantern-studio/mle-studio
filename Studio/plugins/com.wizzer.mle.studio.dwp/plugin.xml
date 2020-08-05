@@ -36,12 +36,33 @@
       </view>
    </extension>
    
+   <extension point="org.eclipse.core.contenttype.contentTypes">
+      <content-type base-type="org.eclipse.core.runtime.properties"
+            file-extensions="dwp"
+            id="com.wizzer.mle.studio.dwp.contentType.dwp"
+            name="Digital Workprint File"
+            priority="normal">
+      </content-type>
+   </extension>
+   
+   <extension point="org.eclipse.ui.editors">
+      <editor class="org.eclipse.ui.editors.text.TextEditor"
+            default="false"
+            extensions="dwp"
+            icon="icons/digitalworkprint_16x16.png"
+            id="com.wizzer.mle.studio.dwp.editor.text.DwpTableEditor"
+            name="Digital Workprint Text Editor">
+         <contentTypeBinding contentTypeId="com.wizzer.mle.studio.dwp.contentType.dwp">
+         </contentTypeBinding>
+      </editor>
+   </extension>
+
    <extension
          point="org.eclipse.ui.editors"
          id="com.wizzer.mle.studio.dwp.editors"
          name="Magic Lantern Studio DWP Editors">
       <editor
-            name="Digital Workprint Table Tool"
+            name="Digital Workprint Table Editor"
             icon="icons/digitalworkprint_16x16.png"
             class="com.wizzer.mle.studio.dwp.editor.DwpTableEditor"
             id="com.wizzer.mle.studio.dwp.editor.DwpTableEditor">
