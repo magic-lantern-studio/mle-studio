@@ -931,6 +931,9 @@ QtDwpModel::setupModelData(const MleDwpItem *item, QtDwpTreeItem *parent)
     bool rval = false;
     QtDwpAttribute *attr = nullptr;
 
+    // Check if item is NULL.
+    if (item == nullptr) return rval;
+
     // Walk the Digital Workprint item herarchy.
     if (item->isa(MleDwpSet::typeId))
     {
@@ -1049,10 +1052,10 @@ QtDwpModel::setupModelData(const MleDwpItem *item, QtDwpTreeItem *parent)
 
     /* Recurse over children. */
     MleDwpItem *child = item->getFirstChild();
-    while ( child )
+    while (child)
     {
         /* Build up child attributes */
-        if (this->setupModelData(child,attr))
+        if (this->setupModelData(child, attr))
         {
             rval = true;
         }
@@ -1060,6 +1063,15 @@ QtDwpModel::setupModelData(const MleDwpItem *item, QtDwpTreeItem *parent)
     }
 
     return rval;
+}
+
+bool
+QtDwpModel::removeModelData(const MleDwpItem *item)
+{
+    // Todo - Implement
+    // Find matching QtDwpAttribute in mRootItem.
+    // Remove children.
+    // Remove this item.
 }
 
 QtDwpTreeItem *
@@ -1234,4 +1246,15 @@ QtDwpModel::parent(const QModelIndex &index) const
         return QModelIndex();
 
     return createIndex(parentItem->childNumber(), 0, parentItem);
+}
+
+void
+QtDwpModel::setDwp(const MleDwpItem *item)
+{
+    if (mDwp != nullptr) {
+        // Remove the old model.
+        removeModelData(item);
+    }
+    setupModelData(item, mRootItem);
+    mDwp= item;
 }

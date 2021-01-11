@@ -288,6 +288,25 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
     bool removeRows(int position, int rows,
                     const QModelIndex &parent = QModelIndex()) override;
 
+    /**
+     * @brief Get the associated Digital Workprint item.
+     *
+     * @return A pointer to the Digital Workprint heiarchy is returned.
+     * The retun value may be <code>nullptr</code>.
+     */
+    const MleDwpItem *getDwp() { return mDwp; }
+
+    /**
+     * @brief Set the associated Digital Workprint item.
+     * <p>
+     * If an existing model has already been established, then
+     * it will be deleted and replaced by this one.
+     * </p>
+     *
+     * @param item The associated Digital Workprint to set.
+     */
+    void setDwp(const MleDwpItem *item);
+
   protected:
 
     QtDwpAttribute *createActor(MleDwpActor *item, QtDwpTreeItem *parent);
@@ -322,6 +341,9 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
     // Setup the model data for this object.
     //void setupModelData(const QStringList &lines, QtDwpTreeItem *parent);
     bool setupModelData(const MleDwpItem *item, QtDwpTreeItem *parent);
+
+    // Remove the model data for the sepcified item.
+    bool removeModelData(const MleDwpItem *item);
 
     // Get the item for the specified model index.
     QtDwpTreeItem *getItem(const QModelIndex &index) const;
