@@ -38,3 +38,9 @@ unix {
     target.path = /opt/MagicLantern/lib/mle/qt
 }
 !isEmpty(target.path): INSTALLS += target
+
+copydata.commands = $(MKDIR) \"$$OUT_PWD/../tests/workprints\"; $(COPY_DIR) \"$$PWD/../tests/workprints/TestDWPProperties.dwp\" \"$$OUT_PWD/../tests/workprints\"
+first.depends = $(first) copydata
+export(first.depends)
+export(copydata.commands)
+QMAKE_EXTRA_TARGETS += first copydata

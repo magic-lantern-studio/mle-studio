@@ -31,21 +31,14 @@
 //
 // COPYRIGHT_END
 
-// Include Google Test header files.
-#include <gtest/gtest.h>
+#ifndef __LIBDWPTEST_H_
+#define __LIBDWPTEST_H_
 
-// Include DWP unit test header files.
-#include "libdwptest.h"
-#include "tst_createmodel.h"
+// Include system header files.
+#include "stdio.h"
 
-int main(int argc, char *argv[])
-{
-    // Initialize DWP Test.
-    initDWPTest();
+// Declare external prototypes.
+extern bool initDWPTest();
 
-    // Initialize Google Test.
-    ::testing::InitGoogleTest(&argc, argv);
+#endif /* __LIBDWPTEST_H_ */
 
-    // Execute tests.
-    return RUN_ALL_TESTS();
-}

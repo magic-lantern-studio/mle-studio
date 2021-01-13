@@ -1072,6 +1072,8 @@ QtDwpModel::removeModelData(const MleDwpItem *item)
     // Find matching QtDwpAttribute in mRootItem.
     // Remove children.
     // Remove this item.
+
+    return false;
 }
 
 QtDwpTreeItem *

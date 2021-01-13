@@ -5,7 +5,6 @@ TEMPLATE = app
 CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG += thread
-#CONFIG -= qt
 CONFIG += widget
 
 DEFINES += MLE_NOT_DLL DEBUG
@@ -14,9 +13,11 @@ INCLUDEPATH += $$PWD/../../lib \
     /opt/MagicLantern/include
 
 HEADERS += \
+        libdwptest.h \
         tst_createmodel.h
 
 SOURCES += \
+        libdwptest.cpp \
         main.cpp
 
 LIBS += -L$$OUT_PWD/../../lib -lQtDwpModel \
