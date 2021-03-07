@@ -28,6 +28,10 @@
 #include "QtDwpTreeItem.h"
 #include "QtDwpNameTypeAttribute.h"
 #include "QtDwpNameTypeValueAttribute.h"
+#include "QtMlVector2.h"
+#include "QtMlVector3.h"
+#include "QtMlVector4.h"
+#include "QtMlTransform.h"
 
 // Include Qt header files.
 #include <QtWidgets>
@@ -97,62 +101,6 @@ QtDwpModel::~QtDwpModel()
 {
     delete mRootItem;
 }
-
-#if 0
-void
-QtDwpModel::setupModelData(const QStringList &lines, QtDwpTreeItem *parent)
-{
-    QVector<QtDwpTreeItem*> parents;
-    QVector<int> indentations;
-    parents << parent;
-    indentations << 0;
-
-    int number = 0;
-
-    while (number < lines.count()) {
-        int position = 0;
-        while (position < lines[number].length()) {
-            if (lines[number].at(position) != ' ')
-                break;
-            ++position;
-        }
-
-        const QString lineData = lines[number].mid(position).trimmed();
-
-        if (! lineData.isEmpty()) {
-            // Read the column data from the rest of the line.
-            const QStringList columnStrings =
-                lineData.split(QLatin1Char('\t'), Qt::SkipEmptyParts);
-            QVector<QVariant> columnData;
-            columnData.reserve(columnStrings.size());
-            for (const QString &columnString : columnStrings)
-                columnData << columnString;
-
-            if (position > indentations.last()) {
-                // The last child of the current parent is now the new parent
-                // unless the current parent has no children.
-
-                if (parents.last()->childCount() > 0) {
-                    parents << parents.last()->child(parents.last()->childCount()-1);
-                    indentations << position;
-                }
-            } else {
-                while (position < indentations.last() && parents.count() > 0) {
-                    parents.pop_back();
-                    indentations.pop_back();
-                }
-            }
-
-            // Append a new item to the current parent's list of children.
-            QtDwpTreeItem *parent = parents.last();
-            parent->insertChildren(parent->childCount(), 1, mRootItem->columnCount());
-            for (int column = 0; column < columnData.size(); ++column)
-                parent->child(parent->childCount() - 1)->setData(column, columnData[column]);
-        }
-        ++number;
-    }
-}
-#endif /* 0 */
 
 QtDwpAttribute *
 QtDwpModel::createActor(MleDwpActor *item, QtDwpTreeItem *parent)
@@ -489,16 +437,10 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             MlVector2 value;
             dataType->get(&(item->m_data),&value);
 
-            // Create an array of float.
-            float floatValue[2];
-            SET_FLOAT_FROM_SCALAR(floatValue[0],&value[0]);
-            SET_FLOAT_FROM_SCALAR(floatValue[1],&value[1]);
-
             // And convert it to a QVariant.
-            QVector<float> qfarray;
-            qfarray.append(floatValue[0]);
-            qfarray.append(floatValue[1]);
-            QVariant vValue = QVariant::fromValue(qfarray);
+            QtMlVector2 qValue(value);
+            QVariant vValue;
+            vValue.setValue(qValue);
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
@@ -522,18 +464,10 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             MlVector3 value;
             dataType->get(&(item->m_data),&value);
 
-            // Create an array of float.
-            float floatValue[3];
-            SET_FLOAT_FROM_SCALAR(floatValue[0],&value[0]);
-            SET_FLOAT_FROM_SCALAR(floatValue[1],&value[1]);
-            SET_FLOAT_FROM_SCALAR(floatValue[2],&value[2]);
-
             // And convert it to a QVariant.
-            QVector<float> qfarray;
-            qfarray.append(floatValue[0]);
-            qfarray.append(floatValue[1]);
-            qfarray.append(floatValue[2]);
-            QVariant vValue = QVariant::fromValue(qfarray);
+            QtMlVector3 qValue(value);
+            QVariant vValue;
+            vValue.setValue(qValue);
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
@@ -557,20 +491,10 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             MlVector4 value;
             dataType->get(&(item->m_data),&value);
 
-            // Create an array of float.
-            float floatValue[4];
-            SET_FLOAT_FROM_SCALAR(floatValue[0],&value[0]);
-            SET_FLOAT_FROM_SCALAR(floatValue[1],&value[1]);
-            SET_FLOAT_FROM_SCALAR(floatValue[2],&value[2]);
-            SET_FLOAT_FROM_SCALAR(floatValue[3],&value[3]);
-
             // And convert it to a QVariant.
-            QVector<float> qfarray;
-            qfarray.append(floatValue[0]);
-            qfarray.append(floatValue[1]);
-            qfarray.append(floatValue[2]);
-            qfarray.append(floatValue[3]);
-            QVariant vValue = QVariant::fromValue(qfarray);
+            QtMlVector4 qValue(value);
+            QVariant vValue;
+            vValue.setValue(qValue);
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
@@ -703,19 +627,10 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             MlTransform value;
             dataType->get(&(item->m_data),&value);
 
-            // Create an array of float.
-            float floatValue[12];
-            for (int i = 0; i < 4; i++) {
-                for (int j = 0; j < 3; j++) {
-                    SET_FLOAT_FROM_SCALAR(floatValue[j + (i * 3)],&value[i][j]);
-                }
-            }
-
             // And convert it to a QVariant.
-            QVector<float> qfarray;
-            for (int i = 0; i < 12; i++)
-                qfarray.append(floatValue[i]);
-            QVariant vValue = QVariant::fromValue(qfarray);
+            QtMlTransform qValue(value);
+            QVariant vValue;
+            vValue.setValue(qValue);
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
@@ -1044,7 +959,10 @@ QtDwpModel::setupModelData(const MleDwpItem *item, QtDwpTreeItem *parent)
     // Add the Attribute to the DWP domain table.
     if (attr != nullptr)
     {
-        //addAttribute(attr, parentAttr);
+        //addAttribute(attr, parent);
+        QVector<QtDwpTreeItem *> columnData;
+        columnData.append(attr);
+        parent->insertChildren(parent->childCount(), 1, columnData);
 
         // Add the tags to the attribute.
         //addAttributeTags(item, attr);
@@ -1200,9 +1118,12 @@ QtDwpModel::insertRows(int position, int rows, const QModelIndex &parent)
         return false;
 
     beginInsertRows(parent, position, position + rows - 1);
-    const bool success = parentItem->insertChildren(position,
-                                                    rows,
-                                                    mRootItem->columnCount());
+    // Insert empty column data.
+    QVector<QVariant> data(mRootItem->columnCount());
+    QVector<QtDwpTreeItem *> items;
+    for (int column = 0; column <  mRootItem->columnCount(); column++)
+        items[column] = new QtDwpTreeItem(data, parentItem);
+    const bool success = parentItem->insertChildren(position, rows, items);
     endInsertRows();
 
     return success;
@@ -1260,3 +1181,4 @@ QtDwpModel::setDwp(const MleDwpItem *item)
     setupModelData(item, mRootItem);
     mDwp= item;
 }
+

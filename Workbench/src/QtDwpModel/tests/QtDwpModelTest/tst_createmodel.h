@@ -106,6 +106,15 @@ TEST_F(CreateModelTestFixture, CreateModel)
     EXPECT_EQ(dwpModel->columnCount(), 3);
 
     delete dwpModel;
+
+    // Test DWP model
+    dwp = CreateModelTestFixture::g_workprint;
+    dwpModel = new QtDwpModel(headers, dwp);
+
+    ASSERT_NE(dwpModel, nullptr);
+    ASSERT_NE(dwpModel->getDwp(), nullptr);
+    EXPECT_EQ(dwpModel->rowCount(),1);
+    EXPECT_EQ(dwpModel->columnCount(), 3);
 }
 
 #endif // TST_CREATEMODEL_H

@@ -307,6 +307,13 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
      */
     void setDwp(const MleDwpItem *item);
 
+    /**
+     * @brief Get the root of the model.
+     *
+     * @return A pointer to the root <code>QtDwpTreeItem</code> is returned.
+     */
+    QtDwpTreeItem *getRoot() { return mRootItem; }
+
   protected:
 
     QtDwpAttribute *createActor(MleDwpActor *item, QtDwpTreeItem *parent);

@@ -72,6 +72,10 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
     void setDwpItem(const MleDwpItem *item)
     { mDwpItem = item; }
 
+    virtual void print();
+
+    static int dump(void *caller, void *calldata);
+
   protected:
 
     // The DWP item associated with this attribute.

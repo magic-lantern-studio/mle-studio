@@ -30,6 +30,8 @@
 //
 // COPYRIGHT_END
 
+#include <iostream>
+
 // Include DWP model header files.
 #include "QtDwpTreeItem.h"
 
@@ -80,14 +82,19 @@ QtDwpTreeItem::data(int column) const
 }
 
 bool
-QtDwpTreeItem::insertChildren(int position, int count, int columns)
+//QtDwpTreeItem::insertChildren(int position, int count, int columns)
+QtDwpTreeItem::insertChildren(int position, int count, QVector<QtDwpTreeItem *> items)
 {
     if (position < 0 || position > mChildItems.size())
         return false;
 
+    if (count > items.size())
+        return false;
+
     for (int row = 0; row < count; ++row) {
-        QVector<QVariant> data(columns);
-        QtDwpTreeItem *item = new QtDwpTreeItem(data, this);
+        //QVector<QVariant> data(columns);
+        //QtDwpTreeItem *item = new QtDwpTreeItem(data, this);
+        QtDwpTreeItem *item = items[row];
         mChildItems.insert(position, item);
     }
 
@@ -143,11 +150,33 @@ QtDwpTreeItem::removeColumns(int position, int columns)
     return true;
 }
 
-bool QtDwpTreeItem::setData(int column, const QVariant &value)
+bool
+QtDwpTreeItem::setData(int column, const QVariant &value)
 {
     if (column < 0 || column >= mItemData.size())
         return false;
 
     mItemData[column] = value;
     return true;
+}
+
+void
+QtDwpTreeItem::traverse(QtDwpTreeItemTraverseCB cb, void *caller, void *callData)
+{
+    // Call traversal callback for this item.
+    (cb)(caller, callData);
+
+    // Traverse the remaining children.
+    if (hasChildren()) {
+        for (int next = 0; next < mChildItems.size(); next++) {
+            // Call traversal for child item.
+            mChildItems[next]->traverse(cb, mChildItems[next], callData);
+        }
+    }
+}
+
+void
+QtDwpTreeItem::print()
+{
+    std::cout << "Printing QtDwpTreeItem" << std::endl;
 }

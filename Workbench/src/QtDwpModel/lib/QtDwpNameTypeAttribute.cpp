@@ -24,6 +24,9 @@
 //
 // COPYRIGHT_END
 
+#include <iostream>
+
+// Include Magic Lantern header files.
 #include "QtDwpNameTypeAttribute.h"
 
 QtDwpNameTypeAttribute::QtDwpNameTypeAttribute(const QVector<QVariant> &data, QtDwpTreeItem *parent)
@@ -35,4 +38,30 @@ QtDwpNameTypeAttribute::QtDwpNameTypeAttribute(const QVector<QVariant> &data, Qt
 QtDwpNameTypeAttribute::~QtDwpNameTypeAttribute()
 {
     // Do nothing.
+}
+
+
+void
+QtDwpNameTypeAttribute::print()
+{
+    std::cout << "Printing QtDwpNameTypeAttribute" << std::endl;
+
+    int columns = this->columnCount();
+    for (int column = 0; column < columns; column++) {
+        QVariant data = this->data(column);
+        switch (data.userType()) {
+            case QMetaType::QString: {
+                std::cout << data.toString().toStdString() << std::endl;
+                break;
+            }
+        }
+    }
+}
+
+int
+QtDwpNameTypeAttribute::dump(void *caller, void *calldata)
+{
+    QtDwpNameTypeAttribute *item = reinterpret_cast<QtDwpNameTypeAttribute *>(caller);
+    item->print();
+    return 1;
 }

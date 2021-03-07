@@ -52,6 +52,19 @@ class QTDWPMODEL_EXPORT QtDwpNameTypeValueAttribute : public QtDwpAttribute
      * @brief The destructor.
      */
     virtual ~QtDwpNameTypeValueAttribute();
+
+    virtual void print();
+
+    /**
+     * @brief Callback used to dump the contents of this attribute.
+     *
+     * @param caller A pointer to the caller; should be a <code>QtDwpNametypeValueAttribute</code>.
+     * @param calldata A pointer to caller specific data.
+     *
+     * @return If the dump is successfule, then <b>1</b> is returned.
+     * Otherwise, <b>0</b> will be returned.
+     */
+    static int dump(void *caller, void *calldata);
 };
 
 #endif /* __QTDWPNAMETYPEVALUEATTRIBUTE_H_ */

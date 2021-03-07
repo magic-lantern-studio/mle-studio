@@ -20,7 +20,12 @@ SOURCES += \
     QtDwpNameTypeAttribute.cpp \
     QtDwpNameTypeValueAttribute.cpp \
     QtDwpTreeItem.cpp \
-    QtDwpAttribute.cpp
+    QtDwpAttribute.cpp \
+    QtMlRotation.cpp \
+    QtMlTransform.cpp \
+    QtMlVector2.cpp \
+    QtMlVector3.cpp \
+    QtMlVector4.cpp
 
 HEADERS += \
     QtDwpModel_global.h \
@@ -29,7 +34,12 @@ HEADERS += \
     QtDwpNameTypeAttribute.h \
     QtDwpNameTypeValueAttribute.h \
     QtDwpTreeItem.h \
-    QtDwpAttribute.h
+    QtDwpAttribute.h \
+    QtMlRotation.h \
+    QtMlTransform.h \
+    QtMlVector2.h \
+    QtMlVector3.h \
+    QtMlVector4.h
 
 LIBS += -L/opt/MagicLantern/lib -lDWP -lmlmath -lmlutil
 
@@ -39,7 +49,7 @@ unix {
 }
 !isEmpty(target.path): INSTALLS += target
 
-copydata.commands = $(MKDIR) \"$$OUT_PWD/../tests/workprints\"; $(COPY_DIR) \"$$PWD/../tests/workprints/TestDWPProperties.dwp\" \"$$OUT_PWD/../tests/workprints\"
+copydata.commands = $(MKDIR) \"$$OUT_PWD/../tests/workprints\"; $(COPY_DIR) \"$$PWD/../tests/workprints\" \"$$OUT_PWD/../tests\"
 first.depends = $(first) copydata
 export(first.depends)
 export(copydata.commands)

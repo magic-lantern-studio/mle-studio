@@ -14,7 +14,8 @@ INCLUDEPATH += $$PWD/../../lib \
 
 HEADERS += \
         libdwptest.h \
-        tst_createmodel.h
+        tst_createmodel.h \
+        tst_datatypes.h
 
 SOURCES += \
         libdwptest.cpp \

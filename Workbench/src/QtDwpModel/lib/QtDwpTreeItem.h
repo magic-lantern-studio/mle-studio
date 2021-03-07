@@ -38,6 +38,14 @@
 
 #include "QtDwpModel_global.h"
 
+
+/**
+ * Define the callback function used with the <code>QtDwpTreeItem</code>
+ * traversal methods.
+ */
+typedef int (*QtDwpTreeItemTraverseCB)(void *caller, void *callData);
+
+
 /**
  * @brief The QtDwpTreeItem class is used to hold data for the DWP model.
  */
@@ -103,7 +111,7 @@ class QTDWPMODEL_EXPORT QtDwpTreeItem: public QObject
      *
      * @param column The location of the data to retrieve.
      *
-     * @return The data is returned lcated at the specified column
+     * @return The data is returned located at the specified column
      * index. if the column is out of range, then an invalid
      * <b>QVariant</b> is returned.
      */
@@ -120,7 +128,8 @@ class QTDWPMODEL_EXPORT QtDwpTreeItem: public QObject
      * @return <b>true</b> will be returned if the insertion is successful.
      * Otherwise, <b>false</b> will be returned.
      */
-    bool insertChildren(int position, int count, int columns);
+    //bool insertChildren(int position, int count, int columns);
+    bool insertChildren(int position, int count, QVector<QtDwpTreeItem *> items);
 
     /**
      * @brief Insert columns into this item's row.
@@ -175,6 +184,26 @@ class QTDWPMODEL_EXPORT QtDwpTreeItem: public QObject
      * column index is out of range.
      */
     bool setData(int column, const QVariant &value);
+
+    /**
+     * @brief Determine if this item has any children items.
+     *
+     * @return <b>true</b> is returned if this item has any children.
+     * Otherwise, <b>false</b> is returned.
+     */
+    bool hasChildren() { return ! mChildItems.isEmpty(); }
+
+    /**
+     * @brief Walk the item hierarchy and call the specified function
+     * <b>cb</b> with the parameters <b>caller</b> and <b>calldata</b>.
+     *
+     * @param cb The callback fucntion to call at each level in the hierarchy.
+     * @param caller The caller invoking this traversal.
+     * @param calldata The call data to use with the callback.
+     */
+    void traverse(QtDwpTreeItemTraverseCB cb, void *caller, void *calldata);
+
+    virtual void print();
 
   private:
 

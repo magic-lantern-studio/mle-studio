@@ -24,6 +24,8 @@
 //
 // COPYRIGHT_END
 
+#include <iostream>
+
 #include "QtDwpAttribute.h"
 
 QtDwpAttribute::QtDwpAttribute(const QVector<QVariant> &data, QtDwpTreeItem *parent)
@@ -36,4 +38,17 @@ QtDwpAttribute::QtDwpAttribute(const QVector<QVariant> &data, QtDwpTreeItem *par
 QtDwpAttribute::~QtDwpAttribute()
 {
     // Do nothing.
+}
+
+void
+QtDwpAttribute::print()
+{
+    std::cout << "Printing QtDwpAttribute" << std::endl;
+}
+
+int
+QtDwpAttribute::dump(void *caller, void *calldata)
+{
+    QtDwpTreeItem *item = reinterpret_cast<QtDwpTreeItem *>(caller);
+    item->print();
 }

@@ -37,6 +37,7 @@
 // Include DWP unit test header files.
 #include "libdwptest.h"
 #include "tst_createmodel.h"
+#include "tst_datatypes.h"
 
 int main(int argc, char *argv[])
 {

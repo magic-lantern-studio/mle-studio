@@ -24,7 +24,28 @@
 //
 // COPYRIGHT_END
 
+#include <iostream>
+
+// Include Magic Lantern header files.
+#include "mle/DwpItem.h"
+#include "mle/DwpDatatype.h"
+#include "mle/DwpProperty.h"
+#include "mle/DwpVector2.h"
+#include "mle/DwpVector3.h"
+#include "mle/DwpVector4.h"
+#include "mle/DwpIntArray.h"
+#include "mle/DwpFloatArray.h"
+#include "mle/DwpTransform.h"
+#include "mle/DwpRotation.h"
+#include "math/vector.h"
+#include "math/rotation.h"
+#include "math/transfrm.h"
 #include "QtDwpNameTypeValueAttribute.h"
+#include "QtMlVector2.h"
+#include "QtMlVector3.h"
+#include "QtMlVector4.h"
+#include "QtMlRotation.h"
+#include "QtMlTransform.h"
 
 QtDwpNameTypeValueAttribute::QtDwpNameTypeValueAttribute(const QVector<QVariant> &data, QtDwpTreeItem *parent)
   :QtDwpAttribute(data, parent)
@@ -35,4 +56,100 @@ QtDwpNameTypeValueAttribute::QtDwpNameTypeValueAttribute(const QVector<QVariant>
 QtDwpNameTypeValueAttribute::~QtDwpNameTypeValueAttribute()
 {
     // Do nothing.
+}
+
+void
+QtDwpNameTypeValueAttribute::print()
+{
+    std::cout << "Printing QtDwpNameTypeValueAttribute" << std::endl;
+
+    int columns = this->columnCount();
+    for (int column = 0; column < columns; column++) {
+        QVariant data = this->data(column);
+        int vType = data.userType();
+        switch (vType) {
+            case QMetaType::QString: {
+                std::cout << data.toString().toStdString() << std::endl;
+                break;
+            }
+            case QMetaType::Int: {
+                std::cout << data.toInt() <<std::endl;
+                break;
+            }
+            case QMetaType::Float: {
+                std::cout << data.toFloat() <<std::endl;
+                break;
+            }
+            default: {
+                const MleDwpItem *dwpItem = this->getDwpItem();
+                if (dwpItem->isa(MleDwpProperty::typeId)) {
+                    const MleDwpProperty *property = reinterpret_cast<const MleDwpProperty *>(dwpItem);
+                    const MleDwpDatatype *dataType = property->getDatatype();
+
+                    if (dataType != nullptr) {
+                        if (dataType->isa(MleDwpVector2::typeId)) {
+                            QtMlVector2 stored = data.value<QtMlVector2>();
+                            MlVector2 value = stored.value();
+
+                            std::cout << "[" <<  value[0] << "," << value[1] << "]" << std::endl;
+                        } else if (dataType->isa(MleDwpVector3::typeId)) {
+                            QtMlVector3 stored = data.value<QtMlVector3>();
+                            MlVector3 value = stored.value();
+
+                            std::cout << "[" <<  value[0] << "," << value[1] << "," << value[2] << "]" << std::endl;
+                        } if (dataType->isa(MleDwpVector4::typeId)) {
+                            QtMlVector4 stored = data.value<QtMlVector4>();
+                            MlVector4 value = stored.value();
+
+                            std::cout << "[" <<  value[0] << "," << value[1] << "," << value[2] << "," << value[3] << "]" << std::endl;
+                        } if (dataType->isa(MleDwpIntArray::typeId)) {
+                            QVector<int> qarray = data.value<QVector<int>>();
+
+                            std::cout << "[";
+                            for (int i = 0; i < qarray.size(); i ++) {
+                                 std::cout << qarray[i];
+                                 if (i != qarray.size() - 1)
+                                     std::cout << ",";
+                            }
+                            std::cout << "]" << std::endl;
+                        } if (dataType->isa(MleDwpFloatArray::typeId)) {
+                            QVector<float> qarray = data.value<QVector<float>>();
+
+                            std::cout << "[";
+                            for (int i = 0; i < qarray.size(); i ++) {
+                                 std::cout << qarray[i];
+                                 if (i != qarray.size() - 1)
+                                     std::cout << ",";
+                            }
+                            std::cout << "]" << std::endl;
+                        } if (dataType->isa(MleDwpRotation::typeId)) {
+                            QtMlRotation stored = data.value<QtMlRotation>();
+                            MlRotation value = stored.value();
+
+                            std::cout << "[" <<  value[0] << "," << value[1] << "," << value[2] << "," << value[3] << "]" << std::endl;
+                        } if (dataType->isa(MleDwpTransform::typeId)) {
+                            QtMlTransform stored = data.value<QtMlTransform>();
+                            MlTransform value = stored.value();
+
+                            std::cout << "[";
+                            std::cout <<  value[0][0] << "," << value[0][1] << "," << value[0][2] << "," << value[0][3] << ",";
+                            std::cout <<  value[1][0] << "," << value[1][1] << "," << value[1][2] << "," << value[1][3] << ",";
+                            std::cout <<  value[2][0] << "," << value[2][1] << "," << value[2][2] << "," << value[2][3] << ",";
+                            std::cout <<  value[3][0] << "," << value[3][1] << "," << value[3][2] << "," << value[3][3];
+                            std::cout << "]" << std::endl;
+                        }
+                    }
+                    break;
+                }
+            }  // case QVariant
+        } // switch userType
+    }
+}
+
+int
+QtDwpNameTypeValueAttribute::dump(void *caller, void *calldata)
+{
+    QtDwpNameTypeValueAttribute *item = reinterpret_cast<QtDwpNameTypeValueAttribute *>(caller);
+    item->print();
+    return 1;
 }
