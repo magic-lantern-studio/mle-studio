@@ -95,6 +95,7 @@ TEST_F(CreateModelTestFixture, CreateModel)
     delete dwpModel;
 
     // Test empty DWP model with initial column setup.
+    headers.append("Dwp Item");
     headers.append("Name");
     headers.append("Type");
     headers.append("Value");
@@ -103,7 +104,7 @@ TEST_F(CreateModelTestFixture, CreateModel)
     ASSERT_NE(dwpModel, nullptr);
     ASSERT_EQ(dwpModel->getDwp(), nullptr);
     EXPECT_EQ(dwpModel->rowCount(),0);
-    EXPECT_EQ(dwpModel->columnCount(), 3);
+    EXPECT_EQ(dwpModel->columnCount(), 4);
 
     delete dwpModel;
 
@@ -114,7 +115,7 @@ TEST_F(CreateModelTestFixture, CreateModel)
     ASSERT_NE(dwpModel, nullptr);
     ASSERT_NE(dwpModel->getDwp(), nullptr);
     EXPECT_EQ(dwpModel->rowCount(),1);
-    EXPECT_EQ(dwpModel->columnCount(), 3);
+    EXPECT_EQ(dwpModel->columnCount(), 4);
 }
 
 #endif // TST_CREATEMODEL_H

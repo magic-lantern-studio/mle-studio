@@ -84,6 +84,7 @@ TEST_F(DataTypesTestFixture, CreateModel)
     MleDwpItem *dwp = nullptr;
 
     // Test DWP data types.
+    headers.append("DWP Item");
     headers.append("Name");
     headers.append("Type");
     headers.append("Value");
@@ -93,7 +94,7 @@ TEST_F(DataTypesTestFixture, CreateModel)
     ASSERT_NE(dwpModel, nullptr);
     ASSERT_NE(dwpModel->getDwp(), nullptr);
     EXPECT_EQ(dwpModel->rowCount(),1);
-    EXPECT_EQ(dwpModel->columnCount(), 3);
+    EXPECT_EQ(dwpModel->columnCount(), 4);
 
     QtDwpTreeItem *root = dwpModel->getRoot();
     root->traverse(QtDwpAttribute::dump, root, nullptr);

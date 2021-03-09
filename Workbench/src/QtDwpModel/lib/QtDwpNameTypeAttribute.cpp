@@ -46,16 +46,21 @@ QtDwpNameTypeAttribute::print()
 {
     std::cout << "Printing QtDwpNameTypeAttribute" << std::endl;
 
+    std::cout << "{" << std::endl;
     int columns = this->columnCount();
     for (int column = 0; column < columns; column++) {
+        std::cout << "  { \"column" << column << "\" : ";
         QVariant data = this->data(column);
         switch (data.userType()) {
             case QMetaType::QString: {
-                std::cout << data.toString().toStdString() << std::endl;
+                std::cout << data.toString().toStdString();
                 break;
             }
         }
+        std::cout << " }" << std::endl;
     }
+    std::cout << "}" << std::endl;
+    std::cout << std::flush;
 }
 
 int

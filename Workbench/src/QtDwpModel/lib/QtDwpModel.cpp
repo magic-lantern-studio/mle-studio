@@ -32,6 +32,7 @@
 #include "QtMlVector3.h"
 #include "QtMlVector4.h"
 #include "QtMlTransform.h"
+#include "QtMlRotation.h"
 
 // Include Qt header files.
 #include <QtWidgets>
@@ -105,6 +106,9 @@ QtDwpModel::~QtDwpModel()
 QtDwpAttribute *
 QtDwpModel::createActor(MleDwpActor *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "Actor";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
@@ -112,6 +116,7 @@ QtDwpModel::createActor(MleDwpActor *item, QtDwpTreeItem *parent)
     QString sType(type);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
     data << sType;
 
@@ -124,13 +129,17 @@ QtDwpModel::createActor(MleDwpActor *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createActorDef(MleDwpActorDef *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "ActorDef";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -139,13 +148,17 @@ QtDwpModel::createActorDef(MleDwpActorDef *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createBoot(MleDwpBoot *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "Boot";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -154,13 +167,17 @@ QtDwpModel::createBoot(MleDwpBoot *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createDSOFile(MleDwpDSOFile *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "DSOFile";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -169,6 +186,9 @@ QtDwpModel::createDSOFile(MleDwpDSOFile *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createGroup(MleDwpGroup *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "Group";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
@@ -176,6 +196,7 @@ QtDwpModel::createGroup(MleDwpGroup *item, QtDwpTreeItem *parent)
     QString sType(type);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
     data << sType;
 
@@ -188,13 +209,17 @@ QtDwpModel::createGroup(MleDwpGroup *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createGroupRef(MleDwpGroupRef *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "GroupRef";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -203,13 +228,17 @@ QtDwpModel::createGroupRef(MleDwpGroupRef *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createHeaderFile(MleDwpHeaderFile *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "HeaderFile";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -218,13 +247,17 @@ QtDwpModel::createHeaderFile(MleDwpHeaderFile *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createInclude(MleDwpInclude *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "Include";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -240,6 +273,9 @@ QtDwpModel::createMedia(MleDwpMedia *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createMediaRef(MleDwpMediaRef *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "MediaRef";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
@@ -247,6 +283,7 @@ QtDwpModel::createMediaRef(MleDwpMediaRef *item, QtDwpTreeItem *parent)
     QString sType(type);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
     data << sType;
 
@@ -259,6 +296,9 @@ QtDwpModel::createMediaRef(MleDwpMediaRef *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createMediaRefClass(MleDwpMediaRefClass *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "MediaRefClass";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
@@ -266,6 +306,7 @@ QtDwpModel::createMediaRefClass(MleDwpMediaRefClass *item, QtDwpTreeItem *parent
     QString sType(type);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
     data << sType;
 
@@ -278,15 +319,19 @@ QtDwpModel::createMediaRefClass(MleDwpMediaRefClass *item, QtDwpTreeItem *parent
 QtDwpAttribute *
 QtDwpModel::createMediaRefSource(MleDwpMediaRefSource *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "MediaRefSource";
+    QString sDwpItem(dwpItem);
+
     int flags = item->getFlags();
     char buffer[20];
     mlItoa(flags, buffer, 10);
     QString sName(buffer);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -295,15 +340,19 @@ QtDwpModel::createMediaRefSource(MleDwpMediaRefSource *item, QtDwpTreeItem *pare
 QtDwpAttribute *
 QtDwpModel::createMediaRefTarget(MleDwpMediaRefTarget *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "MediaRefTarget";
+    QString sDwpItem(dwpItem);
+
     int flags = item->getFlags();
     char buffer[20];
     mlItoa(flags, buffer, 10);
     QString sName(buffer);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -312,13 +361,17 @@ QtDwpModel::createMediaRefTarget(MleDwpMediaRefTarget *item, QtDwpTreeItem *pare
 QtDwpAttribute *
 QtDwpModel::createPackage(MleDwpPackage *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "Package";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -327,6 +380,9 @@ QtDwpModel::createPackage(MleDwpPackage *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "Property";
+    QString sDwpItem(dwpItem);
+
     QtDwpAttribute *attr = nullptr;
     const MleDwpDatatype *dataType = item->getDatatype();
 
@@ -348,6 +404,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
+            data << sDwpItem;
             data << sName;
             data << sType;
             data << vValue;
@@ -371,6 +428,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
+            data << sDwpItem;
             data << sName;
             data << sType;
             data << vValue;
@@ -394,6 +452,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
+            data << sDwpItem;
             data << sName;
             data << sType;
             data << vValue;
@@ -417,6 +476,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
+            data << sDwpItem;
             data << sName;
             data << sType;
             data << vValue;
@@ -444,6 +504,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
+            data << sDwpItem;
             data << sName;
             data << sType;
             data << vValue;
@@ -471,6 +532,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
+            data << sDwpItem;
             data << sName;
             data << sType;
             data << vValue;
@@ -498,6 +560,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
+            data << sDwpItem;
             data << sName;
             data << sType;
             data << vValue;
@@ -534,6 +597,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
+            data << sDwpItem;
             data << sName;
             data << sType;
             data << vValue;
@@ -570,6 +634,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
+            data << sDwpItem;
             data << sName;
             data << sType;
             data << vValue;
@@ -590,23 +655,14 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             MlRotation value;
             dataType->get(&(item->m_data),&value);
 
-            // Create an array of float.
-            float floatValue[4];
-            SET_FLOAT_FROM_SCALAR(floatValue[0],&value[0]);
-            SET_FLOAT_FROM_SCALAR(floatValue[1],&value[1]);
-            SET_FLOAT_FROM_SCALAR(floatValue[2],&value[2]);
-            SET_FLOAT_FROM_SCALAR(floatValue[3],&value[3]);
-
             // And convert it to a QVariant.
-            QVector<float> qfarray;
-            qfarray.append(floatValue[0]);
-            qfarray.append(floatValue[1]);
-            qfarray.append(floatValue[2]);
-            qfarray.append(floatValue[3]);
-            QVariant vValue = QVariant::fromValue(qfarray);
+            QtMlRotation qValue(value);
+            QVariant vValue;
+            vValue.setValue(qValue);
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
+            data << sDwpItem;
             data << sName;
             data << sType;
             data << vValue;
@@ -634,6 +690,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 
             // Create and initialize the data for the Qt model representation.
             QVector<QVariant> data;
+            data << sDwpItem;
             data << sName;
             data << sType;
             data << vValue;
@@ -650,6 +707,9 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createPropertyDef(MleDwpPropertyDef *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "PropertyDef";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
@@ -657,6 +717,7 @@ QtDwpModel::createPropertyDef(MleDwpPropertyDef *item, QtDwpTreeItem *parent)
     QString sType(type);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
     data << sType;
 
@@ -669,6 +730,9 @@ QtDwpModel::createPropertyDef(MleDwpPropertyDef *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createRoleAttachment(MleDwpRoleAttachment *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "RoleAttachment";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getParent();
     QString sName(name);
 
@@ -676,6 +740,7 @@ QtDwpModel::createRoleAttachment(MleDwpRoleAttachment *item, QtDwpTreeItem *pare
     QString sType(type);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
     data << sType;
 
@@ -688,6 +753,9 @@ QtDwpModel::createRoleAttachment(MleDwpRoleAttachment *item, QtDwpTreeItem *pare
 QtDwpAttribute *
 QtDwpModel::createRoleBinding(MleDwpRoleBinding *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "RoleBinding";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
@@ -695,6 +763,7 @@ QtDwpModel::createRoleBinding(MleDwpRoleBinding *item, QtDwpTreeItem *parent)
     QString sType(type);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
     data << sType;
 
@@ -707,13 +776,17 @@ QtDwpModel::createRoleBinding(MleDwpRoleBinding *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createRoleDef(MleDwpRoleDef *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "RoleDef";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -722,6 +795,9 @@ QtDwpModel::createRoleDef(MleDwpRoleDef *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createRoleSetMapping(MleDwpRoleSetMapping *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "RoleSetMapping";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
@@ -729,6 +805,7 @@ QtDwpModel::createRoleSetMapping(MleDwpRoleSetMapping *item, QtDwpTreeItem *pare
     QString sType(type);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
     data << sType;
 
@@ -741,6 +818,9 @@ QtDwpModel::createRoleSetMapping(MleDwpRoleSetMapping *item, QtDwpTreeItem *pare
 QtDwpAttribute *
 QtDwpModel::createScene(MleDwpScene *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "Scene";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
@@ -748,6 +828,7 @@ QtDwpModel::createScene(MleDwpScene *item, QtDwpTreeItem *parent)
     QString sType(type);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
     data << sType;
 
@@ -760,6 +841,9 @@ QtDwpModel::createScene(MleDwpScene *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createSet(MleDwpSet *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "Set";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
@@ -767,6 +851,7 @@ QtDwpModel::createSet(MleDwpSet *item, QtDwpTreeItem *parent)
     QString sType(type);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
     data << sType;
 
@@ -779,13 +864,17 @@ QtDwpModel::createSet(MleDwpSet *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createSetDef(MleDwpSetDef *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "SetDef";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -794,13 +883,17 @@ QtDwpModel::createSetDef(MleDwpSetDef *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createSourceFile(MleDwpSourceFile *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "SourceFile";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;
@@ -809,6 +902,9 @@ QtDwpModel::createSourceFile(MleDwpSourceFile *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createStage(MleDwpStage *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "Stage";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
@@ -816,6 +912,7 @@ QtDwpModel::createStage(MleDwpStage *item, QtDwpTreeItem *parent)
     QString sType(type);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
     data << sType;
 
@@ -828,13 +925,17 @@ QtDwpModel::createStage(MleDwpStage *item, QtDwpTreeItem *parent)
 QtDwpAttribute *
 QtDwpModel::createStageDef(MleDwpStageDef *item, QtDwpTreeItem *parent)
 {
+    const char *dwpItem = "StageDef";
+    QString sDwpItem(dwpItem);
+
     const char *name = item->getName();
     QString sName(name);
 
     QVector<QVariant> data;
+    data << sDwpItem;
     data << sName;
 
-    QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
+    QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
 
     return attr;

@@ -63,21 +63,23 @@ QtDwpNameTypeValueAttribute::print()
 {
     std::cout << "Printing QtDwpNameTypeValueAttribute" << std::endl;
 
+    std::cout << "{" << std::endl;
     int columns = this->columnCount();
     for (int column = 0; column < columns; column++) {
+        std::cout << "  { \"column" << column << "\" : ";
         QVariant data = this->data(column);
         int vType = data.userType();
         switch (vType) {
             case QMetaType::QString: {
-                std::cout << data.toString().toStdString() << std::endl;
+                std::cout << data.toString().toStdString();
                 break;
             }
             case QMetaType::Int: {
-                std::cout << data.toInt() <<std::endl;
+                std::cout << data.toInt();
                 break;
             }
             case QMetaType::Float: {
-                std::cout << data.toFloat() <<std::endl;
+                std::cout << data.toFloat();
                 break;
             }
             default: {
@@ -91,17 +93,17 @@ QtDwpNameTypeValueAttribute::print()
                             QtMlVector2 stored = data.value<QtMlVector2>();
                             MlVector2 value = stored.value();
 
-                            std::cout << "[" <<  value[0] << "," << value[1] << "]" << std::endl;
+                            std::cout << "[" <<  value[0] << "," << value[1] << "]";
                         } else if (dataType->isa(MleDwpVector3::typeId)) {
                             QtMlVector3 stored = data.value<QtMlVector3>();
                             MlVector3 value = stored.value();
 
-                            std::cout << "[" <<  value[0] << "," << value[1] << "," << value[2] << "]" << std::endl;
+                            std::cout << "[" <<  value[0] << "," << value[1] << "," << value[2] << "]";
                         } if (dataType->isa(MleDwpVector4::typeId)) {
                             QtMlVector4 stored = data.value<QtMlVector4>();
                             MlVector4 value = stored.value();
 
-                            std::cout << "[" <<  value[0] << "," << value[1] << "," << value[2] << "," << value[3] << "]" << std::endl;
+                            std::cout << "[" <<  value[0] << "," << value[1] << "," << value[2] << "," << value[3] << "]";
                         } if (dataType->isa(MleDwpIntArray::typeId)) {
                             QVector<int> qarray = data.value<QVector<int>>();
 
@@ -111,7 +113,7 @@ QtDwpNameTypeValueAttribute::print()
                                  if (i != qarray.size() - 1)
                                      std::cout << ",";
                             }
-                            std::cout << "]" << std::endl;
+                            std::cout << "]";
                         } if (dataType->isa(MleDwpFloatArray::typeId)) {
                             QVector<float> qarray = data.value<QVector<float>>();
 
@@ -121,12 +123,12 @@ QtDwpNameTypeValueAttribute::print()
                                  if (i != qarray.size() - 1)
                                      std::cout << ",";
                             }
-                            std::cout << "]" << std::endl;
+                            std::cout << "]";
                         } if (dataType->isa(MleDwpRotation::typeId)) {
                             QtMlRotation stored = data.value<QtMlRotation>();
                             MlRotation value = stored.value();
 
-                            std::cout << "[" <<  value[0] << "," << value[1] << "," << value[2] << "," << value[3] << "]" << std::endl;
+                            std::cout << "[" <<  value[0] << "," << value[1] << "," << value[2] << "," << value[3] << "]";
                         } if (dataType->isa(MleDwpTransform::typeId)) {
                             QtMlTransform stored = data.value<QtMlTransform>();
                             MlTransform value = stored.value();
@@ -136,14 +138,17 @@ QtDwpNameTypeValueAttribute::print()
                             std::cout <<  value[1][0] << "," << value[1][1] << "," << value[1][2] << "," << value[1][3] << ",";
                             std::cout <<  value[2][0] << "," << value[2][1] << "," << value[2][2] << "," << value[2][3] << ",";
                             std::cout <<  value[3][0] << "," << value[3][1] << "," << value[3][2] << "," << value[3][3];
-                            std::cout << "]" << std::endl;
+                            std::cout << "]";
                         }
                     }
                     break;
                 }
             }  // case QVariant
         } // switch userType
+        std::cout << " }" << std::endl;
     }
+    std::cout << "{" << std::endl;
+    std::cout << std::flush;
 }
 
 int
