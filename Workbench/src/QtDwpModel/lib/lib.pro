@@ -46,8 +46,10 @@ LIBS += -L/opt/MagicLantern/lib -lDWP -lmlmath -lmlutil
 # Default rules for deployment.
 unix {
     target.path = /opt/MagicLantern/lib/mle/qt
+    headers.path = /opt/MagicLantern/include/qt
+    headers.files = $$HEADERS
 }
-!isEmpty(target.path): INSTALLS += target
+!isEmpty(target.path): INSTALLS += target headers
 
 copydata.commands = $(MKDIR) \"$$OUT_PWD/../tests/workprints\"; $(COPY_DIR) \"$$PWD/../tests/workprints\" \"$$OUT_PWD/../tests\"
 first.depends = $(first) copydata

@@ -1132,10 +1132,21 @@ QtDwpModel::headerData(int section, Qt::Orientation orientation,
 Qt::ItemFlags
 QtDwpModel::flags(const QModelIndex &index) const
 {
+    Qt::ItemFlags flags;
+
     if (! index.isValid())
         return Qt::NoItemFlags;
 
-    return Qt::ItemIsEditable | QAbstractItemModel::flags(index);
+    int column = index.column();
+    if (column == 0) {
+        // The first column in the model is readonly and not editable
+        // or selectable.
+        flags = flags & (~Qt::ItemIsEditable);
+        flags = flags & (~Qt::ItemIsSelectable);
+    } else
+        flags = Qt::ItemIsEditable | QAbstractItemModel::flags(index);
+
+    return flags;
 }
 
 int
