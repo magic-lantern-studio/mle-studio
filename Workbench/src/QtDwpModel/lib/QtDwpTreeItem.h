@@ -123,12 +123,11 @@ class QTDWPMODEL_EXPORT QtDwpTreeItem: public QObject
      * @param position The location, row index, where the insertion is to
      * occur.
      * @param count The number of child items to insert at <i>position</i>.
-     * @param columns The number of columns in the childs row.
+     * @param itmes The items to insert in the child's row.
      *
      * @return <b>true</b> will be returned if the insertion is successful.
      * Otherwise, <b>false</b> will be returned.
      */
-    //bool insertChildren(int position, int count, int columns);
     bool insertChildren(int position, int count, QVector<QtDwpTreeItem *> items);
 
     /**
@@ -203,6 +202,12 @@ class QTDWPMODEL_EXPORT QtDwpTreeItem: public QObject
      */
     void traverse(QtDwpTreeItemTraverseCB cb, void *caller, void *calldata);
 
+    /**
+     * @brief Print the contents of the tree item to stdout.
+     *
+     * This method should be overridden by a subclass that prints something
+     * useful.
+     */
     virtual void print();
 
   private:

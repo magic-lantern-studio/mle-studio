@@ -93,7 +93,6 @@ QtDwpModel::QtDwpModel(const QStringList &headers, const MleDwpItem *data, QObje
     // Initialize the model with the header data.
     mRootItem = new QtDwpTreeItem(rootData);
     // Setup the model data.
-    //setupModelData(data.split('\n'), mRootItem);
     setupModelData(data, mRootItem);
     mDwp = data;
 }

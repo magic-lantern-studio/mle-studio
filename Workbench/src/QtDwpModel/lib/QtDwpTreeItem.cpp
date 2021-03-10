@@ -1,5 +1,5 @@
 /**
- * @file qtdwptreeitem.cpp
+ * @file QtDwpTreeItem.cpp
  *
  * A container for items of data supplied by the DWP model.
  */
@@ -82,7 +82,6 @@ QtDwpTreeItem::data(int column) const
 }
 
 bool
-//QtDwpTreeItem::insertChildren(int position, int count, int columns)
 QtDwpTreeItem::insertChildren(int position, int count, QVector<QtDwpTreeItem *> items)
 {
     if (position < 0 || position > mChildItems.size())
@@ -92,8 +91,6 @@ QtDwpTreeItem::insertChildren(int position, int count, QVector<QtDwpTreeItem *> 
         return false;
 
     for (int row = 0; row < count; ++row) {
-        //QVector<QVariant> data(columns);
-        //QtDwpTreeItem *item = new QtDwpTreeItem(data, this);
         QtDwpTreeItem *item = items[row];
         mChildItems.insert(position, item);
     }
