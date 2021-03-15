@@ -66,7 +66,7 @@ QtDwpNameTypeValueAttribute::data(int column, int role) const
 
     // Todo: validate role.
 
-    if (column == 3 && role == Qt::DisplayRole) {
+    if (column == 3 && (role == Qt::DisplayRole || role == Qt::EditRole)) {
         QVariant vData = mItemData.at(column);
         QString displayText = getValueAsString(vData);
         return displayText;
@@ -243,38 +243,40 @@ QtDwpNameTypeValueAttribute::getValueAsString(QVariant vData) const
                 const MleDwpDatatype *dataType = property->getDatatype();
 
                 if (dataType != nullptr) {
+                    int prec = 2; // floating-point precision
+
                     if (dataType->isa(MleDwpVector2::typeId)) {
                         QtMlVector2 stored = vData.value<QtMlVector2>();
                         MlVector2 value = stored.value();
 
-                        QString v0 = QString::number(value[0]);
-                        QString v1 = QString::number(value[1]);
+                        QString v0 = QString::number(value[0], 'f', prec);
+                        QString v1 = QString::number(value[1], 'f', prec);
                         str = v0 + " " + v1;
 
                     } else if (dataType->isa(MleDwpVector3::typeId)) {
                         QtMlVector3 stored = vData.value<QtMlVector3>();
                         MlVector3 value = stored.value();
 
-                        QString v0 = QString::number(value[0]);
-                        QString v1 = QString::number(value[1]);
-                        QString v2 = QString::number(value[2]);
+                        QString v0 = QString::number(value[0], 'f', prec);
+                        QString v1 = QString::number(value[1], 'f', prec);
+                        QString v2 = QString::number(value[2], 'f', prec);
                         str = v0 + " " + v1 + " " + v2;
 
                     } if (dataType->isa(MleDwpVector4::typeId)) {
                         QtMlVector4 stored = vData.value<QtMlVector4>();
                         MlVector4 value = stored.value();
 
-                        QString v0 = QString::number(value[0]);
-                        QString v1 = QString::number(value[1]);
-                        QString v2 = QString::number(value[2]);
-                        QString v3 = QString::number(value[3]);
+                        QString v0 = QString::number(value[0], 'f', prec);
+                        QString v1 = QString::number(value[1], 'f', prec);
+                        QString v2 = QString::number(value[2], 'f', prec);
+                        QString v3 = QString::number(value[3], 'f', prec);
                         str = v0 + " " + v1 + " " + v2 + " " +  v3;
 
                     } if (dataType->isa(MleDwpIntArray::typeId)) {
                         QVector<int> qarray = vData.value<QVector<int>>();
 
                         for (int i = 0; i < qarray.size(); i++) {
-                             str += qarray[i];
+                             str += QString::number(qarray[i], 'f', prec);
                              if (i != qarray.size() - 1)
                                  str += " ";
                         }
@@ -283,7 +285,7 @@ QtDwpNameTypeValueAttribute::getValueAsString(QVariant vData) const
                         QVector<float> qarray = vData.value<QVector<float>>();
 
                         for (int i = 0; i < qarray.size(); i++) {
-                             str += qarray[i];
+                             str += QString::number(qarray[i], 'f', prec);
                              if (i != qarray.size() - 1)
                                  str += " ";
                         }
@@ -292,32 +294,32 @@ QtDwpNameTypeValueAttribute::getValueAsString(QVariant vData) const
                         QtMlRotation stored = vData.value<QtMlRotation>();
                         MlRotation value = stored.value();
 
-                        QString v0 = QString::number(value[0]);
-                        QString v1 = QString::number(value[1]);
-                        QString v2 = QString::number(value[2]);
-                        QString v3 = QString::number(value[3]);
+                        QString v0 = QString::number(value[0], 'f', prec);
+                        QString v1 = QString::number(value[1], 'f', prec);
+                        QString v2 = QString::number(value[2], 'f', prec);
+                        QString v3 = QString::number(value[3], 'f', prec);
                         str = v0 + " " + v1 + " " + v2 + " " +  v3;
 
                     } if (dataType->isa(MleDwpTransform::typeId)) {
                         QtMlTransform stored = vData.value<QtMlTransform>();
                         MlTransform value = stored.value();
 
-                        str += QString::number(value[0][0]) + " ";
-                        str += QString::number(value[0][1]) + " ";
-                        str += QString::number(value[0][2]) + " ";
-                        str += QString::number(value[0][3]) + " ";
-                        str += QString::number(value[1][0]) + " ";
-                        str += QString::number(value[1][1]) + " ";
-                        str += QString::number(value[1][2]) + " ";
-                        str += QString::number(value[1][3]) + " ";
-                        str += QString::number(value[2][0]) + " ";
-                        str += QString::number(value[2][1]) + " ";
-                        str += QString::number(value[2][2]) + " ";
-                        str += QString::number(value[2][3]) + " ";
-                        str += QString::number(value[3][0]) + " ";
-                        str += QString::number(value[3][1]) + " ";
-                        str += QString::number(value[3][2]) + " ";
-                        str += QString::number(value[3][3]);
+                        str += QString::number(value[0][0], 'f', prec) + " ";
+                        str += QString::number(value[0][1], 'f', prec) + " ";
+                        str += QString::number(value[0][2], 'f', prec) + " ";
+                        str += QString::number(value[0][3], 'f', prec) + " ";
+                        str += QString::number(value[1][0], 'f', prec) + " ";
+                        str += QString::number(value[1][1], 'f', prec) + " ";
+                        str += QString::number(value[1][2], 'f', prec) + " ";
+                        str += QString::number(value[1][3], 'f', prec) + " ";
+                        str += QString::number(value[2][0], 'f', prec) + " ";
+                        str += QString::number(value[2][1], 'f', prec) + " ";
+                        str += QString::number(value[2][2], 'f', prec) + " ";
+                        str += QString::number(value[2][3], 'f', prec) + " ";
+                        str += QString::number(value[3][0], 'f', prec) + " ";
+                        str += QString::number(value[3][1], 'f', prec) + " ";
+                        str += QString::number(value[3][2], 'f', prec) + " ";
+                        str += QString::number(value[3][3], 'f', prec);
 
                     }
                 }
