@@ -32,19 +32,19 @@
 // COPYRIGHT_END
 
 // Include Magic Lantern header files.
-#include "QtDwpModel.h"
+#include "qt/QtDwpModel.h"
 #include "mle/DwpItem.h"
-#include "mle/DwpLoad.h"
 
 // Include Qt header files.
 #include <QApplication>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
 #include <QFile>
-#include <QTreeView>
+
+#include "MainWindow.h"
 
 int main(int argc, char *argv[])
 {
-    QStringList headers;
-
     Q_INIT_RESOURCE(qtdwpmodel);
 
     // Initialize DWP library.
@@ -52,23 +52,31 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
 
-    // Load the Digita Workprint.
-    QFile file(":/workprints/null.dwp");
-    QString filename = file.fileName();
-    //MleDwpItem *root = mlLoadWorkprint(filename.toStdString().c_str());
-    MleDwpItem *root = mlLoadWorkprint("workprints/null.dwp");
-
-    // Create the model for the viewer.
-    headers.append("DWP Item");
-    headers.append("Name");
-    headers.append("Type");
-    headers.append("Value");
-    QtDwpModel *model = new QtDwpModel(headers, root);
-
+    /*
     QTreeView view;
     view.setModel(model);
     view.setWindowTitle(QObject::tr("Digital Workprint Viewer"));
+    //view.resizeColumnToContents(0);
+    // Set visual elements of the QTreeView
+    //qApp->setStyleSheet("QTreeView { alternate-background-color: yellow; }");
     view.show();
+    */
+
+    QCoreApplication::setOrganizationName("Wizzer Works");
+    QCoreApplication::setOrganizationDomain("wizzerworks.com");
+    QCoreApplication::setApplicationName("DWP Viewer");
+    QCoreApplication::setApplicationVersion(QT_VERSION_STR);
+    QCommandLineParser parser;
+    parser.setApplicationDescription(QCoreApplication::applicationName());
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.addPositionalArgument("file", "The file to open.");
+    parser.process(app);
+
+    MainWindow mainWin;
+    if (! parser.positionalArguments().isEmpty())
+        mainWin.loadFile(parser.positionalArguments().first());
+    mainWin.show();
 
     return app.exec();
 }

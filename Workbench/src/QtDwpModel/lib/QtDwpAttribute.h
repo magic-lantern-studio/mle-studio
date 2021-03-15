@@ -61,7 +61,7 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
      * @return A pointer to the DWP item is returned. It may be <b>nullptr</b>
      * if it was never set.
      */
-    const MleDwpItem *getDwpItem()
+    const MleDwpItem *getDwpItem() const
     { return mDwpItem; }
 
     /**
@@ -72,8 +72,20 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
     void setDwpItem(const MleDwpItem *item)
     { mDwpItem = item; }
 
+    /**
+     * @brief Print the contents of the attribute to stdout.
+     */
     virtual void print();
 
+    /**
+     * @brief Dump the contents of the attribute.
+     *
+     * @param caller A pointer to the caller that will be dumped.
+     * @param calldata A pointer to caller specific data.
+     *
+     * @return If the dump is successful, then <b>1</b> is returned.
+     * Otherwise, <b>0</b> will be returned.
+     */
     static int dump(void *caller, void *calldata);
 
   protected:

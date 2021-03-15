@@ -3,15 +3,19 @@ requires(qtConfig(treeview))
 
 CONFIG += c++11
 
-DEFINES += MLE_NOT_DLL DEBUG
+DEFINES += MLE_NOT_DLL DEBUG QT_NO_CLIPBOARD
 
-INCLUDEPATH = $$PWD/../QtDwpModel/lib /opt/Magiclantern/include
+#INCLUDEPATH = $$PWD/../QtDwpModel/lib /opt/Magiclantern/include
+INCLUDEPATH = /opt/Magiclantern/include
 
-HEADERS     =
+HEADERS = \
+    MainWindow.h
 
-RESOURCES   = qtdwpmodel.qrc
+RESOURCES = qtdwpmodel.qrc
 
-SOURCES     = main.cpp
+SOURCES = \
+    main.cpp \
+    MainWindow.cpp
 
 LIBS += \
     -L/opt/MagicLantern/lib/mle/qt -lQtDwpModel \
@@ -20,8 +24,10 @@ LIBS += \
 # Default rules for deployment.
 unix {
     target.path = /opt/MagicLantern/bin
+    headers.path = /opt/MagicLantern/include/qt
+    headers.files = $$HEADERS
 }
-!isEmpty(target.path): INSTALLS += target
+!isEmpty(target.path): INSTALLS += target headers
 
 copydata.commands = $(MKDIR) \"$$OUT_PWD/workprints\"; $(COPY_DIR) \"$$PWD/workprints\" \"$$OUT_PWD\"
 first.depends = $(first) copydata

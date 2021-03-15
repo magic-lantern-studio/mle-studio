@@ -53,6 +53,11 @@ class QTDWPMODEL_EXPORT QtDwpNameTypeValueAttribute : public QtDwpAttribute
      */
     virtual ~QtDwpNameTypeValueAttribute();
 
+    virtual QVariant data(int column, int role) const;
+
+    /**
+     * @brief print Print the contents of the attribute to stdout.
+     */
     virtual void print();
 
     /**
@@ -61,10 +66,15 @@ class QTDWPMODEL_EXPORT QtDwpNameTypeValueAttribute : public QtDwpAttribute
      * @param caller A pointer to the caller; should be a <code>QtDwpNametypeValueAttribute</code>.
      * @param calldata A pointer to caller specific data.
      *
-     * @return If the dump is successfule, then <b>1</b> is returned.
+     * @return If the dump is successful, then <b>1</b> is returned.
      * Otherwise, <b>0</b> will be returned.
      */
     static int dump(void *caller, void *calldata);
+
+private:
+
+    // Get the value of the attribute as a string.
+    QString getValueAsString(QVariant data) const;
 };
 
 #endif /* __QTDWPNAMETYPEVALUEATTRIBUTE_H_ */

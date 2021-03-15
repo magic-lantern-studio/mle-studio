@@ -74,10 +74,13 @@ QtDwpTreeItem::columnCount() const
 }
 
 QVariant
-QtDwpTreeItem::data(int column) const
+QtDwpTreeItem::data(int column, int role) const
 {
     if (column < 0 || column >= mItemData.size())
         return QVariant();
+
+    // Todo: validate role.
+
     return mItemData.at(column);
 }
 

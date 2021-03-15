@@ -51,4 +51,5 @@ QtDwpAttribute::dump(void *caller, void *calldata)
 {
     QtDwpTreeItem *item = reinterpret_cast<QtDwpTreeItem *>(caller);
     item->print();
+    return 1;
 }

@@ -50,7 +50,7 @@ QtDwpNameTypeAttribute::print()
     int columns = this->columnCount();
     for (int column = 0; column < columns; column++) {
         std::cout << "  { \"column" << column << "\" : ";
-        QVariant data = this->data(column);
+        QVariant data = this->data(column, -1);
         switch (data.userType()) {
             case QMetaType::QString: {
                 std::cout << data.toString().toStdString();

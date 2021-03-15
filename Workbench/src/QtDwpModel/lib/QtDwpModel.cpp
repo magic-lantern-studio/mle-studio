@@ -1116,7 +1116,7 @@ QtDwpModel::data(const QModelIndex &index, int role) const
 
     QtDwpTreeItem *item = getItem(index);
 
-    return item->data(index.column());
+    return item->data(index.column(), role);
 }
 
 QVariant
@@ -1124,7 +1124,7 @@ QtDwpModel::headerData(int section, Qt::Orientation orientation,
                        int role) const
 {
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-        return mRootItem->data(section);
+        return mRootItem->data(section, role);
 
     return QVariant();
 }
@@ -1141,7 +1141,7 @@ QtDwpModel::flags(const QModelIndex &index) const
     if (column == 0) {
         // The first column in the model is readonly and not editable
         // or selectable.
-        flags = flags & (~Qt::ItemIsEditable);
+        //flags = flags & (~Qt::ItemIsEditable);
         flags = flags & (~Qt::ItemIsSelectable);
     } else
         flags = Qt::ItemIsEditable | QAbstractItemModel::flags(index);

@@ -110,12 +110,13 @@ class QTDWPMODEL_EXPORT QtDwpTreeItem: public QObject
      * @brief Retrieve the data located at the specified column index.
      *
      * @param column The location of the data to retrieve.
+     * @param role The role for the data to retrieve.
      *
      * @return The data is returned located at the specified column
      * index. if the column is out of range, then an invalid
      * <b>QVariant</b> is returned.
      */
-    QVariant data(int column) const;
+    virtual QVariant data(int column, int role) const;
 
     /**
      * @brief Insert child items into this item.
@@ -210,12 +211,16 @@ class QTDWPMODEL_EXPORT QtDwpTreeItem: public QObject
      */
     virtual void print();
 
+  protected:
+
+    // The rows of data in this item.
+    QVector<QVariant> mItemData;
+
   private:
 
     // The list of children.
     QVector<QtDwpTreeItem*> mChildItems;
-    // The rows of data in this item.
-    QVector<QVariant> mItemData;
+
     // The parent item.
     QtDwpTreeItem *mParentItem;
 };
