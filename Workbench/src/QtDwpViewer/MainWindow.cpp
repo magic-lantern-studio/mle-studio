@@ -10,8 +10,7 @@
 
 
 MainWindow::MainWindow()
-//    : mTextEdit(new QPlainTextEdit)
-    : mTreeView(new QTreeView)
+    : mTreeView(new QTreeView), mModel(nullptr)
 {
     QStringList headers;
 
@@ -45,6 +44,7 @@ MainWindow::MainWindow()
     headers.append("Type");
     headers.append("Value");
     QtDwpModel *model = new QtDwpModel(headers, root);
+    mModel = model;
 
     mTreeView->setModel(model);
 

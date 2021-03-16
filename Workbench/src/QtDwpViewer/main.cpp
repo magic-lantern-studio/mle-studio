@@ -67,16 +67,27 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("DWP Viewer");
     QCoreApplication::setApplicationVersion(QT_VERSION_STR);
     QCommandLineParser parser;
-    parser.setApplicationDescription(QCoreApplication::applicationName());
+    parser.setApplicationDescription(QCoreApplication::applicationName() + ": Display the contents of a Digital Workprint.");
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument("file", "The file to open.");
+    QCommandLineOption verboseOption(QString("verbose"), QString("Be verbose."));
+    parser.addOption(verboseOption);
     parser.process(app);
+
+    bool verbose = parser.isSet(verboseOption);
 
     MainWindow mainWin;
     if (! parser.positionalArguments().isEmpty())
+        // The first positional argument contains the DWP filename.
         mainWin.loadFile(parser.positionalArguments().first());
     mainWin.show();
+
+    QtDwpModel *model = mainWin.getModel();
+    if ((verbose) && (model != nullptr)) {
+        QtDwpTreeItem *root = model->getRoot();
+        root->traverse(QtDwpAttribute::dump, root, nullptr);
+    }
 
     return app.exec();
 }

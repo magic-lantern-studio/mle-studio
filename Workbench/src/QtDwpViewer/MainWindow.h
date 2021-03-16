@@ -1,12 +1,16 @@
+// COPYRIGHT_BEGIN
+// COPYRIGHT_END
+
 #ifndef __MAINWINDOW_H_
 #define __MAINWINDOW_H_
 
 #include <QMainWindow>
 
+#include "qt/QtDwpModel.h"
+
 QT_BEGIN_NAMESPACE
 class QAction;
 class QMenu;
-//class QPlainTextEdit;
 class QTreeView;
 class QSessionManager;
 QT_END_NAMESPACE
@@ -19,6 +23,9 @@ class MainWindow : public QMainWindow
     MainWindow();
 
     void loadFile(const QString &fileName);
+
+    QtDwpModel *getModel()
+    { return mModel; }
 
   protected:
     void closeEvent(QCloseEvent *event) override;
@@ -44,9 +51,11 @@ class MainWindow : public QMainWindow
     void setCurrentFile(const QString &fileName);
     QString strippedName(const QString &fullFileName);
 
-    //QPlainTextEdit *mTextEdit;
     QTreeView *mTreeView;
     QString mCurFile;
+
+    // The model loaded from the Digital Workprint.
+    QtDwpModel *mModel;
 };
 
 #endif // __MAINWINDOW_H_
