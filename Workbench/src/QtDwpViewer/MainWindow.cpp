@@ -47,8 +47,10 @@ MainWindow::MainWindow()
     mModel = model;
 
     mTreeView->setModel(model);
+    // Set minimal column size to 150 pixels.
+    mTreeView->header()->setMinimumSectionSize(150);
 
-    setCurrentFile(QString());
+    setCurrentFile(QString("workprints/null.dwp"));
     setUnifiedTitleAndToolBarOnMac(true);
 }
 

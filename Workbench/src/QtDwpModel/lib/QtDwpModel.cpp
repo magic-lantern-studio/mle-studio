@@ -24,6 +24,9 @@
 //
 // COPYRIGHT_END
 
+#include <iostream>
+
+// Include Magic Lantern Workbench header files.
 #include "QtDwpModel.h"
 #include "QtDwpTreeItem.h"
 #include "QtDwpNameTypeAttribute.h"
@@ -1141,10 +1144,14 @@ QtDwpModel::flags(const QModelIndex &index) const
     if (column == 0) {
         // The first column in the model is readonly and not editable
         // or selectable.
-        //flags = flags & (~Qt::ItemIsEditable);
-        flags = flags & (~Qt::ItemIsSelectable);
-    } else
-        flags = Qt::ItemIsEditable | QAbstractItemModel::flags(index);
+        //flags = QAbstractItemModel::flags(index) & (~Qt::ItemIsEnabled);
+        flags = QAbstractItemModel::flags(index) & Qt::ItemIsEnabled & Qt::ItemIsSelectable;
+    } else {
+        //int row = index.row();
+        //std::cout << "Processing row = " << row << " column = " <<  column << std::endl;
+        QtDwpTreeItem *item = getItem(index);
+        flags = item->flags(column);
+    }
 
     return flags;
 }

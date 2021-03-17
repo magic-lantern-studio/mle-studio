@@ -39,7 +39,11 @@
 QtDwpTreeItem::QtDwpTreeItem(const QVector<QVariant> &data, QtDwpTreeItem *parent)
     : mItemData(data),
       mParentItem(parent)
-{}
+{
+    Qt::ItemFlags flags = Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+    for (int i = 0; i < data.size(); i++)
+        mItemFlags.append(flags);
+}
 
 QtDwpTreeItem::~QtDwpTreeItem()
 {
@@ -82,6 +86,26 @@ QtDwpTreeItem::data(int column, int role) const
     // Todo: validate role.
 
     return mItemData.at(column);
+}
+
+Qt::ItemFlags
+QtDwpTreeItem::flags(int column) const
+{
+    if ((column < 0) || (column >= mItemFlags.size()))
+        return Qt::NoItemFlags;
+
+    return mItemFlags.at(column);
+}
+
+void
+QtDwpTreeItem::setFlags(int column, Qt::ItemFlags flags)
+{
+    if ((column < 0) || (column >= mItemFlags.size()))
+        return;
+
+    // Todo: validate the range of flags that can be set.
+
+    mItemFlags[column] = flags;
 }
 
 bool

@@ -119,6 +119,20 @@ class QTDWPMODEL_EXPORT QtDwpTreeItem: public QObject
     virtual QVariant data(int column, int role) const;
 
     /**
+     * @brief Get the item flags.
+     *
+     * The item flags determine how the user can interact with the item.
+     *
+     * By default, items are enabled, editable, selectable, checkable, and can be
+     * used both as the source of a drag and drop operation and as a drop target.
+     *
+     * @param column the location of the flags to retrieve.
+     *
+     * @return Returns the item flags for the column.
+     */
+    virtual Qt::ItemFlags flags(int column) const;
+
+    /**
      * @brief Insert child items into this item.
      *
      * @param position The location, row index, where the insertion is to
@@ -186,6 +200,17 @@ class QTDWPMODEL_EXPORT QtDwpTreeItem: public QObject
     bool setData(int column, const QVariant &value);
 
     /**
+     * @brief Set the item flags.
+     *
+     * The item flags determine how the user can interact with the item.
+     * This is often used to disable an item.
+     *
+     * @param column The column index specifying where to set the flags.
+     * @param flags The item flags to set.
+     */
+    void setFlags(int column, Qt::ItemFlags flags);
+
+    /**
      * @brief Determine if this item has any children items.
      *
      * @return <b>true</b> is returned if this item has any children.
@@ -216,6 +241,9 @@ class QTDWPMODEL_EXPORT QtDwpTreeItem: public QObject
     // The rows of data in this item.
     QVector<QVariant> mItemData;
 
+    // The flags configuring the item capabilities.
+    QVector<Qt::ItemFlags> mItemFlags;
+
   private:
 
     // The list of children.
@@ -223,6 +251,7 @@ class QTDWPMODEL_EXPORT QtDwpTreeItem: public QObject
 
     // The parent item.
     QtDwpTreeItem *mParentItem;
+
 };
 
 #endif /** __QTDWPTREEITEM_H_ */
