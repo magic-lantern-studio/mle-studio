@@ -24,64 +24,33 @@
 //
 // COPYRIGHT_END
 
-#ifndef __MAINWINDOW_H_
-#define __MAINWINDOW_H_
+#ifndef __DWPTREEVIEW_H_
+#define __DWPTREEVIEW_H_
 
-#include <QMainWindow>
+#include <QTreeView>
 
-#include "qt/QtDwpModel.h"
-#include "DwpTreeView.h"
+#include "qt/QtDwpTreeItem.h"
 
-QT_BEGIN_NAMESPACE
-class QAction;
-class QMenu;
-//class QTreeView;
-class QSessionManager;
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow
+/**
+ * @brief The DwpTreeView class is a QTreeView used for the DWP Viewer Model/View implementation.
+ */
+class DwpTreeView : public QTreeView
 {
-    Q_OBJECT
-
   public:
-    MainWindow();
 
-    void loadFile(const QString &fileName);
+    /**
+     * @brief Default constructor.
+     */
+    DwpTreeView();
 
-    QtDwpModel *getModel()
-    { return mModel; }
+    QtDwpTreeItem *itemAt(const QPoint &pos) const;
 
-  protected:
-    void closeEvent(QCloseEvent *event) override;
+    /**
+     * @brief The destructor.
+     */
+    ~DwpTreeView();
 
-    bool eventFilter(QObject *target, QEvent *event) override;
-
-  private slots:
-    void newFile();
-    void open();
-    bool save();
-    bool saveAs();
-    void about();
-    void documentWasModified();
-#ifndef QT_NO_SESSIONMANAGER
-    void commitData(QSessionManager &);
-#endif
-
-  private:
-    void createActions();
-    void createStatusBar();
-    void readSettings();
-    void writeSettings();
-    bool maybeSave();
-    bool saveFile(const QString &fileName);
-    void setCurrentFile(const QString &fileName);
-    QString strippedName(const QString &fullFileName);
-
-    DwpTreeView *mTreeView;
-    QString mCurFile;
-
-    // The model loaded from the Digital Workprint.
-    QtDwpModel *mModel;
+    void mouseReleaseEvent(QMouseEvent *e);
 };
 
-#endif // __MAINWINDOW_H_
+#endif // __DWPTREEVIEW_H_

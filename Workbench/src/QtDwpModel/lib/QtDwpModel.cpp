@@ -1145,7 +1145,7 @@ QtDwpModel::flags(const QModelIndex &index) const
         // The first column in the model is readonly and not editable
         // or selectable.
         //flags = QAbstractItemModel::flags(index) & (~Qt::ItemIsEnabled);
-        flags = QAbstractItemModel::flags(index) & Qt::ItemIsEnabled & Qt::ItemIsSelectable;
+        flags = QAbstractItemModel::flags(index) | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
     } else {
         //int row = index.row();
         //std::cout << "Processing row = " << row << " column = " <<  column << std::endl;

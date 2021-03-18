@@ -24,64 +24,54 @@
 //
 // COPYRIGHT_END
 
-#ifndef __MAINWINDOW_H_
-#define __MAINWINDOW_H_
+#include <QMouseEvent>
+#include <QMenu>
+#include <QTreeWidgetItem>
+#include <QDebug>
 
-#include <QMainWindow>
-
-#include "qt/QtDwpModel.h"
 #include "DwpTreeView.h"
+#include "qt/QtDwpModel.h"
 
-QT_BEGIN_NAMESPACE
-class QAction;
-class QMenu;
-//class QTreeView;
-class QSessionManager;
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow
+DwpTreeView:: DwpTreeView()
+    : QTreeView()
 {
-    Q_OBJECT
+    // do nothing extra.
+}
 
-  public:
-    MainWindow();
+DwpTreeView::~DwpTreeView()
+{
+    // Do nothing.
+}
 
-    void loadFile(const QString &fileName);
+QtDwpTreeItem *
+DwpTreeView::itemAt(const QPoint &pos) const
+{
+    QModelIndex index = indexAt(pos);
 
-    QtDwpModel *getModel()
-    { return mModel; }
+    QtDwpModel *model = static_cast<QtDwpModel *>(this->model());
 
-  protected:
-    void closeEvent(QCloseEvent *event) override;
+    QtDwpTreeItem *item = nullptr;
+    if (model)
+        item = model->getItem(index);
+    return item;
+}
 
-    bool eventFilter(QObject *target, QEvent *event) override;
-
-  private slots:
-    void newFile();
-    void open();
-    bool save();
-    bool saveAs();
-    void about();
-    void documentWasModified();
-#ifndef QT_NO_SESSIONMANAGER
-    void commitData(QSessionManager &);
-#endif
-
-  private:
-    void createActions();
-    void createStatusBar();
-    void readSettings();
-    void writeSettings();
-    bool maybeSave();
-    bool saveFile(const QString &fileName);
-    void setCurrentFile(const QString &fileName);
-    QString strippedName(const QString &fullFileName);
-
-    DwpTreeView *mTreeView;
-    QString mCurFile;
-
-    // The model loaded from the Digital Workprint.
-    QtDwpModel *mModel;
-};
-
-#endif // __MAINWINDOW_H_
+// Todo: Use ContextMenuEvent instead.
+void
+DwpTreeView::mouseReleaseEvent(QMouseEvent *e)
+{
+    if (e->button() == Qt::RightButton) {
+        QtDwpTreeItem *item = itemAt(e->pos());
+        if (item) {
+            QMenu m;
+            m.addAction("hello");
+            m.addAction("world");
+            QAction *selected = m.exec(mapToGlobal(e->pos()));
+            if (selected) {
+                qDebug() << "selected" << selected->text();
+            }
+        }
+    } else {
+        QTreeView::mouseReleaseEvent(e);
+    }
+}

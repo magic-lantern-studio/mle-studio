@@ -314,6 +314,9 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
      */
     QtDwpTreeItem *getRoot() { return mRootItem; }
 
+    // Get the item for the specified model index.
+    QtDwpTreeItem *getItem(const QModelIndex &index) const;
+
   protected:
 
     QtDwpAttribute *createActor(MleDwpActor *item, QtDwpTreeItem *parent);
@@ -351,9 +354,6 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
 
     // Remove the model data for the sepcified item.
     bool removeModelData(const MleDwpItem *item);
-
-    // Get the item for the specified model index.
-    QtDwpTreeItem *getItem(const QModelIndex &index) const;
 
     // The root item for the DWP model.
     QtDwpTreeItem *mRootItem;

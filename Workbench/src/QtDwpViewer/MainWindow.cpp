@@ -1,3 +1,28 @@
+// COPYRIGHT_BEGIN
+//
+// The MIT License (MIT)
+//
+// Copyright (c) 2020-2021 Wizzer Works
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+// COPYRIGHT_END
 
 #include <QtWidgets>
 
@@ -10,12 +35,14 @@
 
 
 MainWindow::MainWindow()
-    : mTreeView(new QTreeView), mModel(nullptr)
+    : mTreeView(new DwpTreeView), mModel(nullptr)
 {
     QStringList headers;
 
+    // Set the tree view as the main widget.
     setCentralWidget(mTreeView);
 
+    // Setup the tool and status bar.
     createActions();
     createStatusBar();
 
@@ -30,7 +57,7 @@ MainWindow::MainWindow()
     QGuiApplication::setFallbackSessionManagementEnabled(false);
     connect(qApp, &QGuiApplication::commitDataRequest,
             this, &MainWindow::commitData);
-#endif
+#endif // !QT_NO_SESSIONMANAGER
 
     // Load the Digital Workprint.
     //QFile file(":/workprints/null.dwp");
@@ -46,15 +73,19 @@ MainWindow::MainWindow()
     QtDwpModel *model = new QtDwpModel(headers, root);
     mModel = model;
 
+    // Set model on tree view.
     mTreeView->setModel(model);
     // Set minimal column size to 150 pixels.
     mTreeView->header()->setMinimumSectionSize(150);
+    // Install event filter for processing mouse events.
+    mTreeView->viewport()->installEventFilter(this);
 
     setCurrentFile(QString("workprints/null.dwp"));
     setUnifiedTitleAndToolBarOnMac(true);
 }
 
-void MainWindow::closeEvent(QCloseEvent *event)
+void
+MainWindow::closeEvent(QCloseEvent *event)
 {
     if (maybeSave()) {
         writeSettings();
@@ -64,7 +95,25 @@ void MainWindow::closeEvent(QCloseEvent *event)
     }
 }
 
-void MainWindow::newFile()
+bool
+MainWindow::eventFilter(QObject *target, QEvent *event)
+{
+    QTreeView *view = qobject_cast<QTreeView *>(target);
+    QMouseEvent *k = static_cast<QMouseEvent *>(event);
+
+    if (k && k->type() == QEvent::MouseButtonPress) {
+        if ((k->button()) == Qt::LeftButton) {
+            qDebug()<<"QTreeView event: left button.";
+        } else if ((k->button()) == Qt::RightButton) {
+            qDebug()<<"QTreeView event: right button.";
+        }
+    }
+
+    return QObject::eventFilter(target, event);
+}
+
+void
+MainWindow::newFile()
 {
     if (maybeSave()) {
         //mTextEdit->clear();
@@ -73,7 +122,8 @@ void MainWindow::newFile()
     }
 }
 
-void MainWindow::open()
+void
+MainWindow::open()
 {
     if (maybeSave()) {
         QString fileName = QFileDialog::getOpenFileName(this);
@@ -82,7 +132,8 @@ void MainWindow::open()
     }
 }
 
-bool MainWindow::save()
+bool
+MainWindow::save()
 {
     if (mCurFile.isEmpty()) {
         return saveAs();
@@ -91,7 +142,8 @@ bool MainWindow::save()
     }
 }
 
-bool MainWindow::saveAs()
+bool
+MainWindow::saveAs()
 {
     QFileDialog dialog(this);
     dialog.setWindowModality(Qt::WindowModal);
@@ -101,20 +153,23 @@ bool MainWindow::saveAs()
     return saveFile(dialog.selectedFiles().first());
 }
 
-void MainWindow::about()
+void
+MainWindow::about()
 {
    QMessageBox::about(this, tr("About DWP Viewer"),
-            tr("The <b>Dwp Viewer</b> may be used to view "
-               "and edit a Magic Lantern Digital Workprint."));
+       tr("The <b>Dwp Viewer</b> may be used to view "
+          "and edit a Magic Lantern Digital Workprint."));
 }
 
-void MainWindow::documentWasModified()
+void
+MainWindow::documentWasModified()
 {
     //setWindowModified(mTextEdit->document()->isModified());
     // Todo: Flag that DWP is modified.
 }
 
-void MainWindow::createActions()
+void
+MainWindow::createActions()
 {
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
     QToolBar *fileToolBar = addToolBar(tr("File"));
@@ -203,12 +258,14 @@ void MainWindow::createActions()
 #endif // !QT_NO_CLIPBOARD
 }
 
-void MainWindow::createStatusBar()
+void
+MainWindow::createStatusBar()
 {
     statusBar()->showMessage(tr("Ready"));
 }
 
-void MainWindow::readSettings()
+void
+MainWindow::readSettings()
 {
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
     const QByteArray geometry = settings.value("geometry", QByteArray()).toByteArray();
@@ -222,13 +279,15 @@ void MainWindow::readSettings()
     }
 }
 
-void MainWindow::writeSettings()
+void
+MainWindow::writeSettings()
 {
     QSettings settings(QCoreApplication::organizationName(), QCoreApplication::applicationName());
     settings.setValue("geometry", saveGeometry());
 }
 
-bool MainWindow::maybeSave()
+bool
+MainWindow::maybeSave()
 {
     //if (!mTextEdit->document()->isModified())
     //    return true;
@@ -250,7 +309,8 @@ bool MainWindow::maybeSave()
     return true;
 }
 
-void MainWindow::loadFile(const QString &fileName)
+void
+MainWindow::loadFile(const QString &fileName)
 {
     QFile file(fileName);
     if (! file.open(QFile::ReadOnly | QFile::Text)) {
@@ -274,7 +334,8 @@ void MainWindow::loadFile(const QString &fileName)
     statusBar()->showMessage(tr("File loaded"), 2000);
 }
 
-bool MainWindow::saveFile(const QString &fileName)
+bool
+MainWindow::saveFile(const QString &fileName)
 {
     QString errorMessage;
 
@@ -284,7 +345,7 @@ bool MainWindow::saveFile(const QString &fileName)
         QTextStream out(&file);
         //out << mTextEdit->toPlainText();
         // Todo: save Digital Workprint to file.
-        if (!file.commit()) {
+        if (! file.commit()) {
             errorMessage = tr("Cannot write file %1:\n%2.")
                            .arg(QDir::toNativeSeparators(fileName), file.errorString());
         }
@@ -294,7 +355,7 @@ bool MainWindow::saveFile(const QString &fileName)
     }
     QGuiApplication::restoreOverrideCursor();
 
-    if (!errorMessage.isEmpty()) {
+    if (! errorMessage.isEmpty()) {
         QMessageBox::warning(this, tr("Application"), errorMessage);
         return false;
     }
@@ -304,7 +365,8 @@ bool MainWindow::saveFile(const QString &fileName)
     return true;
 }
 
-void MainWindow::setCurrentFile(const QString &fileName)
+void
+MainWindow::setCurrentFile(const QString &fileName)
 {
     mCurFile = fileName;
     //mTextEdit->document()->setModified(false);
@@ -317,13 +379,15 @@ void MainWindow::setCurrentFile(const QString &fileName)
     setWindowFilePath(shownName);
 }
 
-QString MainWindow::strippedName(const QString &fullFileName)
+QString
+MainWindow::strippedName(const QString &fullFileName)
 {
     return QFileInfo(fullFileName).fileName();
 }
 
 #ifndef QT_NO_SESSIONMANAGER
-void MainWindow::commitData(QSessionManager &manager)
+void
+MainWindow::commitData(QSessionManager &manager)
 {
     if (manager.allowsInteraction()) {
         if (! maybeSave())
@@ -335,4 +399,4 @@ void MainWindow::commitData(QSessionManager &manager)
         // Todo: Save DWP if it is modifiled.
     }
 }
-#endif
+#endif // !QT_NO_SESSIONMANAGER
