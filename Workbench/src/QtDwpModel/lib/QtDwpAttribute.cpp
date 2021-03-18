@@ -40,6 +40,14 @@ QtDwpAttribute::~QtDwpAttribute()
     // Do nothing.
 }
 
+QString
+QtDwpAttribute::getAttributeName() const
+{
+    // The name of the atribute is the value of the first column, 0.
+    QVariant data = this->data(0, -1);
+    return data.toString();
+}
+
 void
 QtDwpAttribute::print()
 {

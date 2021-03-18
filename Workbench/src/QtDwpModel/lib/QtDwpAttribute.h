@@ -73,6 +73,13 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
     { mDwpItem = item; }
 
     /**
+     * @brief Retrieve the name of the DWP attribute.
+     *
+     * @return A <b>QString</b> is returned containing the name of the attribute.
+     */
+    QString getAttributeName() const;
+
+    /**
      * @brief Print the contents of the attribute to stdout.
      */
     virtual void print();

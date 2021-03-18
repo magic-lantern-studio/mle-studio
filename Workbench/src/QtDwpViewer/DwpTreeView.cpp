@@ -24,18 +24,22 @@
 //
 // COPYRIGHT_END
 
+// Include Qt header files.
 #include <QMouseEvent>
 #include <QMenu>
 #include <QTreeWidgetItem>
 #include <QDebug>
 
+// Include Magic Lantern Workbench header files.
 #include "DwpTreeView.h"
 #include "qt/QtDwpModel.h"
+#include "qt/QtDwpAttribute.h"
+
 
 DwpTreeView:: DwpTreeView()
     : QTreeView()
 {
-    // do nothing extra.
+    // Do nothing extra.
 }
 
 DwpTreeView::~DwpTreeView()
@@ -56,22 +60,18 @@ DwpTreeView::itemAt(const QPoint &pos) const
     return item;
 }
 
-// Todo: Use ContextMenuEvent instead.
 void
-DwpTreeView::mouseReleaseEvent(QMouseEvent *e)
+DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
 {
-    if (e->button() == Qt::RightButton) {
-        QtDwpTreeItem *item = itemAt(e->pos());
-        if (item) {
-            QMenu m;
-            m.addAction("hello");
-            m.addAction("world");
-            QAction *selected = m.exec(mapToGlobal(e->pos()));
-            if (selected) {
-                qDebug() << "selected" << selected->text();
-            }
+    QtDwpAttribute *item = static_cast<QtDwpAttribute *>(itemAt(e->pos()));
+    if (item) {
+        qDebug() << "Attribute" << item->getAttributeName();
+        QMenu m;
+        m.addAction("Add DWP Tag");
+        m.addAction("Delete DWP Item");
+        QAction *selected = m.exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
         }
-    } else {
-        QTreeView::mouseReleaseEvent(e);
     }
 }

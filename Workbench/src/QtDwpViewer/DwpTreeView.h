@@ -27,8 +27,10 @@
 #ifndef __DWPTREEVIEW_H_
 #define __DWPTREEVIEW_H_
 
+// Include Qt header files.
 #include <QTreeView>
 
+// Include the Magic Lantern Workbench header files.
 #include "qt/QtDwpTreeItem.h"
 
 /**
@@ -43,6 +45,13 @@ class DwpTreeView : public QTreeView
      */
     DwpTreeView();
 
+    /**
+     * @brief Get the item at the specified position.
+     *
+     * @param pos The coordinate position used to retrieve the item.
+     *
+     * @return A pointer to the tree item is returned.
+     */
     QtDwpTreeItem *itemAt(const QPoint &pos) const;
 
     /**
@@ -50,7 +59,13 @@ class DwpTreeView : public QTreeView
      */
     ~DwpTreeView();
 
-    void mouseReleaseEvent(QMouseEvent *e);
+    /**
+     * @brief Process a context menu event, displaying a pop-up menu for the associated
+     * <b>QtDwpTreeItem</b> in the tree view.
+     *
+     * @param e The event information.
+     */
+    void contextMenuEvent(QContextMenuEvent *e);
 };
 
 #endif // __DWPTREEVIEW_H_
