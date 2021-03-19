@@ -24,54 +24,29 @@
 //
 // COPYRIGHT_END
 
-// Include Qt header files.
-#include <QMouseEvent>
-#include <QMenu>
-#include <QTreeWidgetItem>
-#include <QDebug>
-
-// Include Magic Lantern Workbench header files.
-#include "DwpTreeView.h"
 #include "DwpDocumentContextMenu.h"
-#include "qt/QtDwpModel.h"
-#include "qt/QtDwpAttribute.h"
 
-
-DwpTreeView:: DwpTreeView()
-    : QTreeView()
+DwpDocumentContextMenu::DwpDocumentContextMenu(QObject *parent)
+    : QObject(parent),
+      mMenu(new QMenu())
 {
-    // Do nothing extra.
+    // Add menu actions.
+    mMenu->addAction("Add DWP Include Item");
+    mMenu->addAction("Add DWP SetDef Item");
+    mMenu->addAction("Add DWP ActorDef Item");
+    mMenu->addAction("Add DWP RoleDef Item");
+    mMenu->addAction("Add DWP Stage Item");
+    mMenu->addAction("Add DWP Scene Item");
+    mMenu->addAction("Add DWP Group Item");
+    mMenu->addAction("Add DWP MediaDef Item");
+    mMenu->addAction("Add DWP Boot Item");
+    mMenu->addSeparator();
+    mMenu->addAction("Add DWP Tag");
+    mMenu->addSeparator();
+    mMenu->addAction("Delete DWP Item");
 }
 
-DwpTreeView::~DwpTreeView()
+DwpDocumentContextMenu::~DwpDocumentContextMenu()
 {
-    // Do nothing.
-}
-
-QtDwpTreeItem *
-DwpTreeView::itemAt(const QPoint &pos) const
-{
-    QModelIndex index = indexAt(pos);
-
-    QtDwpModel *model = static_cast<QtDwpModel *>(this->model());
-
-    QtDwpTreeItem *item = nullptr;
-    if (model)
-        item = model->getItem(index);
-    return item;
-}
-
-void
-DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
-{
-    QtDwpAttribute *item = static_cast<QtDwpAttribute *>(itemAt(e->pos()));
-    if (item) {
-        qDebug() << "Attribute" << item->getAttributeName();
-        DwpDocumentContextMenu context;
-        QMenu *m = context.getMenu();
-        QAction *selected = m->exec(mapToGlobal(e->pos()));
-        if (selected) {
-            qDebug() << "Selected" << selected->text();
-        }
-    }
+    if (mMenu) delete mMenu;
 }

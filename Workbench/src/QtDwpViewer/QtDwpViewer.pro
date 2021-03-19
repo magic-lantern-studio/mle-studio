@@ -9,12 +9,14 @@ DEFINES += MLE_NOT_DLL DEBUG QT_NO_CLIPBOARD
 INCLUDEPATH = /opt/Magiclantern/include
 
 HEADERS = \
+    DwpDocumentContextMenu.h \
     DwpTreeView.h \
     MainWindow.h
 
 RESOURCES = qtdwpmodel.qrc
 
 SOURCES = \
+    DwpDocumentContextMenu.cpp \
     DwpTreeView.cpp \
     main.cpp \
     MainWindow.cpp

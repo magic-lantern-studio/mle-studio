@@ -24,54 +24,32 @@
 //
 // COPYRIGHT_END
 
+#ifndef __DWPDOCUMENTCONTEXTMENU_H_
+#define __DWPDOCUMENTCONTEXTMENU_H_
+
 // Include Qt header files.
-#include <QMouseEvent>
+#include <QObject>
 #include <QMenu>
-#include <QTreeWidgetItem>
-#include <QDebug>
-
-// Include Magic Lantern Workbench header files.
-#include "DwpTreeView.h"
-#include "DwpDocumentContextMenu.h"
-#include "qt/QtDwpModel.h"
-#include "qt/QtDwpAttribute.h"
 
 
-DwpTreeView:: DwpTreeView()
-    : QTreeView()
+class DwpDocumentContextMenu : public QObject
 {
-    // Do nothing extra.
-}
+    Q_OBJECT
 
-DwpTreeView::~DwpTreeView()
-{
-    // Do nothing.
-}
+  public:
 
-QtDwpTreeItem *
-DwpTreeView::itemAt(const QPoint &pos) const
-{
-    QModelIndex index = indexAt(pos);
+    explicit DwpDocumentContextMenu(QObject *parent = nullptr);
 
-    QtDwpModel *model = static_cast<QtDwpModel *>(this->model());
+    ~DwpDocumentContextMenu();
 
-    QtDwpTreeItem *item = nullptr;
-    if (model)
-        item = model->getItem(index);
-    return item;
-}
+    QMenu *getMenu() const
+    { return mMenu; }
 
-void
-DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
-{
-    QtDwpAttribute *item = static_cast<QtDwpAttribute *>(itemAt(e->pos()));
-    if (item) {
-        qDebug() << "Attribute" << item->getAttributeName();
-        DwpDocumentContextMenu context;
-        QMenu *m = context.getMenu();
-        QAction *selected = m->exec(mapToGlobal(e->pos()));
-        if (selected) {
-            qDebug() << "Selected" << selected->text();
-        }
-    }
-}
+  private:
+
+    // Associated Qt menu.
+    QMenu *mMenu;
+
+};
+
+#endif // __DWPDOCUMENTCONTEXTMENU_H_
