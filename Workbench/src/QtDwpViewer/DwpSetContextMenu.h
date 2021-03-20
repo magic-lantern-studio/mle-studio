@@ -24,33 +24,22 @@
 //
 // COPYRIGHT_END
 
-#include "DwpDocumentContextMenu.h"
+#ifndef __DWPSETCONTEXTMENU_H_
+#define __DWPSETCONTEXTMENU_H_
 
-DwpDocumentContextMenu::DwpDocumentContextMenu(QObject *parent)
-    : DwpContextMenu(parent)
+// Include DWP Viewer header files.
+#include "DwpContextMenu.h"
+
+
+class DwpSetContextMenu : public DwpContextMenu
 {
-    // do nothing extra.
-}
+  public:
 
-DwpDocumentContextMenu::~DwpDocumentContextMenu()
-{
-    // Do nothing.
-}
+    explicit DwpSetContextMenu(QObject *parent = nullptr);
 
-void
-DwpDocumentContextMenu::init()
-{
-    // Call super class method.
-    DwpContextMenu::init();
+    ~DwpSetContextMenu();
 
-    // Add menu actions.
-    mMenu->addAction("Add DWP Include Item");
-    mMenu->addAction("Add DWP SetDef Item");
-    mMenu->addAction("Add DWP ActorDef Item");
-    mMenu->addAction("Add DWP RoleDef Item");
-    mMenu->addAction("Add DWP Stage Item");
-    mMenu->addAction("Add DWP Scene Item");
-    mMenu->addAction("Add DWP Group Item");
-    mMenu->addAction("Add DWP MediaDef Item");
-    mMenu->addAction("Add DWP Boot Item");
-}
+    void init();
+};
+
+#endif // __DWPSETCONTEXTMENU_H_

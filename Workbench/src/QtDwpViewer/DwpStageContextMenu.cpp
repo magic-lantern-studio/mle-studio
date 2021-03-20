@@ -24,33 +24,35 @@
 //
 // COPYRIGHT_END
 
-#include "DwpDocumentContextMenu.h"
+#include "DwpStageContextMenu.h"
 
-DwpDocumentContextMenu::DwpDocumentContextMenu(QObject *parent)
+DwpStageContextMenu::DwpStageContextMenu(QObject *parent)
     : DwpContextMenu(parent)
 {
-    // do nothing extra.
+    // Do nothin extra.
 }
 
-DwpDocumentContextMenu::~DwpDocumentContextMenu()
+DwpStageContextMenu::~DwpStageContextMenu()
 {
     // Do nothing.
 }
 
 void
-DwpDocumentContextMenu::init()
+DwpStageContextMenu::init()
 {
     // Call super class method.
     DwpContextMenu::init();
 
     // Add menu actions.
-    mMenu->addAction("Add DWP Include Item");
-    mMenu->addAction("Add DWP SetDef Item");
-    mMenu->addAction("Add DWP ActorDef Item");
-    mMenu->addAction("Add DWP RoleDef Item");
-    mMenu->addAction("Add DWP Stage Item");
-    mMenu->addAction("Add DWP Scene Item");
-    mMenu->addAction("Add DWP Group Item");
-    mMenu->addAction("Add DWP MediaDef Item");
-    mMenu->addAction("Add DWP Boot Item");
+    if (mUseJava) {
+        // Support for Java and Android Digital Workprints.
+        mMenu->addAction("Add DWP Package Item");
+    } else {
+        // Support for C/C++ Digital Workprints.
+        mMenu->addAction("Add DWP HeaderFile Item");
+        mMenu->addAction("Add DWP SourceFile Item");
+    }
+
+    mMenu->addAction("Add DWP Set Item");
+    //mMenu->addAction("Add DWP PropertyDef Item");
 }

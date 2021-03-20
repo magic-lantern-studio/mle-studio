@@ -27,29 +27,19 @@
 #ifndef __DWPDOCUMENTCONTEXTMENU_H_
 #define __DWPDOCUMENTCONTEXTMENU_H_
 
-// Include Qt header files.
-#include <QObject>
-#include <QMenu>
+// Include DWP Viewer header files.
+#include "DwpContextMenu.h"
 
 
-class DwpDocumentContextMenu : public QObject
+class DwpDocumentContextMenu : public DwpContextMenu
 {
-    Q_OBJECT
-
   public:
 
     explicit DwpDocumentContextMenu(QObject *parent = nullptr);
 
     ~DwpDocumentContextMenu();
 
-    QMenu *getMenu() const
-    { return mMenu; }
-
-  private:
-
-    // Associated Qt menu.
-    QMenu *mMenu;
-
+    void init();
 };
 
 #endif // __DWPDOCUMENTCONTEXTMENU_H_

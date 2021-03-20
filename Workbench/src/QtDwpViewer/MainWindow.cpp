@@ -35,7 +35,9 @@
 
 
 MainWindow::MainWindow()
-    : mTreeView(new DwpTreeView), mModel(nullptr)
+    : mTreeView(new DwpTreeView),
+      mModel(nullptr),
+      mUseJava(false)
 {
     QStringList headers;
 
@@ -82,6 +84,14 @@ MainWindow::MainWindow()
 
     setCurrentFile(QString("workprints/null.dwp"));
     setUnifiedTitleAndToolBarOnMac(true);
+}
+
+void
+MainWindow::setJavaDwp(bool value)
+{
+    mUseJava = value;
+    if (mTreeView != nullptr)
+        mTreeView->useJava(mUseJava);
 }
 
 void

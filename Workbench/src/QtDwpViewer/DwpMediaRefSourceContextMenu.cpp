@@ -24,33 +24,24 @@
 //
 // COPYRIGHT_END
 
-#include "DwpDocumentContextMenu.h"
+#include "DwpMediaRefSourceContextMenu.h"
 
-DwpDocumentContextMenu::DwpDocumentContextMenu(QObject *parent)
+DwpMediaRefSourceContextMenu::DwpMediaRefSourceContextMenu(QObject *parent)
     : DwpContextMenu(parent)
 {
-    // do nothing extra.
+    // Do nothing extra.
 }
 
-DwpDocumentContextMenu::~DwpDocumentContextMenu()
+DwpMediaRefSourceContextMenu::~DwpMediaRefSourceContextMenu()
 {
     // Do nothing.
 }
 
 void
-DwpDocumentContextMenu::init()
+DwpMediaRefSourceContextMenu::init()
 {
     // Call super class method.
     DwpContextMenu::init();
 
-    // Add menu actions.
-    mMenu->addAction("Add DWP Include Item");
-    mMenu->addAction("Add DWP SetDef Item");
-    mMenu->addAction("Add DWP ActorDef Item");
-    mMenu->addAction("Add DWP RoleDef Item");
-    mMenu->addAction("Add DWP Stage Item");
-    mMenu->addAction("Add DWP Scene Item");
-    mMenu->addAction("Add DWP Group Item");
-    mMenu->addAction("Add DWP MediaDef Item");
-    mMenu->addAction("Add DWP Boot Item");
+    mMenu->addAction("Add DWP Media Item");
 }

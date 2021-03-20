@@ -60,12 +60,27 @@ class DwpTreeView : public QTreeView
     ~DwpTreeView();
 
     /**
+     * @brief Set flag indicating that DWP is being edited for Java or
+     * Android platform.
+     *
+     * @param value If <b>true</b>, then the tree view will be specific
+     * to Java/Android Digital Workprints. if <b>false</b>, then the tree
+     * view will be oriented towards C/C++ Digital Workprints.
+     */
+    void useJava(bool value)
+    { mUseJava = value; }
+
+    /**
      * @brief Process a context menu event, displaying a pop-up menu for the associated
      * <b>QtDwpTreeItem</b> in the tree view.
      *
      * @param e The event information.
      */
     void contextMenuEvent(QContextMenuEvent *e);
+
+  private:
+
+    bool mUseJava;
 };
 
 #endif // __DWPTREEVIEW_H_

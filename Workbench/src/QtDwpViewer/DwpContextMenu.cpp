@@ -24,33 +24,25 @@
 //
 // COPYRIGHT_END
 
-#include "DwpDocumentContextMenu.h"
+#include "DwpContextMenu.h"
 
-DwpDocumentContextMenu::DwpDocumentContextMenu(QObject *parent)
-    : DwpContextMenu(parent)
+DwpContextMenu::DwpContextMenu(QObject *parent)
+    : mMenu(new QMenu()),
+      mUseJava(false)
 {
-    // do nothing extra.
+    // Do nothing extra.
 }
 
-DwpDocumentContextMenu::~DwpDocumentContextMenu()
+DwpContextMenu::~DwpContextMenu()
 {
-    // Do nothing.
+    if (mMenu) delete mMenu;
 }
 
 void
-DwpDocumentContextMenu::init()
+DwpContextMenu::init()
 {
-    // Call super class method.
-    DwpContextMenu::init();
-
     // Add menu actions.
-    mMenu->addAction("Add DWP Include Item");
-    mMenu->addAction("Add DWP SetDef Item");
-    mMenu->addAction("Add DWP ActorDef Item");
-    mMenu->addAction("Add DWP RoleDef Item");
-    mMenu->addAction("Add DWP Stage Item");
-    mMenu->addAction("Add DWP Scene Item");
-    mMenu->addAction("Add DWP Group Item");
-    mMenu->addAction("Add DWP MediaDef Item");
-    mMenu->addAction("Add DWP Boot Item");
+    mMenu->addAction("Delete DWP Item");
+    mMenu->addSeparator();
+    mMenu->addAction("Add DWP Tag");
 }

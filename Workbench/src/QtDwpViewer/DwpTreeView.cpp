@@ -30,15 +30,36 @@
 #include <QTreeWidgetItem>
 #include <QDebug>
 
+// Include Digital Workprint header files.
+#include "mle/DwpActor.h"
+#include "mle/DwpActorDef.h"
+#include "mle/DwpGroup.h"
+#include "mle/DwpItem.h"
+#include "mle/DwpInclude.h"
+#include "mle/DwpMediaRef.h"
+#include "mle/DwpMediaRefSource.h"
+#include "mle/DwpMediaRefTarget.h"
+#include "mle/DwpStage.h"
+#include "mle/DwpSet.h"
+
 // Include Magic Lantern Workbench header files.
 #include "DwpTreeView.h"
+#include "DwpActorContextMenu.h"
+#include "DwpActorDefContextMenu.h"
 #include "DwpDocumentContextMenu.h"
+#include "DwpGroupContextMenu.h"
+#include "DwpMediaRefContextMenu.h"
+#include "DwpMediaRefSourceContextMenu.h"
+#include "DwpMediaRefTargetContextMenu.h"
+#include "DwpStageContextMenu.h"
+#include "DwpSetContextMenu.h"
 #include "qt/QtDwpModel.h"
 #include "qt/QtDwpAttribute.h"
 
 
 DwpTreeView:: DwpTreeView()
-    : QTreeView()
+    : QTreeView(),
+      mUseJava(false)
 {
     // Do nothing extra.
 }
@@ -52,6 +73,8 @@ QtDwpTreeItem *
 DwpTreeView::itemAt(const QPoint &pos) const
 {
     QModelIndex index = indexAt(pos);
+    if (! index.isValid())
+        return nullptr;
 
     QtDwpModel *model = static_cast<QtDwpModel *>(this->model());
 
@@ -64,10 +87,106 @@ DwpTreeView::itemAt(const QPoint &pos) const
 void
 DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
 {
-    QtDwpAttribute *item = static_cast<QtDwpAttribute *>(itemAt(e->pos()));
-    if (item) {
-        qDebug() << "Attribute" << item->getAttributeName();
+    QtDwpAttribute *attr = static_cast<QtDwpAttribute *>(itemAt(e->pos()));
+    if (attr == nullptr)
+        return;
+    qDebug() << "Attribute" << attr->getAttributeName();
+
+    const MleDwpItem *dwpItem = attr->getDwpItem();
+    if (dwpItem->isa(MleDwpStage::typeId)) {
+        DwpStageContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } if (dwpItem->isa(MleDwpSet::typeId)) {
+        DwpSetContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } if (dwpItem->isa(MleDwpActor::typeId)) {
+        DwpActorContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } if (dwpItem->isa(MleDwpActorDef::typeId)) {
+        DwpActorDefContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } if (dwpItem->isa(MleDwpGroup::typeId)) {
+        DwpGroupContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } else if (dwpItem->isa(MleDwpInclude::typeId)) {
         DwpDocumentContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } else if (dwpItem->isa(MleDwpMediaRefSource::typeId)) {
+        DwpMediaRefSourceContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } else if (dwpItem->isa(MleDwpMediaRefTarget::typeId)) {
+        DwpMediaRefTargetContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } else if (dwpItem->isa(MleDwpMediaRef::typeId)) {
+        DwpMediaRefContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
         if (selected) {

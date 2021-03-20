@@ -73,9 +73,12 @@ int main(int argc, char *argv[])
     parser.addPositionalArgument("file", "The file to open.");
     QCommandLineOption verboseOption(QString("verbose"), QString("Be verbose."));
     parser.addOption(verboseOption);
+    QCommandLineOption javaOption(QString("java"), QString("Support Java and Android Digital Workprints."));
+    parser.addOption(javaOption);
     parser.process(app);
 
     bool verbose = parser.isSet(verboseOption);
+    bool java = parser.isSet(javaOption);
 
     MainWindow mainWin;
     if (! parser.positionalArguments().isEmpty())
@@ -88,6 +91,9 @@ int main(int argc, char *argv[])
         QtDwpTreeItem *root = model->getRoot();
         root->traverse(QtDwpAttribute::dump, root, nullptr);
     }
+
+    if (java) mainWin.setJavaDwp(true);
+    else mainWin.setJavaDwp(false);
 
     return app.exec();
 }

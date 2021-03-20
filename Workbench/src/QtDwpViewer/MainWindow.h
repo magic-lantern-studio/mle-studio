@@ -35,7 +35,6 @@
 QT_BEGIN_NAMESPACE
 class QAction;
 class QMenu;
-//class QTreeView;
 class QSessionManager;
 QT_END_NAMESPACE
 
@@ -44,6 +43,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
   public:
+
     MainWindow();
 
     void loadFile(const QString &fileName);
@@ -51,12 +51,23 @@ class MainWindow : public QMainWindow
     QtDwpModel *getModel()
     { return mModel; }
 
+    /**
+     * @brief Set UI to support Java based Digital Workprints.
+     *
+     * @param value If <b>true</b>, then the UI will provide suport
+     * for Java and Android Digital Workprints. If <b>false</b>, then
+     * the UI will provide support for C/C++ Digital Workprints.
+     */
+    void setJavaDwp(bool value);
+
   protected:
+
     void closeEvent(QCloseEvent *event) override;
 
     bool eventFilter(QObject *target, QEvent *event) override;
 
   private slots:
+
     void newFile();
     void open();
     bool save();
@@ -68,6 +79,7 @@ class MainWindow : public QMainWindow
 #endif
 
   private:
+
     void createActions();
     void createStatusBar();
     void readSettings();
@@ -82,6 +94,8 @@ class MainWindow : public QMainWindow
 
     // The model loaded from the Digital Workprint.
     QtDwpModel *mModel;
+
+    bool mUseJava;
 };
 
 #endif // __MAINWINDOW_H_

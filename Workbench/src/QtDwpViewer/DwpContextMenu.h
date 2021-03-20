@@ -24,33 +24,43 @@
 //
 // COPYRIGHT_END
 
-#include "DwpDocumentContextMenu.h"
+#ifndef __DWPCONTEXTMENU_H_
+#define __DWPCONTEXTMENU_H_
 
-DwpDocumentContextMenu::DwpDocumentContextMenu(QObject *parent)
-    : DwpContextMenu(parent)
+// Include Qt header files.
+#include <QObject>
+#include <QMenu>
+
+
+class DwpContextMenu : public QObject
 {
-    // do nothing extra.
-}
+    Q_OBJECT
 
-DwpDocumentContextMenu::~DwpDocumentContextMenu()
-{
-    // Do nothing.
-}
+  public:
 
-void
-DwpDocumentContextMenu::init()
-{
-    // Call super class method.
-    DwpContextMenu::init();
+    explicit DwpContextMenu(QObject *parent = nullptr);
 
-    // Add menu actions.
-    mMenu->addAction("Add DWP Include Item");
-    mMenu->addAction("Add DWP SetDef Item");
-    mMenu->addAction("Add DWP ActorDef Item");
-    mMenu->addAction("Add DWP RoleDef Item");
-    mMenu->addAction("Add DWP Stage Item");
-    mMenu->addAction("Add DWP Scene Item");
-    mMenu->addAction("Add DWP Group Item");
-    mMenu->addAction("Add DWP MediaDef Item");
-    mMenu->addAction("Add DWP Boot Item");
-}
+    virtual ~DwpContextMenu();
+
+    virtual void init();
+
+    QMenu *getMenu() const
+    { return mMenu; }
+
+    bool isJava()
+    { return mUseJava; }
+
+    void useJava(bool java)
+    { mUseJava = java; }
+
+  protected:
+
+    // Associated Qt menu.
+    QMenu *mMenu;
+
+    // Flag indicating whether to support Java/Android DWP.
+    bool mUseJava;
+
+};
+
+#endif // __DWPCONTEXTMENU_H_
