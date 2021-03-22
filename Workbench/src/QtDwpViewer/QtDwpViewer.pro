@@ -17,7 +17,11 @@ HEADERS = \
     DwpMediaRefContextMenu.h \
     DwpMediaRefSourceContextMenu.h \
     DwpMediaRefTargetContextMenu.h \
+    DwpPropertyDefContextMenu.h \
+    DwpRoleDefContextMenu.h \
+    DwpSceneContextMenu.h \
     DwpSetContextMenu.h \
+    DwpSetDefContextMenu.h \
     DwpStageContextMenu.h \
     DwpTreeView.h \
     MainWindow.h
@@ -33,7 +37,11 @@ SOURCES = \
     DwpMediaRefContextMenu.cpp \
     DwpMediaRefSourceContextMenu.cpp \
     DwpMediaRefTargetContextMenu.cpp \
+    DwpPropertyDefContextMenu.cpp \
+    DwpRoleDefContextMenu.cpp \
+    DwpSceneContextMenu.cpp \
     DwpSetContextMenu.cpp \
+    DwpSetDefContextMenu.cpp \
     DwpStageContextMenu.cpp \
     DwpTreeView.cpp \
     main.cpp \

@@ -39,8 +39,12 @@
 #include "mle/DwpMediaRef.h"
 #include "mle/DwpMediaRefSource.h"
 #include "mle/DwpMediaRefTarget.h"
+#include "mle/DwpPropertyDef.h"
+#include "mle/DwpRoleDef.h"
+#include "mle/DwpScene.h"
 #include "mle/DwpStage.h"
 #include "mle/DwpSet.h"
+#include "mle/DwpSetDef.h"
 
 // Include Magic Lantern Workbench header files.
 #include "DwpTreeView.h"
@@ -51,8 +55,12 @@
 #include "DwpMediaRefContextMenu.h"
 #include "DwpMediaRefSourceContextMenu.h"
 #include "DwpMediaRefTargetContextMenu.h"
+#include "DwpPropertyDefContextMenu.h"
+#include "DwpRoleDefContextMenu.h"
+#include "DwpSceneContextMenu.h"
 #include "DwpStageContextMenu.h"
 #include "DwpSetContextMenu.h"
+#include "DwpSetDefContextMenu.h"
 #include "qt/QtDwpModel.h"
 #include "qt/QtDwpAttribute.h"
 
@@ -183,6 +191,50 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         }
     } else if (dwpItem->isa(MleDwpMediaRef::typeId)) {
         DwpMediaRefContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } else if (dwpItem->isa(MleDwpPropertyDef::typeId)) {
+        DwpPropertyDefContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } else if (dwpItem->isa(MleDwpRoleDef::typeId)) {
+        DwpRoleDefContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } else if (dwpItem->isa(MleDwpScene::typeId)) {
+        DwpSceneContextMenu context;
+        if (mUseJava) context.useJava(true);
+        else context.useJava(false);
+        context.init();
+
+        QMenu *m = context.getMenu();
+        QAction *selected = m->exec(mapToGlobal(e->pos()));
+        if (selected) {
+            qDebug() << "Selected" << selected->text();
+        }
+    } else if (dwpItem->isa(MleDwpSetDef::typeId)) {
+        DwpSetDefContextMenu context;
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init();

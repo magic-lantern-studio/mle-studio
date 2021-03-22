@@ -22,22 +22,22 @@
 //
 // COPYRIGHT_END
 
-#ifndef __DWPMEDIAREFTARGETCONTEXTMENU_H_
-#define __DWPMEDIAREFTARGETCONTEXTMENU_H_
+#ifndef __DWPPROPERTYDEFCONTEXTMENU_H_
+#define __DWPPROPERTYDEFCONTEXTMENU_H_
 
 // Include DWP Viewer header files.
 #include "DwpContextMenu.h"
 
 
-class DwpMediaRefTargetContextMenu : public DwpContextMenu
+class DwpPropertyDefContextMenu : public DwpContextMenu
 {
   public:
 
-    explicit DwpMediaRefTargetContextMenu(QObject *parent = nullptr);
+    explicit DwpPropertyDefContextMenu(QObject *parent = nullptr);
 
-    ~DwpMediaRefTargetContextMenu();
+    ~DwpPropertyDefContextMenu();
 
     void init();
 };
 
-#endif // __DWPMEDIAREFTARGETCONTEXTMENU_H_
+#endif // __DWPPROPERTYDEFCONTEXTMENU_H_

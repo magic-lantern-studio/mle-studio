@@ -1,5 +1,7 @@
 // COPYRIGHT_BEGIN
 //
+// The MIT License (MIT)
+//
 // Copyright (c) 2020-2021 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,22 +24,34 @@
 //
 // COPYRIGHT_END
 
-#ifndef __DWPMEDIAREFTARGETCONTEXTMENU_H_
-#define __DWPMEDIAREFTARGETCONTEXTMENU_H_
+#include "DwpSceneContextMenu.h"
 
-// Include DWP Viewer header files.
-#include "DwpContextMenu.h"
-
-
-class DwpMediaRefTargetContextMenu : public DwpContextMenu
+DwpSceneContextMenu::DwpSceneContextMenu(QObject *parent)
+    : DwpContextMenu(parent)
 {
-  public:
+    // Do nothing extra.
+}
 
-    explicit DwpMediaRefTargetContextMenu(QObject *parent = nullptr);
+DwpSceneContextMenu::~DwpSceneContextMenu()
+{
+    // Do nothing.
+}
 
-    ~DwpMediaRefTargetContextMenu();
+void
+DwpSceneContextMenu::init()
+{
+    // Call super class method.
+    DwpContextMenu::init();
 
-    void init();
-};
+    // Add menu actions.
+    if (mUseJava) {
+        // Support for Java and Android Digital Workprints.
+        mMenu->addAction("Add DWP Package Item");
+    }
 
-#endif // __DWPMEDIAREFTARGETCONTEXTMENU_H_
+    mMenu->addAction("Add DWP MediaRefSource Item");
+    mMenu->addAction("Add DWP MediaRefTarget Item");
+
+    mMenu->addAction("Add DWP Group Item");
+    mMenu->addAction("Add DWP GroupRef Item");
+}
