@@ -24,11 +24,15 @@
 //
 // COPYRIGHT_END
 
+#include <QDebug>
+
 #include "DwpContextMenu.h"
 
 DwpContextMenu::DwpContextMenu(QObject *parent)
     : mMenu(new QMenu()),
-      mUseJava(false)
+      mUseJava(false),
+      addTagAction(nullptr),
+      deleteAction(nullptr)
 {
     // Do nothing extra.
 }
@@ -36,6 +40,8 @@ DwpContextMenu::DwpContextMenu(QObject *parent)
 DwpContextMenu::~DwpContextMenu()
 {
     if (mMenu) delete mMenu;
+    if (addTagAction != nullptr) delete addTagAction;
+    if (deleteAction != nullptr) delete deleteAction;
 }
 
 void
@@ -45,7 +51,35 @@ DwpContextMenu::init(QtDwpAttribute *attr)
     mAttr = attr;
 
     // Add menu actions.
-    mMenu->addAction("Delete DWP Item");
+
+    deleteAction = new QAction(tr("Delete DWP Item"), this);
+    //deleteAction->setShortcuts(QKeySequence::New);
+    deleteAction->setStatusTip(tr("Delete a DWP item"));
+    connect(deleteAction, &QAction::triggered, this, &DwpContextMenu::deleteItem);
+    mMenu->addAction(deleteAction);
+    //mMenu->addAction("Delete DWP Item");
+
     mMenu->addSeparator();
-    mMenu->addAction("Add DWP Tag");
+
+    addTagAction = new QAction(tr("Add DWP Tag"), this);
+    //addTagAction->setShortcuts(QKeySequence::New);
+    addTagAction->setStatusTip(tr("Create a new Tag"));
+    connect(addTagAction, &QAction::triggered, this, &DwpContextMenu::addTag);
+    mMenu->addAction(addTagAction);
+    //mMenu->addAction("Add DWP Tag");
+}
+
+void
+DwpContextMenu::addTag()
+{
+    qDebug() << "DwpContextMenu: Adding DWP tag";
+    QString tag("New tag");
+    emit DwpContextMenu::addTagToAttribute(tag, mAttr);
+}
+
+void
+DwpContextMenu::deleteItem()
+{
+    qDebug() << "DwpContextMenu: Deleting DWP item";
+    emit DwpContextMenu::deleteAttribute(mAttr);
 }

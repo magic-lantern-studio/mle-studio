@@ -93,11 +93,11 @@ class DwpContextMenu : public QObject
 
   signals:
 
-    void insertItem(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr);
+    void insertAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr);
 
-    void deleteItem();
+    void deleteAttribute(QtDwpAttribute *attr);
 
-    void addTag(const QString tag);
+    void addTagToAttribute(const QString tag, QtDwpAttribute *attr);
 
   protected:
 
@@ -110,6 +110,20 @@ class DwpContextMenu : public QObject
     // Flag indicating whether to support Java/Android DWP.
     bool mUseJava;
 
+  private slots:
+
+    // Slot for adding a tag to a DWP item.
+    void addTag();
+
+    // Slot for deleting a DWP item.
+    void deleteItem();
+
+  private:
+
+    // A pointer to an action used to create a tag to a DWP item.
+    QAction *addTagAction;
+    // A pointer to an action used to delete a DWP item.
+    QAction *deleteAction;
 };
 
 #endif // __DWPCONTEXTMENU_H_

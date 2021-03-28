@@ -132,61 +132,61 @@ void
 DwpDocumentContextMenu::addInclude()
 {
     qDebug() << "DwpDocumentContextMenu: Adding DWP Include item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_INCLUDE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_INCLUDE, mAttr);
 }
 
 void
 DwpDocumentContextMenu::addSetDef()
 {
     qDebug() << "DwpDocumentContextMenu: Adding DWP SetDef item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_SETDEF, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_SETDEF, mAttr);
 }
 
 void
 DwpDocumentContextMenu::addActorDef()
 {
     qDebug() << "DwpDocumentContextMenu: Adding DWP ActorDef item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_ACTORDEF, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_ACTORDEF, mAttr);
 }
 
 void
 DwpDocumentContextMenu::addRoleDef()
 {
     qDebug() << "DwpDocumentContextMenu: Adding DWP RoleDef item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_ROLEDEF, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_ROLEDEF, mAttr);
 }
 
 void
 DwpDocumentContextMenu::addStage()
 {
     qDebug() << "DwpDocumentContextMenu: Adding DWP Stage item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_STAGE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_STAGE, mAttr);
 }
 
 void
 DwpDocumentContextMenu::addScene()
 {
     qDebug() << "DwpDocumentContextMenu: Adding DWP Scene item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_SCENE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_SCENE, mAttr);
 }
 
 void
 DwpDocumentContextMenu::addGroup()
 {
     qDebug() << "DwpDocumentContextMenu: Adding DWP Group item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_GROUP, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_GROUP, mAttr);
 }
 
 void
 DwpDocumentContextMenu::addMediaRef()
 {
     qDebug() << "DwpDocumentContextMenu: Adding DWP MediaRef item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREF, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREF, mAttr);
 }
 
 void
 DwpDocumentContextMenu::addBoot()
 {
     qDebug() << "DwpDocumentContextMenu: Adding DWP Boot item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_BOOT, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_BOOT, mAttr);
 }

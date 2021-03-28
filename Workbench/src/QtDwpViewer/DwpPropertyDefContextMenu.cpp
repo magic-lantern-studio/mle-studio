@@ -58,5 +58,5 @@ void
 DwpPropertyDefContextMenu::addMediaRef()
 {
     qDebug() << "DwpPropertyContextMenu: Adding DWP MediaRef item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREF, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREF, mAttr);
 }

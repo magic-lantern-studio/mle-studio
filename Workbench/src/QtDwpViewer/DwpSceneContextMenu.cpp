@@ -100,34 +100,33 @@ void
 DwpSceneContextMenu::addPackage()
 {
     qDebug() << "DwpSceneContextMenu: Adding DWP Package item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
 }
 
 void
 DwpSceneContextMenu::addMediaRefSource()
 {
     qDebug() << "DwpSceneContextMenu: Adding DWP MediaRefSource item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFSOURCE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFSOURCE, mAttr);
 }
 
 void
 DwpSceneContextMenu::addMediaRefTarget()
 {
     qDebug() << "DwpSceneContextMenu: Adding DWP MediaRefTarget item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFTARGET, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFTARGET, mAttr);
 }
 
 void
 DwpSceneContextMenu::addGroup()
 {
     qDebug() << "DwpSceneContextMenu: Adding DWP Group item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_GROUP, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_GROUP, mAttr);
 }
-
 
 void
 DwpSceneContextMenu::addGroupRef()
 {
     qDebug() << "DwpSceneContextMenu: Adding DWP GroupRef item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_GROUPREF, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_GROUPREF, mAttr);
 }

@@ -81,19 +81,19 @@ void
 DwpMediaRefContextMenu::addPackage()
 {
     qDebug() << "DwpMediaRefContextMenu: Adding DWP Package item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
 }
 
 void
 DwpMediaRefContextMenu::addMediaRefSource()
 {
     qDebug() << "DwpMediaRefContextMenu: Adding DWP MediaRefSource item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFSOURCE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFSOURCE, mAttr);
 }
 
 void
 DwpMediaRefContextMenu::addMediaRefTarget()
 {
     qDebug() << "DwpMediaRefContextMenu: Adding DWP MediaRefTarget item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFTARGET, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFTARGET, mAttr);
 }

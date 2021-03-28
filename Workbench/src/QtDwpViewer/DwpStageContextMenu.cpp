@@ -95,26 +95,26 @@ void
 DwpStageContextMenu::addHeaderFile()
 {
     qDebug() << "DwpStageContextMenu: Adding DWP HeaderFile item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE, mAttr);
 }
 
 void
 DwpStageContextMenu::addSourceFile()
 {
     qDebug() << "DwpStageContextMenu: Adding DWP SourceFile item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE, mAttr);
 }
 
 void
 DwpStageContextMenu::addPackage()
 {
     qDebug() << "DwpStageContextMenu: Adding DWP Package item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
 }
 
 void
 DwpStageContextMenu::addSet()
 {
     qDebug() << "DwpStageContextMenu: Adding DWP Set item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_SET, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_SET, mAttr);
 }

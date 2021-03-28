@@ -90,26 +90,26 @@ void
 DwpSetDefContextMenu::addPackage()
 {
     qDebug() << "DwpSetDefContextMenu: Adding DWP Package item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
 }
 
 void
 DwpSetDefContextMenu::addMediaRefSource()
 {
     qDebug() << "DwpSetDefContextMenu: Adding DWP MediaRefSource item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFSOURCE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFSOURCE, mAttr);
 }
 
 void
 DwpSetDefContextMenu::addMediaRefTarget()
 {
     qDebug() << "DwpSetDefContextMenu: Adding DWP MediaRefTarget item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFTARGET, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFTARGET, mAttr);
 }
 
 void
 DwpSetDefContextMenu::addPropertyDef()
 {
     qDebug() << "DwpSetDefContextMenu: Adding DWP PropertyDef item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTYDEF, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTYDEF, mAttr);
 }

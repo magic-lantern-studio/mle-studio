@@ -100,33 +100,33 @@ void
 DwpActorDefContextMenu::addHeaderFile()
 {
     qDebug() << "DwpActorDefContextMenu: Adding DWP HeaderFile item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE, mAttr);
 }
 
 void
 DwpActorDefContextMenu::addSourceFile()
 {
     qDebug() << "DwpActorDefContextMenu: Adding DWP SourceFile item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE, mAttr);
 }
 
 void
 DwpActorDefContextMenu::addPackage()
 {
     qDebug() << "DwpActorDefContextMenu: Adding DWP Package item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
 }
 
 void
 DwpActorDefContextMenu::addPropertyDef()
 {
     qDebug() << "DwpActorDefContextMenu: Adding DWP PropertyDef item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_ROLEBINDING, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_ROLEBINDING, mAttr);
 }
 
 void
 DwpActorDefContextMenu::addRoleSetMapping()
 {
     qDebug() << "DwpActorDefContextMenu: Adding DWP RoleSetMapping item";
-    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr);
 }

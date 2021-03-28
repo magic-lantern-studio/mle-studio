@@ -106,7 +106,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -119,7 +119,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -131,7 +131,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -143,7 +143,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -155,7 +155,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -167,7 +167,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -179,7 +179,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -191,7 +191,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -203,7 +203,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -215,7 +215,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -227,7 +227,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -239,7 +239,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
@@ -251,7 +251,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
         context.init(attr);
-        connect(&context, &DwpContextMenu::insertItem, this, &DwpTreeView::addItem);
+        connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addItem);
 
         QMenu *m = context.getMenu();
         QAction *selected = m->exec(mapToGlobal(e->pos()));
