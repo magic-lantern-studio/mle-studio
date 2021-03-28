@@ -37,7 +37,7 @@ class DwpRoleDefContextMenu : public DwpContextMenu
 
     ~DwpRoleDefContextMenu();
 
-    void init();
+    void init(QtDwpAttribute *attr);
 };
 
 #endif // __DWPROLEDEFCONTEXTMENU_H_

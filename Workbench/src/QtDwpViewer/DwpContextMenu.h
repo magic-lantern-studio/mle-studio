@@ -31,6 +31,7 @@
 #include <QObject>
 #include <QMenu>
 
+#include "qt/QtDwpAttribute.h"
 
 class DwpContextMenu : public QObject
 {
@@ -42,7 +43,7 @@ class DwpContextMenu : public QObject
 
     virtual ~DwpContextMenu();
 
-    virtual void init();
+    virtual void init(QtDwpAttribute *attr);
 
     QMenu *getMenu() const
     { return mMenu; }
@@ -53,7 +54,18 @@ class DwpContextMenu : public QObject
     void useJava(bool java)
     { mUseJava = java; }
 
+  signals:
+
+    void insertItem(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr);
+
+    void deleteItem();
+
+    void addTag(const QString tag);
+
   protected:
+
+    // Associated DWP Attribute.
+    QtDwpAttribute *mAttr;
 
     // Associated Qt menu.
     QMenu *mMenu;

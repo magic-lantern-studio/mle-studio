@@ -37,7 +37,7 @@ class DwpSceneContextMenu : public DwpContextMenu
 
     ~DwpSceneContextMenu();
 
-    void init();
+    void init(QtDwpAttribute *attr);
 };
 
 #endif // __DWPSCENECONTEXTMENU_H_

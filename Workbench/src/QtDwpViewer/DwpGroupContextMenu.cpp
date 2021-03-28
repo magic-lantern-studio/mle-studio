@@ -24,35 +24,110 @@
 //
 // COPYRIGHT_END
 
+#include <QDebug>
+
 #include "DwpGroupContextMenu.h"
 
 DwpGroupContextMenu::DwpGroupContextMenu(QObject *parent)
-    : DwpContextMenu(parent)
+    : DwpContextMenu(parent),
+    addHeaderFileAction(nullptr),
+    addSourceFileAction(nullptr),
+    addPackageAction(nullptr),
+    addActorAction(nullptr),
+    addRoleAttachmentAction(nullptr)
 {
     // Do nothing extra.
 }
 
 DwpGroupContextMenu::~DwpGroupContextMenu()
 {
-    // Do nothing.
+    if (addHeaderFileAction != nullptr) delete addHeaderFileAction;
+    if (addSourceFileAction != nullptr) delete addSourceFileAction;
+    if (addPackageAction != nullptr) delete addPackageAction;
+    if (addActorAction != nullptr) delete addActorAction;
+    if (addRoleAttachmentAction != nullptr) delete addRoleAttachmentAction;
 }
 
 void
-DwpGroupContextMenu::init()
+DwpGroupContextMenu::init(QtDwpAttribute *attr)
 {
     // Call super class method.
-    DwpContextMenu::init();
+    DwpContextMenu::init(attr);
 
-    // Add menu actions.
     if (mUseJava) {
         // Support for Java and Android Digital Workprints.
-        mMenu->addAction("Add DWP Package Item");
+
+        addPackageAction = new QAction(tr("Add DWP Package Item"), this);
+        //addPackageAction->setShortcuts(QKeySequence::New);
+        addPackageAction->setStatusTip(tr("Create a new Package item"));
+        connect(addPackageAction, &QAction::triggered, this, &DwpGroupContextMenu::addPackage);
+        mMenu->addAction(addPackageAction);
+        //mMenu->addAction("Add DWP Package Item");
     } else {
         // Support for C/C++ Digital Workprints.
-        mMenu->addAction("Add DWP HeaderFile Item");
-        mMenu->addAction("Add DWP SourceFile Item");
+
+        addHeaderFileAction = new QAction(tr("Add DWP HeaderFile Item"), this);
+        //addHeaderFileAction->setShortcuts(QKeySequence::New);
+        addHeaderFileAction->setStatusTip(tr("Create a new HeaderFile item"));
+        connect(addHeaderFileAction, &QAction::triggered, this, &DwpGroupContextMenu::addHeaderFile);
+        mMenu->addAction(addHeaderFileAction);
+        //mMenu->addAction("Add DWP HeaderFile Item");
+
+        addSourceFileAction = new QAction(tr("Add DWP SourceFile Item"), this);
+        //action->setShortcuts(QKeySequence::New);
+        addSourceFileAction->setStatusTip(tr("Create a new SourceFile item"));
+        connect(addSourceFileAction, &QAction::triggered, this, &DwpGroupContextMenu::addSourceFile);
+        mMenu->addAction(addSourceFileAction);
+        //mMenu->addAction("Add DWP SourceFile Item");
     }
 
-    mMenu->addAction("Add DWP Actor Item");
-    mMenu->addAction("Add DWP RoleAttachment Item");
+    addActorAction = new QAction(tr("Add DWP Actor Item"), this);
+    //addActorAction->setShortcuts(QKeySequence::New);
+    addActorAction->setStatusTip(tr("Create a new Actor item"));
+    connect(addActorAction, &QAction::triggered, this, &DwpGroupContextMenu::addActor);
+    mMenu->addAction(addActorAction);
+    //mMenu->addAction("Add DWP Actor Item");
+
+    addRoleAttachmentAction = new QAction(tr("Add DWP RoleAttachment Item"), this);
+    //addRoleAttachmentAction->setShortcuts(QKeySequence::New);
+    addRoleAttachmentAction->setStatusTip(tr("Create a new RoleAttachment item"));
+    connect(addRoleAttachmentAction, &QAction::triggered, this, &DwpGroupContextMenu::addRoleAttachment);
+    mMenu->addAction(addRoleAttachmentAction);
+    //mMenu->addAction("Add DWP RoleAttachment Item");
+}
+
+
+void
+DwpGroupContextMenu::addHeaderFile()
+{
+    qDebug() << "DwpGroupContextMenu: Adding DWP HeaderFile item";
+    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE, mAttr);
+}
+
+void
+DwpGroupContextMenu::addSourceFile()
+{
+    qDebug() << "DwpGroupContextMenu: Adding DWP SourceFile item";
+    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE, mAttr);
+}
+
+void
+DwpGroupContextMenu::addPackage()
+{
+    qDebug() << "DwpGroupContextMenu: Adding DWP Package item";
+    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
+}
+
+void
+DwpGroupContextMenu::addActor()
+{
+    qDebug() << "DwpGroupContextMenu: Adding DWP Actor item";
+    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_ACTOR, mAttr);
+}
+
+void
+DwpGroupContextMenu::addRoleAttachment()
+{
+    qDebug() << "DwpGroupContextMenu: Adding DWP RoleAttachment item";
+    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_ROLEATTACHMENT, mAttr);
 }

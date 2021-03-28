@@ -28,15 +28,62 @@
 // Include DWP Viewer header files.
 #include "DwpContextMenu.h"
 
+/**
+ * @brief The DwpActorDefContextMenu class is used to create and manage a context menu
+ * associated with an ActorDef DWP item.
+ */
 class DwpActorDefContextMenu : public DwpContextMenu
 {
   public:
 
+    /**
+     * @brief A constructor for the Actor context menu.
+     *
+     * @param parent A pointer to the parent Qt object.
+     */
     explicit DwpActorDefContextMenu(QObject *parent = nullptr);
 
+    /**
+     * The destructor.
+     */
     ~DwpActorDefContextMenu();
 
-    void init();
+    /**
+     * @brief Initialize the context menu.
+     *
+     * @param attr The DWP Attribute associated with this menu.
+     */
+    void init(QtDwpAttribute *attr);
+
+  private slots:
+
+    // Slot for adding a HeaderFile DWP item.
+    void addHeaderFile();
+
+    // Slot for adding a SourceFile DWP item.
+    void addSourceFile();
+
+    // Slot for adding a Package DWP item.
+    void addPackage();
+
+    // Slot for adding a PropertyDef DWP item.
+    void addPropertyDef();
+
+    // Slot for adding a RoleSetMapping DWP item.
+    void addRoleSetMapping();
+
+  private:
+
+    // A pointer to an action used to create a HeaderFile item.
+    QAction *addHeaderFileAction;
+    // A pointer to an action used to create a SourceFile item.
+    QAction *addSourceFileAction;
+    // A pointer to an action used to create a Package item.
+    QAction *addPackageAction;
+    // A pointer to an action used to create a PropertyDef item.
+    QAction *addPropertyDefAction;
+    // A pointer to an action used to create a RoleSetMapping item.
+    QAction *addRoleSetMappingAction;
 };
 
 #endif // __DWPACTORDEFCONTEXTMENU_H_

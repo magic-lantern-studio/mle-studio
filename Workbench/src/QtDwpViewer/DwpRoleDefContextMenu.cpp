@@ -38,10 +38,10 @@ DwpRoleDefContextMenu::~DwpRoleDefContextMenu()
 }
 
 void
-DwpRoleDefContextMenu::init()
+DwpRoleDefContextMenu::init(QtDwpAttribute *attr)
 {
     // Call super class method.
-    DwpContextMenu::init();
+    DwpContextMenu::init(attr);
 
     // Add menu actions.
     if (mUseJava) {

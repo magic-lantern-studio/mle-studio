@@ -24,31 +24,76 @@
 //
 // COPYRIGHT_END
 
+#include <QDebug>
+
 #include "DwpMediaRefContextMenu.h"
 
 DwpMediaRefContextMenu::DwpMediaRefContextMenu(QObject *parent)
-    : DwpContextMenu(parent)
+    : DwpContextMenu(parent),
+      addPackageAction(nullptr),
+      addMediaRefSourceAction(nullptr),
+      addMediaRefTargetActionAction(nullptr)
 {
     // Do nothing extra.
 }
 
 DwpMediaRefContextMenu::~DwpMediaRefContextMenu()
 {
-    // Do nothing.
+    if (addPackageAction != nullptr) delete addPackageAction;
+    if (addMediaRefSourceAction != nullptr) delete addMediaRefSourceAction;
+    if (addMediaRefTargetActionAction != nullptr) delete addMediaRefTargetActionAction;
 }
 
 void
-DwpMediaRefContextMenu::init()
+DwpMediaRefContextMenu::init(QtDwpAttribute *attr)
 {
     // Call super class method.
-    DwpContextMenu::init();
+    DwpContextMenu::init(attr);
 
     // Add menu actions.
     if (mUseJava) {
         // Support for Java and Android Digital Workprints.
-        mMenu->addAction("Add DWP Package Item");
+
+        addPackageAction = new QAction(tr("Add DWP Package Item"), this);
+        //addPackageAction->setShortcuts(QKeySequence::New);
+        addPackageAction->setStatusTip(tr("Create a new Package item"));
+        connect(addPackageAction, &QAction::triggered, this, &DwpMediaRefContextMenu::addPackage);
+        mMenu->addAction(addPackageAction);
+        //mMenu->addAction("Add DWP Package Item");
     }
 
-    mMenu->addAction("Add DWP MediaRefSource Item");
-    mMenu->addAction("Add DWP MediaRefTarget Item");
+    addMediaRefSourceAction = new QAction(tr("Add DWP MediaRefSource Item"), this);
+    //addMediaRefSourceAction->setShortcuts(QKeySequence::New);
+    addMediaRefSourceAction->setStatusTip(tr("Create a new MediaRefSource item"));
+    connect(addMediaRefSourceAction, &QAction::triggered, this, &DwpMediaRefContextMenu::addPackage);
+    mMenu->addAction(addMediaRefSourceAction);
+    //mMenu->addAction("Add DWP MediaRefSource Item");
+
+    addMediaRefTargetActionAction = new QAction(tr("Add DWP MediaRefTarget Item"), this);
+    //addMediaRefTargetActionAction->setShortcuts(QKeySequence::New);
+    addMediaRefTargetActionAction->setStatusTip(tr("Create a new Package item"));
+    connect(addMediaRefTargetActionAction, &QAction::triggered, this, &DwpMediaRefContextMenu::addPackage);
+    mMenu->addAction(addMediaRefTargetActionAction);
+    //mMenu->addAction("Add DWP MediaRefTarget Item");
+}
+
+void
+DwpMediaRefContextMenu::addPackage()
+{
+    qDebug() << "DwpMediaRefContextMenu: Adding DWP Package item";
+    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
+}
+
+void
+DwpMediaRefContextMenu::addMediaRefSource()
+{
+    qDebug() << "DwpMediaRefContextMenu: Adding DWP MediaRefSource item";
+    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFSOURCE, mAttr);
+}
+
+void
+DwpMediaRefContextMenu::addMediaRefTarget()
+{
+    qDebug() << "DwpMediaRefContextMenu: Adding DWP MediaRefTarget item";
+    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFTARGET, mAttr);
 }

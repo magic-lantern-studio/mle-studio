@@ -29,15 +29,42 @@
 #include "DwpContextMenu.h"
 
 
+/**
+ * @brief The DwpMediaRefTargetContextMenu class is used to create and manage a context menu
+ * associated with an MediaRefTarget DWP item.
+ */
 class DwpMediaRefTargetContextMenu : public DwpContextMenu
 {
   public:
 
+    /**
+     * @brief A constructor for the MediaRefTarget context menu.
+     *
+     * @param parent A pointer to the parent Qt object.
+     */
     explicit DwpMediaRefTargetContextMenu(QObject *parent = nullptr);
 
+    /**
+     * The descructor.
+     */
     ~DwpMediaRefTargetContextMenu();
 
-    void init();
+    /**
+     * @brief Initialize the context menu.
+     *
+     * @param attr The DWP Attribute associated with this menu.
+     */
+    void init(QtDwpAttribute *attr);
+
+  private slots:
+
+    // Slot for adding a Media DWP item.
+    void addMedia();
+
+  private:
+
+    // A pointer to an action used to create a Media item.
+    QAction *addMediaAction;
 };
 
 #endif // __DWPMEDIAREFTARGETCONTEXTMENU_H_

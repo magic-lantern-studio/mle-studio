@@ -42,6 +42,38 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
   public:
 
     /**
+     * @brief The AttributeType enumerates the types of valid
+     * attributes.
+     */
+    enum AttributeType {
+        DWP_ATTRIBUTE_ACTOR,
+        DWP_ATTRIBUTE_ACTORDEF,
+        DWP_ATTRIBUTE_BOOT,
+        DWP_ATTRIBUTE_GROUP,
+        DWP_ATTRIBUTE_GROUPREF,
+        DWP_ATTRIBUTE_HEADERFILE,
+        DWP_ATTRIBUTE_INCLUDE,
+        DWP_ATTRIBUTE_MEDIA,
+        DWP_ATTRIBUTE_MEDIAREF,
+        DWP_ATTRIBUTE_MEDIAREFSOURCE,
+        DWP_ATTRIBUTE_MEDIAREFTARGET,
+        DWP_ATTRIBUTE_PACKAGE,
+        DWP_ATTRIBUTE_PROPERTY,
+        DWP_ATTRIBUTE_PROPERTYDEF,
+        DWP_ATTRIBUTE_ROLEATTACHMENT,
+        DWP_ATTRIBUTE_ROLEBINDING,
+        DWP_ATTRIBUTE_ROLEDEF,
+        DWP_ATTRIBUTE_SCENE,
+        DWP_ATTRIBUTE_SET,
+        DWP_ATTRIBUTE_SETDEF,
+        DWP_ATTRIBUTE_SOURCEFILE,
+        DWP_ATTRIBUTE_STAGE,
+        DWP_ATTRIBUTE_TAG
+    };
+
+  public:
+
+    /**
      * @brief The constructor used to create an attribute for the DWP model.
      *
      * @param data A reference to the data managed by this item.

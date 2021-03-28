@@ -31,15 +31,57 @@
 #include "DwpContextMenu.h"
 
 
+/**
+ * @brief The DwpSetContextMenu class is used to create and manage a context menu
+ * associated with a Set DWP item.
+ */
 class DwpSetContextMenu : public DwpContextMenu
 {
   public:
 
+    /**
+     * @brief A constructor for the Set context menu.
+     *
+     * @param parent A pointer to the parent Qt object.
+     */
     explicit DwpSetContextMenu(QObject *parent = nullptr);
 
+    /**
+     * The destructor.
+     */
     ~DwpSetContextMenu();
 
-    void init();
+    /**
+     * @brief Initialize the context menu.
+     *
+     * @param attr The DWP Attribute associated with this menu.
+     */
+    void init(QtDwpAttribute *attr);
+
+  private slots:
+
+    // Slot for adding a HeaderFile DWP item.
+    void addHeaderFile();
+
+    // Slot for adding a SourceFile DWP item.
+    void addSourceFile();
+
+    // Slot for adding a Package DWP item.
+    void addPackage();
+
+    // Slot for adding a Property DWP item.
+    void addProperty();
+
+  private:
+
+    // A pointer to an action used to create a HeaderFile item.
+    QAction *addHeaderFileAction;
+    // A pointer to an action used to create a SourceFile item.
+    QAction *addSourceFileAction;
+    // A pointer to an action used to create a Package item.
+    QAction *addPackageAction;
+    // A pointer to an action used to create a Property item.
+    QAction *addPropertyAction;
 };
 
 #endif // __DWPSETCONTEXTMENU_H_

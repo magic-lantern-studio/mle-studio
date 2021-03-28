@@ -38,10 +38,10 @@ DwpSceneContextMenu::~DwpSceneContextMenu()
 }
 
 void
-DwpSceneContextMenu::init()
+DwpSceneContextMenu::init(QtDwpAttribute *attr)
 {
     // Call super class method.
-    DwpContextMenu::init();
+    DwpContextMenu::init(attr);
 
     // Add menu actions.
     if (mUseJava) {

@@ -24,24 +24,39 @@
 //
 // COPYRIGHT_END
 
+#include <QDebug>
+
 #include "DwpMediaRefTargetContextMenu.h"
 
 DwpMediaRefTargetContextMenu::DwpMediaRefTargetContextMenu(QObject *parent)
-    : DwpContextMenu(parent)
+    : DwpContextMenu(parent),
+      addMediaAction(nullptr)
 {
     // Do nothing extra.
 }
 
 DwpMediaRefTargetContextMenu::~DwpMediaRefTargetContextMenu()
 {
-    // Do nothing.
+    if (addMediaAction != nullptr) delete addMediaAction;
 }
 
 void
-DwpMediaRefTargetContextMenu::init()
+DwpMediaRefTargetContextMenu::init(QtDwpAttribute *attr)
 {
     // Call super class method.
-    DwpContextMenu::init();
+    DwpContextMenu::init(attr);
 
-    mMenu->addAction("Add DWP Media Item");
+    addMediaAction = new QAction(tr("Add DWP Media Item"), this);
+    //addMediaAction->setShortcuts(QKeySequence::New);
+    addMediaAction->setStatusTip(tr("Create a new Media item"));
+    connect(addMediaAction, &QAction::triggered, this, &DwpMediaRefTargetContextMenu::addMedia);
+    mMenu->addAction(addMediaAction);
+    //mMenu->addAction("Add DWP Media Item");
+}
+
+void
+DwpMediaRefTargetContextMenu::addMedia()
+{
+    qDebug() << "DwpMediaRefTargetContextMenu: Adding DWP Media item";
+    emit DwpContextMenu::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_MEDIA, mAttr);
 }

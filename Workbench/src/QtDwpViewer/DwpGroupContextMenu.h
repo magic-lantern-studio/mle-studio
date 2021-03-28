@@ -30,16 +30,62 @@
 // Include DWP Viewer header files.
 #include "DwpContextMenu.h"
 
-
+/**
+ * @brief The DwpGroupContextMenu class is used to create and manage a context menu
+ * associated with an Group DWP item.
+ */
 class DwpGroupContextMenu : public DwpContextMenu
 {
   public:
 
+    /**
+     * @brief A constructor for the Group context menu.
+     *
+     * @param parent A pointer to the parent Qt object.
+     */
     explicit DwpGroupContextMenu(QObject *parent = nullptr);
 
+    /**
+     * The destructor.
+     */
     ~DwpGroupContextMenu();
 
-    void init();
+    /**
+     * @brief Initialize the context menu.
+     *
+     * @param attr The DWP Attribute associated with this menu.
+     */
+    void init(QtDwpAttribute *attr);
+
+  private slots:
+
+    // Slot for adding a HeaderFile DWP item.
+    void addHeaderFile();
+
+    // Slot for adding a SourceFile DWP item.
+    void addSourceFile();
+
+    // Slot for adding a Package DWP item.
+    void addPackage();
+
+    // Slot for adding a Actor DWP item.
+    void addActor();
+
+    // Slot for adding a RoleAttachment DWP item.
+    void addRoleAttachment();
+
+  private:
+
+  // A pointer to an action used to create a HeaderFile item.
+  QAction *addHeaderFileAction;
+  // A pointer to an action used to create a SourceFile item.
+  QAction *addSourceFileAction;
+  // A pointer to an action used to create a Package item.
+  QAction *addPackageAction;
+  // A pointer to an action used to create a Actor item.
+  QAction *addActorAction;
+  // A pointer to an action used to create a RoleAttachment item.
+  QAction *addRoleAttachmentAction;
 };
 
 #endif // __DWPGROUPCONTEXTMENU_H_

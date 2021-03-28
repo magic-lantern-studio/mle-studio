@@ -39,8 +39,11 @@ DwpContextMenu::~DwpContextMenu()
 }
 
 void
-DwpContextMenu::init()
+DwpContextMenu::init(QtDwpAttribute *attr)
 {
+    // Set associated DWP attribute.
+    mAttr = attr;
+
     // Add menu actions.
     mMenu->addAction("Delete DWP Item");
     mMenu->addSeparator();

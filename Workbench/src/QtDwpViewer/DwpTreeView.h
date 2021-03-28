@@ -29,15 +29,19 @@
 
 // Include Qt header files.
 #include <QTreeView>
+#include <QObject>
 
 // Include the Magic Lantern Workbench header files.
 #include "qt/QtDwpTreeItem.h"
+#include "qt/QtDwpAttribute.h"
 
 /**
  * @brief The DwpTreeView class is a QTreeView used for the DWP Viewer Model/View implementation.
  */
 class DwpTreeView : public QTreeView
 {
+    Q_OBJECT
+
   public:
 
     /**
@@ -78,9 +82,22 @@ class DwpTreeView : public QTreeView
      */
     void contextMenuEvent(QContextMenuEvent *e);
 
+  signals:
+
+    void insertItem(const QtDwpAttribute::AttributeType type, const QPoint pos);
+
+    void deleteItem(const QPoint pos);
+
+    void addTag(const QString tag, const QPoint pos);
+
+  private slots:
+
+    void addItem(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr);
+
   private:
 
     bool mUseJava;
+
 };
 
 #endif // __DWPTREEVIEW_H_
