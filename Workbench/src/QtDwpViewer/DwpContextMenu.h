@@ -33,24 +33,61 @@
 
 #include "qt/QtDwpAttribute.h"
 
+/**
+ * @brief The DwpContextMenu class is the base class for all DWP context mentus It is
+ * also used to create and manage common context menu actions, like adding a DWP tag
+ * and deleting a DWP item.
+ */
 class DwpContextMenu : public QObject
 {
     Q_OBJECT
 
   public:
 
+    /**
+     * @brief A constructor for the context menu.
+     *
+     * @param parent A pointer to the parent Qt object.
+     */
     explicit DwpContextMenu(QObject *parent = nullptr);
 
+    /**
+     * @brief The descrtuctor.
+     */
     virtual ~DwpContextMenu();
 
+    /**
+     * @brief Initialize the context menu.
+     *
+     * @param attr The DWP Attribute associated with this menu.
+     */
     virtual void init(QtDwpAttribute *attr);
 
+    /**
+     * @brief Get the menu for this context.
+     *
+     * @return A pointer to the menu is retruned.
+     */
     QMenu *getMenu() const
     { return mMenu; }
 
+    /**
+     * @brief Determine whether the context is set for creating a Java or Android
+     * Digital Workprint.
+     *
+     * @return <b>true</b> will be returned if the context is initialized to manage
+     * Java based Digital Workprints. Otherwise <b>false</b> will be returned.
+     */
     bool isJava()
     { return mUseJava; }
 
+    /**
+     * @brief Set the mode for Digital Workrpint generation.
+     *
+     * @param java Set to <b>true</b> if the context menu is to be used for Java or
+     * Androod based Digital Workprints. Set to <b>false<b> if the context menu is
+     * to be used for C/C++ based Digital Workprints.
+     */
     void useJava(bool java)
     { mUseJava = java; }
 

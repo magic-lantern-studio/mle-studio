@@ -29,15 +29,57 @@
 #include "DwpContextMenu.h"
 
 
+/**
+ * @brief The DwpRoleDefContextMenu class is used to create and manage a context menu
+ * associated with an RoleDef DWP item.
+ */
 class DwpRoleDefContextMenu : public DwpContextMenu
 {
   public:
 
+    /**
+     * @brief A constructor for the RoleDef context menu.
+     *
+     * @param parent A pointer to the parent Qt object.
+     */
     explicit DwpRoleDefContextMenu(QObject *parent = nullptr);
 
+    /**
+     * The destructor.
+     */
     ~DwpRoleDefContextMenu();
 
+    /**
+     * @brief Initialize the context menu.
+     *
+     * @param attr The DWP Attribute associated with this menu.
+     */
     void init(QtDwpAttribute *attr);
+
+  private slots:
+
+    // Slot for adding a Package DWP item.
+    void addPackage();
+
+    // Slot for adding a MediaRefSource DWP item.
+    void addMediaRefSource();
+
+    // Slot for adding a MediaRefTarget DWP item.
+    void addMediaRefTarget();
+
+    // Slot for adding a PropertyDef DWP item.
+    void addPropertyDef();
+
+  private:
+
+    // A pointer to an action used to create a Package item.
+    QAction *addPackageAction;
+    // A pointer to an action used to create a MediaRefSource item.
+    QAction *addMediaRefSourceAction;
+    // A pointer to an action used to create a MediaRefTarget item.
+    QAction *addMediaRefTargetAction;
+    // A pointer to an action used to create a PropertyDef item.
+    QAction *addPropertyDefAction;
 };
 
 #endif // __DWPROLEDEFCONTEXTMENU_H_
