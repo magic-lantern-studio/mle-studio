@@ -98,6 +98,8 @@ QtDwpModel::QtDwpModel(const QStringList &headers, const MleDwpItem *data, QObje
     // Setup the model data.
     setupModelData(data, mRootItem);
     mDwp = data;
+    // Configurate status of model.
+    mIsModified = false;
 }
 
 QtDwpModel::~QtDwpModel()
@@ -1300,3 +1302,9 @@ QtDwpModel::setDwp(const MleDwpItem *item)
     mDwp= item;
 }
 
+void
+QtDwpModel::setModified(bool value)
+{
+    mIsModified = value;
+    emit QtDwpModel::contentsChanged();
+}

@@ -33,6 +33,7 @@
 #include <QModelIndex>
 #include <QVariant>
 
+// Include DWP Model header files.
 #include "QtDwpModel_global.h"
 #include "QtDwpNameAttribute.h"
 #include "QtDwpNameTypeAttribute.h"
@@ -317,6 +318,18 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
     // Get the item for the specified model index.
     QtDwpTreeItem *getItem(const QModelIndex &index) const;
 
+    void setModified(bool value);
+
+    bool isModified()
+    { return mIsModified; }
+
+  signals:
+
+    /**
+     * @brief A Signal indicating that the contents of the model has changed.
+     */
+    void contentsChanged();
+
   protected:
 
     QtDwpAttribute *createActor(MleDwpActor *item, QtDwpTreeItem *parent);
@@ -360,6 +373,10 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
 
     // The associated Digital Workprint.
     const MleDwpItem *mDwp;
+
+    // Flag indicating whether the model has been modified since initial
+    // setup configuration.
+    bool mIsModified;
 };
 
 #endif /* __QTDWPMODEL_H_ */

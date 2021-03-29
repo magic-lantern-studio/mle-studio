@@ -64,7 +64,7 @@ class MainWindow : public QMainWindow
 
     void closeEvent(QCloseEvent *event) override;
 
-    bool eventFilter(QObject *target, QEvent *event) override;
+    //bool eventFilter(QObject *target, QEvent *event) override;
 
   private slots:
 
@@ -95,6 +95,8 @@ class MainWindow : public QMainWindow
     // The model loaded from the Digital Workprint.
     QtDwpModel *mModel;
 
+    // Flag indicating that session is for editing a Java based
+    // Digital Workprint.
     bool mUseJava;
 };
 

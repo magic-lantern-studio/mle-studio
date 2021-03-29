@@ -96,6 +96,8 @@ class DwpTreeView : public QTreeView
 
   private:
 
+    // Flag indicating that view is being used to edit a Java or Android
+    // based Digital Workprint.
     bool mUseJava;
 
 };

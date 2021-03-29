@@ -50,10 +50,8 @@ MainWindow::MainWindow()
 
     readSettings();
 
-    /*
-    connect(mTextEdit->document(), &QTextDocument::contentsChanged,
+    connect(this->getModel(), &QtDwpModel::contentsChanged,
             this, &MainWindow::documentWasModified);
-    */
 
 #ifndef QT_NO_SESSIONMANAGER
     QGuiApplication::setFallbackSessionManagementEnabled(false);
@@ -105,6 +103,7 @@ MainWindow::closeEvent(QCloseEvent *event)
     }
 }
 
+/*
 bool
 MainWindow::eventFilter(QObject *target, QEvent *event)
 {
@@ -121,6 +120,7 @@ MainWindow::eventFilter(QObject *target, QEvent *event)
 
     return QObject::eventFilter(target, event);
 }
+*/
 
 void
 MainWindow::newFile()
@@ -174,8 +174,8 @@ MainWindow::about()
 void
 MainWindow::documentWasModified()
 {
-    //setWindowModified(mTextEdit->document()->isModified());
-    // Todo: Flag that DWP is modified.
+    // Flag that DWP is modified.
+    setWindowModified(this->getModel()->isModified());
 }
 
 void
@@ -299,9 +299,9 @@ MainWindow::writeSettings()
 bool
 MainWindow::maybeSave()
 {
-    //if (!mTextEdit->document()->isModified())
-    //    return true;
-    // Todo: Check if DWP document is modified. If not, return true.
+    // Check if DWP document is modified. If not, return true.
+    if (! this->getModel()->isModified())
+        return true;
 
     const QMessageBox::StandardButton ret
         = QMessageBox::warning(this, tr("DWP Viewer"),
@@ -309,11 +309,11 @@ MainWindow::maybeSave()
                                   "Do you want to save your changes?"),
                                QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
     switch (ret) {
-    case QMessageBox::Save:
+      case QMessageBox::Save:
         return save();
-    case QMessageBox::Cancel:
+      case QMessageBox::Cancel:
         return false;
-    default:
+      default:
         break;
     }
     return true;
@@ -379,8 +379,8 @@ void
 MainWindow::setCurrentFile(const QString &fileName)
 {
     mCurFile = fileName;
-    //mTextEdit->document()->setModified(false);
-    // Todo: set DWP modified to false.
+    // Set DWP modified to false.
+    this->getModel()->setModified(false);
     setWindowModified(false);
 
     QString shownName = mCurFile;
@@ -403,10 +403,11 @@ MainWindow::commitData(QSessionManager &manager)
         if (! maybeSave())
             manager.cancel();
     } else {
-        // Non-interactive: save without asking
-        //if (mTextEdit->document()->isModified())
-        //    save();
-        // Todo: Save DWP if it is modifiled.
+        // Non-interactive: save without asking.
+
+        // Save DWP if it is modifiled.
+        if (this->getModel()->isModified())
+            save();
     }
 }
 #endif // !QT_NO_SESSIONMANAGER
