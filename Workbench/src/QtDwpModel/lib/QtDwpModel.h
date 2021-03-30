@@ -315,11 +315,35 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
      */
     QtDwpTreeItem *getRoot() { return mRootItem; }
 
-    // Get the item for the specified model index.
+    /**
+     *@ brief  Get the item for the specified model index.
+     *
+     * @param index The model index used to retrieve the tree item.
+     *
+     * @return A pointer to the tree item located at the specifed index
+     * will be returned.
+     */
     QtDwpTreeItem *getItem(const QModelIndex &index) const;
 
+    QtDwpTreeItem *addAttribute(const QtDwpAttribute::AttributeType type);
+
+    void deleteAttribute(const QtDwpAttribute *attr);
+
+    /**
+     * @brief Set the model as modified or not.
+     *
+     * @param value If <b>true</b>, then the model will be flagged as being
+     * modified. If <b>false</b>, then the model will be flagged as not
+     * being modified.
+     */
     void setModified(bool value);
 
+    /**
+     * @brief Check whether the model has been modified.
+     *
+     * @return <b>true</b> will be returned if the model has been modified.
+     * Otherwise <b>false</b> will be returned.
+     */
     bool isModified()
     { return mIsModified; }
 
@@ -358,6 +382,8 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
     QtDwpAttribute *createSourceFile(MleDwpSourceFile *item, QtDwpTreeItem *parent);
     QtDwpAttribute *createStage(MleDwpStage *item, QtDwpTreeItem *parent);
     QtDwpAttribute *createStageDef(MleDwpStageDef *item, QtDwpTreeItem *parent);
+
+    QModelIndex findAttribute(const QtDwpAttribute *attr);
 
   private:
 

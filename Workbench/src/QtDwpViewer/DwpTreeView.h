@@ -35,8 +35,12 @@
 #include "qt/QtDwpTreeItem.h"
 #include "qt/QtDwpAttribute.h"
 
+
 /**
  * @brief The DwpTreeView class is a QTreeView used for the DWP Viewer Model/View implementation.
+ *
+ * The DwpTreeView dispalys the Magic Lantern Digital Workprint using a hierarchical tree,
+ * reflecting the structure of the document.
  */
 class DwpTreeView : public QTreeView
 {
@@ -92,9 +96,14 @@ class DwpTreeView : public QTreeView
 
   private slots:
 
-    void addItem(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr);
+    void addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr);
+
+    void deleteAttribute(QtDwpAttribute *attr);
 
   private:
+
+    // Dispaly the default context menu for the specified attribute.
+    void displayDefaultContextMenu(QtDwpAttribute *attr, QPoint pos);
 
     // Flag indicating that view is being used to edit a Java or Android
     // based Digital Workprint.

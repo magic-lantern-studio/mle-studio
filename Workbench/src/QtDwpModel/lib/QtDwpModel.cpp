@@ -1308,3 +1308,47 @@ QtDwpModel::setModified(bool value)
     mIsModified = value;
     emit QtDwpModel::contentsChanged();
 }
+
+QtDwpTreeItem *
+QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type)
+{
+    return nullptr;
+}
+
+void
+QtDwpModel::deleteAttribute(const QtDwpAttribute *attr)
+{
+    // Find the index for the attribute.
+    QModelIndex index = findAttribute(attr);
+    if (! index.isValid())
+        return;
+
+    // Get the index for the parent.
+    QModelIndex parentIndex = this->parent(index);
+
+    // Remove the model rows.
+    int position = 0;
+    removeRows(position, 1, parentIndex);
+
+    // Update DWP item hierarchy.
+
+    setModified(true);
+}
+
+QModelIndex
+QtDwpModel::findAttribute(const QtDwpAttribute *attr)
+{
+    if (attr == nullptr)
+        return QModelIndex();
+
+    int numRows = rowCount();
+
+    for (int row = 0; row < numRows; row++) {
+        QModelIndex next = this->index(row, 0);
+        QtDwpTreeItem *item = static_cast<QtDwpTreeItem *>(next.internalPointer());
+        if (attr == item)
+            return next;
+    }
+
+    return QModelIndex();
+}
