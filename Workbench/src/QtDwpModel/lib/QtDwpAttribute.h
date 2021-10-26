@@ -136,4 +136,3 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
 
 #endif /* __QTDWPATTRIBUTE_H_ */
 
-\

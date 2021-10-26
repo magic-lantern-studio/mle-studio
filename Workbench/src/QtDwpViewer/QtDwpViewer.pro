@@ -5,8 +5,8 @@ CONFIG += c++11
 
 DEFINES += MLE_NOT_DLL DEBUG QT_NO_CLIPBOARD
 
-#INCLUDEPATH = $$PWD/../QtDwpModel/lib /opt/Magiclantern/include
-INCLUDEPATH = /opt/Magiclantern/include
+#INCLUDEPATH = $$PWD/../QtDwpModel/lib /opt/MagicLantern/include
+INCLUDEPATH = /opt/MagicLantern/include
 
 HEADERS = \
     DwpActorContextMenu.h \
