@@ -79,6 +79,11 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
   public:
 
     /**
+     * @brief The default constructor.
+     */
+    QtDwpModel() {}
+
+    /**
      * @brief A constructor specifiying the <i>headers</i> and
      * initialization <i>data</i> for the DWP model.
      *
@@ -91,9 +96,9 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
                QObject *parent = nullptr);
 
     /**
-      * The destructor.
-      */
-    ~QtDwpModel();
+     * The destructor.
+     */
+    virtual ~QtDwpModel();
 
     /**
      * @brief Retrieve the data for the specified model <i>index</i>

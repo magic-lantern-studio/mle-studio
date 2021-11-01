@@ -1299,7 +1299,7 @@ QtDwpModel::setDwp(const MleDwpItem *item)
         removeModelData(item);
     }
     setupModelData(item, mRootItem);
-    mDwp= item;
+    mDwp = item;
 }
 
 void

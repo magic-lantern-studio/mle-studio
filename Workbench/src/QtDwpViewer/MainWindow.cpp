@@ -127,7 +127,19 @@ MainWindow::newFile()
 {
     if (maybeSave()) {
         //mTextEdit->clear();
-        // Todo: Clear mTreeView (set to null.dwp).
+
+        // Clear mModel.
+        const MleDwpItem *root = mModel->getDwp();
+        mModel->setDwp(nullptr);
+        if (root != nullptr) delete root;
+
+        // mTreeView will be notified of deleted rows.
+        mModel->removeRows(0, mModel->rowCount());
+
+        // Set default for a new file to null.dwp.
+        root = mlLoadWorkprint("workprints/null.dwp");
+        mModel->setDwp(root);
+
         setCurrentFile(QString());
     }
 }
