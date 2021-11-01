@@ -1309,10 +1309,31 @@ QtDwpModel::setModified(bool value)
     emit QtDwpModel::contentsChanged();
 }
 
-QtDwpTreeItem *
-QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type)
+QtDwpAttribute *
+QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *parent)
 {
-    return nullptr;
+    this->beginResetModel();
+
+    // Create a new attribute of the specified type.
+    QtDwpAttribute *attr = nullptr;
+    if (type == QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE) {
+        MleDwpSourceFile *item = new MleDwpSourceFile();
+        item->setName("SourceFile");
+        item->setFilename("SourceFile.cpp");
+        attr = this->createSourceFile(item, parent);
+    }
+
+    // Add the Attribute to the DWP domain table.
+    if (attr != nullptr)
+    {
+        QVector<QtDwpTreeItem *> columnData;
+        columnData.append(attr);
+        parent->insertChildren(parent->childCount(), 1, columnData);
+    }
+
+    this->endResetModel();
+
+    return attr;
 }
 
 void

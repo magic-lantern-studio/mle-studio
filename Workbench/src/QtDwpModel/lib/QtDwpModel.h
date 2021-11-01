@@ -330,7 +330,7 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
      */
     QtDwpTreeItem *getItem(const QModelIndex &index) const;
 
-    QtDwpTreeItem *addAttribute(const QtDwpAttribute::AttributeType type);
+    QtDwpAttribute *addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *parent);
 
     void deleteAttribute(const QtDwpAttribute *attr);
 

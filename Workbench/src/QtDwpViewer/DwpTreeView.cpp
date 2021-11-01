@@ -291,6 +291,11 @@ void
 DwpTreeView::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr)
 {
     qDebug() << "DwpTreeView: Adding DWP Item of type" << type;
+
+    QtDwpModel *model = static_cast<QtDwpModel *>(this->model());
+    QtDwpAttribute *newAttr = model->addAttribute(type, attr);
+    if (newAttr != nullptr) {
+    }
 }
 
 void

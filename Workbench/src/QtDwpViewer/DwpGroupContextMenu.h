@@ -76,16 +76,16 @@ class DwpGroupContextMenu : public DwpContextMenu
 
   private:
 
-  // A pointer to an action used to create a HeaderFile item.
-  QAction *addHeaderFileAction;
-  // A pointer to an action used to create a SourceFile item.
-  QAction *addSourceFileAction;
-  // A pointer to an action used to create a Package item.
-  QAction *addPackageAction;
-  // A pointer to an action used to create a Actor item.
-  QAction *addActorAction;
-  // A pointer to an action used to create a RoleAttachment item.
-  QAction *addRoleAttachmentAction;
+    // A pointer to an action used to create a HeaderFile item.
+    QAction *addHeaderFileAction;
+    // A pointer to an action used to create a SourceFile item.
+    QAction *addSourceFileAction;
+    // A pointer to an action used to create a Package item.
+    QAction *addPackageAction;
+    // A pointer to an action used to create a Actor item.
+    QAction *addActorAction;
+    // A pointer to an action used to create a RoleAttachment item.
+    QAction *addRoleAttachmentAction;
 };
 
 #endif // __DWPGROUPCONTEXTMENU_H_
