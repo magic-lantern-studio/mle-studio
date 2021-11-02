@@ -1312,7 +1312,13 @@ QtDwpModel::setModified(bool value)
 QtDwpAttribute *
 QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *parent)
 {
-    this->beginResetModel();
+    //this->beginResetModel();
+    QModelIndex index = findAttribute(parent);
+    if (! index.isValid()) return nullptr;
+    int first = rowCount(index);
+    int last = first;
+
+    this->beginInsertRows(index, first, last);
 
     // Create a new attribute of the specified type.
     QtDwpAttribute *attr = nullptr;
@@ -1331,7 +1337,8 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
         parent->insertChildren(parent->childCount(), 1, columnData);
     }
 
-    this->endResetModel();
+    //this->endResetModel();
+    this->endInsertRows();
 
     return attr;
 }
@@ -1351,25 +1358,32 @@ QtDwpModel::deleteAttribute(const QtDwpAttribute *attr)
     int position = 0;
     removeRows(position, 1, parentIndex);
 
-    // Update DWP item hierarchy.
+    // Todo: Update DWP item hierarchy.
 
     setModified(true);
 }
 
 QModelIndex
-QtDwpModel::findAttribute(const QtDwpAttribute *attr)
+QtDwpModel::findAttribute(const QtDwpAttribute *attr, const QModelIndex &parent)
 {
     if (attr == nullptr)
+        // Return an invalid index.
         return QModelIndex();
 
-    int numRows = rowCount();
+    int numRows = rowCount(parent);
 
     for (int row = 0; row < numRows; row++) {
-        QModelIndex next = this->index(row, 0);
+        QModelIndex next = this->index(row, 0, parent);
         QtDwpTreeItem *item = static_cast<QtDwpTreeItem *>(next.internalPointer());
         if (attr == item)
             return next;
+
+        if (this->hasChildren(next)) {
+            QModelIndex found = this->findAttribute(attr, next);
+            if (found.isValid()) return found;
+        }
     }
 
+    // Not found, return an invalid index.
     return QModelIndex();
 }

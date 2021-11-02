@@ -388,7 +388,7 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
     QtDwpAttribute *createStage(MleDwpStage *item, QtDwpTreeItem *parent);
     QtDwpAttribute *createStageDef(MleDwpStageDef *item, QtDwpTreeItem *parent);
 
-    QModelIndex findAttribute(const QtDwpAttribute *attr);
+    QModelIndex findAttribute(const QtDwpAttribute *attr, const QModelIndex &parent = QModelIndex());
 
   private:
 
