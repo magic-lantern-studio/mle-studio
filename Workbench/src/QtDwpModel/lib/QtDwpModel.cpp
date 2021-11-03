@@ -1365,8 +1365,16 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
     } if (type == QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE) {
         MleDwpPackage *item = new MleDwpPackage();
         item->setName("Package");
-        item->setPackage("com.wizzerworks");  // Todo: make configureable from configuration file.
+        item->setPackage("com.wizzer");  // Todo: make configureable from configuration file.
         attr = this->createPackage(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_ROLEBINDING) {
+        MleDwpRoleBinding *item = new MleDwpRoleBinding();
+        item->setName("RoleBinding");
+        item->setSet("set");
+        item->setRoleType("Mle3dRole");
+        attr = this->createRoleBinding(item, parent);
         if (attr != nullptr) attr->setType(type);
         else delete item;
     } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE) {
@@ -1391,6 +1399,9 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
     //this->endResetModel();
     this->endInsertRows();
 
+    // Set the model as being modified.
+    this->setModified(true);
+
     return attr;
 }
 
@@ -1399,18 +1410,18 @@ QtDwpModel::deleteAttribute(const QtDwpAttribute *attr)
 {
     // Find the index for the attribute.
     QModelIndex index = findAttribute(attr);
-    if (! index.isValid())
-        return;
+    if (! index.isValid()) return;
 
     // Get the index for the parent.
     QModelIndex parentIndex = this->parent(index);
 
     // Remove the model rows.
-    int position = 0;
+    int position = index.row();
     removeRows(position, 1, parentIndex);
 
     // Todo: Update DWP item hierarchy.
 
+    // Set the model as being modified.
     setModified(true);
 }
 

@@ -44,6 +44,7 @@
 #include "mle/DwpProperty.h"
 #include "mle/DwpPropertyDef.h"
 #include "mle/DwpRoleDef.h"
+#include "mle/DwpRoleBinding.h"
 #include "mle/DwpScene.h"
 #include "mle/DwpSourceFile.h"
 #include "mle/DwpStage.h"
@@ -284,6 +285,8 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
        displayDefaultContextMenu(attr, e->pos());
     } else if (dwpItem->isa(MleDwpProperty::typeId))  {
         displayDefaultContextMenu(attr, e->pos());
+    } else if (dwpItem->isa(MleDwpRoleBinding::typeId)) {
+        displayDefaultContextMenu(attr, e->pos());
     }
 }
 
@@ -295,13 +298,17 @@ DwpTreeView::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribu
     QtDwpModel *model = static_cast<QtDwpModel *>(this->model());
     QtDwpAttribute *newAttr = model->addAttribute(type, attr);
     if (newAttr != nullptr) {
+        qDebug() << "DwpTreeView: Successfully added DWP item" << newAttr->getAttributeName();
     }
 }
 
 void
 DwpTreeView::deleteAttribute(QtDwpAttribute *attr)
 {
-    qDebug() << "DwpTreeView: Deleting DWP Item";
+    qDebug() << "DwpTreeView: Deleting DWP item" << attr->getAttributeName();
+
+    QtDwpModel *model = static_cast<QtDwpModel *>(this->model());
+    model->deleteAttribute(attr);
 }
 
 void

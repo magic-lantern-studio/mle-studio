@@ -93,6 +93,8 @@ DwpActorContextMenu::init(QtDwpAttribute *attr)
     connect(addRoleBindingAction, &QAction::triggered, this, &DwpActorContextMenu::addRoleBinding);
     mMenu->addAction(addRoleBindingAction);
     //mMenu->addAction("Add DWP RoleBinding Item");
+    if (attr->hasAttributeType(QtDwpAttribute::DWP_ATTRIBUTE_ROLEBINDING))
+        addRoleBindingAction->setEnabled(false);
 
     addPropertyAction = new QAction(tr("Add DWP Property Item"), this);
     //addPropertyAction->setShortcuts(QKeySequence::New);
