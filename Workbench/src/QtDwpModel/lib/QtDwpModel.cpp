@@ -1394,6 +1394,8 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
         QVector<QtDwpTreeItem *> columnData;
         columnData.append(attr);
         parent->insertChildren(parent->childCount(), 1, columnData);
+
+        // Todo: Update DWP item hieararchy.
     }
 
     //this->endResetModel();
@@ -1408,6 +1410,8 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
 void
 QtDwpModel::deleteAttribute(const QtDwpAttribute *attr)
 {
+    const MleDwpItem *item = attr->getDwpItem();
+
     // Find the index for the attribute.
     QModelIndex index = findAttribute(attr);
     if (! index.isValid()) return;
@@ -1419,7 +1423,11 @@ QtDwpModel::deleteAttribute(const QtDwpAttribute *attr)
     int position = index.row();
     removeRows(position, 1, parentIndex);
 
-    // Todo: Update DWP item hierarchy.
+    // Update DWP item hierarchy.
+    MleDwpItem *parentItem = item->getParent();
+    if (parentItem != NULL)
+        parentItem->removeChild(const_cast<MleDwpItem *>(item));
+    delete item;
 
     // Set the model as being modified.
     setModified(true);
