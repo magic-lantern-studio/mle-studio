@@ -1348,7 +1348,21 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
 
     // Create a new attribute of the specified type.
     QtDwpAttribute *attr = nullptr;
-    if (type == QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE) {
+    if (type == QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE) {
+        MleDwpHeaderFile *item = new MleDwpHeaderFile();
+        item->setName("HeaderFile");
+        item->setHeader("HeaderFile.h");
+        attr = this->createHeaderFile(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    } if (type == QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE) {
+        MleDwpPackage *item = new MleDwpPackage();
+        item->setName("Package");
+        item->setPackage("com.wizzerworks");  // Todo: make configureable from configuration file.
+        attr = this->createPackage(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE) {
         MleDwpSourceFile *item = new MleDwpSourceFile();
         item->setName("SourceFile");
         item->setFilename("SourceFile.cpp");
