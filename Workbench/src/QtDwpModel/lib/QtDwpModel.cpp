@@ -126,6 +126,7 @@ QtDwpModel::createActor(MleDwpActor *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_ACTOR);
 
     return attr;
 }
@@ -145,6 +146,7 @@ QtDwpModel::createActorDef(MleDwpActorDef *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_ACTORDEF);
 
     return attr;
 }
@@ -164,6 +166,7 @@ QtDwpModel::createBoot(MleDwpBoot *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_BOOT);
 
     return attr;
 }
@@ -183,6 +186,7 @@ QtDwpModel::createDSOFile(MleDwpDSOFile *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_DSOFILE);
 
     return attr;
 }
@@ -206,6 +210,7 @@ QtDwpModel::createGroup(MleDwpGroup *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_GROUP);
 
     return attr;
 }
@@ -225,6 +230,7 @@ QtDwpModel::createGroupRef(MleDwpGroupRef *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_GROUPREF);
 
     return attr;
 }
@@ -244,6 +250,7 @@ QtDwpModel::createHeaderFile(MleDwpHeaderFile *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE);
 
     return attr;
 }
@@ -263,6 +270,7 @@ QtDwpModel::createInclude(MleDwpInclude *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_INCLUDE);
 
     return attr;
 }
@@ -293,6 +301,7 @@ QtDwpModel::createMediaRef(MleDwpMediaRef *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREF);
 
     return attr;
 }
@@ -316,6 +325,7 @@ QtDwpModel::createMediaRefClass(MleDwpMediaRefClass *item, QtDwpTreeItem *parent
 
     QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
     attr->setDwpItem(item);
+    // Todo: What about the attribute type?
 
     return attr;
 }
@@ -337,6 +347,7 @@ QtDwpModel::createMediaRefSource(MleDwpMediaRefSource *item, QtDwpTreeItem *pare
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFSOURCE);
 
     return attr;
 }
@@ -358,6 +369,7 @@ QtDwpModel::createMediaRefTarget(MleDwpMediaRefTarget *item, QtDwpTreeItem *pare
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFTARGET);
 
     return attr;
 }
@@ -377,6 +389,7 @@ QtDwpModel::createPackage(MleDwpPackage *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE);
 
     return attr;
 }
@@ -702,6 +715,8 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             attr = new QtDwpNameTypeValueAttribute(data, parent);
             attr->setDwpItem(item);
         }
+
+        attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY);
     }
 
     return attr;
@@ -727,6 +742,7 @@ QtDwpModel::createPropertyDef(MleDwpPropertyDef *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTYDEF);
 
     return attr;
 }
@@ -750,6 +766,7 @@ QtDwpModel::createRoleAttachment(MleDwpRoleAttachment *item, QtDwpTreeItem *pare
 
     QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_ROLEATTACHMENT);
 
     return attr;
 }
@@ -773,6 +790,7 @@ QtDwpModel::createRoleBinding(MleDwpRoleBinding *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_ROLEBINDING);
 
     return attr;
 }
@@ -792,6 +810,7 @@ QtDwpModel::createRoleDef(MleDwpRoleDef *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_ROLEDEF);
 
     return attr;
 }
@@ -815,6 +834,7 @@ QtDwpModel::createRoleSetMapping(MleDwpRoleSetMapping *item, QtDwpTreeItem *pare
 
     QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
     attr->setDwpItem(item);
+    // Todo: What about attribute type?
 
     return attr;
 }
@@ -838,6 +858,7 @@ QtDwpModel::createScene(MleDwpScene *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_SCENE);
 
     return attr;
 }
@@ -861,6 +882,7 @@ QtDwpModel::createSet(MleDwpSet *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_SET);
 
     return attr;
 }
@@ -880,6 +902,7 @@ QtDwpModel::createSetDef(MleDwpSetDef *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_SETDEF);
 
     return attr;
 }
@@ -899,6 +922,7 @@ QtDwpModel::createSourceFile(MleDwpSourceFile *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE);
 
     return attr;
 }
@@ -922,6 +946,7 @@ QtDwpModel::createStage(MleDwpStage *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameTypeAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_STAGE);
 
     return attr;
 }
@@ -941,6 +966,7 @@ QtDwpModel::createStageDef(MleDwpStageDef *item, QtDwpTreeItem *parent)
 
     QtDwpAttribute *attr = new QtDwpNameAttribute(data, parent);
     attr->setDwpItem(item);
+    attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_STAGEDEF);
 
     return attr;
 }
@@ -1327,7 +1353,11 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
         item->setName("SourceFile");
         item->setFilename("SourceFile.cpp");
         attr = this->createSourceFile(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
     }
+
+    // ToDo: Complete list of attributes.
 
     // Add the Attribute to the DWP domain table.
     if (attr != nullptr)

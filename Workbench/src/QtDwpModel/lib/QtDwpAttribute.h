@@ -49,6 +49,7 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
         DWP_ATTRIBUTE_ACTOR,
         DWP_ATTRIBUTE_ACTORDEF,
         DWP_ATTRIBUTE_BOOT,
+        DWP_ATTRIBUTE_DSOFILE,
         DWP_ATTRIBUTE_GROUP,
         DWP_ATTRIBUTE_GROUPREF,
         DWP_ATTRIBUTE_HEADERFILE,
@@ -68,7 +69,9 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
         DWP_ATTRIBUTE_SETDEF,
         DWP_ATTRIBUTE_SOURCEFILE,
         DWP_ATTRIBUTE_STAGE,
-        DWP_ATTRIBUTE_TAG
+        DWP_ATTRIBUTE_STAGEDEF,
+        DWP_ATTRIBUTE_TAG,
+        DWP_ATTRIBUTE_UNKNOWN
     };
 
   public:
@@ -112,6 +115,35 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
     QString getAttributeName() const;
 
     /**
+     * @brief setType Set the DWP attribute type.
+     *
+     * @param type The attibute type to set. By default, the type is
+     * <b>DWP_ATTRIBUTE_UNKNWON<b>.
+     */
+    void setType(AttributeType type)
+    { mType = type; }
+
+    /**
+     * @brief Determine if this attribute is the specified type.
+     *
+     * @param type The DWP attrubute type to test for.
+     *
+     * @return <b>true</b> will be returned if this attribute is of
+     * type <b>type</b>. Otherwise, <b>false</b> will be returned.
+     */
+    bool isAttributeType(AttributeType type);
+
+    /**
+     * @brief Determine if this attribute has any children of the specified type.
+     *
+     * @param type The DWP attribute type to search for.
+     *
+     * @return <b>true</b> will be returned if a child of this attribute is of
+     * type <b>type</b>. Otherwise, <b>false</b> will be returned.
+     */
+    bool hasAttributeType(AttributeType type);
+
+    /**
      * @brief Print the contents of the attribute to stdout.
      */
     virtual void print();
@@ -131,6 +163,9 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
 
     // The DWP item associated with this attribute.
     const MleDwpItem *mDwpItem;
+
+    // The type of attribute.
+    AttributeType mType;
 
 };
 

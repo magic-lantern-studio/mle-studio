@@ -61,6 +61,12 @@ class DwpSceneContextMenu : public DwpContextMenu
     // Slot for adding a Package DWP item.
     void addPackage();
 
+    // Slot for adding a HeaderFile DWP item.
+    void addHeaderFile();
+
+    // Slot for adding a SourceFile DWP item.
+    void addSourceFile();
+
     // Slot for adding a MediaRefSource DWP item.
     void addMediaRefSource();
 
@@ -80,6 +86,10 @@ class DwpSceneContextMenu : public DwpContextMenu
 
     // A pointer to an action used to create a Package item.
     QAction *addPackageAction;
+    // A pointer to an action used to create a HeaderFile item.
+    QAction *addHeaderFileAction;
+    // A pointer to an action used to create a SourceFile item.
+    QAction *addSourceFileAction;
     // A pointer to an action used to create a MediaRefSource item.
     QAction *addMediaRefSourceAction;
     // A pointer to an action used to create a MediaRefTarget item.

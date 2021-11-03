@@ -57,6 +57,11 @@ class DwpGroupContextMenu : public DwpContextMenu
      */
     void init(QtDwpAttribute *attr);
 
+  public slots:
+
+    void enableHeaderFile(bool flag);
+    void enableSourceFile(bool flag);
+
   private slots:
 
     // Slot for adding a HeaderFile DWP item.

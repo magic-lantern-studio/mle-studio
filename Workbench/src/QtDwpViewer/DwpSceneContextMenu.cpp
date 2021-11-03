@@ -31,6 +31,8 @@
 DwpSceneContextMenu::DwpSceneContextMenu(QObject *parent)
     : DwpContextMenu(parent),
       addPackageAction(nullptr),
+      addHeaderFileAction(nullptr),
+      addSourceFileAction(nullptr),
       addMediaRefSourceAction(nullptr),
       addMediaRefTargetAction(nullptr),
       addGroupAction(nullptr),
@@ -42,6 +44,8 @@ DwpSceneContextMenu::DwpSceneContextMenu(QObject *parent)
 DwpSceneContextMenu::~DwpSceneContextMenu()
 {
     if (addPackageAction != nullptr) delete addPackageAction;
+    if (addHeaderFileAction != nullptr) delete addHeaderFileAction;
+    if (addSourceFileAction != nullptr) delete addSourceFileAction;
     if (addMediaRefSourceAction != nullptr) delete addMediaRefSourceAction;
     if (addMediaRefTargetAction != nullptr) delete addMediaRefTargetAction;
     if (addGroupAction != nullptr) delete addGroupAction;
@@ -64,6 +68,28 @@ DwpSceneContextMenu::init(QtDwpAttribute *attr)
         connect(addPackageAction, &QAction::triggered, this, &DwpSceneContextMenu::addPackage);
         mMenu->addAction(addPackageAction);
         //mMenu->addAction("Add DWP Package Item");
+        if (attr->hasAttributeType(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE))
+            addPackageAction->setEnabled(false);
+    } else {
+        // Support for C/C++ Digital Workprints.
+
+        addHeaderFileAction = new QAction(tr("Add DWP HeaderFile Item"), this);
+        //addHeaderFileAction->setShortcuts(QKeySequence::New);
+        addHeaderFileAction->setStatusTip(tr("Create a new HeaderFile item"));
+        connect(addHeaderFileAction, &QAction::triggered, this, &DwpSceneContextMenu::addHeaderFile);
+        mMenu->addAction(addHeaderFileAction);
+        //mMenu->addAction("Add DWP HeaderFile Item");
+        if (attr->hasAttributeType(QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE))
+            addHeaderFileAction->setEnabled(false);
+
+        addSourceFileAction = new QAction(tr("Add DWP SourceFile Item"), this);
+        //action->setShortcuts(QKeySequence::New);
+        addSourceFileAction->setStatusTip(tr("Create a new SourceFile item"));
+        connect(addSourceFileAction, &QAction::triggered, this, &DwpSceneContextMenu::addSourceFile);
+        mMenu->addAction(addSourceFileAction);
+        //mMenu->addAction("Add DWP SourceFile Item");
+        if (attr->hasAttributeType(QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE))
+            addSourceFileAction->setEnabled(false);
     }
 
     addMediaRefSourceAction = new QAction(tr("Add DWP MediaRefSource Item"), this);
@@ -101,6 +127,20 @@ DwpSceneContextMenu::addPackage()
 {
     qDebug() << "DwpSceneContextMenu: Adding DWP Package item";
     emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE, mAttr);
+}
+
+void
+DwpSceneContextMenu::addHeaderFile()
+{
+    qDebug() << "DwpSceneContextMenu: Adding DWP HeaderFile item";
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE, mAttr);
+}
+
+void
+DwpSceneContextMenu::addSourceFile()
+{
+    qDebug() << "DwpSceneContextMenu: Adding DWP SourceFile item";
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE, mAttr);
 }
 
 void

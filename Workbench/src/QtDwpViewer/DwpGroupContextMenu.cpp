@@ -63,6 +63,8 @@ DwpGroupContextMenu::init(QtDwpAttribute *attr)
         connect(addPackageAction, &QAction::triggered, this, &DwpGroupContextMenu::addPackage);
         mMenu->addAction(addPackageAction);
         //mMenu->addAction("Add DWP Package Item");
+        if (attr->hasAttributeType(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE))
+            addPackageAction->setEnabled(false);
     } else {
         // Support for C/C++ Digital Workprints.
 
@@ -72,6 +74,8 @@ DwpGroupContextMenu::init(QtDwpAttribute *attr)
         connect(addHeaderFileAction, &QAction::triggered, this, &DwpGroupContextMenu::addHeaderFile);
         mMenu->addAction(addHeaderFileAction);
         //mMenu->addAction("Add DWP HeaderFile Item");
+        if (attr->hasAttributeType(QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE))
+            addHeaderFileAction->setEnabled(false);
 
         addSourceFileAction = new QAction(tr("Add DWP SourceFile Item"), this);
         //action->setShortcuts(QKeySequence::New);
@@ -79,6 +83,8 @@ DwpGroupContextMenu::init(QtDwpAttribute *attr)
         connect(addSourceFileAction, &QAction::triggered, this, &DwpGroupContextMenu::addSourceFile);
         mMenu->addAction(addSourceFileAction);
         //mMenu->addAction("Add DWP SourceFile Item");
+        if (attr->hasAttributeType(QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE))
+            addSourceFileAction->setEnabled(false);
     }
 
     addActorAction = new QAction(tr("Add DWP Actor Item"), this);
@@ -105,10 +111,24 @@ DwpGroupContextMenu::addHeaderFile()
 }
 
 void
+DwpGroupContextMenu::enableHeaderFile(bool flag)
+{
+    qDebug() << "DwpGroupContextMenu: Setting DWP HeaderFile menu visibility";
+    addHeaderFileAction->setEnabled(flag);
+}
+
+void
 DwpGroupContextMenu::addSourceFile()
 {
     qDebug() << "DwpGroupContextMenu: Adding DWP SourceFile item";
     emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE, mAttr);
+}
+
+void
+DwpGroupContextMenu::enableSourceFile(bool flag)
+{
+    qDebug() << "DwpGroupContextMenu: Setting DWP SourceFile menu visibility";
+    addSourceFileAction->setEnabled(flag);
 }
 
 void

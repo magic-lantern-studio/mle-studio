@@ -63,6 +63,8 @@ DwpActorDefContextMenu::init(QtDwpAttribute *attr)
         connect(addPackageAction, &QAction::triggered, this, &DwpActorDefContextMenu::addPackage);
         mMenu->addAction(addPackageAction);
         //mMenu->addAction("Add DWP Package Item");
+        if (attr->hasAttributeType(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE))
+            addPackageAction->setEnabled(false);
     } else {
         // Support for C/C++ Digital Workprints.
 
@@ -72,6 +74,8 @@ DwpActorDefContextMenu::init(QtDwpAttribute *attr)
         connect(addHeaderFileAction, &QAction::triggered, this, &DwpActorDefContextMenu::addHeaderFile);
         mMenu->addAction(addHeaderFileAction);
         //mMenu->addAction("Add DWP HeaderFile Item");
+        if (attr->hasAttributeType(QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE))
+            addHeaderFileAction->setEnabled(false);
 
         addSourceFileAction = new QAction(tr("Add DWP SourceFile Item"), this);
         //action->setShortcuts(QKeySequence::New);
@@ -79,6 +83,8 @@ DwpActorDefContextMenu::init(QtDwpAttribute *attr)
         connect(addSourceFileAction, &QAction::triggered, this, &DwpActorDefContextMenu::addSourceFile);
         mMenu->addAction(addSourceFileAction);
         //mMenu->addAction("Add DWP SourceFile Item");
+        if (attr->hasAttributeType(QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE))
+            addSourceFileAction->setEnabled(false);
     }
 
     addPropertyDefAction = new QAction(tr("Add DWP PropertyDef Item"), this);

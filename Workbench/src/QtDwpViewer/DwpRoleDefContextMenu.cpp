@@ -62,6 +62,8 @@ DwpRoleDefContextMenu::init(QtDwpAttribute *attr)
         connect(addPackageAction, &QAction::triggered, this, &DwpRoleDefContextMenu::addPackage);
         mMenu->addAction(addPackageAction);
         //mMenu->addAction("Add DWP Package Item");
+        if (attr->hasAttributeType(QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE))
+            addPackageAction->setEnabled(false);
     }
 
     addMediaRefSourceAction = new QAction(tr("Add DWP MediaRefSource Item"), this);

@@ -330,8 +330,22 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
      */
     QtDwpTreeItem *getItem(const QModelIndex &index) const;
 
+    /**
+     * @brief Create an attribute of the specified type and add it to the model.
+     *
+     * @param type The type of DWP attribute to create.
+     * @param parent The parent of the newly created attribute.
+     *
+     * @return A pointer to the new DWP attribute will be returned upon success.
+     * <b>nullptr</b> will be returned if the method fails.
+     */
     QtDwpAttribute *addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *parent);
 
+    /**
+     * @brief Remove the specified attribute from the model.
+     *
+     * @param attr A pointer to the attribute to remove.
+     */
     void deleteAttribute(const QtDwpAttribute *attr);
 
     /**

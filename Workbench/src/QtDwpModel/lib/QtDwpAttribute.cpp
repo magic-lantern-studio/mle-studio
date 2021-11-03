@@ -30,7 +30,8 @@
 
 QtDwpAttribute::QtDwpAttribute(const QVector<QVariant> &data, QtDwpTreeItem *parent)
   :QtDwpTreeItem(data, parent),
-   mDwpItem(nullptr)
+   mDwpItem(nullptr),
+   mType(DWP_ATTRIBUTE_UNKNOWN)
 {
     // Do nothing extra.
 }
@@ -46,6 +47,28 @@ QtDwpAttribute::getAttributeName() const
     // The name of the atribute is the value of the first column, 0.
     QVariant data = this->data(0, -1);
     return data.toString();
+}
+
+bool
+QtDwpAttribute::isAttributeType(AttributeType type)
+{
+    return (mType == type);
+}
+
+bool
+QtDwpAttribute::hasAttributeType(AttributeType type)
+{
+    // Search just the immediate children for the specified type.
+    if (hasChildren()) {
+        int n = childCount();
+        for (int i = 0; i < n; i++) {
+            QtDwpTreeItem *next = child(i);
+            QtDwpAttribute *attr = static_cast<QtDwpAttribute *>(next);
+            if (attr->isAttributeType(type)) return true;
+        }
+    }
+
+    return false;
 }
 
 void
