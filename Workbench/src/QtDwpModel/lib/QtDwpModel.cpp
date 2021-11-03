@@ -1348,7 +1348,14 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
 
     // Create a new attribute of the specified type.
     QtDwpAttribute *attr = nullptr;
-    if (type == QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE) {
+    if (type == QtDwpAttribute::DWP_ATTRIBUTE_ACTOR) {
+        MleDwpActor *item = new MleDwpActor();
+        item->setName("actor");
+        item->setActorClass("ActorClass");
+        attr = this->createActor(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    } if (type == QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE) {
         MleDwpHeaderFile *item = new MleDwpHeaderFile();
         item->setName("HeaderFile");
         item->setHeader("HeaderFile.h");
