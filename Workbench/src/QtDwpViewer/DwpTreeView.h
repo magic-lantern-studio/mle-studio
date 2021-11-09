@@ -88,16 +88,38 @@ class DwpTreeView : public QTreeView
 
   signals:
 
+    /**
+     * @brief Signal to insert an item into the view at the specified
+     * position.
+     *
+     * @param type The type of item to insert.
+     * @param pos The position in the view used for insertion.
+     */
     void insertItem(const QtDwpAttribute::AttributeType type, const QPoint pos);
 
+    /**
+     * @brief Signal to delete an item from the view at the specified
+     * position.
+     *
+     * @param pos The position in the view used for deletion.
+     */
     void deleteItem(const QPoint pos);
 
+    /**
+     * @brief Signal to add a tag to the attribute located at the specified
+     * position.
+     *
+     * @param tag The tag to add.
+     * @param pos The position in the view used for adding the tag.
+     */
     void addTag(const QString tag, const QPoint pos);
 
   private slots:
 
+    // Slot to add an attribute.
     void addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr);
 
+    // Slot to delete an attribute.
     void deleteAttribute(QtDwpAttribute *attr);
 
   private:

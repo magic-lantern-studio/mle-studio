@@ -31,6 +31,7 @@
 #include <QObject>
 #include <QMenu>
 
+// Include the Magic Lantern Workbench header files.
 #include "qt/QtDwpAttribute.h"
 
 /**
@@ -93,11 +94,30 @@ class DwpContextMenu : public QObject
 
   signals:
 
+    /**
+     * @brief Signal to insert an attribute.
+     *
+     * @param type The type of attribute being inserted.
+     * @param attr A pointer to the attribute being inserted.
+     */
     void insertAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr);
 
+    /**
+     * @brief Signal to delete an attribute.
+     *
+     * @param attr A pointer to the attribute being deleted.
+     */
     void deleteAttribute(QtDwpAttribute *attr);
 
+    /**
+     * @brief Signal to add a tag to an attribute.
+     *
+     * @param tag The tag to be added.
+     * @param attr A pointer to the attribute that the tag is being added to.
+     */
     void addTagToAttribute(const QString tag, QtDwpAttribute *attr);
+
+    // Todo: Create signal for rmTagFromAttribute.
 
   protected:
 

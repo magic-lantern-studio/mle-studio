@@ -1338,9 +1338,12 @@ QtDwpModel::setModified(bool value)
 QtDwpAttribute *
 QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *parent)
 {
-    //this->beginResetModel();
+    // If the parent is NULL, then we want to add the attribute to the top of the model.
+    if (parent == nullptr)
+        parent = getTopAttribute();
+
     QModelIndex index = findAttribute(parent);
-    if (! index.isValid()) return nullptr;
+    //if (! index.isValid()) return nullptr;
     int first = rowCount(index);
     int last = first;
 
@@ -1355,14 +1358,14 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
         attr = this->createActor(item, parent);
         if (attr != nullptr) attr->setType(type);
         else delete item;
-    } if (type == QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE) {
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE) {
         MleDwpHeaderFile *item = new MleDwpHeaderFile();
         item->setName("HeaderFile");
         item->setHeader("HeaderFile.h");
         attr = this->createHeaderFile(item, parent);
         if (attr != nullptr) attr->setType(type);
         else delete item;
-    } if (type == QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE) {
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE) {
         MleDwpPackage *item = new MleDwpPackage();
         item->setName("Package");
         item->setPackage("com.wizzer");  // Todo: make configureable from configuration file.
@@ -1377,11 +1380,25 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
         attr = this->createRoleBinding(item, parent);
         if (attr != nullptr) attr->setType(type);
         else delete item;
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_SET) {
+        MleDwpSet *item = new MleDwpSet();
+        item->setName("set");
+        item->setType("SetClass");
+        attr = this->createSet(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
     } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_SOURCEFILE) {
         MleDwpSourceFile *item = new MleDwpSourceFile();
         item->setName("SourceFile");
         item->setFilename("SourceFile.cpp");
         attr = this->createSourceFile(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_STAGE) {
+        MleDwpStage *item = new MleDwpStage();
+        item->setName("stage");
+        item->setStageClass("StageClass");
+        attr = this->createStage(item, parent);
         if (attr != nullptr) attr->setType(type);
         else delete item;
     }
@@ -1398,7 +1415,6 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
         // Todo: Update DWP item hieararchy.
     }
 
-    //this->endResetModel();
     this->endInsertRows();
 
     // Set the model as being modified.
@@ -1456,4 +1472,13 @@ QtDwpModel::findAttribute(const QtDwpAttribute *attr, const QModelIndex &parent)
 
     // Not found, return an invalid index.
     return QModelIndex();
+}
+
+QtDwpAttribute *
+QtDwpModel::getTopAttribute()
+{
+    QtDwpAttribute *attr = nullptr;
+    QModelIndex top = this->index(0, 0, QModelIndex());
+    attr = static_cast<QtDwpAttribute *>(top.internalPointer());
+    return attr;
 }

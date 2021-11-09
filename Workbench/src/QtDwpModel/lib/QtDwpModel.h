@@ -402,7 +402,24 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
     QtDwpAttribute *createStage(MleDwpStage *item, QtDwpTreeItem *parent);
     QtDwpAttribute *createStageDef(MleDwpStageDef *item, QtDwpTreeItem *parent);
 
+    /**
+     * @brief Find the model index for the specified attribute.
+     *
+     * @param attr A pointer to the DWP attribute to search for.
+     * @param parent The model index for the parent of the attribute. If the invalid model
+     * index is specified, then the search begins at the top of the model.
+     *
+     * @return If found, the model index for the attribute is returned. If th attribute is
+     * not found in the model, then an invalid model index will be returned.
+     */
     QModelIndex findAttribute(const QtDwpAttribute *attr, const QModelIndex &parent = QModelIndex());
+
+    /**
+     * @brief Retrieve the attribute at the top of the model.
+     *
+     * @return A pointer to the top attribute in the DWP Model is returned.
+     */
+    QtDwpAttribute *getTopAttribute();
 
   private:
 
