@@ -1358,6 +1358,13 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
         attr = this->createActor(item, parent);
         if (attr != nullptr) attr->setType(type);
         else delete item;
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_ACTORDEF) {
+        MleDwpActorDef *item = new MleDwpActorDef();
+        item->setName("actordef");
+        item->setActorClass("actordef");
+        attr = this->createActorDef(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
     } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE) {
         MleDwpHeaderFile *item = new MleDwpHeaderFile();
         item->setName("HeaderFile");
