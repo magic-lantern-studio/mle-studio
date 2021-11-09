@@ -132,7 +132,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         //    qDebug() << "DwpTreeView: Selected" << selected->text();
         //    emit DwpTreeView::insertItem(QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE, e->pos());
         //}
-    } if (dwpItem->isa(MleDwpSet::typeId)) {
+    } else if (dwpItem->isa(MleDwpSet::typeId)) {
         DwpSetContextMenu context;
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
@@ -145,7 +145,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         //if (selected) {
         //    qDebug() << "Selected" << selected->text();
         //}
-    } if (dwpItem->isa(MleDwpActor::typeId)) {
+    } else if (dwpItem->isa(MleDwpActor::typeId)) {
         DwpActorContextMenu context;
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
@@ -158,7 +158,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         //if (selected) {
         //    qDebug() << "Selected" << selected->text();
         //}
-    } if (dwpItem->isa(MleDwpActorDef::typeId)) {
+    } else if (dwpItem->isa(MleDwpActorDef::typeId)) {
         DwpActorDefContextMenu context;
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
@@ -171,7 +171,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         //if (selected) {
         //    qDebug() << "Selected" << selected->text();
         //}
-    } if (dwpItem->isa(MleDwpGroup::typeId)) {
+    } else if (dwpItem->isa(MleDwpGroup::typeId)) {
         DwpGroupContextMenu context;
         if (mUseJava) context.useJava(true);
         else context.useJava(false);
