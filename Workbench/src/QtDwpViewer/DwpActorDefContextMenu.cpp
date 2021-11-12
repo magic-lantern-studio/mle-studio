@@ -94,12 +94,12 @@ DwpActorDefContextMenu::init(QtDwpAttribute *attr)
     mMenu->addAction(addPropertyDefAction);
     //mMenu->addAction("Add DWP PropertyDef Item");
 
-    addRoleSetMappingAction = new QAction(tr("Add DWP Property Item"), this);
+    addRoleSetMappingAction = new QAction(tr("Add DWP RoleSetMapping Item"), this);
     //addRoleSetMappingAction->setShortcuts(QKeySequence::New);
     addRoleSetMappingAction->setStatusTip(tr("Create a new RoleSetMapping item"));
     connect(addRoleSetMappingAction, &QAction::triggered, this, &DwpActorDefContextMenu::addRoleSetMapping);
     mMenu->addAction(addRoleSetMappingAction);
-    //mMenu->addAction("Add DWP roleSetMapping Item");
+    //mMenu->addAction("Add DWP RoleSetMapping Item");
 }
 
 void
@@ -127,12 +127,12 @@ void
 DwpActorDefContextMenu::addPropertyDef()
 {
     qDebug() << "DwpActorDefContextMenu: Adding DWP PropertyDef item";
-    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_ROLEBINDING, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTYDEF, mAttr);
 }
 
 void
 DwpActorDefContextMenu::addRoleSetMapping()
 {
     qDebug() << "DwpActorDefContextMenu: Adding DWP RoleSetMapping item";
-    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr);
+    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_ROLESETMAPPING, mAttr);
 }

@@ -1379,6 +1379,13 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
         attr = this->createPackage(item, parent);
         if (attr != nullptr) attr->setType(type);
         else delete item;
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_PROPERTYDEF) {
+        MleDwpPropertyDef *item = new MleDwpPropertyDef();
+        item->setName("propertydef");
+        item->setType("PropertyDefClass");
+        attr = this->createPropertyDef(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
     } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_ROLEBINDING) {
         MleDwpRoleBinding *item = new MleDwpRoleBinding();
         item->setName("RoleBinding");
