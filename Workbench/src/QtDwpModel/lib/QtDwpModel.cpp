@@ -1365,7 +1365,14 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
         attr = this->createActorDef(item, parent);
         if (attr != nullptr) attr->setType(type);
         else delete item;
-    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE) {
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_BOOT) {
+        MleDwpBoot *item = new MleDwpBoot();
+        item->setName("group");
+        item->setGroup("group");
+        attr = this->createBoot(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    }else if (type == QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE) {
         MleDwpHeaderFile *item = new MleDwpHeaderFile();
         item->setName("HeaderFile");
         item->setHeader("HeaderFile.h");

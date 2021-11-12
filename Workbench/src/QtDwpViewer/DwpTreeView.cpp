@@ -33,6 +33,7 @@
 // Include Digital Workprint header files.
 #include "mle/DwpActor.h"
 #include "mle/DwpActorDef.h"
+#include "mle/DwpBoot.h"
 #include "mle/DwpGroup.h"
 #include "mle/DwpHeaderFile.h"
 #include "mle/DwpItem.h"
@@ -286,6 +287,8 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
     } else if (dwpItem->isa(MleDwpProperty::typeId))  {
         displayDefaultContextMenu(attr, e->pos());
     } else if (dwpItem->isa(MleDwpRoleBinding::typeId)) {
+        displayDefaultContextMenu(attr, e->pos());
+    } else if (dwpItem->isa(MleDwpBoot::typeId)) {
         displayDefaultContextMenu(attr, e->pos());
     }
 }
