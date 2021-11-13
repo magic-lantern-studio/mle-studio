@@ -35,6 +35,7 @@
 #include "mle/DwpActorDef.h"
 #include "mle/DwpBoot.h"
 #include "mle/DwpGroup.h"
+#include "mle/DwpGroupRef.h"
 #include "mle/DwpHeaderFile.h"
 #include "mle/DwpItem.h"
 #include "mle/DwpInclude.h"
@@ -289,6 +290,8 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
     } else if (dwpItem->isa(MleDwpRoleBinding::typeId)) {
         displayDefaultContextMenu(attr, e->pos());
     } else if (dwpItem->isa(MleDwpBoot::typeId)) {
+        displayDefaultContextMenu(attr, e->pos());
+    } else if (dwpItem->isa(MleDwpGroupRef::typeId)) {
         displayDefaultContextMenu(attr, e->pos());
     }
 }

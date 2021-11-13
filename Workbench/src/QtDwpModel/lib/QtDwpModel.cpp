@@ -336,10 +336,13 @@ QtDwpModel::createMediaRefSource(MleDwpMediaRefSource *item, QtDwpTreeItem *pare
     const char *dwpItem = "MediaRefSource";
     QString sDwpItem(dwpItem);
 
-    int flags = item->getFlags();
-    char buffer[20];
-    mlItoa(flags, buffer, 10);
-    QString sName(buffer);
+    // Todo: Check out logic below, not sure what this was supposed to do.
+    //int flags = item->getFlags();
+    //char buffer[20];
+    //mlItoa(flags, buffer, 10);
+    //QString sName(buffer);
+    const char *name = item->getName();
+    QString sName(name);
 
     QVector<QVariant> data;
     data << sDwpItem;
@@ -358,10 +361,13 @@ QtDwpModel::createMediaRefTarget(MleDwpMediaRefTarget *item, QtDwpTreeItem *pare
     const char *dwpItem = "MediaRefTarget";
     QString sDwpItem(dwpItem);
 
-    int flags = item->getFlags();
-    char buffer[20];
-    mlItoa(flags, buffer, 10);
-    QString sName(buffer);
+    // Todo: Check out logic below, not sure what this was supposed to do.
+    //int flags = item->getFlags();
+    //char buffer[20];
+    //mlItoa(flags, buffer, 10);
+    //QString sName(buffer);
+    const char *name = item->getName();
+    QString sName(name);
 
     QVector<QVariant> data;
     data << sDwpItem;
@@ -1372,11 +1378,36 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
         attr = this->createBoot(item, parent);
         if (attr != nullptr) attr->setType(type);
         else delete item;
-    }else if (type == QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE) {
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_GROUP) {
+        MleDwpGroup *item = new MleDwpGroup();
+        item->setName("group");
+        item->setGroupClass("GroupClass");
+        attr = this->createGroup(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_GROUPREF) {
+        MleDwpGroupRef *item = new MleDwpGroupRef();
+        item->setName("groupref");
+        attr = this->createGroupRef(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_HEADERFILE) {
         MleDwpHeaderFile *item = new MleDwpHeaderFile();
         item->setName("HeaderFile");
         item->setHeader("HeaderFile.h");
         attr = this->createHeaderFile(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFSOURCE) {
+        MleDwpMediaRefSource *item = new MleDwpMediaRefSource();
+        item->setName("mediarefsource");
+        attr = this->createMediaRefSource(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_MEDIAREFTARGET) {
+        MleDwpMediaRefTarget *item = new MleDwpMediaRefTarget();
+        item->setName("mediareftarget");
+        attr = this->createMediaRefTarget(item, parent);
         if (attr != nullptr) attr->setType(type);
         else delete item;
     } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_PACKAGE) {
@@ -1384,6 +1415,20 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
         item->setName("Package");
         item->setPackage("com.wizzer");  // Todo: make configureable from configuration file.
         attr = this->createPackage(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY) {
+        MleDwpProperty *item = new MleDwpProperty();
+        item->setName("property");
+
+        // Todo: Need a way to add different data types
+
+        const MleDwpInt *dataType = new MleDwpInt();
+        // Set the value.
+        int value = 10;
+        dataType->set(&(item->m_data),&value);
+
+        attr = this->createProperty(item, parent);
         if (attr != nullptr) attr->setType(type);
         else delete item;
     } else if (type == QtDwpAttribute::DWP_ATTRIBUTE_PROPERTYDEF) {
