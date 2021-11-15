@@ -1423,16 +1423,16 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
 
         // Todo: Need a way to add different data types
 
-        /*
         const MleDwpInt *dataType = new MleDwpInt();
         // Set the value.
         int value = 10;
         dataType->set(&(item->m_data),&value);
-        */
+        /*
         const MleDwpVector2 *dataType = new MleDwpVector2();
         MlVector2 value;
         value.setValue(10.0, 10.0);
         dataType->set(&(item->m_data),&value);
+        */
 
         attr = this->createProperty(item, parent);
         if (attr != nullptr) attr->setType(type);

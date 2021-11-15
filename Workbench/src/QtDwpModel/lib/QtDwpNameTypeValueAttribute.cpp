@@ -229,11 +229,13 @@ QtDwpNameTypeValueAttribute::getValueAsString(QVariant vData) const
             break;
         }
         case QMetaType::Int: {
-            str = vData.toInt();
+            int val = vData.toInt();
+            str = QString::number(val);
             break;
         }
         case QMetaType::Float: {
-            str = vData.toFloat();
+            float val = vData.toFloat();
+            str = QString::number(val);
             break;
         }
         default: {
