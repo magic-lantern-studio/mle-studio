@@ -153,6 +153,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         else context.useJava(false);
         context.init(attr);
         connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addAttribute);
+        connect(&context, &DwpContextMenu::insertProperty, this, &DwpTreeView::addPropertyAttribute);
         connect(&context, &DwpContextMenu::deleteAttribute, this, &DwpTreeView::deleteAttribute);
 
         QMenu *m = context.getMenu();
@@ -303,6 +304,19 @@ DwpTreeView::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribu
 
     QtDwpModel *model = static_cast<QtDwpModel *>(this->model());
     QtDwpAttribute *newAttr = model->addAttribute(type, attr);
+    if (newAttr != nullptr) {
+        qDebug() << "DwpTreeView: Successfully added DWP item" << newAttr->getAttributeName();
+    }
+}
+
+void
+DwpTreeView::addPropertyAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr,
+                                  const QtDwpAttribute::PropertyType propType)
+{
+    qDebug() << "DwpTreeView: Adding DWP Item of type" << type;
+
+    QtDwpModel *model = static_cast<QtDwpModel *>(this->model());
+    QtDwpAttribute *newAttr = model->addPropertyAttribute(type, attr, propType);
     if (newAttr != nullptr) {
         qDebug() << "DwpTreeView: Successfully added DWP item" << newAttr->getAttributeName();
     }

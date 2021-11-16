@@ -341,6 +341,9 @@ class QTDWPMODEL_EXPORT QtDwpModel : public QAbstractItemModel
      */
     QtDwpAttribute *addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *parent);
 
+    QtDwpAttribute *addPropertyAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *parent,
+                                         const QtDwpAttribute::PropertyType propType);
+
     /**
      * @brief Remove the specified attribute from the model.
      *

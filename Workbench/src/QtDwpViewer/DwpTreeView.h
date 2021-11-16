@@ -119,6 +119,8 @@ class DwpTreeView : public QTreeView
     // Slot to add an attribute.
     void addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr);
 
+    void addPropertyAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr, QtDwpAttribute::PropertyType propType);
+
     // Slot to delete an attribute.
     void deleteAttribute(QtDwpAttribute *attr);
 

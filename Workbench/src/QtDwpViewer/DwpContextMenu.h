@@ -102,6 +102,8 @@ class DwpContextMenu : public QObject
      */
     void insertAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr);
 
+    void insertProperty(const QtDwpAttribute::AttributeType type, QtDwpAttribute *attr, QtDwpAttribute::PropertyType propType);
+
     /**
      * @brief Signal to delete an attribute.
      *

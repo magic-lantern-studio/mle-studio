@@ -75,6 +75,18 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
         DWP_ATTRIBUTE_UNKNOWN
     };
 
+    enum PropertyType {
+        DWP_PROPERTY_INT,
+        DWP_PROPERTY_FLOAT,
+        DWP_PROPERTY_STRING,
+        DWP_PROPERTY_VECTOR2,
+        DWP_PROPERTY_VECTOR3,
+        DWP_PROPERTY_VECTOR4,
+        DWP_PROPERTY_ROTATION,
+        DWP_PROPERTY_TRANSFORM,
+        DWP_PROPERTY_UNKNOWN
+    };
+
   public:
 
     /**
@@ -144,6 +156,11 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
      */
     bool hasAttributeType(AttributeType type);
 
+    void setPropertyType(PropertyType type)
+    { mPropType = type; }
+
+    bool isPropertyType(PropertyType type);
+
     /**
      * @brief Print the contents of the attribute to stdout.
      */
@@ -168,6 +185,8 @@ class QTDWPMODEL_EXPORT QtDwpAttribute : public QtDwpTreeItem
     // The type of attribute.
     AttributeType mType;
 
+    // The type of attribute property.
+    PropertyType mPropType;
 };
 
 #endif /* __QTDWPATTRIBUTE_H_ */

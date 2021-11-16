@@ -70,8 +70,15 @@ class DwpActorContextMenu : public DwpContextMenu
     // Slot for adding a RoleBinding DWP item.
     void addRoleBinding();
 
-    // Slot for adding a Property DWP item.
-    void addProperty();
+    // Slot for adding a Int Property DWP item.
+    void addIntProperty();
+    void addFloatProperty();
+    void addStringProperty();
+    void addMlVector2Property();
+    void addMlVector3Property();
+    void addMlVector4Property();
+    void addMlRotationProperty();
+    void addMlTransformProperty();
 
   private:
 

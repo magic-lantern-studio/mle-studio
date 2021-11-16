@@ -31,7 +31,8 @@
 QtDwpAttribute::QtDwpAttribute(const QVector<QVariant> &data, QtDwpTreeItem *parent)
   :QtDwpTreeItem(data, parent),
    mDwpItem(nullptr),
-   mType(DWP_ATTRIBUTE_UNKNOWN)
+   mType(DWP_ATTRIBUTE_UNKNOWN),
+   mPropType(DWP_PROPERTY_UNKNOWN)
 {
     // Do nothing extra.
 }
@@ -53,6 +54,12 @@ bool
 QtDwpAttribute::isAttributeType(AttributeType type)
 {
     return (mType == type);
+}
+
+bool
+QtDwpAttribute::isPropertyType(PropertyType type)
+{
+    return (mPropType == type);
 }
 
 bool

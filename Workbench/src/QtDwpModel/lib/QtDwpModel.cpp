@@ -1503,6 +1503,105 @@ QtDwpModel::addAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribut
     return attr;
 }
 
+QtDwpAttribute *
+QtDwpModel::addPropertyAttribute(const QtDwpAttribute::AttributeType type, QtDwpAttribute *parent,
+                                 const QtDwpAttribute::PropertyType propType)
+{
+    // If the parent is NULL, then we want to add the attribute to the top of the model.
+    if (parent == nullptr)
+        parent = getTopAttribute();
+
+    QModelIndex index = findAttribute(parent);
+    //if (! index.isValid()) return nullptr;
+    int first = rowCount(index);
+    int last = first;
+
+    this->beginInsertRows(index, first, last);
+
+    // Create a new attribute of the specified type.
+    QtDwpAttribute *attr = nullptr;
+
+    if (type == QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY) {
+        MleDwpProperty *item = new MleDwpProperty();
+        item->setName("property");
+
+        if (propType == QtDwpAttribute::DWP_PROPERTY_INT) {
+            // Create an integer property.
+            const MleDwpInt *dataType = new MleDwpInt();
+            // Set the value.
+            int value = 10;
+            dataType->set(&(item->m_data),&value);
+        } else if ((propType == QtDwpAttribute::DWP_PROPERTY_FLOAT)) {
+            // Create a float property.
+            const MleDwpFloat *dataType = new MleDwpFloat();
+            // Set the value.
+            float value = 10.0;
+            dataType->set(&(item->m_data),&value);
+        } else if ((propType == QtDwpAttribute::DWP_PROPERTY_STRING)) {
+            // Create a string property.
+            const MleDwpString *dataType = new MleDwpString();
+            // Set the value.
+            const char *value = "String property value.";
+            dataType->set(&(item->m_data),&value);
+        } else if ((propType == QtDwpAttribute::DWP_PROPERTY_VECTOR2)) {
+            // Create a MlVector2 property.
+            const MleDwpVector2 *dataType = new MleDwpVector2();
+            MlVector2 value;
+            value.setValue(10.0, 10.0);
+            dataType->set(&(item->m_data),&value);
+        } else if ((propType == QtDwpAttribute::DWP_PROPERTY_VECTOR3)) {
+            // Create a MlVector3 property.
+            const MleDwpVector3 *dataType = new MleDwpVector3();
+            MlVector3 value;
+            value.setValue(10.0, 10.0, 10.0);
+            dataType->set(&(item->m_data),&value);
+        } else if ((propType == QtDwpAttribute::DWP_PROPERTY_VECTOR4)) {
+            // Create a MlVector4 property.
+            const MleDwpVector4 *dataType = new MleDwpVector4();
+            MlVector4 value;
+            value.setValue(10.0, 10.0, 10.0, 1.0);
+            dataType->set(&(item->m_data),&value);
+        } else if ((propType == QtDwpAttribute::DWP_PROPERTY_TRANSFORM)) {
+            // Create a MlTransform property.
+            const MleDwpTransform *dataType = new MleDwpTransform();
+            MlScalar m[4][3];
+            m[0][0] = 0.0; m[0][1] = 0.0; m[0][2] = 0.0;
+            m[1][0] = 0.0; m[1][1] = 0.0; m[1][2] = 0.0;
+            m[2][0] = 0.0; m[2][1] = 0.0; m[2][2] = 0.0;
+            m[3][0] = 0.0; m[3][1] = 0.0; m[3][2] = 0.0;
+            MlTransform value(m);
+            dataType->set(&(item->m_data),&value);
+        } else if ((propType == QtDwpAttribute::DWP_PROPERTY_ROTATION)) {
+            // Create a MlRotation property.
+            const MleDwpRotation *dataType = new MleDwpRotation();
+            MlRotation value;
+            value.setValue(1.0, 1.0, 1.0, 0.0);
+            dataType->set(&(item->m_data),&value);
+        }
+
+        attr = this->createProperty(item, parent);
+        if (attr != nullptr) attr->setType(type);
+        else delete item;
+    }
+
+    // Add the Attribute to the DWP domain table.
+    if (attr != nullptr)
+    {
+        QVector<QtDwpTreeItem *> columnData;
+        columnData.append(attr);
+        parent->insertChildren(parent->childCount(), 1, columnData);
+
+        // Todo: Update DWP item hieararchy.
+    }
+
+    this->endInsertRows();
+
+    // Set the model as being modified.
+    this->setModified(true);
+
+    return attr;
+}
+
 void
 QtDwpModel::deleteAttribute(const QtDwpAttribute *attr)
 {
