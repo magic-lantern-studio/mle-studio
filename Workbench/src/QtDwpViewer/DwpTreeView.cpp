@@ -140,6 +140,7 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
         else context.useJava(false);
         context.init(attr);
         connect(&context, &DwpContextMenu::insertAttribute, this, &DwpTreeView::addAttribute);
+        connect(&context, &DwpContextMenu::insertProperty, this, &DwpTreeView::addPropertyAttribute);
         connect(&context, &DwpContextMenu::deleteAttribute, this, &DwpTreeView::deleteAttribute);
 
         QMenu *m = context.getMenu();

@@ -85,12 +85,32 @@ DwpSetContextMenu::init(QtDwpAttribute *attr)
             addSourceFileAction->setEnabled(false);
     }
 
+    /*
     addPropertyAction = new QAction(tr("Add DWP Property Item"), this);
     //addPropertyAction->setShortcuts(QKeySequence::New);
     addPropertyAction->setStatusTip(tr("Create a new Property item"));
     connect(addPropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addProperty);
     mMenu->addAction(addPropertyAction);
     //mMenu->addAction("Add DWP Property Item");
+    */
+
+    QMenu *propertyMenu = mMenu->addMenu("Add DWP Property Item");
+    QAction *addIntPropertyAction = propertyMenu->addAction( "Add Integer Property" );
+    connect(addIntPropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addIntProperty);
+    QAction *addFloatPropertyAction = propertyMenu->addAction( "Add Float Property" );
+    connect(addFloatPropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addFloatProperty);
+    QAction *addStringPropertyAction = propertyMenu->addAction( "Add String Property" );
+    connect(addStringPropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addStringProperty);
+    QAction *addVector2PropertyAction = propertyMenu->addAction( "Add MlVector2 Property" );
+    connect(addVector2PropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addMlVector2Property);
+    QAction *addVector3PropertyAction = propertyMenu->addAction( "Add MlVector3 Property" );
+    connect(addVector3PropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addMlVector3Property);
+    QAction *addVector4PropertyAction = propertyMenu->addAction( "Add MlVector4 Property" );
+    connect(addVector4PropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addMlVector4Property);
+    QAction *addRotationPropertyAction = propertyMenu->addAction( "Add MlRotation Property" );
+    connect(addRotationPropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addMlRotationProperty);
+    QAction *addTransformPropertyAction = propertyMenu->addAction( "Add MlTransform Property" );
+    connect(addTransformPropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addMlTransformProperty);
 }
 
 void
@@ -115,8 +135,57 @@ DwpSetContextMenu::addPackage()
 }
 
 void
-DwpSetContextMenu::addProperty()
+DwpSetContextMenu::addIntProperty()
 {
-    qDebug() << "DwpSetContextMenu: Adding DWP Property item";
-    emit DwpContextMenu::insertAttribute(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr);
+    qDebug() << "DwpSetContextMenu: Adding DWP Integer Property item";
+    emit DwpContextMenu::insertProperty(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr, QtDwpAttribute::PropertyType::DWP_PROPERTY_INT);
+}
+
+void
+DwpSetContextMenu::addFloatProperty()
+{
+    qDebug() << "DwpSetContextMenu: Adding DWP Float Property item";
+    emit DwpContextMenu::insertProperty(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr, QtDwpAttribute::PropertyType::DWP_PROPERTY_FLOAT);
+}
+
+void
+DwpSetContextMenu::addStringProperty()
+{
+    qDebug() << "DwpSetContextMenu: Adding DWP String Property item";
+    emit DwpContextMenu::insertProperty(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr, QtDwpAttribute::PropertyType::DWP_PROPERTY_STRING);
+}
+
+void
+DwpSetContextMenu::addMlVector2Property()
+{
+    qDebug() << "DwpSetContextMenu: Adding DWP MlVector2 Property item";
+    emit DwpContextMenu::insertProperty(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr, QtDwpAttribute::PropertyType::DWP_PROPERTY_VECTOR2);
+}
+
+void
+DwpSetContextMenu::addMlVector3Property()
+{
+    qDebug() << "DwpSetContextMenu: Adding DWP MlVector3 Property item";
+    emit DwpContextMenu::insertProperty(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr, QtDwpAttribute::PropertyType::DWP_PROPERTY_VECTOR3);
+}
+
+void
+DwpSetContextMenu::addMlVector4Property()
+{
+    qDebug() << "DwpSetContextMenu: Adding DWP MlVector4 Property item";
+    emit DwpContextMenu::insertProperty(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr, QtDwpAttribute::PropertyType::DWP_PROPERTY_VECTOR4);
+}
+
+void
+DwpSetContextMenu::addMlRotationProperty()
+{
+    qDebug() << "DwpSetContextMenu: Adding DWP MlRotation Property item";
+    emit DwpContextMenu::insertProperty(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr, QtDwpAttribute::PropertyType::DWP_PROPERTY_ROTATION);
+}
+
+void
+DwpSetContextMenu::addMlTransformProperty()
+{
+    qDebug() << "DwpSetContextMenu: Adding DWP MlTransform Property item";
+    emit DwpContextMenu::insertProperty(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY, mAttr, QtDwpAttribute::PropertyType::DWP_PROPERTY_TRANSFORM);
 }

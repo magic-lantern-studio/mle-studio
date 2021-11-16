@@ -69,8 +69,22 @@ class DwpSetContextMenu : public DwpContextMenu
     // Slot for adding a Package DWP item.
     void addPackage();
 
-    // Slot for adding a Property DWP item.
-    void addProperty();
+    // Slot for adding an Integer Property DWP item.
+    void addIntProperty();
+    // Slot for adding a Float Property DWP item.
+    void addFloatProperty();
+    // Slot for adding a String Property DWP item.
+    void addStringProperty();
+    // Slot for adding a MlVector2 Property DWP item.
+    void addMlVector2Property();
+    // Slot for adding a MlVector3 Property DWP item.
+    void addMlVector3Property();
+    // Slot for adding a MlVector4 Property DWP item.
+    void addMlVector4Property();
+    // Slot for adding a Rotation Property DWP item.
+    void addMlRotationProperty();
+    // Slot for adding a MlTransform Property DWP item.
+    void addMlTransformProperty();
 
   private:
 

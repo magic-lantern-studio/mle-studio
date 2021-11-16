@@ -1541,7 +1541,7 @@ QtDwpModel::addPropertyAttribute(const QtDwpAttribute::AttributeType type, QtDwp
             // Create a string property.
             const MleDwpString *dataType = new MleDwpString();
             // Set the value.
-            const char *value = "String property value.";
+            const char *value = "Replace this Value";
             dataType->set(&(item->m_data),&value);
         } else if ((propType == QtDwpAttribute::DWP_PROPERTY_VECTOR2)) {
             // Create a MlVector2 property.
