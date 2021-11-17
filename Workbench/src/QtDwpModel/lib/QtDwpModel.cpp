@@ -1570,12 +1570,13 @@ QtDwpModel::addPropertyAttribute(const QtDwpAttribute::AttributeType type, QtDwp
             m[2][0] = 0.0; m[2][1] = 0.0; m[2][2] = 0.0;
             m[3][0] = 0.0; m[3][1] = 0.0; m[3][2] = 0.0;
             MlTransform value(m);
+            value.makeIdentity();
             dataType->set(&(item->m_data),&value);
         } else if ((propType == QtDwpAttribute::DWP_PROPERTY_ROTATION)) {
             // Create a MlRotation property.
             const MleDwpRotation *dataType = new MleDwpRotation();
-            MlRotation value;
-            value.setValue(1.0, 1.0, 1.0, 0.0);
+            MlTransform value;
+            value.makeIdentity();
             dataType->set(&(item->m_data),&value);
         }
 
