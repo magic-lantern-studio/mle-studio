@@ -47,6 +47,7 @@
 #include "mle/DwpPropertyDef.h"
 #include "mle/DwpRoleDef.h"
 #include "mle/DwpRoleBinding.h"
+#include "mle/DwpRoleAttachment.h"
 #include "mle/DwpScene.h"
 #include "mle/DwpSourceFile.h"
 #include "mle/DwpStage.h"
@@ -290,6 +291,8 @@ DwpTreeView::contextMenuEvent(QContextMenuEvent *e)
     } else if (dwpItem->isa(MleDwpProperty::typeId))  {
         displayDefaultContextMenu(attr, e->pos());
     } else if (dwpItem->isa(MleDwpRoleBinding::typeId)) {
+        displayDefaultContextMenu(attr, e->pos());
+    } else if (dwpItem->isa(MleDwpRoleAttachment::typeId)) {
         displayDefaultContextMenu(attr, e->pos());
     } else if (dwpItem->isa(MleDwpBoot::typeId)) {
         displayDefaultContextMenu(attr, e->pos());

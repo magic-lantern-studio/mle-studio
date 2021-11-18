@@ -97,8 +97,22 @@ class DwpActorContextMenu : public DwpContextMenu
     QAction *addPackageAction;
     // A pointer to an action used to create a RoleBinding item.
     QAction *addRoleBindingAction;
-    // A pointer to an action used to create a Property item.
-    QAction *addPropertyAction;
+    // A pointer to an action used to create a Integer Property item.
+    QAction *addIntPropertyAction;
+    // A pointer to an action used to create a Float Property item.
+    QAction *addFloatPropertyAction;
+    // A pointer to an action used to create a String Property item.
+    QAction *addStringPropertyAction;
+    // A pointer to an action used to create a MlVector2 Property item.
+    QAction *addVector2PropertyAction;
+    // A pointer to an action used to create a MlVector3 Property item.
+    QAction *addVector3PropertyAction;
+    // A pointer to an action used to create a MlVector4 Property item.
+    QAction *addVector4PropertyAction;
+    // A pointer to an action used to create a MlRotation Property item.
+    QAction *addRotationPropertyAction;
+    // A pointer to an action used to create a MlTransform Property item.
+    QAction *addTransformPropertyAction;
 };
 
 #endif // _DWPACTORCONTEXTMENU_H_

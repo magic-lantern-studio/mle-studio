@@ -33,7 +33,14 @@ DwpSetContextMenu::DwpSetContextMenu(QObject *parent)
       addHeaderFileAction(nullptr),
       addSourceFileAction(nullptr),
       addPackageAction(nullptr),
-      addPropertyAction(nullptr)
+      addIntPropertyAction(nullptr),
+      addFloatPropertyAction(nullptr),
+      addStringPropertyAction(nullptr),
+      addVector2PropertyAction(nullptr),
+      addVector3PropertyAction(nullptr),
+      addVector4PropertyAction(nullptr),
+      addRotationPropertyAction(nullptr),
+      addTransformPropertyAction(nullptr)
 {
     // Do nothing extra.
 }
@@ -43,7 +50,14 @@ DwpSetContextMenu::~DwpSetContextMenu()
     if (addHeaderFileAction != nullptr) delete addHeaderFileAction;
     if (addSourceFileAction != nullptr) delete addSourceFileAction;
     if (addPackageAction != nullptr) delete addPackageAction;
-    if (addPropertyAction != nullptr) delete addPropertyAction;
+    if (addIntPropertyAction != nullptr) delete addIntPropertyAction;
+    if (addFloatPropertyAction != nullptr) delete addFloatPropertyAction;
+    if (addStringPropertyAction != nullptr) delete addStringPropertyAction;
+    if (addVector2PropertyAction != nullptr) delete addVector2PropertyAction;
+    if (addVector3PropertyAction != nullptr) delete addVector3PropertyAction;
+    if (addVector4PropertyAction != nullptr) delete addVector4PropertyAction;
+    if (addRotationPropertyAction != nullptr) delete addRotationPropertyAction;
+    if (addTransformPropertyAction != nullptr) delete addTransformPropertyAction;
 }
 
 void
@@ -95,21 +109,21 @@ DwpSetContextMenu::init(QtDwpAttribute *attr)
     */
 
     QMenu *propertyMenu = mMenu->addMenu("Add DWP Property Item");
-    QAction *addIntPropertyAction = propertyMenu->addAction( "Add Integer Property" );
+    addIntPropertyAction = propertyMenu->addAction( "Add Integer Property" );
     connect(addIntPropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addIntProperty);
-    QAction *addFloatPropertyAction = propertyMenu->addAction( "Add Float Property" );
+    addFloatPropertyAction = propertyMenu->addAction( "Add Float Property" );
     connect(addFloatPropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addFloatProperty);
-    QAction *addStringPropertyAction = propertyMenu->addAction( "Add String Property" );
+    addStringPropertyAction = propertyMenu->addAction( "Add String Property" );
     connect(addStringPropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addStringProperty);
-    QAction *addVector2PropertyAction = propertyMenu->addAction( "Add MlVector2 Property" );
+    addVector2PropertyAction = propertyMenu->addAction( "Add MlVector2 Property" );
     connect(addVector2PropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addMlVector2Property);
-    QAction *addVector3PropertyAction = propertyMenu->addAction( "Add MlVector3 Property" );
+    addVector3PropertyAction = propertyMenu->addAction( "Add MlVector3 Property" );
     connect(addVector3PropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addMlVector3Property);
-    QAction *addVector4PropertyAction = propertyMenu->addAction( "Add MlVector4 Property" );
+    addVector4PropertyAction = propertyMenu->addAction( "Add MlVector4 Property" );
     connect(addVector4PropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addMlVector4Property);
-    QAction *addRotationPropertyAction = propertyMenu->addAction( "Add MlRotation Property" );
+    addRotationPropertyAction = propertyMenu->addAction( "Add MlRotation Property" );
     connect(addRotationPropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addMlRotationProperty);
-    QAction *addTransformPropertyAction = propertyMenu->addAction( "Add MlTransform Property" );
+    addTransformPropertyAction = propertyMenu->addAction( "Add MlTransform Property" );
     connect(addTransformPropertyAction, &QAction::triggered, this, &DwpSetContextMenu::addMlTransformProperty);
 }
 

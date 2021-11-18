@@ -433,7 +433,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             data << vValue;
 
             attr = new QtDwpNameTypeValueAttribute(data, parent);
-            attr->setDwpItem(item);
+            if (attr != nullptr) attr->setDwpItem(item);
         } else if (dataType->isa(MleDwpFloat::typeId)) {
             // Get the name.
             const char *name = item->getName();
@@ -457,7 +457,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             data << vValue;
 
             attr = new QtDwpNameTypeValueAttribute(data, parent);
-            attr->setDwpItem(item);
+            if (attr != nullptr) attr->setDwpItem(item);
         } else if (dataType->isa(MleDwpString::typeId)) {
             // Get the name.
             const char *name = item->getName();
@@ -481,7 +481,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             data << vValue;
 
             attr = new QtDwpNameTypeValueAttribute(data, parent);
-            attr->setDwpItem(item);
+            if (attr != nullptr) attr->setDwpItem(item);
         } else if (dataType->isa(MleDwpScalar::typeId)) {
             // Get the name;
             const char *name = item->getName();
@@ -505,7 +505,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             data << vValue;
 
             attr = new QtDwpNameTypeValueAttribute(data, parent);
-            attr->setDwpItem(item);
+            if (attr != nullptr) attr->setDwpItem(item);
         } else if (dataType->isa(MleDwpVector2::typeId)) {
             // Get the name.
             const char *name = item->getName();
@@ -533,7 +533,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             data << vValue;
 
             attr = new QtDwpNameTypeValueAttribute(data, parent);
-            attr->setDwpItem(item);
+            if (attr != nullptr) attr->setDwpItem(item);
         } else if (dataType->isa(MleDwpVector3::typeId)) {
             // Get the name.
             const char *name = item->getName();
@@ -561,7 +561,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             data << vValue;
 
             attr = new QtDwpNameTypeValueAttribute(data, parent);
-            attr->setDwpItem(item);
+            if (attr != nullptr) attr->setDwpItem(item);
         } else if (dataType->isa(MleDwpVector4::typeId)) {
             // Get the name.
             const char *name = item->getName();
@@ -589,7 +589,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             data << vValue;
 
             attr = new QtDwpNameTypeValueAttribute(data, parent);
-            attr->setDwpItem(item);
+            if (attr != nullptr) attr->setDwpItem(item);
         } else if (dataType->isa(MleDwpIntArray::typeId)) {
             // Get the name.
             const char *name = item->getName();
@@ -626,7 +626,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             data << vValue;
 
             attr = new QtDwpNameTypeValueAttribute(data, parent);
-            attr->setDwpItem(item);
+            if (attr != nullptr) attr->setDwpItem(item);
         } else if (dataType->isa(MleDwpFloatArray::typeId)) {
             // Get the name.
             const char *name = item->getName();
@@ -663,7 +663,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             data << vValue;
 
             attr = new QtDwpNameTypeValueAttribute(data, parent);
-            attr->setDwpItem(item);
+            if (attr != nullptr) attr->setDwpItem(item);
         } else if (dataType->isa(MleDwpRotation::typeId)) {
             // Get the name.
             const char *name = item->getName();
@@ -691,7 +691,7 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             data << vValue;
 
             attr = new QtDwpNameTypeValueAttribute(data, parent);
-            attr->setDwpItem(item);
+            if (attr != nullptr) attr->setDwpItem(item);
         } else if (dataType->isa(MleDwpTransform::typeId)) {
             // Get the name.
             const char *name = item->getName();
@@ -719,10 +719,11 @@ QtDwpModel::createProperty(MleDwpProperty *item, QtDwpTreeItem *parent)
             data << vValue;
 
             attr = new QtDwpNameTypeValueAttribute(data, parent);
-            attr->setDwpItem(item);
+            if (attr != nullptr) attr->setDwpItem(item);
         }
 
-        attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY);
+        if (attr != nullptr)
+            attr->setType(QtDwpAttribute::DWP_ATTRIBUTE_PROPERTY);
     }
 
     return attr;
