@@ -161,9 +161,9 @@ public class MleStudioMetaDataControl
     	
     	public String m_dpp = "Simple.dpp";
     	
-    	public String m_script = "playprint.tcl";
+    	public String m_script = "playprint.py";
     	
-    	public String m_scriptPath = "src/gen/playprint.tcl";
+    	public String m_scriptPath = "src/gen/playprint.py";
     	
     	public String m_toc = "DppTOC";
     	
@@ -347,11 +347,11 @@ public class MleStudioMetaDataControl
 		targetElement.setGenmedia(true);
 		targetElement.setBomFile("MediaBom.txt");
 		targetElement.setGenppscript(true);
-		targetElement.setScriptFile("playprint.tcl");
+		targetElement.setScriptFile("playprint.py");
 		targetElement.setTocName("DppTOC");
 		targetElement.setGendpp(true);
 		targetElement.setSourceDirectory("src/gen");
-		targetElement.setScriptPath("src/gen/playprint.tcl");
+		targetElement.setScriptPath("src/gen/playprint.py");
 		
 		MleTitleMetaData.MasterTargetElement[] targets = new MleTitleMetaData.MasterTargetElement[1];
 		targets[0] = targetElement;

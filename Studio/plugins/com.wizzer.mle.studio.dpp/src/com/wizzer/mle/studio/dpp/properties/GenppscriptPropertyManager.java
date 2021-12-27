@@ -6,7 +6,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2000-2020 Wizzer Works
+// Copyright (c) 2000-2022 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -57,10 +57,10 @@ public class GenppscriptPropertyManager
 	public static String DPP_GENPPSCRIPT_DPP_PROPERTY = "DPP_GENPPSCRIPT_DPP";
 	/** The genppscript DPP file property value. */
 	public static String DPP_GENPPSCRIPT_DPP_VALUE = "playprint.dpp";
-	/** The genppscript TCL script file property. */
+	/** The genppscript Python script file property. */
 	public static String DPP_GENPPSCRIPT_SCRIPT_PROPERTY = "DPP_GENPPSCRIPT_SCRIPT";
-	/** The genppscript TCL script file property value. */
-	public static String DPP_GENPPSCRIPT_SCRIPT_VALUE = "playprint.tcl";
+	/** The genppscript Python script file property value. */
+	public static String DPP_GENPPSCRIPT_SCRIPT_VALUE = "playprint.py";
 	/** The genppscript TOC file property. */
 	public static String DPP_GENPPSCRIPT_TOC_PROPERTY = "DPP_GENPPSCRIPT_TOC";
 	/** The genppscript TOC file property value. */
@@ -167,7 +167,7 @@ public class GenppscriptPropertyManager
 	 * Set the genppscript script property on the specified resource.
 	 * 
 	 * @param resource The resource to set the property on.
-	 * @param value The name of the TCL script.
+	 * @param value The name of the Python script.
 	 * 
 	 * @throws DppException This exception is thrown if an error occurs while
 	 * setting the property value.
@@ -185,7 +185,7 @@ public class GenppscriptPropertyManager
 				project.setPersistentProperty(key,value);
 			} catch (CoreException ex)
 			{
-				String message = new String("Unable to set TCL script property on " +
+				String message = new String("Unable to set Python script property on " +
 				    resource.getName() + ".");
 				throw new DppException(message,ex);
 			}
@@ -211,7 +211,7 @@ public class GenppscriptPropertyManager
 	 * 
 	 * @param resource The resource to retrieve the property from.
 	 * 
-	 * @return The name of the TCL script file will be returned.
+	 * @return The name of the Python script file will be returned.
 	 * 
 	 * @throws DppException This exception is thrown if an error occurs while
 	 * retrieving the property value.
@@ -231,7 +231,7 @@ public class GenppscriptPropertyManager
 				value = project.getPersistentProperty(key);
 			} catch (CoreException ex)
 			{
-				String message = new String("Unable to get TCL script property on " +
+				String message = new String("Unable to get Python script property on " +
 				    resource.getName() + ".");
 				throw new DppException(message,ex);
 			}

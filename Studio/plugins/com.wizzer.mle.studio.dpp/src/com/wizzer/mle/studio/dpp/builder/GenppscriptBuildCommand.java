@@ -124,7 +124,7 @@ public class GenppscriptBuildCommand
         if (script != null)
             m_command.setScript(script);
         else
-            m_command.setScript("playprint.tcl");
+            m_command.setScript("playprint.py");
 
         String toc = GenppscriptPropertyManager.getInstance().getTocValue(resource);
         if (toc != null)

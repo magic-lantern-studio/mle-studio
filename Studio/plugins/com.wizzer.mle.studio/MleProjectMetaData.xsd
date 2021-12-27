@@ -253,7 +253,7 @@
 				<xs:complexType>
 					<xs:attribute name="script_file" type="xs:string" use="required">
 						<xs:annotation>
-							<xs:documentation>The script file specifying the layout for the Digital Playprint (i.e. playprint.tcl).</xs:documentation>
+							<xs:documentation>The script file specifying the layout for the Digital Playprint (i.e. playprint.py).</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
 					<xs:attribute name="toc_name" type="xs:string" use="required">

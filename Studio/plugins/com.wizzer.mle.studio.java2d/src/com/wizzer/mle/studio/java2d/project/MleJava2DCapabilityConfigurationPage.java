@@ -1442,7 +1442,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 		if (fConfigPage.isGendppscriptSelected())
 		{
 			targetData.setGenppscript(true);
-			targetData.setScriptFile("playprint.tcl");
+			targetData.setScriptFile("playprint.py");
 			targetData.setTocName("DppTOC");
 		} else
 			targetData.setGenppscript(false);
@@ -1450,7 +1450,7 @@ public class MleJava2DCapabilityConfigurationPage extends JavaCapabilityConfigur
 		{
 			targetData.setGendpp(true);
 			targetData.setSourceDirectory("src/gen");
-			targetData.setScriptPath("src/gen/playprint.tcl");
+			targetData.setScriptPath("src/gen/playprint.py");
 		} else
 			targetData.setGendpp(false);
 		ArrayList<String> tags = new ArrayList<String>();

@@ -6,7 +6,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2000-2020 Wizzer Works
+// Copyright (c) 2000-2022 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -143,7 +143,7 @@ public class GendppBuildCommand
         	m_command.setScriptFilename(new File(script));
         else
             //m_command.setScriptFilename(expandFilePath(resource.getProject(),"src/gen/playprint.tcl"));
-        	m_command.setScriptFilename(new File("src/gen/playprint.tcl"));
+        	m_command.setScriptFilename(new File("src/gen/playprint.py"));
 
     }
     
@@ -201,14 +201,14 @@ public class GendppBuildCommand
         else
             m_command.setPackage("gen");
 
-        // Set gengroup arguments.
+        // Set gendpp arguments.
         String script = GendppPropertyManager.getInstance().getScriptValue(resource);
         if (script != null)
             //m_command.setScriptFilename(expandFilePath(resource.getProject(),script));
         	m_command.setScriptFilename(new File(script));
         else
             //m_command.setScriptFilename(expandFilePath(resource.getProject(),"src/gen/playprint.tcl"));
-        	m_command.setScriptFilename(new File("src/gen/playprint.tcl"));
+        	m_command.setScriptFilename(new File("src/gen/playprint.py"));
 
     }
 

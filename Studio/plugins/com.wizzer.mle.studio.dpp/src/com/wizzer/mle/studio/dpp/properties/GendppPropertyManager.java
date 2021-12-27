@@ -55,7 +55,7 @@ public class GendppPropertyManager
 	/** The gendpp TCL file property. */
 	public static String DPP_GENDPP_SCRIPT_PROPERTY = "DPP_GENDPP_SCRIPT";
 	/** The gendpp TCL file property value. */
-	public static String DPP_GENDPP_SCRIPT_VALUE = "src/gen/playprint.tcl";
+	public static String DPP_GENDPP_SCRIPT_VALUE = "src/gen/playprint.py";
 	/** The gendpp source directory property for generated code/components. */
 	public static String DPP_GENDPP_SOURCE_DIR_PROPERTY = "DPP_GENDPP_SOURCE_DIR";
 	/** The gendpp source directory. */

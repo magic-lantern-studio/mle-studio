@@ -60,7 +60,7 @@ public class DppGendpp extends DppCommand
     /** The input directory. */
     protected File m_inputDir = new File("src/gen");
     /** The TCL script file. */
-    protected File m_script = new File("src/gen/playprint.tcl");
+    protected File m_script = new File("src/gen/playprint.py");
     /** The tags. */
     Vector<String> m_tags = new Vector<String>();
     
@@ -164,9 +164,9 @@ public class DppGendpp extends DppCommand
     }
     
     /**
-     * Set the name of the TCL script file.
+     * Set the name of the Python script file.
      * 
-     * @param name The name of the TCL script.
+     * @param name The name of the Python script.
      * 
      * @throws DppException This exception is thrown if the
      * name of the script file is not specified.
@@ -174,7 +174,7 @@ public class DppGendpp extends DppCommand
     public void setScriptFilename(File name) throws DppException
     {
         if (name == null)
-            throw new DppException("TCL script file name not specified.");
+            throw new DppException("Python script file name not specified.");
         m_script = name;
     }
     
@@ -269,7 +269,7 @@ public class DppGendpp extends DppCommand
         
         //if (! m_script.exists())
         if (new File(getLocation().getAbsolutePath() + "//" + m_script.toString()).exists() == false)
-            throw new DppException("TCL script does not exist: " + m_script.getName());
+            throw new DppException("Python script does not exist: " + m_script.getName());
         else
             //argList.add(new String(m_script.getAbsolutePath().trim()));
         	argList.add(new String(m_script.toString().trim()));

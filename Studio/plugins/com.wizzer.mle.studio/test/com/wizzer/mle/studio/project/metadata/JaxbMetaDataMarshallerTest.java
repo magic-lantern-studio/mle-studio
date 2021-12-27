@@ -2,7 +2,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2000-2020 Wizzer Works
+// Copyright (c) 2000-2021 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -173,10 +173,10 @@ public class JaxbMetaDataMarshallerTest extends TestCase
 		assertEquals(target.getSceneIdFile(), "SceneID.java");
 		assertEquals(target.getHeaderPackage(), "gen");
 		assertEquals(target.getBomFile(), "MediaBom.txt");
-		assertEquals(target.getScriptFile(), "playprint.tcl");
+		assertEquals(target.getScriptFile(), "playprint.py");
 		assertEquals(target.getTocName(), "DppTOC");
 		assertEquals(target.getSourceDirectory(), "src/gen");
-		assertEquals(target.getScriptPath(), "src/gen/playprint.tcl");
+		assertEquals(target.getScriptPath(), "src/gen/playprint.py");
 	}
 	
 	private void createProjectFile() throws FileNotFoundException, IOException
@@ -220,11 +220,11 @@ public class JaxbMetaDataMarshallerTest extends TestCase
 		targetData.setGenmedia(true);
 		targetData.setBomFile("MediaBom.txt");
 		targetData.setGenppscript(true);
-		targetData.setScriptFile("playprint.tcl");
+		targetData.setScriptFile("playprint.py");
 		targetData.setTocName("DppTOC");
 		targetData.setGendpp(true);
 		targetData.setSourceDirectory("src/gen");
-		targetData.setScriptPath("src/gen/playprint.tcl");
+		targetData.setScriptPath("src/gen/playprint.py");
 		targetData.setHeaderPackage("gen");
 		
 		MleTitleMetaData.MasterTargetElement[] targets = new MleTitleMetaData.MasterTargetElement[1];

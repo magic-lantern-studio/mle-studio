@@ -6,7 +6,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2000-2020 Wizzer Works
+// Copyright (c) 2000-2022 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -53,8 +53,8 @@ public class DppGenppscript extends DppCommand
     protected File m_outputDir = new File("gen");
     /** The digital playprint. */
     protected String m_playprint = "playprint.dpp";
-    /** The TCL script. */
-    protected String m_script = "playprint.tcl";
+    /** The Python script. */
+    protected String m_script = "playprint.py";
     /** The chunk table-of-contents. */
     protected String m_toc = "DppTOC";
     /** The tags. */
@@ -107,17 +107,17 @@ public class DppGenppscript extends DppCommand
     }
     
     /**
-     * Set the name of the TCL script that will be generated.
+     * Set the name of the Python script that will be generated.
      * 
      * @param name The name of the script.
      * 
      * @throws DppException This exception is thrown if the
-     * TCL script name is not specified.
+     * Python script name is not specified.
      */
     public void setScript(String name) throws DppException
     {
         if (name == null)
-            throw new DppException("TCL script name not specified.");
+            throw new DppException("Python script name not specified.");
         m_script = name;
     }
     
